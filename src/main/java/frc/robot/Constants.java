@@ -18,12 +18,13 @@ package frc.robot;
 
 public final class Constants {
     public static final int kSlotIdx = 0;
-    public static final int kTimeOutMs = 15;
-    public final double kP = 0;
-    public final double kI = 0;
-    public final double kD = 0;
-    public final double kF = 0;
-    public final double kPeakOutput = 1; 
+    public static final int kTimeOutMs = 21; //30
+    public static final int kPIDLoopIdx = 0;
+    public static final double kP = 0;
+    public static final double kI = 0;
+    public static final double kD = 0;
+    public static final double kF = (1023 / 50000); //50000 is measured from our motors, this is max purple velocity from pheonix tuner. 
+    public static final double kPeakOutput = 1; 
 
-    
+    public static final double targetRpm = 4000;
 }

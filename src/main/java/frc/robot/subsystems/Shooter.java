@@ -29,7 +29,7 @@ public class Shooter extends SubsystemBase {
     //double current = shooterMaster.getStatorCurrent (); //amps
     //int rawVelocity = shooterMaster.getSelectedSensorVelocity(); // raw sensor units
     //shooterMaster.set( ControlMode.PercentOutput , 1 );
-
+    
   }
 
   @Override
