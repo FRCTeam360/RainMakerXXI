@@ -15,5 +15,15 @@ package frc.robot;
  * <p>It is advised to statically import this class (or one of its inner classes) wherever the
  * constants are needed, to reduce verbosity.
  */
+
 public final class Constants {
+    public static final int kSlotIdx = 0;
+    public static final int kTimeOutMs = 15;
+    public final double kP = 0;
+    public final double kI = 0;
+    public final double kD = 0;
+    public final double kF = 0;
+    public final double kPeakOutput = 1; 
+
+    
 }
