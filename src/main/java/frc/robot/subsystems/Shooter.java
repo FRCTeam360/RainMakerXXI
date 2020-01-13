@@ -56,7 +56,7 @@ public class Shooter extends SubsystemBase {
     //double current = shooterMaster.getStatorCurrent(); //amps
     //int rawVelocity = shooterMaster.getSelectedSensorVelocity(); // raw sensor units
     //shooterMaster.set( ControlMode.PercentOutput , 1 );
-    shooterMaster.set(ControlMode.Velocity, (((targetRPM * 4096) / 600) / 2));
+    shooterMaster.set(ControlMode.Velocity, (((targetRPM * 4096.0) / 600) / 2));
   }
 
   public void runWithJoy (double output) {
@@ -64,7 +64,7 @@ public class Shooter extends SubsystemBase {
   }
 
   private void displayRPM() {
-    SmartDashboard.putNumber("Shooter RPM", ((shooterMaster.getSelectedSensorVelocity() * 2 * 600) / 4096)); // (<velocity> * 2 * 600) / 4096 converts native units to RPM
+    SmartDashboard.putNumber("Shooter RPM", ((shooterMaster.getSelectedSensorVelocity() * 2.0 * 600) / 4096)); // (<velocity> * 2 * 600) / 4096 converts native units to RPM
     SmartDashboard.putNumber("Target RPM", targetRPM);
   }
 
