@@ -29,7 +29,7 @@ public final class Constants {
         public static final double kP = 0;
         public static final double kI = 0;
         public static final double kD = 0;
-        public static final double kF = (1 / 50000); //50000 is measured from our motors, this is max purple velocity from pheonix tuner. Changed 1023 to 1 because that is now what is considered "full power" by CTRE
+        public static final double kF = (1023.0 / 50000); //50000 is measured from our motors, this is max purple velocity from pheonix tuner. Changed 1023 to 1 because that is now what is considered "full power" by CTRE
         public static final double kPeakOutput = 1; 
         //public static final double targetRpm = 4000;
     }
