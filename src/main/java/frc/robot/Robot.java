@@ -9,6 +9,7 @@ package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -53,8 +54,11 @@ public class Robot extends TimedRobot {
     shooterMaster.configFactoryDefault();
     shooterSlave.configFactoryDefault();
 
+    shooterMaster.setInverted(true);
+    shooterSlave.setInverted(InvertType.FollowMaster);
+
     shooterMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative , Constants.kPIDLoopIdx , Constants.kTimeOutMs);
-    shooterMaster.setSensorPhase(false);
+    shooterMaster.setSensorPhase(true);
 
     shooterMaster.configNominalOutputForward( 0 , Constants.kTimeOutMs);
     shooterMaster.configNominalOutputReverse( 0 , Constants.kTimeOutMs);
@@ -134,7 +138,8 @@ public class Robot extends TimedRobot {
 
     if ( joy.getRawButton(1) ) {
       shooterMaster.set(ControlMode.Velocity , (((Constants.targetRpm * 4096) / 600) / 2) ); //divided by 2 is for our gear ratio
-      //System.out.println( (( (Constants.targetRpm * 4096) / 600) / 2) + "   " );    //about= 13,650
+    } else if (joy.getRawButton((2))) {
+      shooterMaster.set(ControlMode.Velocity , (((Constants.targetRpm * joy.getRawAxis(1) * 4096) / 600) / 2) );
     } else {
       shooterMaster.set(ControlMode.PercentOutput , joy.getRawAxis(1) );
     }
