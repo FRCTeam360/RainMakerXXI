@@ -7,33 +7,75 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import static frc.robot.Constants.ShooterConstants.*;
+
 import com.ctre.phoenix.motorcontrol.ControlMode;
+import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.InvertType;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class Shooter extends SubsystemBase {
 
-  public int targetShooterRPM;
-  public TalonSRX shooterMaster;
-  public TalonSRX shooterSlave;
+  private TalonSRX shooterMaster;
+  private TalonSRX shooterSlave;
 
-  public Shooter(int rmp) {
-    shooterMaster = new TalonSRX(0);
-    shooterSlave = new TalonSRX(1);
+  private static int targetRPM;
 
-    targetShooterRPM = rmp;
+  public Shooter() {
+    shooterMaster = new TalonSRX(shooterMasterId);
+    shooterSlave = new TalonSRX(shooterSlaveId);
+
+    shooterMaster.configFactoryDefault();
+    shooterSlave.configFactoryDefault();
+
+    shooterSlave.follow(shooterMaster);
+
+    shooterMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative , kPIDLoopIdx , kTimeOutMs);
+
+    shooterMaster.setInverted(true);
+    shooterSlave.setInverted(InvertType.FollowMaster);
+
+    shooterMaster.setSensorPhase(true);
+
+    shooterMaster.configNominalOutputForward( 0 , kTimeOutMs);
+    shooterMaster.configNominalOutputReverse( 0 , kTimeOutMs);
+    shooterMaster.configPeakOutputForward( 1 , kTimeOutMs);
+    shooterMaster.configPeakOutputReverse( -1 , kTimeOutMs);
+
+    shooterMaster.config_kF(kPIDLoopIdx, kF , kTimeOutMs );
+    shooterMaster.config_kP(kPIDLoopIdx, kP , kTimeOutMs );
+    shooterMaster.config_kI(kPIDLoopIdx, kI , kTimeOutMs );
+    shooterMaster.config_kD(kPIDLoopIdx, kD , kTimeOutMs );
   }
 
-  public void start () {
-    //double current = shooterMaster.getStatorCurrent (); //amps
+  public void run (int rpm) {
+    targetRPM = rpm;
+    //double current = shooterMaster.getStatorCurrent(); //amps
     //int rawVelocity = shooterMaster.getSelectedSensorVelocity(); // raw sensor units
     //shooterMaster.set( ControlMode.PercentOutput , 1 );
-    
+    shooterMaster.set(ControlMode.Velocity, (((targetRPM * 4096.0) / 600) / 2));
+  }
+
+  public void runWithJoy (double output) {
+    shooterMaster.set(ControlMode.PercentOutput, output);
+  }
+
+  private void displayRPM() {
+    SmartDashboard.putNumber("Shooter RPM", ((shooterMaster.getSelectedSensorVelocity() * 2.0 * 600) / 4096)); // (<velocity> * 2 * 600) / 4096 converts native units to RPM
+    SmartDashboard.putNumber("Target RPM", targetRPM);
+  }
+
+  private void displayCurrentDraw() {
+    SmartDashboard.putNumber("Total Shooter Current Draw", shooterMaster.getStatorCurrent() + shooterSlave.getStatorCurrent()); //amps of both motors driving shooter
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
+    displayRPM();
+    displayCurrentDraw();
   }
 }

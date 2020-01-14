@@ -17,14 +17,26 @@ package frc.robot;
  */
 
 public final class Constants {
-    public static final int kSlotIdx = 0;
-    public static final int kTimeOutMs = 21; //30
-    public static final int kPIDLoopIdx = 0;
-    public static final double kP = 0;
-    public static final double kI = 0;
-    public static final double kD = 0;
-    public static final double kF = (1023 / 50000); //50000 is measured from our motors, this is max purple velocity from pheonix tuner. 
-    public static final double kPeakOutput = 1; 
+    public static final int PDPId = 0;
 
-    public static final double targetRpm = 4000;
+    public static final class ShooterConstants {
+        public static final int shooterMasterId = 0;
+        public static final int shooterSlaveId = 1;
+
+        public static final int kSlotIdx = 0;
+        public static final int kTimeOutMs = 30;
+        public static final int kPIDLoopIdx = 0;
+        public static final double kP = 0;
+        public static final double kI = 0;
+        public static final double kD = 0;
+        public static final double kF = (1023.0 / 50000); //50000 is measured from our motors, this is max purple velocity from pheonix tuner. Changed 1023 to 1 because that is now what is considered "full power" by CTRE
+        public static final double kPeakOutput = 1; 
+        //public static final double targetRpm = 4000;
+    }
+
+    public static final class OIConstants {
+
+        public static final int joy1Port = 0;
+    
+    }
 }
