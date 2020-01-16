@@ -7,11 +7,6 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -29,12 +24,6 @@ public class Robot extends TimedRobot {
 
   private RobotContainer m_robotContainer;
 
-  // public TalonSRX shooterMaster;
-  // public TalonSRX shooterSlave;
-
-  // Joystick joy;
-  // Joystick joy1;
-
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -45,28 +34,7 @@ public class Robot extends TimedRobot {
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
 
-    // shooterMaster = new TalonSRX(0);
-    // shooterSlave = new TalonSRX(1);
-    // shooterSlave.follow(shooterMaster); //bind them together
-
-    // joy = new Joystick(0);
-    // joy1 = new Joystick(1);
-
-    // shooterMaster.configFactoryDefault();
-    // shooterSlave.configFactoryDefault();
-
-    // shooterMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative , Constants.kPIDLoopIdx , Constants.kTimeOutMs);
-    // shooterMaster.setSensorPhase(false);
-
-    // shooterMaster.configNominalOutputForward( 0 , Constants.kTimeOutMs);
-    // shooterMaster.configNominalOutputReverse( 0 , Constants.kTimeOutMs);
-    // shooterMaster.configPeakOutputForward( 1 , Constants.kTimeOutMs);
-    // shooterMaster.configPeakOutputReverse( -1 , Constants.kTimeOutMs);
-
-    // shooterMaster.config_kF(Constants.kPIDLoopIdx, Constants.kF , Constants.kTimeOutMs );
-    // shooterMaster.config_kP(Constants.kPIDLoopIdx, Constants.kP , Constants.kTimeOutMs );
-    // shooterMaster.config_kI(Constants.kPIDLoopIdx, Constants.kI , Constants.kTimeOutMs );
-    // shooterMaster.config_kD(Constants.kPIDLoopIdx, Constants.kD , Constants.kTimeOutMs );
+    
 
   }
 
@@ -133,13 +101,8 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-    
-    // if ( joy.getRawButton(1) ) {
-    //   shooterMaster.set(ControlMode.Velocity , (((Constants.targetRpm * 4096) / 600) / 2) ); //divided by 2 is for our gear ratio
-    //   System.out.println( (( (Constants.targetRpm * 4096) / 600) / 2) + "   " );    //about= 13,650
-    // } else {
-    //   shooterMaster.set(ControlMode.PercentOutput , joy.getRawAxis(1) );
-    // }
+
+
     
   }
 
