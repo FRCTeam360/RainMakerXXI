@@ -9,6 +9,7 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import static frc.robot.Constants.ShifterConstants.*;
 
@@ -19,17 +20,20 @@ public class Shifter extends SubsystemBase {
   public Shifter() {
     shifter = new DoubleSolenoid( forwardChannel , reverseChannel );
     shiftState = ShiftState.UNKNOWN;
+    SmartDashboard.putString( "Shifter State" , shiftState.name() );
   }
 
 	public void shiftUp(){ 
 		shifter.set(DoubleSolenoid.Value.kForward);
-		shiftState = ShiftState.UP;
+    shiftState = ShiftState.UP;
+    SmartDashboard.putString( "Shifter State" , shiftState.name() );
 	}
 	public void shiftDown() {
 		shifter.set(DoubleSolenoid.Value.kReverse);
-		shiftState = ShiftState.DOWN;
-	}
-
+    shiftState = ShiftState.DOWN;
+    SmartDashboard.putString( "Shifter State" , shiftState.name() );
+  }
+  
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
