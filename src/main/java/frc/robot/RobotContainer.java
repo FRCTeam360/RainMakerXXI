@@ -28,6 +28,7 @@ public class RobotContainer {
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private final JoystickTankDrive joystickTankDrive = new JoystickTankDrive(drivetrain);
+  private final Pressurize pressurize = new Pressurize(pneumatics);
 
 
 
@@ -35,7 +36,10 @@ public class RobotContainer {
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+    
     drivetrain.setDefaultCommand(joystickTankDrive);
+    pneumatics.setDefaultCommand(pressurize);
+
     // Configure the button bindings
     configureButtonBindings();
   }
