@@ -19,9 +19,17 @@ package frc.robot;
 public final class Constants {
     public static final int PDPId = 0;
 
+    public static final class DriveTrainConstants {
+        public static final int motorLMasterID = 1;
+        public static final int motorLSlaveID = 2;
+        public static final int motorRMasterID = 3;
+        public static final int motorRSlaveID = 4;
+    }
+
     public static final class OIConstants {
 
-        public static final int joy1Port = 0;
+        public static final int joyRPort = 0;
+        public static final int joyLPort = 1;
     
     }
 }

@@ -12,15 +12,17 @@ import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
+import static frc.robot.Constants.DriveTrainConstants.*;
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
 
-  public static CANSparkMax motorL1;
-  public static CANSparkMax motorL2;
-  public static CANSparkMax motorR1;
-  public static CANSparkMax motorR2;
+  public static CANSparkMax motorLMaster;
+  public static CANSparkMax motorLSlave;
+  public static CANSparkMax motorRMaster;
+  public static CANSparkMax motorRSlave;
 
   public CANEncoder rightOne;
   public CANEncoder rightTwo;
@@ -45,67 +47,67 @@ public class DriveTrain extends SubsystemBase {
 
 
   public DriveTrain() {
-    motorL1 = new CANSparkMax(1, MotorType.kBrushless);
-    motorL2 = new CANSparkMax(2, MotorType.kBrushless);
-    motorR1 = new CANSparkMax(3, MotorType.kBrushless);
-    motorR2 = new CANSparkMax(4, MotorType.kBrushless);
+    motorLMaster = new CANSparkMax(motorLMasterID, MotorType.kBrushless);
+    motorLSlave = new CANSparkMax(motorLSlaveID, MotorType.kBrushless);
+    motorRMaster = new CANSparkMax(motorRMasterID, MotorType.kBrushless);
+    motorRSlave = new CANSparkMax(motorRSlaveID, MotorType.kBrushless);
 
     // makes the second motor for left and right sides to follow the primary motor on the left and right
-    motorL2.follow(motorL1);
-    motorR2.follow(motorR1);
+    motorLSlave.follow(motorLMaster);
+    motorRSlave.follow(motorRMaster);
 
     // makes one side of the robot reverse direction in order to ensure that the robot goes forward when the joysticks are both forward and backwards when the joysticks are both backwards
-    motorL1.setInverted(false);
-    motorL2.setInverted(false);
-    motorR1.setInverted(true);
-    motorR2.setInverted(true);
+    motorLMaster.setInverted(false);
+    motorLSlave.setInverted(false);
+    motorRMaster.setInverted(true);
+    motorRSlave.setInverted(true);
 
   }
 
   public void driveRMAX (double Rmotor) {
-    motorR1.set( Rmotor );
+    motorRMaster.set( Rmotor );
   }
   public void driveLMAX (double Lmotor) {
-    motorL1.set( Lmotor );
+    motorLSlave.set( Lmotor );
   }
 
   public void leftEnc(){
     // gets the new position of the encoder
-    leftNewPos = motorL1.getEncoder().getPosition();
+    leftNewPos = motorLMaster.getEncoder().getPosition();
     // puts raw number in smartdashboard
     SmartDashboard.putNumber("Left Raw Pos", leftNewPos);
     // finds the difference in the new and the old position
     deltaLeftPos = leftNewPos - leftOldPos;
     // gets the velocity of the left motor
-    leftVel = motorL2.getEncoder().getVelocity();
+    leftVel = motorLSlave.getEncoder().getVelocity();
     // puts raw number in smartdashboard
     SmartDashboard.putNumber("Left Raw Vel", leftVel);
   }
 
   public void rightEnc(){
     // gets the new position of the encoder
-    rightNewPos = motorR1.getEncoder().getPosition();
+    rightNewPos = motorRMaster.getEncoder().getPosition();
     // puts raw number in smartdashboard
     SmartDashboard.putNumber("Right Raw Pos", rightNewPos);
     // finds the difference in the new and the old position
     deltaRightPos = rightNewPos - rightOldPos;
     // gets the velocity of the left motor
-    rightVel = motorR2.getEncoder().getVelocity();
+    rightVel = motorRSlave.getEncoder().getVelocity();
     // puts raw number in smartdashboard
     SmartDashboard.putNumber("Right Raw Vel", rightVel);
   }
 
   public void brakeMode() {
-    motorL1.setIdleMode(IdleMode.kBrake);
-    motorR1.setIdleMode(IdleMode.kBrake);
-    motorL2.setIdleMode(IdleMode.kBrake);
-    motorR2.setIdleMode(IdleMode.kBrake);
+    motorLMaster.setIdleMode(IdleMode.kBrake);
+    motorRMaster.setIdleMode(IdleMode.kBrake);
+    motorLSlave.setIdleMode(IdleMode.kBrake);
+    motorRSlave.setIdleMode(IdleMode.kBrake);
   }
   public void coastMode() {
-    motorL1.setIdleMode(IdleMode.kCoast);
-    motorR1.setIdleMode(IdleMode.kCoast);
-    motorL2.setIdleMode(IdleMode.kCoast);
-    motorR2.setIdleMode(IdleMode.kCoast);
+    motorLMaster.setIdleMode(IdleMode.kCoast);
+    motorRMaster.setIdleMode(IdleMode.kCoast);
+    motorLSlave.setIdleMode(IdleMode.kCoast);
+    motorRSlave.setIdleMode(IdleMode.kCoast);
   }
 
   @Override

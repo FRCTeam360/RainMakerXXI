@@ -27,6 +27,7 @@ public class RobotContainer {
   private final Shifter shifter = new Shifter();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
+  private final JoystickTankDrive joystickTankDrive = new JoystickTankDrive(drivetrain);
 
 
 
@@ -34,6 +35,7 @@ public class RobotContainer {
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
+    drivetrain.setDefaultCommand(joystickTankDrive);
     // Configure the button bindings
     configureButtonBindings();
   }
