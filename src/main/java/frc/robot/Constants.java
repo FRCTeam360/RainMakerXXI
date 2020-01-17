@@ -19,6 +19,7 @@ package frc.robot;
 public final class Constants {
     public static final int PDPId = 0;
 
+
     public static final class DriveTrainConstants {
         public static final int motorLMasterID = 1;
         public static final int motorLSlaveID = 2;
@@ -33,10 +34,18 @@ public final class Constants {
         public static final int reverseChannel = 0;
     }
 
+
     public static final class OIConstants {
 
         public static final int joyRPort = 0;
         public static final int joyLPort = 1;
+        public static final int contPort = 2; // port of xbox controller connected
     
     }
+    public static final class MConstants { //Match constants, data about the match
+
+        public static final boolean isInAutoShift = false; //to ensure you don't shift when your in autonomous 
+
+    }
+
 }
