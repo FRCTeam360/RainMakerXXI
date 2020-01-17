@@ -8,21 +8,26 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-
+import frc.robot.subsystems.Pneumatics;
 import edu.wpi.first.wpilibj.RobotController;
 import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.command.Command;
-
-import static frc.robot.Constants.ShifterConstants.*;
 
 public class Pressurize extends CommandBase {
 
   Timer timer;
   boolean shouldRun;
 
-  public Pressurize(  ) {
+  private final Pneumatics pneumatics;
 
+  public Pressurize( Pneumatics inPneumatics ) {
+    pneumatics = inPneumatics;
+    timer = new Timer();
+	  shouldRun = true;
+	  timer.reset();
+    timer.stop();
+    
     // Use addRequirements() here to declare subsystem dependencies.
+    addRequirements(inPneumatics);
   }
 
   // Called when the command is initially scheduled.
@@ -33,11 +38,27 @@ public class Pressurize extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    if(shouldRun == true && RobotController.getInputVoltage() > 10) {
+      pneumatics.pressurize();
+    } else if (shouldRun == true && ! (RobotController.getInputVoltage() > 10)) {
+      shouldRun = false;
+      pneumatics.stop();
+      timer.reset();
+      timer.start();
+    }
+    if (timer.get() > 0.5) {
+      timer.reset();
+      timer.stop();
+      shouldRun = true;
+    }
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    timer.stop();
+	  timer.reset();
+	  pneumatics.stop();
   }
 
   // Returns true when the command should end.
