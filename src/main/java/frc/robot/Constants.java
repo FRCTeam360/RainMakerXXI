@@ -25,6 +25,13 @@ public final class Constants {
         public static final int motorRMasterID = 3;
         public static final int motorRSlaveID = 4;
     }
+    public static final class ShifterConstants {
+        public static enum ShiftState {UP, DOWN, UNKNOWN};
+        public static ShiftState shiftState; 
+
+        public static final int forwardChannel = 1;
+        public static final int reverseChannel = 0;
+    }
 
     public static final class OIConstants {
 

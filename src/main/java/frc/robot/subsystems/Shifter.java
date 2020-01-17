@@ -8,17 +8,16 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+
+import static frc.robot.Constants.ShifterConstants.*;
 
 public class Shifter extends SubsystemBase {
 
   public static DoubleSolenoid shifter;
-  public static enum ShiftState {UP, DOWN, UNKNOWN};
-  public static ShiftState shiftState;
 
   public Shifter() {
-    shifter = new DoubleSolenoid(1, 0);
+    shifter = new DoubleSolenoid( forwardChannel , reverseChannel );
     shiftState = ShiftState.UNKNOWN;
   }
 
