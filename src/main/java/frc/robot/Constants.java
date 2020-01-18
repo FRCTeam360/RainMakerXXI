@@ -32,6 +32,8 @@ public final class Constants {
 
         public static final int forwardChannel = 1;
         public static final int reverseChannel = 0;
+
+        public static final boolean isInAutoShift = false; //to ensure you don't shift when your in autonomous 
     }
 
 
@@ -41,11 +43,6 @@ public final class Constants {
         public static final int joyLPort = 1;
         public static final int contPort = 2; // port of xbox controller connected
     
-    }
-    public static final class MConstants { //Match constants, data about the match
-
-        public static final boolean isInAutoShift = false; //to ensure you don't shift when your in autonomous 
-
     }
 
 }
