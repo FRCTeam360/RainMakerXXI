@@ -68,7 +68,7 @@ public class DriveTrain extends SubsystemBase {
     motorRMaster.set( Rmotor );
   }
   public void driveLMAX (double Lmotor) {
-    motorLSlave.set( Lmotor );
+    motorLMaster.set( Lmotor );
   }
 
   public void leftEnc(){
