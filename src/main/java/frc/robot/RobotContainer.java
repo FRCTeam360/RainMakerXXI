@@ -8,10 +8,13 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.Constants.OIConstants;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -25,13 +28,16 @@ public class RobotContainer {
   private final DriveTrain drivetrain = new DriveTrain();
   private final Pneumatics pneumatics = new Pneumatics();
   private final Shifter shifter = new Shifter();
+  private final Limelight limelight = new Limelight();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private final JoystickTankDrive joystickTankDrive = new JoystickTankDrive(drivetrain);
   private final Pressurize pressurize = new Pressurize(pneumatics);
   private final Shift shift = new Shift(shifter);
+  private final RunCamera runCamera = new RunCamera(limelight);
+  private final SwitchCamMode switchCamMode = new SwitchCamMode(limelight);
 
-
+  Joystick joy1 = new Joystick(OIConstants.joyRPort);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
@@ -41,6 +47,7 @@ public class RobotContainer {
     drivetrain.setDefaultCommand(joystickTankDrive);
     pneumatics.setDefaultCommand(pressurize);
     shifter.setDefaultCommand(shift);
+    limelight.setDefaultCommand(runCamera);
 
     // Configure the button bindings
     configureButtonBindings();
@@ -53,6 +60,9 @@ public class RobotContainer {
    * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
+
+    new JoystickButton(joy1, 5).whenPressed(switchCamMode);
+
   }
 
 
