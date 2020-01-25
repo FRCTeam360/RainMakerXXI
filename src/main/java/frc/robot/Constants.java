@@ -20,8 +20,8 @@ public final class Constants {
     public static final int PDPId = 0;
 
     public static final class ShooterConstants {
-        public static final int shooterMasterId = 0;
-        public static final int shooterSlaveId = 1;
+        public static final int shooterMasterId = 5;
+        public static final int shooterSlaveId = 6;
 
         public static final int kSlotIdx = 0;
         public static final int kTimeOutMs = 30;
