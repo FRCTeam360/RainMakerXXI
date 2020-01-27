@@ -39,9 +39,15 @@ public class ShootBalls extends CommandBase {
   @Override
   public void execute() {
     if ( joy.getRawButton(1) ) {
+
       //shooterMaster.set(ControlMode.Velocity , (((Constants.targetRpm * 4096) / 600) / 2) ); //divided by 2 is for our gear ratio
       //System.out.println( (( (Constants.targetRpm * 4096) / 600) / 2) + "   " );    //about= 13,650
-      myShooter.run(4000);
+      myShooter.run(-joy.getRawAxis(1));
+
+    } else if(joy.getRawButton(6)) {
+
+      myShooter.runWithJoy(.6);
+
     } else {
       myShooter.runWithJoy(-joy.getRawAxis(1));
       //shooterMaster.set(ControlMode.PercentOutput , joy.getRawAxis(1) );

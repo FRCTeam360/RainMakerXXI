@@ -22,7 +22,7 @@ public class Shooter extends SubsystemBase {
   private TalonSRX shooterMaster;
   private TalonSRX shooterSlave;
 
-  private static int targetRPM;
+  private static double targetRPM;
 
   public Shooter() {
     shooterMaster = new TalonSRX(shooterMasterId);
@@ -35,7 +35,7 @@ public class Shooter extends SubsystemBase {
 
     shooterMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative , kPIDLoopIdx , kTimeOutMs);
 
-    shooterMaster.setInverted(true);
+    shooterMaster.setInverted(false);
     shooterSlave.setInverted(InvertType.FollowMaster);
 
     shooterMaster.setSensorPhase(true);
@@ -51,12 +51,12 @@ public class Shooter extends SubsystemBase {
     shooterMaster.config_kD(kPIDLoopIdx, kD , kTimeOutMs );
   }
 
-  public void run (int rpm) {
+  public void run (double rpm) {
     targetRPM = rpm;
     //double current = shooterMaster.getStatorCurrent(); //amps
     //int rawVelocity = shooterMaster.getSelectedSensorVelocity(); // raw sensor units
     //shooterMaster.set( ControlMode.PercentOutput , 1 );
-    shooterMaster.set(ControlMode.Velocity, (((targetRPM * 4096.0) / 600) / 2));
+    shooterMaster.set(ControlMode.Velocity, rpm * 15900);
   }
 
   public void runWithJoy (double output) {
@@ -64,7 +64,7 @@ public class Shooter extends SubsystemBase {
   }
 
   private void displayRPM() {
-    SmartDashboard.putNumber("Shooter RPM", ((shooterMaster.getSelectedSensorVelocity() * 2.0 * 600) / 4096)); // (<velocity> * 2 * 600) / 4096 converts native units to RPM
+    SmartDashboard.putNumber("Shooter RPM", ((shooterMaster.getSelectedSensorVelocity(0) * 2.0 * 600) / 4096)); // (<velocity> * 2 * 600) / 4096 converts native units to RPM
     SmartDashboard.putNumber("Target RPM", targetRPM);
   }
 
@@ -72,10 +72,20 @@ public class Shooter extends SubsystemBase {
     SmartDashboard.putNumber("Total Shooter Current Draw", shooterMaster.getStatorCurrent() + shooterSlave.getStatorCurrent()); //amps of both motors driving shooter
   }
 
+  private void displayVelocity() {
+    SmartDashboard.putNumber("Shooter Velocity", shooterMaster.getSelectedSensorVelocity(0));
+  }
+
+  private void displayShooterError() {
+    SmartDashboard.putNumber("Shooter Error", shooterMaster.getClosedLoopError());
+  }
+
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     displayRPM();
     displayCurrentDraw();
+    displayVelocity();
+    displayShooterError();
   }
 }
