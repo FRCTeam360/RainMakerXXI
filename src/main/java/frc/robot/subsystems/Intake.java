@@ -40,7 +40,7 @@ public class Intake extends SubsystemBase {
 
   //Moves intake down
   public void intakeDown(){
-    intakeMover.set(DoubleSolenoid.Value.kReverse);
+    intakeMover.set(DoubleSolenoid.Value.kReverse); 
   }
 
   @Override
