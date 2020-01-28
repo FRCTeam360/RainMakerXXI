@@ -56,7 +56,7 @@ public class Shooter extends SubsystemBase {
     //double current = shooterMaster.getStatorCurrent(); //amps
     //int rawVelocity = shooterMaster.getSelectedSensorVelocity(); // raw sensor units
     //shooterMaster.set( ControlMode.PercentOutput , 1 );
-    shooterMaster.set(ControlMode.Velocity, rpm * 15900);
+    shooterMaster.set(ControlMode.Velocity, 12500); //15900 native units is 60%
   }
 
   public void runWithJoy (double output) {

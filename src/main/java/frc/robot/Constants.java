@@ -26,7 +26,7 @@ public final class Constants {
         public static final int kSlotIdx = 0;
         public static final int kTimeOutMs = 30;
         public static final int kPIDLoopIdx = 0;
-        public static final double kP = 0; //(0.05 * 1023.0) / 453.0;
+        public static final double kP = ((0.05 * 1023.0) / 1001.0) * 2; //(0.05 * 1023.0) / 453.0;
         public static final double kI = 0;
         public static final double kD = 0;
         public static final double kF = (0.6 * 1023.0) / 15900.0;
