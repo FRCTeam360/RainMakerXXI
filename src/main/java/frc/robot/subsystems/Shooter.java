@@ -64,7 +64,7 @@ public class Shooter extends SubsystemBase {
   }
 
   private void displayRPM() {
-    SmartDashboard.putNumber("Shooter RPM", ((shooterMaster.getSelectedSensorVelocity(0) * 2.0 * 600) / 4096)); // (<velocity> * 2 * 600) / 4096 converts native units to RPM
+    SmartDashboard.putNumber("Shooter RPM", ((shooterMaster.getSelectedSensorVelocity(0) * 600.0) / 4096.0 / 2.0)); // (<velocity> * 2 * 600) / 4096 converts native units to RPM
     SmartDashboard.putNumber("Target RPM", targetRPM);
   }
 
