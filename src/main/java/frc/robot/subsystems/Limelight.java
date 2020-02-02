@@ -27,14 +27,15 @@ public class Limelight extends SubsystemBase {
    * Creates a new Limelight.
    */
   public Limelight() {
-
   }
 
   public void changeCamMode() {
     if(camMode.getDouble(0.0) == 1.0) {
       table.getEntry("camMode").setNumber(0.0);
+      table.getEntry("ledMode").setNumber(0);
     } else {
       table.getEntry("camMode").setNumber(1.0);
+      table.getEntry("ledMode").setNumber(1);
     }
   }
 
