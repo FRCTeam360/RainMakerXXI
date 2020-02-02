@@ -38,7 +38,7 @@ public class Shooter extends SubsystemBase {
     shooterMaster.setInverted(false);
     shooterSlave.setInverted(InvertType.FollowMaster);
 
-    shooterMaster.setSensorPhase(true);
+    shooterMaster.setSensorPhase(false);
 
     shooterMaster.configNominalOutputForward( 0 , kTimeOutMs);
     shooterMaster.configNominalOutputReverse( 0 , kTimeOutMs);
@@ -56,7 +56,7 @@ public class Shooter extends SubsystemBase {
     //double current = shooterMaster.getStatorCurrent(); //amps
     //int rawVelocity = shooterMaster.getSelectedSensorVelocity(); // raw sensor units
     //shooterMaster.set( ControlMode.PercentOutput , 1 );
-    shooterMaster.set(ControlMode.Velocity, 12500); //15900 native units is 60%
+    shooterMaster.set(ControlMode.Velocity, 15000); //15900 native units is 60%
   }
 
   public void runWithJoy (double output) {
