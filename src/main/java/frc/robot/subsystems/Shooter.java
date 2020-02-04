@@ -51,8 +51,7 @@ public class Shooter extends SubsystemBase {
     shooterMaster.config_kD(kPIDLoopIdx, kD , kTimeOutMs );
   }
 
-  public void run (double rpm) {
-    targetRPM = rpm;
+  public void run () {
     //double current = shooterMaster.getStatorCurrent(); //amps
     //int rawVelocity = shooterMaster.getSelectedSensorVelocity(); // raw sensor units
     //shooterMaster.set( ControlMode.PercentOutput , 1 );
