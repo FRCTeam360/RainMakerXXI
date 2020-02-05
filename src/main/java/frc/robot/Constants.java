@@ -63,5 +63,26 @@ public final class Constants {
         public static final int contPort = 2; // port of xbox controller connected
     
     }
+    
+    public static final class AutoConstants {
+        //Which auto do you want?
+        public static enum AutoType {LEFT, MIDDLE, RIGHT};
+        public static AutoType autoType = AutoType.LEFT; //Change here for whichever auto you would like 
+
+        //ALL OF THESE R EXAMPLE VALUES, WE NEED TO DO CHARACTERIZATION TO FIGURE IT OUT.
+        public static final double ksVolts = 0.22;
+        public static final double kvVoltSecondsPerMeter = 1.98;
+        public static final double kaVoltSecondsSquaredPerMeter = 0.2;
+        public static final double kPDriveVel = 8.5;
+        public static final double kTrackwidthMeters = 0.69; //How wide the wheels r apart
+        public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
+        public static final double kMaxSpeedMetersPerSecond = 3;
+        public static final double kMaxAccelerationMetersPerSecondSquared = 3;
+
+        // Reasonable baseline values for a RAMSETE follower in units of meters and seconds
+        public static final double kRamseteB = 2;
+        public static final double kRamseteZeta = 0.7;
+        public static final boolean kGyroReversed = false;
+    }
 
 }
