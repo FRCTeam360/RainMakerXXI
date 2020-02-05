@@ -20,8 +20,7 @@ import edu.wpi.first.wpilibj2.command.Command;
  * periodic methods (other than the scheduler calls).  Instead, the structure of the robot
  * (including subsystems, commands, and button mappings) should be declared here.
  */
-public class RobotContainer {
-  // The robot's subsystems and commands are defined here...
+public class RobotContainer {   // The robot's subsystems and commands are defined here...
   private final DriveTrain drivetrain = new DriveTrain();
   private final Pneumatics pneumatics = new Pneumatics();
   private final Shifter shifter = new Shifter();
@@ -33,38 +32,18 @@ public class RobotContainer {
   private final Shift shift = new Shift(shifter);
   private final ShootBalls shootBalls = new ShootBalls(shooter);
 
-
-
-  /**
-   * The container for the robot.  Contains subsystems, OI devices, and commands.
-   */
   public RobotContainer() {
-
     drivetrain.setDefaultCommand(joystickTankDrive);
     pneumatics.setDefaultCommand(pressurize);
     shifter.setDefaultCommand(shift);
-
-    // Configure the button bindings
     shooter.setDefaultCommand(shootBalls);
     configureButtonBindings();
   }
 
-  /**
-   * Use this method to define your button->command mappings.  Buttons can be created by
-   * instantiating a {@link GenericHID} or one of its subclasses ({@link
-   * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a
-   * {@link edu.wpi.first.wpilibj2.command.button.JoystickButton}.
-   */
   private void configureButtonBindings() {
   }
 
-
-  /**
-   * Use this to pass the autonomous command to the main {@link Robot} class.
-   *
-   * @return the command to run in autonomous
-   */
   public Command getAutonomousCommand() {
-    return m_autoCommand;
+    return m_autoCommand; //Sends the autonomous command initialized above
   }
 }
