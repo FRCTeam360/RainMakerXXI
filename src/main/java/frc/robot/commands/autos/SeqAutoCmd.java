@@ -6,10 +6,11 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands.autos;
+import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 public class SeqAutoCmd extends SequentialCommandGroup {
-  public SeqAutoCmd() { //Needs - drivetrain, intake, shooter, limelight
+  public SeqAutoCmd( DriveTrain driveTrain , Intake intake , Shooter shooter , Limelight limelight ) { //Needs - drivetrain, intake, shooter, limelight
 
     super(new parStepOne() , new parStepTwo() , new parStepThree() ); //Run 3 parelell parts in order
 
