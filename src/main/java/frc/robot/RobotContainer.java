@@ -25,11 +25,13 @@ public class RobotContainer {
   private final DriveTrain drivetrain = new DriveTrain();
   private final Pneumatics pneumatics = new Pneumatics();
   private final Shifter shifter = new Shifter();
+  private final Shooter shooter = new Shooter();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private final JoystickTankDrive joystickTankDrive = new JoystickTankDrive(drivetrain);
   private final Pressurize pressurize = new Pressurize(pneumatics);
   private final Shift shift = new Shift(shifter);
+  private final ShootBalls shootBalls = new ShootBalls(shooter);
 
 
 
