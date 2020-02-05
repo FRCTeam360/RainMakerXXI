@@ -25,6 +25,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final Pneumatics pneumatics = new Pneumatics();
   private final Shifter shifter = new Shifter();
   private final Shooter shooter = new Shooter();
+  private final Limelight limelight = new Limelight();
 
   private final SeqAutoCmd m_autoCommand = new SeqAutoCmd(  ); //Define auto sequential command
   private final JoystickTankDrive joystickTankDrive = new JoystickTankDrive(drivetrain);
