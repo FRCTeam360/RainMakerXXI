@@ -13,6 +13,10 @@ import frc.robot.commands.*;
 import frc.robot.commands.autos.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -33,20 +37,32 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final Shift shift = new Shift(shifter);
   private final ShootBalls shootBalls = new ShootBalls(shooter);
 
-  private final SeqAutoCmd m_autoCommand = new SeqAutoCmd( drivetrain , intake , shooter , limelight ); //Define auto sequential command - drivetrain, intake, shooter, limelight
+  //private final SeqAutoCmd m_autoCommand = new SeqAutoCmd( drivetrain , intake , shooter , limelight ); //Define auto sequential command - drivetrain, intake, shooter, limelight
+	private final SequentialCommandGroup m_autoCommand_left = new SequentialCommandGroup( new ParallelCommandGroup() , new ParallelCommandGroup() , new ParallelCommandGroup() );
+  private final SequentialCommandGroup m_autoCommand_middle = new SequentialCommandGroup();
+  private final SequentialCommandGroup m_autoCommand_right = new SequentialCommandGroup();
+
+  SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   public RobotContainer() {
     drivetrain.setDefaultCommand(joystickTankDrive);
     pneumatics.setDefaultCommand(pressurize);
     shifter.setDefaultCommand(shift);
     shooter.setDefaultCommand(shootBalls);
+
     configureButtonBindings();
+
+    m_chooser.addOption("Left Auto", m_autoCommand_left);
+    m_chooser.addOption("Right Middle", m_autoCommand_middle);
+    m_chooser.addOption("Right Auto", m_autoCommand_right);
+
+    Shuffleboard.getTab("Autonomous").add(m_chooser);
   }
 
   private void configureButtonBindings() {
   }
 
   public Command getAutonomousCommand() {
-    return m_autoCommand; //Sends the autonomous command initialized above
+    return m_chooser.getSelected(); //Sends the autonomous command initialized above
   }
 }
