@@ -6,7 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot.commands.autos;
-
+import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
@@ -16,7 +16,14 @@ public class parStepOne extends ParallelCommandGroup {
   /**
    * Creates a new parStepOne.
    */
-  public parStepOne() { //Needs - intake, shooter
+  public parStepOne(Intake intake , Shooter shooter) { //Needs - intake, shooter
 
   }
 }
+
+/*
+COPY FROM DOCUMENTATION:
+    1. intake, shooter
+        B. intake
+        C. shooter
+*/
