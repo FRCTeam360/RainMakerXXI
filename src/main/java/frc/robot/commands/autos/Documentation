@@ -1,6 +1,19 @@
 
+Documentation for the autonomous running sequence and command functionality:
 
-AUTONOMOUS LIST OF THINGS TO DO
+=======================
+Newer version: && means parelel and every \n is the next command in the sequential
+
+-Line up robot correctly
+
+-Set Brake Mode
+-Drop Intake
+-Shoot 3 balls
+-Drive trench balls (3 versions)(andThen( volts(0,0) )) &&& Run Intake mostly full power (maybe dynamic power, not overheat motors)
+-Set Intake Power to zero
+-Limelight shoot all 5
+
+======================
 
 0. Line up robot in aimming toward target, same RPM, only difference between 3 different setups is position on the line
 0. Brake mode must be set prior to use
