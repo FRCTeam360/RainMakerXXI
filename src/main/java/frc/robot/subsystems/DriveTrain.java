@@ -13,6 +13,15 @@ import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import static frc.robot.Constants.DriveTrainConstants.*;
+import frc.robot.Constants.AutoConstants;
+
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
+import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
+import edu.wpi.first.wpilibj.geometry.Pose2d;
+import edu.wpi.first.wpilibj.geometry.Rotation2d;
+
+import com.kauailabs.navx.frc.AHRS;
+import edu.wpi.first.wpilibj.SPI;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -45,6 +54,8 @@ public class DriveTrain extends SubsystemBase {
   double deltaRightPos;
   double deltaLeftPos;
 
+  AHRS navX;
+  private final DifferentialDriveOdometry m_odometry;
 
   public DriveTrain() {
     motorLMaster = new CANSparkMax(motorLMasterID, MotorType.kBrushless);
@@ -62,6 +73,18 @@ public class DriveTrain extends SubsystemBase {
     motorRMaster.setInverted(true);
     motorRSlave.setInverted(true);
 
+    navX = new AHRS(SPI.Port.kMXP); 
+    m_odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getHeading()));
+
+  }
+
+  public void tankDriveVolts(double leftVolts, double rightVolts) {
+    motorRMaster.setVoltage(leftVolts);
+    motorLMaster.setVoltage(-rightVolts); //Does this need to be inverted? 
+  }
+
+  public double getHeading() {
+    return Math.IEEEremainder(navX.getAngle(), 360) * (AutoConstants.kGyroReversed ? -1.0 : 1.0);
   }
 
   public void driveRMAX (double Rmotor) {
@@ -69,6 +92,14 @@ public class DriveTrain extends SubsystemBase {
   }
   public void driveLMAX (double Lmotor) {
     motorLMaster.set( Lmotor );
+  }
+
+  public Pose2d getPose() {
+    return m_odometry.getPoseMeters();
+  }
+
+  public DifferentialDriveWheelSpeeds getWheelSpeeds() {
+    return new DifferentialDriveWheelSpeeds( motorLMaster.getEncoder().getVelocity() , motorRMaster.getEncoder().getVelocity() ); //m_leftEncoder.getRate() , m_rightEncoder.getRate()
   }
 
   public void leftEnc(){
@@ -112,7 +143,8 @@ public class DriveTrain extends SubsystemBase {
 
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    m_odometry.update(Rotation2d.fromDegrees(getHeading()), motorLMaster.getEncoder().getPosition(), motorRMaster.getEncoder().getPosition() );
+
     rightEnc();
     leftEnc();
   }
