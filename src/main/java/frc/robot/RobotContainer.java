@@ -53,7 +53,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     configureButtonBindings();
 
     m_chooser.addOption("Left Auto", m_autoCommand_left);
-    m_chooser.addOption("Right Middle", m_autoCommand_middle);
+    m_chooser.addOption("Right Auto", m_autoCommand_middle);
     m_chooser.addOption("Right Auto", m_autoCommand_right);
 
     Shuffleboard.getTab("Autonomous").add(m_chooser);
