@@ -49,6 +49,12 @@ public final class Constants {
         public static final boolean isInAutoShift = false; //to ensure you don't shift when your in autonomous 
     }
 
+    public static final class IntakeConstants{
+        public static final int intakeId = 5;
+
+        public static final int forwardChannel = 2;
+        public static final int reverseChannel = 3;
+    }
 
     public static final class OIConstants {
 
