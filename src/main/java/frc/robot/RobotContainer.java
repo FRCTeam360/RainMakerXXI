@@ -26,12 +26,14 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final Shifter shifter = new Shifter();
   private final Shooter shooter = new Shooter();
   private final Limelight limelight = new Limelight();
+  private final Intake intake = new Intake();
 
-  private final SeqAutoCmd m_autoCommand = new SeqAutoCmd(  ); //Define auto sequential command
   private final JoystickTankDrive joystickTankDrive = new JoystickTankDrive(drivetrain);
   private final Pressurize pressurize = new Pressurize(pneumatics);
   private final Shift shift = new Shift(shifter);
   private final ShootBalls shootBalls = new ShootBalls(shooter);
+
+  private final SeqAutoCmd m_autoCommand = new SeqAutoCmd(  ); //Define auto sequential command - drivetrain, intake, shooter, limelight
 
   public RobotContainer() {
     drivetrain.setDefaultCommand(joystickTankDrive);
