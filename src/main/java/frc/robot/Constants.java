@@ -117,7 +117,6 @@ public final class Constants {
             List.of( new Translation2d(1, 1), new Translation2d(2, -1) ),
             // End 3 meters straight ahead of where we started, facing forward
             new Pose2d(3, 0, new Rotation2d(0)),
-            // Pass config
             config
         );
         //Left Auto Trajectory
