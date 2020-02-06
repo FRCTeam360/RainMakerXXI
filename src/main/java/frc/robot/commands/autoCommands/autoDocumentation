@@ -7,9 +7,8 @@ Newer version: && means parelel and every \n is the next command in the sequenti
 -Line up robot correctly
 
 -LowerIntake
--(Running Shooter && Feeding all balls) AutoShootBalls
--Drive trench balls (3 versions)(andThen( volts(0,0) )) &&& Run Intake
--Set Intake Power to zero
+-(Running Shooter &oneCmd& Feeding all balls) AutoShootBalls
+-(Drive trench balls (3 versions)(andThen( volts(0,0) ))) RamseteCommand (not by me) &&race&& Run Intake(end stops intake)
 -Limelight shoot all 5
 
 ======================
