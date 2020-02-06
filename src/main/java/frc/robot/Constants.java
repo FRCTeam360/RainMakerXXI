@@ -82,5 +82,8 @@ public final class Constants {
         public static final double kRamseteZeta = 0.7;
         public static final boolean kGyroReversed = false;
     }
+	public static final class TrajectoryConstants {
+        //Initializes Tarjectory configurations and Trajectories
+    }
 
 }
