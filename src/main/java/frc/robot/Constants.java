@@ -109,8 +109,8 @@ public final class Constants {
         	// Apply the voltage constraint
             .addConstraint(autoVoltageConstraint);
             
-		// An example trajectory to follow.  All units in meters.
-        private static final Trajectory exampleTrajectory = TrajectoryGenerator.generateTrajectory(
+		// An example trajectory to follow(Converted to a testing trajectory).  All units in meters.
+        private static final Trajectory testingTrajectory = TrajectoryGenerator.generateTrajectory(
             // Start at the origin facing the +X direction
             new Pose2d(0, 0, new Rotation2d(0)),
             // Pass through these two interior waypoints, making an 's' curve path

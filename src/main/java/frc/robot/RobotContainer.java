@@ -42,6 +42,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final Shift shift = new Shift(shifter);
   private final ShootBalls shootBalls = new ShootBalls(shooter);
 
+  //private final Command = new Ramsete(); 
 	private final SequentialCommandGroup m_autoCommand_left = new SequentialCommandGroup(
   new LowerIntake(intake),
   new AutoShootBalls(shooter),
