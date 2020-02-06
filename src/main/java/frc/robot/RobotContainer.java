@@ -11,7 +11,9 @@ import edu.wpi.first.wpilibj.controller.PIDController;
 import edu.wpi.first.wpilibj.controller.RamseteController;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 import edu.wpi.first.wpilibj2.command.RamseteCommand;
+
 import frc.robot.Constants.AutoConstants;
+import frc.robot.Constants.TrajectoryConstants;
 
 import frc.robot.commands.*;
 import frc.robot.commands.autoCommands.*;
@@ -20,6 +22,7 @@ import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 
@@ -43,7 +46,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final ShootBalls shootBalls = new ShootBalls(shooter);
 
   private final RamseteCommand m_autoCommand_testing = new RamseteCommand(
-    exampleTrajectory,
+    TrajectoryConstants.testingTrajectory,
     drivetrain::getPose,
     new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
     new SimpleMotorFeedforward(AutoConstants.ksVolts,
