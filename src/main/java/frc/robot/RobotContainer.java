@@ -42,7 +42,21 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final Shift shift = new Shift(shifter);
   private final ShootBalls shootBalls = new ShootBalls(shooter);
 
-  //private final Command = new Ramsete(); 
+  RamseteCommand m_autoCommand_testing = new RamseteCommand(
+    exampleTrajectory,
+    drivetrain::getPose,
+    new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
+    new SimpleMotorFeedforward(AutoConstants.ksVolts,
+    AutoConstants.kvVoltSecondsPerMeter,
+    AutoConstants.kaVoltSecondsSquaredPerMeter),
+    AutoConstants.kDriveKinematics,
+    drivetrain::getWheelSpeeds,
+    new PIDController(AutoConstants.kPDriveVel, 0, 0),
+    new PIDController(AutoConstants.kPDriveVel, 0, 0),
+    // RamseteCommand passes volts to the callback
+    drivetrain::tankDriveVolts,
+    drivetrain
+);
 	private final SequentialCommandGroup m_autoCommand_left = new SequentialCommandGroup(
   new LowerIntake(intake),
   new AutoShootBalls(shooter),
