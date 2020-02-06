@@ -19,10 +19,10 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DriveTrain extends SubsystemBase {
 
-  public static CANSparkMax motorLMaster;
-  public static CANSparkMax motorLSlave;
-  public static CANSparkMax motorRMaster;
-  public static CANSparkMax motorRSlave;
+  private static CANSparkMax motorLMaster;
+  private static CANSparkMax motorLSlave;
+  private static CANSparkMax motorRMaster;
+  private static CANSparkMax motorRSlave;
 
   public CANEncoder rightOne;
   public CANEncoder rightTwo;
