@@ -67,10 +67,6 @@ public final class Constants {
     }
     
     public static final class AutoConstants {
-        //Which auto do you want?
-        //public static enum AutoType {LEFT, MIDDLE, RIGHT};
-        //public static AutoType autoType = AutoType.LEFT; //Change here for whichever auto you would like 
-
         //ALL OF THESE R EXAMPLE VALUES, WE NEED TO DO CHARACTERIZATION TO FIGURE IT OUT.
         public static final double ksVolts = 0.22;
         public static final double kvVoltSecondsPerMeter = 1.98;
