@@ -93,6 +93,13 @@ public final class Constants {
     }
 	public static final class TrajectoryConstants {
         //Initializes Tarjectory configurations and Trajectories
+        var autoVoltageConstraint =
+        new DifferentialDriveVoltageConstraint(
+            new SimpleMotorFeedforward(AutoConstants.ksVolts,
+            AutoConstants.kvVoltSecondsPerMeter,
+            AutoConstants.kaVoltSecondsSquaredPerMeter),
+            AutoConstants.kDriveKinematics,
+            10);
     }
 
 }
