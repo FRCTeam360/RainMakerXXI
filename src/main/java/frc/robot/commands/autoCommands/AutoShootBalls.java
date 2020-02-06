@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.Timer;
 public class AutoShootBalls extends CommandBase {
 
   private final Shooter myShooter;
+  //privat final Feeder myFeeder;
   Timer timer;
 
   public AutoShootBalls(Shooter shooter) {
@@ -36,6 +37,7 @@ public class AutoShootBalls extends CommandBase {
 
   @Override
   public void end(boolean interrupted) { // Called once the command ends or is interrupted.
+    //stop shooter & feeder
   }
 
   @Override
@@ -46,5 +48,5 @@ public class AutoShootBalls extends CommandBase {
       return false;
     }
   }
-  
+
 }
