@@ -6,7 +6,7 @@ Documentation for the autonomous running sequence and command functionality:
 -Inst Cmd: LowerIntake: Inst Cmd Stop
 -Command: AutoShootBalls(Spin up shooter and then feed): Internal Timer Stop
 -ParallelRace: Ramsete(Path, 3 variations) && RunIntake: Ramsete Completion Will Stop
--Command: AutoLimeLight: Internal Stop Method or FMS disables
+-Command: AutoAlignShoot (Limelight aim n shoot): Internal Stop Method or FMS disables
 
 ========================================================================================================================================
 
