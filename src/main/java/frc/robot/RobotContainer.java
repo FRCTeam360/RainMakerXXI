@@ -13,11 +13,12 @@ import frc.robot.commands.*;
 import frc.robot.commands.autoCommands.AutoRunIntake;
 import frc.robot.commands.autoCommands.AutoShootBalls;
 import frc.robot.commands.autoCommands.LowerIntake;
+import frc.robot.commands.autoCommands.AutoAlignShoot;
 //import frc.robot.commands.autoCommands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
+//import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -44,20 +45,20 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
 	private final SequentialCommandGroup m_autoCommand_left = new SequentialCommandGroup(
   new LowerIntake(intake),
   new AutoShootBalls(shooter),
-  new ParallelRaceGroup(  new AutoRunIntake(intake)) //Add Ramsete as well
-  //new AutoLimelightMoveShoot
+  new ParallelRaceGroup(  new AutoRunIntake(intake)), //Add Ramsete as well
+  new AutoAlignShoot() //Add params
   );
   private final SequentialCommandGroup m_autoCommand_middle = new SequentialCommandGroup(
     new LowerIntake(intake),
     new AutoShootBalls(shooter),
-    new ParallelRaceGroup(  new AutoRunIntake(intake)) //Add Ramsete as well
-    //new AutoLimelightMoveShoot
+    new ParallelRaceGroup(  new AutoRunIntake(intake)), //Add Ramsete as well
+    new AutoAlignShoot() //Add params
     );
   private final SequentialCommandGroup m_autoCommand_right = new SequentialCommandGroup(
     new LowerIntake(intake),
     new AutoShootBalls(shooter),
-    new ParallelRaceGroup(  new AutoRunIntake(intake)) //Add Ramsete as well
-    //new AutoLimelightMoveShoot
+    new ParallelRaceGroup(  new AutoRunIntake(intake)), //Add Ramsete as well
+    new AutoAlignShoot() //Add params
     );
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
