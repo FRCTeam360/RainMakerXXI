@@ -101,6 +101,14 @@ public final class Constants {
             AutoConstants.kaVoltSecondsSquaredPerMeter),
             AutoConstants.kDriveKinematics,
             10);
+        private static final TrajectoryConfig config =
+   			new TrajectoryConfig(AutoConstants.kMaxSpeedMetersPerSecond,
+                         AutoConstants.kMaxAccelerationMetersPerSecondSquared)
+        	// Add kinematics to ensure max speed is actually obeyed
+        	.setKinematics(AutoConstants.kDriveKinematics)
+        	// Apply the voltage constraint
+        	.addConstraint(autoVoltageConstraint);
+        
     }
 
 }
