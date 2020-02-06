@@ -19,7 +19,7 @@ public class RunIntake extends CommandBase {
    */
 
   private final Intake myIntake;
-   private final Joystick joyOI;
+  private final Joystick joyOI;
 
   public RunIntake(Intake intake) {
     joyOI = new Joystick(contPort);
