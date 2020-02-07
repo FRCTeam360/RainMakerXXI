@@ -61,7 +61,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   );
   
 	private final SequentialCommandGroup m_autoCommand_left = new SequentialCommandGroup(
-    new LowerIntake(intake),
+    new AutoLowerIntake(intake),
     new AutoShootBalls(shooter),
     new ParallelRaceGroup( 
       new AutoRunIntake(intake), 
@@ -81,7 +81,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   );
 
   private final SequentialCommandGroup m_autoCommand_middle = new SequentialCommandGroup(
-    new LowerIntake(intake),
+    new AutoLowerIntake(intake),
     new AutoShootBalls(shooter),
     new ParallelRaceGroup( 
       new AutoRunIntake(intake), 
@@ -101,7 +101,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   );
 
   private final SequentialCommandGroup m_autoCommand_right = new SequentialCommandGroup(
-    new LowerIntake(intake),
+    new AutoLowerIntake(intake),
     new AutoShootBalls(shooter),
     new ParallelRaceGroup( 
       new AutoRunIntake(intake), 

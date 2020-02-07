@@ -11,11 +11,11 @@ import edu.wpi.first.wpilibj2.command.InstantCommand;
 
 import frc.robot.subsystems.Intake;
 
-public class LowerIntake extends InstantCommand {
+public class AutoLowerIntake extends InstantCommand {
 
   private final Intake myIntake;
 
-  public LowerIntake(Intake intake) {
+  public AutoLowerIntake(Intake intake) {
     myIntake = intake;
     addRequirements(myIntake);
   }
