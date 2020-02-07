@@ -138,6 +138,10 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     Shuffleboard.getTab("Autonomous").add(m_chooser);
   }
 
+  public DriveTrain gDriveTrain () {
+    return drivetrain;
+  }
+
   private void configureButtonBindings() {
   }
 

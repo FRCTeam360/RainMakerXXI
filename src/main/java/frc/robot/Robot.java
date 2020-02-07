@@ -59,6 +59,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
+    m_robotContainer.gDriveTrain().coastMode(); //When robot is initially disabled, set coast mode
   }
 
   @Override
@@ -71,6 +72,8 @@ public class Robot extends TimedRobot {
   @Override
   public void autonomousInit() {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+
+    m_robotContainer.gDriveTrain().brakeMode(); //Set brake mode
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
@@ -91,6 +94,9 @@ public class Robot extends TimedRobot {
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
     // this line or comment it out.
+
+    m_robotContainer.gDriveTrain().brakeMode(); //Set brake
+
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
@@ -109,6 +115,8 @@ public class Robot extends TimedRobot {
   @Override
   public void testInit() {
     // Cancels all running commands at the start of test mode.
+
+    m_robotContainer.gDriveTrain().brakeMode(); //Set brake
     CommandScheduler.getInstance().cancelAll();
   }
 
