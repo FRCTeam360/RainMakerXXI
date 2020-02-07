@@ -73,7 +73,7 @@ public class DriveTrain extends SubsystemBase {
     motorRMaster.setInverted(true);
     motorRSlave.setInverted(true);
 
-    navX = new AHRS(SPI.Port.kMXP); //For frc-characterization tool: "SPI.Port.kMXP" of type "navX"
+    navX = new AHRS(SPI.Port.kMXP); //For frc-characterization tool: "SPI.Port.kMXP" of type "NavX"
     m_odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getHeading()));
 
   }
