@@ -82,7 +82,7 @@ public final class Constants {
         public static final double kvVoltSecondsPerMeter = 1.98;
         public static final double kaVoltSecondsSquaredPerMeter = 0.2;
         public static final double kPDriveVel = 8.5;
-        public static final double kTrackwidthMeters = 0.69; //How wide the wheels r apart
+        public static final double kTrackwidthMeters = 0.63246; //How wide the wheels r apart (meters) - 24.9 inches - measured middle of each wheel - this is actual number for practice bot
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
         public static final double kMaxSpeedMetersPerSecond = 3;
         public static final double kMaxAccelerationMetersPerSecondSquared = 3;
