@@ -61,23 +61,23 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   );
   
 	private final SequentialCommandGroup m_autoCommand_left = new SequentialCommandGroup(
-  new LowerIntake(intake),
-  new AutoShootBalls(shooter),
-  new ParallelRaceGroup( 
-    new AutoRunIntake(intake), 
-    new RamseteCommand(
-      TrajectoryConstants.leftAutoTrajectory, 
-      drivetrain::getPose, 
-      new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
-      new SimpleMotorFeedforward(AutoConstants.ksVolts, AutoConstants.kvVoltSecondsPerMeter, AutoConstants.kaVoltSecondsSquaredPerMeter),
-      AutoConstants.kDriveKinematics, 
-      drivetrain::getWheelSpeeds, 
-      new PIDController(AutoConstants.kPDriveVel, 0, 0), 
-      new PIDController(AutoConstants.kPDriveVel, 0, 0), 
-      drivetrain::tankDriveVolts,
-      drivetrain) 
-    ),                                                                                            
-  new AutoAlignShoot() //Add params
+    new LowerIntake(intake),
+    new AutoShootBalls(shooter),
+    new ParallelRaceGroup( 
+      new AutoRunIntake(intake), 
+      new RamseteCommand(
+        TrajectoryConstants.leftAutoTrajectory, 
+        drivetrain::getPose, 
+        new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
+        new SimpleMotorFeedforward(AutoConstants.ksVolts, AutoConstants.kvVoltSecondsPerMeter, AutoConstants.kaVoltSecondsSquaredPerMeter),
+        AutoConstants.kDriveKinematics, 
+        drivetrain::getWheelSpeeds, 
+        new PIDController(AutoConstants.kPDriveVel, 0, 0), 
+        new PIDController(AutoConstants.kPDriveVel, 0, 0), 
+        drivetrain::tankDriveVolts,
+        drivetrain) 
+      ),                                                                                            
+    new AutoAlignShoot() //Add params
   );
 
   private final SequentialCommandGroup m_autoCommand_middle = new SequentialCommandGroup(
