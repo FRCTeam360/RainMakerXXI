@@ -13,20 +13,18 @@ import frc.robot.subsystems.DriveTrain;
 public class AlignShoot extends CommandBase {
 
   private DriveTrain myDriveTrain;
-  private Intake myIntake;
   private Shooter myShooter;
   private Feeder myFeeder;
 
   /**
    * Creates a new AlignShoot.
    */
-  public AlignShoot(DriveTrain driveTrain, Intake intake, Shooter shooter, Feeder feeder) {
+  public AlignShoot(DriveTrain driveTrain, Shooter shooter, Feeder feeder) {
     myDriveTrain = driveTrain;
-    myIntake = intake;
     myShooter = shooter;
     myFeeder = feeder;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(myDriveTrain, myIntake, myShooter, myFeeder);
+    addRequirements(myDriveTrain, myShooter, myFeeder);
   }
 
   // Called when the command is initially scheduled.
