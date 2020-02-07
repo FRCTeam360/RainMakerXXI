@@ -77,7 +77,7 @@ public final class Constants {
     }
     
     public static final class AutoConstants {
-        //ALL OF THESE R EXAMPLE VALUES, WE NEED TO DO CHARACTERIZATION TO FIGURE IT OUT.
+        //ALL OF THESE R EXAMPLE VALUES, WE NEED TO DO CHARACTERIZATION TO FIGURE IT OUT. 9kTracksWidthMeters is done
         public static final double ksVolts = 0.22;
         public static final double kvVoltSecondsPerMeter = 1.98;
         public static final double kaVoltSecondsSquaredPerMeter = 0.2;
