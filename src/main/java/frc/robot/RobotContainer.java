@@ -99,7 +99,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
       ),                                                                                            
     new AutoAlignShoot() //Add params
   );
-  
+
   private final SequentialCommandGroup m_autoCommand_right = new SequentialCommandGroup(
     new LowerIntake(intake),
     new AutoShootBalls(shooter),
@@ -130,7 +130,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
 
     configureButtonBindings();
 
-    m_chooser.addOption("Ramsete Testing",m_autoCommand_testing );
+    m_chooser.addOption("Ramsete Testing", m_autoCommand_testing); //Right now is just the Ramsete Movement Command
     m_chooser.addOption("Left Auto", m_autoCommand_left);
     m_chooser.addOption("Right Auto", m_autoCommand_middle);
     m_chooser.addOption("Right Auto", m_autoCommand_right);
