@@ -28,6 +28,7 @@ public class RobotContainer {
   private final DriveTrain drivetrain = new DriveTrain();
   private final Pneumatics pneumatics = new Pneumatics();
   private final Shifter shifter = new Shifter();
+  private final Shooter shooter = new Shooter();
   private final Limelight limelight = new Limelight();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
@@ -36,6 +37,7 @@ public class RobotContainer {
   private final Shift shift = new Shift(shifter);
   private final RunCamera runCamera = new RunCamera(limelight);
   private final SwitchCamMode switchCamMode = new SwitchCamMode(limelight);
+  private final ShootBalls shootBalls = new ShootBalls(shooter);
 
   Joystick joy1 = new Joystick(OIConstants.joyRPort);
 
@@ -50,6 +52,7 @@ public class RobotContainer {
     limelight.setDefaultCommand(runCamera);
 
     // Configure the button bindings
+    shooter.setDefaultCommand(shootBalls);
     configureButtonBindings();
   }
 

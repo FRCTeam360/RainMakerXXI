@@ -8,45 +8,50 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.subsystems.Shifter;
-import static frc.robot.Constants.OIConstants.*;
-import static frc.robot.Constants.ShifterConstants.isInAutoShift;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Shooter;
 
-public class Shift extends CommandBase {
+import static frc.robot.Constants.OIConstants.*;
 
-  private final Shifter shifter;
-  private final Joystick joystickR;
-  private final Joystick joystickL;
+public class ShootBalls extends CommandBase {
 
-  public Shift(Shifter inShifter) {
-    shifter = inShifter;
+  private final Shooter myShooter;
 
-    joystickR = new Joystick(joyRPort);
-    joystickL = new Joystick(joyLPort);
+  private final Joystick joy;
 
+  /**
+   * Creates a new ShootBalls.
+   */
+  public ShootBalls(Shooter shooter) {
+    myShooter = shooter;
+    joy = new Joystick(joyRPort);
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(shifter);
+    addRequirements(myShooter);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    System.out.println("Shooting Balls");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if( isInAutoShift != true ){ //if not in autonomous mode
+    if ( joy.getRawButton(1) ) {
 
-      if ( joystickR.getRawButton(1) ) { //Shift up
-        shifter.shiftUp();
-      } else if ( joystickL.getRawButton(1) ) { //shift down 
-        shifter.shiftDown();
-      }
+      //shooterMaster.set(ControlMode.Velocity , (((Constants.targetRpm * 4096) / 600) / 2) ); //divided by 2 is for our gear ratio
+      //System.out.println( (( (Constants.targetRpm * 4096) / 600) / 2) + "   " );    //about= 13,650
+      myShooter.run();
 
-    }
+    } else if(joy.getRawButton(6)) {
+
+      myShooter.runWithJoy((-joy.getRawAxis(1)) * 0.6);
+
+    } else {
+      myShooter.runWithJoy(0);
+      //shooterMaster.set(ControlMode.PercentOutput , joy.getRawAxis(1) );
+    } 
   }
 
   // Called once the command ends or is interrupted.
