@@ -58,7 +58,8 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     new PIDController(AutoConstants.kPDriveVel, 0, 0),
     drivetrain::tankDriveVolts,
     drivetrain
-	);
+  );
+  
 	private final SequentialCommandGroup m_autoCommand_left = new SequentialCommandGroup(
   new LowerIntake(intake),
   new AutoShootBalls(shooter),
@@ -78,6 +79,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     ),                                                                                            
   new AutoAlignShoot() //Add params
   );
+
   private final SequentialCommandGroup m_autoCommand_middle = new SequentialCommandGroup(
     new LowerIntake(intake),
     new AutoShootBalls(shooter),
@@ -97,6 +99,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
       ),                                                                                            
     new AutoAlignShoot() //Add params
   );
+  
   private final SequentialCommandGroup m_autoCommand_right = new SequentialCommandGroup(
     new LowerIntake(intake),
     new AutoShootBalls(shooter),
