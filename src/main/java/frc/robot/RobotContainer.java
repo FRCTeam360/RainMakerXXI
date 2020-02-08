@@ -145,7 +145,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private void configureButtonBindings() {
   }
 
-  public Command getAutonomousCommand() {
-    return m_chooser.getSelected(); //Sends the autonomous command initialized above
+  public Command getAutonomousCommand() { //Called int robot autonomousInit which schedules the command sent to it
+    return m_chooser.getSelected(); //Sends the selected autonomous command initialized above 
   }
 }

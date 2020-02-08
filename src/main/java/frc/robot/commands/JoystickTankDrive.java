@@ -20,10 +20,6 @@ public class JoystickTankDrive extends CommandBase {
   private final Joystick joyR;
   private final Joystick joyL;
 
-
-  /**
-   * Creates a new JoystickTankDrive.
-   */
   public JoystickTankDrive(DriveTrain driveTrain) {
 
     joyR = new Joystick(joyRPort);
@@ -31,18 +27,15 @@ public class JoystickTankDrive extends CommandBase {
 
     myDriveTrain = driveTrain;
 
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(myDriveTrain);
+    addRequirements(myDriveTrain); // Use addRequirements() here to declare subsystem dependencies.
   }
 
-  // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
+  public void initialize() {   // Called when the command is initially scheduled.
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
+  public void execute() {   // Called every time the scheduler runs while the command is scheduled.
     if(Math.abs(joyR.getRawAxis(1)) >= .15){
     	myDriveTrain.driveRMAX(-1 * joyR.getRawAxis(1) * 0.8);
     }else{
@@ -55,14 +48,12 @@ public class JoystickTankDrive extends CommandBase {
     }
   }
 
-  // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
+  public void end(boolean interrupted) {   // Called once the command ends or is interrupted.
   }
 
-  // Returns true when the command should end.
   @Override
-  public boolean isFinished() {
+  public boolean isFinished() {  // Returns true when the command should end.
     return false;
   }
 }
