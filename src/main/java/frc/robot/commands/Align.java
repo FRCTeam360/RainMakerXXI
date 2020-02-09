@@ -13,6 +13,7 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Limelight;
 
 import static frc.robot.Constants.LimelightConstants.*;
+import static frc.robot.Constants.DriveTrainConstants.maxRPM;
 
 public class Align extends CommandBase {
 
@@ -43,11 +44,11 @@ public class Align extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    aimError = mylimelight.getX();
+    aimError = mylimelight.getX() / 29.8;
     steeringAdjust = KpAim * aimError;
     if (mylimelight.getX() > .2) steeringAdjust += AimMinCmd;
     else if (mylimelight.getX() < -.2) steeringAdjust -= AimMinCmd;
-    myDriveTrain.velocityDrive(steeringAdjust);
+    myDriveTrain.velocityDrive(steeringAdjust * maxRPM);
   }
 
   // Called once the command ends or is interrupted.
