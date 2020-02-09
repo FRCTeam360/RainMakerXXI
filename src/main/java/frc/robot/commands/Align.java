@@ -7,27 +7,32 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.subsystems.Shifter;
-import static frc.robot.Constants.OIConstants.*;
-import static frc.robot.Constants.inAuto;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class Shift extends CommandBase {
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Limelight;
 
-  private final Shifter shifter;
-  private final Joystick joystickR;
-  private final Joystick joystickL;
+import static frc.robot.Constants.LimelightConstants.*;
 
-  public Shift(Shifter inShifter) {
-    shifter = inShifter;
+public class Align extends CommandBase {
 
-    joystickR = new Joystick(joyRPort);
-    joystickL = new Joystick(joyLPort);
+  private DriveTrain myDriveTrain;
+  private Limelight mylimelight;
 
+  private double aimError;
+  private double steeringAdjust;
+
+  /**
+   * Creates a new Align.
+   */
+  public Align(DriveTrain driveTrain, Limelight limelight) {
+    myDriveTrain = driveTrain;
+    mylimelight = limelight;
+
+    aimError = 0;
+    steeringAdjust = 0;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(shifter);
+    addRequirements(myDriveTrain, mylimelight);
   }
 
   // Called when the command is initially scheduled.
@@ -38,20 +43,18 @@ public class Shift extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if( inAuto != true ){ //if not in autonomous mode
-
-      if ( joystickR.getRawButton(1) ) { //Shift up
-        shifter.shiftUp();
-      } else if ( joystickL.getRawButton(1) ) { //shift down 
-        shifter.shiftDown();
-      }
-
-    }
+    aimError = mylimelight.getX();
+    steeringAdjust = KpAim * aimError;
+    if (mylimelight.getX() > .2) steeringAdjust += AimMinCmd;
+    else if (mylimelight.getX() < -.2) steeringAdjust -= AimMinCmd;
+    myDriveTrain.velocityDrive(steeringAdjust);
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    myDriveTrain.driveLMAX(0);
+    myDriveTrain.driveRMAX(0);
   }
 
   // Returns true when the command should end.

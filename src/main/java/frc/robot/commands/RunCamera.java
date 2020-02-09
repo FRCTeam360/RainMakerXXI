@@ -7,27 +7,20 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.subsystems.Shifter;
-import static frc.robot.Constants.OIConstants.*;
-import static frc.robot.Constants.inAuto;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.subsystems.Limelight;
 
-public class Shift extends CommandBase {
+public class RunCamera extends CommandBase {
 
-  private final Shifter shifter;
-  private final Joystick joystickR;
-  private final Joystick joystickL;
+  private final Limelight myLimelight;
 
-  public Shift(Shifter inShifter) {
-    shifter = inShifter;
-
-    joystickR = new Joystick(joyRPort);
-    joystickL = new Joystick(joyLPort);
-
+  /**
+   * Creates a new RunCamera.
+   */
+  public RunCamera(Limelight limelight) {
+    myLimelight = limelight;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(shifter);
+    addRequirements(myLimelight);
   }
 
   // Called when the command is initially scheduled.
@@ -38,15 +31,6 @@ public class Shift extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if( inAuto != true ){ //if not in autonomous mode
-
-      if ( joystickR.getRawButton(1) ) { //Shift up
-        shifter.shiftUp();
-      } else if ( joystickL.getRawButton(1) ) { //shift down 
-        shifter.shiftDown();
-      }
-
-    }
   }
 
   // Called once the command ends or is interrupted.

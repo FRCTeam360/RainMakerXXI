@@ -8,8 +8,10 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANEncoder;
+import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import static frc.robot.Constants.DriveTrainConstants.*;
@@ -33,10 +35,13 @@ public class DriveTrain extends SubsystemBase {
   private static CANSparkMax motorRMaster;
   private static CANSparkMax motorRSlave;
 
-  public CANEncoder rightOne;
-  public CANEncoder rightTwo;
-  public CANEncoder leftOne;
-  public CANEncoder leftTwo;
+  private CANPIDController pidControllerLeft;
+  private CANPIDController pidControllerRight;
+
+  public CANEncoder rightMaster;
+  public CANEncoder rightSlave;
+  public CANEncoder leftMaster;
+  public CANEncoder leftSlave;
 
   // initializes velocities for left and right sides
   double leftVel;
@@ -63,6 +68,14 @@ public class DriveTrain extends SubsystemBase {
     motorRMaster = new CANSparkMax(motorRMasterID, MotorType.kBrushless);
     motorRSlave = new CANSparkMax(motorRSlaveID, MotorType.kBrushless);
 
+    motorLMaster.restoreFactoryDefaults();
+    motorLSlave.restoreFactoryDefaults();
+    motorRMaster.restoreFactoryDefaults();
+    motorRSlave.restoreFactoryDefaults();
+
+    pidControllerLeft = motorLMaster.getPIDController();
+    pidControllerRight = motorRMaster.getPIDController();
+
     // makes the second motor for left and right sides to follow the primary motor on the left and right
     motorLSlave.follow(motorLMaster);
     motorRSlave.follow(motorRMaster);
@@ -75,6 +88,40 @@ public class DriveTrain extends SubsystemBase {
 
     navX = new AHRS(SPI.Port.kMXP); //For frc-characterization tool: "SPI.Port.kMXP" of type "NavX"
     m_odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getHeading()));
+
+    rightMaster = motorRMaster.getEncoder();
+    leftMaster = motorLMaster.getEncoder();
+
+    pidControllerLeft.setP(kPLeft);
+    pidControllerLeft.setI(kILeft);
+    pidControllerLeft.setD(kDLeft);
+    pidControllerLeft.setIZone(kIzLeft);
+    pidControllerLeft.setFF(kFFLeft);
+
+    pidControllerRight.setP(kPRight);
+    pidControllerRight.setI(kIRight);
+    pidControllerRight.setD(kDRight);
+    pidControllerRight.setIZone(kIzRight);
+    pidControllerRight.setFF(kFFRight);
+
+    pidControllerLeft.setOutputRange(kMinOutput, kMaxOutput);
+    pidControllerRight.setOutputRange(kMinOutput, kMaxOutput);
+
+    // display PID coefficients on SmartDashboard
+    SmartDashboard.putNumber("P Gain Left", kPLeft);
+    SmartDashboard.putNumber("I Gain Left", kILeft);
+    SmartDashboard.putNumber("D Gain Left", kDLeft);
+    SmartDashboard.putNumber("I Zone Left", kIzLeft);
+    SmartDashboard.putNumber("Feed Forward Left", kFFLeft);
+
+    SmartDashboard.putNumber("P Gain Right", kPRight);
+    SmartDashboard.putNumber("I Gain Right", kIRight);
+    SmartDashboard.putNumber("D Gain Right", kDRight);
+    SmartDashboard.putNumber("I Zone Right", kIzRight);
+    SmartDashboard.putNumber("Feed Forward Right", kFFRight);
+    
+    SmartDashboard.putNumber("Max Output", kMaxOutput);
+    SmartDashboard.putNumber("Min Output", kMinOutput);
 
   }
 
@@ -101,6 +148,11 @@ public class DriveTrain extends SubsystemBase {
   public DifferentialDriveWheelSpeeds getWheelSpeeds() {
     return new DifferentialDriveWheelSpeeds( motorLMaster.getEncoder().getVelocity() , motorRMaster.getEncoder().getVelocity() ); //m_leftEncoder.getRate() , m_rightEncoder.getRate()
   }
+  
+  public void velocityDrive (double setPoint) {
+    pidControllerLeft.setReference(setPoint, ControlType.kVelocity);
+    pidControllerRight.setReference(setPoint, ControlType.kVelocity);
+  }
 
   public void leftEnc(){
     // gets the new position of the encoder
@@ -110,7 +162,7 @@ public class DriveTrain extends SubsystemBase {
     // finds the difference in the new and the old position
     deltaLeftPos = leftNewPos - leftOldPos;
     // gets the velocity of the left motor
-    leftVel = motorLSlave.getEncoder().getVelocity();
+    leftVel = motorLMaster.getEncoder().getVelocity();
     // puts raw number in smartdashboard
     SmartDashboard.putNumber("Left Raw Vel", leftVel);
   }
@@ -123,7 +175,7 @@ public class DriveTrain extends SubsystemBase {
     // finds the difference in the new and the old position
     deltaRightPos = rightNewPos - rightOldPos;
     // gets the velocity of the left motor
-    rightVel = motorRSlave.getEncoder().getVelocity();
+    rightVel = motorRMaster.getEncoder().getVelocity();
     // puts raw number in smartdashboard
     SmartDashboard.putNumber("Right Raw Vel", rightVel);
   }
@@ -141,11 +193,49 @@ public class DriveTrain extends SubsystemBase {
     motorRSlave.setIdleMode(IdleMode.kCoast);
   }
 
+  private void PIDDashboard() {
+    // read PID coefficients from SmartDashboard
+    double pLeft = SmartDashboard.getNumber("Left P Gain", 0);
+    double iLeft = SmartDashboard.getNumber("Left I Gain", 0);
+    double dLeft = SmartDashboard.getNumber("Left D Gain", 0);
+    double izLeft = SmartDashboard.getNumber("Left I Zone", 0);
+    double ffLeft = SmartDashboard.getNumber("Left Feed Forward", 0);
+  
+    double pRight = SmartDashboard.getNumber("Rigth P Gain", 0);
+    double iRight = SmartDashboard.getNumber("Rigth I Gain", 0);
+    double dRight = SmartDashboard.getNumber("Rigth D Gain", 0);
+    double izRight = SmartDashboard.getNumber("Rigth I Zone", 0);
+    double ffRight = SmartDashboard.getNumber("Rigth Feed Forward", 0);
+
+    double max = SmartDashboard.getNumber("Max Output", 0);
+    double min = SmartDashboard.getNumber("Min Output", 0);
+
+    // if PID coefficients on SmartDashboard have changed, write new values to controller
+    if((pLeft != kPLeft)) { pidControllerLeft.setP(pLeft); kPLeft = pLeft; }
+    if((iLeft != kILeft)) { pidControllerLeft.setI(iLeft); kILeft = iLeft; }
+    if((dLeft != kDLeft)) { pidControllerLeft.setD(dLeft); kDLeft = dLeft; }
+    if((izLeft != kIzLeft)) { pidControllerLeft.setIZone(izLeft); kIzLeft = izLeft; }
+    if((ffLeft != kFFLeft)) { pidControllerLeft.setFF(ffLeft); kFFLeft = ffLeft; }
+
+    if((pRight != kPRight)) { pidControllerRight.setP(pRight); kPRight = pRight; }
+    if((iRight != kIRight)) { pidControllerRight.setI(iRight); kIRight = iRight; }
+    if((dRight != kDRight)) { pidControllerRight.setD(dRight); kDRight = dRight; }
+    if((izRight != kIzRight)) { pidControllerRight.setIZone(izRight); kIzRight = izRight; }
+    if((ffRight != kFFRight)) { pidControllerRight.setFF(ffRight); kFFRight = ffRight; }
+
+    if((max != kMaxOutput) || (min != kMinOutput)) { 
+      pidControllerLeft.setOutputRange(min, max);
+      pidControllerRight.setOutputRange(min, max); 
+      kMinOutput = min; kMaxOutput = max;
+    } 
+  }
+
   @Override
   public void periodic() {
     m_odometry.update(Rotation2d.fromDegrees(getHeading()), motorLMaster.getEncoder().getPosition(), motorRMaster.getEncoder().getPosition() );
 
     rightEnc();
     leftEnc();
+    PIDDashboard();
   }
 }

@@ -15,6 +15,10 @@ import edu.wpi.first.wpilibj2.command.RamseteCommand;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.Constants.TrajectoryConstants;
 
+import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.XboxController;
+import frc.robot.Constants.OIConstants;
 import frc.robot.commands.*;
 import frc.robot.commands.autoCommands.*;
 import frc.robot.subsystems.*;
@@ -25,6 +29,7 @@ import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared.  Since Command-based is a
@@ -43,7 +48,11 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final JoystickTankDrive joystickTankDrive = new JoystickTankDrive(drivetrain);
   private final Pressurize pressurize = new Pressurize(pneumatics);
   private final Shift shift = new Shift(shifter);
+  private final RunCamera runCamera = new RunCamera(limelight);
+  private final SwitchCamMode switchCamMode = new SwitchCamMode(limelight);
   private final ShootBalls shootBalls = new ShootBalls(shooter);
+
+  Joystick joy1 = new Joystick(OIConstants.joyRPort);
 
   private final RamseteCommand m_autoCommand_testing = new RamseteCommand(
     TrajectoryConstants.testingTrajectory,
@@ -126,6 +135,9 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     drivetrain.setDefaultCommand(joystickTankDrive);
     pneumatics.setDefaultCommand(pressurize);
     shifter.setDefaultCommand(shift);
+    limelight.setDefaultCommand(runCamera);
+
+    // Configure the button bindings
     shooter.setDefaultCommand(shootBalls);
 
     configureButtonBindings();
@@ -143,6 +155,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   }
 
   private void configureButtonBindings() {
+    new JoystickButton(joy1, 5).whenPressed(switchCamMode);
   }
 
   public Command getAutonomousCommand() { //Called int robot autonomousInit which schedules the command sent to it
