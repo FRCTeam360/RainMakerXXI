@@ -53,6 +53,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final ShootBalls shootBalls = new ShootBalls(shooter);
 
   Joystick joy1 = new Joystick(OIConstants.joyRPort);
+  Joystick joyOI = new Joystick(OIConstants.contPort);
 
   private final AlignShoot alignShoot = new AlignShoot(drivetrain, limelight, shooter);
 
@@ -158,6 +159,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
 
   private void configureButtonBindings() {
     new JoystickButton(joy1, 5).whenPressed(switchCamMode);
+    new JoystickButton(joyOI , 3).whenPressed(alignShoot);
   }
 
   public Command getAutonomousCommand() { //Called int robot autonomousInit which schedules the command sent to it
