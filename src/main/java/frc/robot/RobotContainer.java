@@ -54,6 +54,8 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
 
   Joystick joy1 = new Joystick(OIConstants.joyRPort);
 
+  private final AlignShoot alignShoot = new AlignShoot(drivetrain, limelight, shooter);
+
   private final RamseteCommand m_autoCommand_testing = new RamseteCommand(
     TrajectoryConstants.testingTrajectory,
     drivetrain::getPose,
@@ -86,7 +88,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
         drivetrain::tankDriveVolts,
         drivetrain) 
       ),                                                                                            
-    new AlignShoot() //Add params
+    new AlignShoot(drivetrain, limelight, shooter)
   );
 
   private final SequentialCommandGroup m_autoCommand_middle = new SequentialCommandGroup(
@@ -106,7 +108,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
         drivetrain::tankDriveVolts,
         drivetrain) 
       ),                                                                                            
-    new AlignShoot() //Add params
+    new AlignShoot(drivetrain, limelight, shooter)
   );
 
   private final SequentialCommandGroup m_autoCommand_right = new SequentialCommandGroup(
@@ -126,7 +128,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
         drivetrain::tankDriveVolts,
         drivetrain) 
       ),                                                                                            
-    new AlignShoot() //Add params
+    new AlignShoot(drivetrain, limelight, shooter)
   );
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
