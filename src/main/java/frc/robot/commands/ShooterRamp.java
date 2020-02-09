@@ -8,26 +8,23 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.subsystems.Shifter;
-import static frc.robot.Constants.OIConstants.*;
-import static frc.robot.Constants.inAuto;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class Shift extends CommandBase {
+import frc.robot.subsystems.Shooter;
+import static frc.robot.Constants.inAuto;
+import static frc.robot.Constants.OIConstants.*;
 
-  private final Shifter shifter;
-  private final Joystick joystickR;
-  private final Joystick joystickL;
+public class ShooterRamp extends CommandBase {
+  
+  private final Shooter myShooter;
 
-  public Shift(Shifter inShifter) {
-    shifter = inShifter;
+  private final Joystick joyOI;
 
-    joystickR = new Joystick(joyRPort);
-    joystickL = new Joystick(joyLPort);
-
+  public ShooterRamp(Shooter shooter) {
+    myShooter = shooter;
+    joyOI = new Joystick(contPort);
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(shifter);
+    addRequirements(myShooter);
   }
 
   // Called when the command is initially scheduled.
@@ -38,25 +35,22 @@ public class Shift extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if( inAuto != true ){ //if not in autonomous mode
-
-      if ( joystickR.getRawButton(1) ) { //Shift up
-        shifter.shiftUp();
-      } else if ( joystickL.getRawButton(1) ) { //shift down 
-        shifter.shiftDown();
-      }
-
-    }
+    myShooter.run();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    myShooter.runWithJoy(0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    if(!inAuto && joyOI.getRawButton(3)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 }

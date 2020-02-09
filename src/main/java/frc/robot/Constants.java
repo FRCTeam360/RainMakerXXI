@@ -19,6 +19,8 @@ package frc.robot;
 public final class Constants {
     public static final int PDPId = 0;
 
+    public static boolean inAuto = false;
+
     public static final class ShooterConstants {
         public static final int shooterMasterId = 5;
         public static final int shooterSlaveId = 6;
@@ -38,18 +40,34 @@ public final class Constants {
         public static final int motorLSlaveID = 2;
         public static final int motorRMasterID = 3;
         public static final int motorRSlaveID = 4;
+
+        public static double kPLeft = 0;
+        public static double kILeft = 0; 
+        public static double kDLeft = 0;
+        public static double kIzLeft = 0;
+        public static double kFFLeft = 0;
+        
+        public static double kPRight = 0;
+        public static double kIRight = 0; 
+        public static double kDRight = 0;
+        public static double kIzRight = 0;
+        public static double kFFRight = 0;
+
+        public static double kMaxOutput = 1;
+        public static double kMinOutput = -1;
+        public static double maxRPM = 0;
     }
     public static final class ShifterConstants {
         public static enum ShiftState {UP, DOWN, UNKNOWN};
         public static ShiftState shiftState; 
 
         public static final int forwardChannel = 1;
-        public static final int reverseChannel = 0;
-
-        public static final boolean isInAutoShift = false; //to ensure you don't shift when your in autonomous 
+        public static final int reverseChannel = 0; 
     }
-
-
+    public static final class LimelightConstants {
+        public static final double KpAim = 0;
+        public static final double AimMinCmd = 0;
+    }
     public static final class OIConstants {
 
         public static final int joyRPort = 0;
