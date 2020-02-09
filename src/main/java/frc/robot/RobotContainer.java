@@ -77,7 +77,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
         drivetrain::tankDriveVolts,
         drivetrain) 
       ),                                                                                            
-    new AutoAlignShoot() //Add params
+    new AlignShoot() //Add params
   );
 
   private final SequentialCommandGroup m_autoCommand_middle = new SequentialCommandGroup(
@@ -97,7 +97,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
         drivetrain::tankDriveVolts,
         drivetrain) 
       ),                                                                                            
-    new AutoAlignShoot() //Add params
+    new AlignShoot() //Add params
   );
 
   private final SequentialCommandGroup m_autoCommand_right = new SequentialCommandGroup(
@@ -117,7 +117,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
         drivetrain::tankDriveVolts,
         drivetrain) 
       ),                                                                                            
-    new AutoAlignShoot() //Add params
+    new AlignShoot() //Add params
   );
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
