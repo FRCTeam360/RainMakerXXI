@@ -25,14 +25,14 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final DriveTrain drivetrain = new DriveTrain();
+  private final DriveTrain driveTrain = new DriveTrain();
   private final Pneumatics pneumatics = new Pneumatics();
   private final Shifter shifter = new Shifter();
   private final Shooter shooter = new Shooter();
   private final Limelight limelight = new Limelight();
 
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  private final JoystickTankDrive joystickTankDrive = new JoystickTankDrive(drivetrain);
+  private final JoystickTankDrive joystickTankDrive = new JoystickTankDrive(driveTrain);
   private final Pressurize pressurize = new Pressurize(pneumatics);
   private final Shift shift = new Shift(shifter);
   private final RunCamera runCamera = new RunCamera(limelight);
@@ -40,13 +40,16 @@ public class RobotContainer {
   private final ShootBalls shootBalls = new ShootBalls(shooter);
 
   Joystick joy1 = new Joystick(OIConstants.joyRPort);
+  Joystick joyOI = new Joystick(OIConstants.contPort);
+
+  private final AlignShoot alignShoot = new AlignShoot(driveTrain, limelight, shooter);
 
   /**
    * The container for the robot.  Contains subsystems, OI devices, and commands.
    */
   public RobotContainer() {
 
-    drivetrain.setDefaultCommand(joystickTankDrive);
+    driveTrain.setDefaultCommand(joystickTankDrive);
     pneumatics.setDefaultCommand(pressurize);
     shifter.setDefaultCommand(shift);
     limelight.setDefaultCommand(runCamera);
@@ -65,6 +68,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
 
     new JoystickButton(joy1, 5).whenPressed(switchCamMode);
+    new JoystickButton(joyOI, 3).whenPressed(alignShoot);
 
   }
 
