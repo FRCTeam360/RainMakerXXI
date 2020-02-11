@@ -25,11 +25,14 @@ public class RobotContainer {
   //private final DriveTrain drivetrain = new DriveTrain();
   private final Pneumatics pneumatics = new Pneumatics();
   private final Shifter shifter = new Shifter();
+  private final SparkMaxes sparkMaxes = new SparkMaxes();
+  private final Talons talons = new Talons();
 
   //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   //private final JoystickTankDrive joystickTankDrive = new JoystickTankDrive(drivetrain);
   private final Pressurize pressurize = new Pressurize(pneumatics);
   private final Shift shift = new Shift(shifter);
+  private final RunMotors runMotors = new RunMotors(talons, sparkMaxes);
 
 
 
@@ -41,6 +44,8 @@ public class RobotContainer {
     //drivetrain.setDefaultCommand(joystickTankDrive);
     pneumatics.setDefaultCommand(pressurize);
     shifter.setDefaultCommand(shift);
+    talons.setDefaultCommand(runMotors);
+    sparkMaxes.setDefaultCommand(runMotors);
 
     // Configure the button bindings
     configureButtonBindings();
