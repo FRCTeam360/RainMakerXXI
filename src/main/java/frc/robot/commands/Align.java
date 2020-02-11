@@ -7,6 +7,7 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.DriveTrain;
@@ -23,6 +24,8 @@ public class Align extends CommandBase {
   private double aimError;
   private double steeringAdjust;
 
+  private Timer timer;
+
   /**
    * Creates a new Align.
    */
@@ -32,6 +35,10 @@ public class Align extends CommandBase {
 
     aimError = 0;
     steeringAdjust = 0;
+
+    timer = new Timer();
+    timer.stop();
+	  timer.reset();
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(myDriveTrain, mylimelight);
   }
@@ -46,8 +53,18 @@ public class Align extends CommandBase {
   public void execute() {
     aimError = mylimelight.getX() / 29.8;
     steeringAdjust = KpAim * aimError;
-    if (mylimelight.getX() > .2) steeringAdjust += AimMinCmd;
-    else if (mylimelight.getX() < -.2) steeringAdjust -= AimMinCmd;
+    if (mylimelight.getX() > .2) {
+      steeringAdjust += AimMinCmd;
+      timer.stop();
+      timer.reset();
+    }
+    else if (mylimelight.getX() < -.2){ 
+      steeringAdjust -= AimMinCmd;
+      timer.stop();
+      timer.reset();
+    } else {
+      timer.start();
+    }
     myDriveTrain.velocityDrive(steeringAdjust * maxRPM);
   }
 
@@ -61,10 +78,6 @@ public class Align extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if ( Math.abs(aimError) <= 1 ) { //If within 1 limelight degree
-      return true; //Finish
-    } else {
-      return false; //dont finish 
-    }
+    return timer.get() >= .1 && Math.abs(mylimelight.getX()) < .2;
   }
 }
