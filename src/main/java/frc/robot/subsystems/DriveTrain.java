@@ -151,7 +151,7 @@ public class DriveTrain extends SubsystemBase {
   
   public void velocityDrive (double setPoint) {
     pidControllerLeft.setReference(setPoint, ControlType.kVelocity);
-    pidControllerRight.setReference(setPoint, ControlType.kVelocity);
+    pidControllerRight.setReference(setPoint, ControlType.kVelocity); //Potentially we need to invert this
   }
 
   public void leftEnc(){

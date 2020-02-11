@@ -41,13 +41,13 @@ public class ShooterRamp extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    myShooter.runWithJoy(0);
+    myShooter.runWithJoy(0); //Sets power to zero percent
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if(!inAuto && joyOI.getRawButton(3)) {
+    if(!inAuto && joyOI.getRawButton(3)) { //Programmed in abort feature
       return true;
     } else {
       return false;

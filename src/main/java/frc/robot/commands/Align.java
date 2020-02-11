@@ -61,6 +61,10 @@ public class Align extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false;
+    if ( Math.abs(aimError) <= 1 ) { //If within 1 limelight degree
+      return true; //Finish
+    } else {
+      return false; //dont finish 
+    }
   }
 }
