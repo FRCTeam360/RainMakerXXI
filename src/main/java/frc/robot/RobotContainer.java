@@ -45,7 +45,7 @@ public class RobotContainer {
     pneumatics.setDefaultCommand(pressurize);
     shifter.setDefaultCommand(shift);
     talons.setDefaultCommand(runMotors);
-    sparkMaxes.setDefaultCommand(runMotors);
+    //sparkMaxes.setDefaultCommand(runMotors);
 
     // Configure the button bindings
     configureButtonBindings();
