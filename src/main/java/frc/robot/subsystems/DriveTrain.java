@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 
-import com.kauailabs.navx.frc.AHRS;
+import com.kauailabs.navx.frc.AHRS; //If error here check updates: install vendor online use: https://www.kauailabs.com/dist/frc/2020/navx_frc.json
 import edu.wpi.first.wpilibj.SPI;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
