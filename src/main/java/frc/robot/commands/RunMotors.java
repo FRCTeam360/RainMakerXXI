@@ -9,10 +9,18 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
+import edu.wpi.first.wpilibj.Joystick;
+import frc.robot.subsystems.Talons;
+import frc.robot.subsystems.SparkMaxes;
+
 public class RunMotors extends CommandBase {
-  /**
-   * Creates a new RunMotors.
-   */
+
+  private final Joystick joyR;
+  private final Joystick joyL;
+
+  private final Talons myTalons;
+  private final SparkMaxes mySparkMaxes;
+
   public RunMotors() {
     // Use addRequirements() here to declare subsystem dependencies.
   }
