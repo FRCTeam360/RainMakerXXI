@@ -8,8 +8,6 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
-//import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -22,13 +20,6 @@ public class SparkMaxes extends SubsystemBase {
   private static CANSparkMax spark4;
   private static CANSparkMax spark5;
   private static CANSparkMax spark6;
-  
-  public CANEncoder enc1;
-  public CANEncoder enc2;
-  public CANEncoder enc3;
-  public CANEncoder enc4;
-  public CANEncoder enc5;
-  public CANEncoder enc6;
 
   public SparkMaxes() {
     spark1 = new CANSparkMax(1 , MotorType.kBrushless);
