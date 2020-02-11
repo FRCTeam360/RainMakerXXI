@@ -33,7 +33,12 @@ public class Talons extends SubsystemBase {
   }
 
   public void runPercent (double pPower) {
-		talon7.set( pPower);
+    talon7.set(ControlMode.PercentOutput , pPower);
+    talon8.set(ControlMode.PercentOutput , pPower);
+    talon9.set(ControlMode.PercentOutput , pPower);
+    talon10.set(ControlMode.PercentOutput , pPower);
+    talon11.set(ControlMode.PercentOutput , pPower);
+    talon12.set(ControlMode.PercentOutput , pPower);
   }
 
   @Override
