@@ -50,5 +50,10 @@ public final class Constants {
         public static final int contPort = 2; // port of xbox controller connected
     
     }
+    
+    public static final class FeederConstants{
+        public static final int loaderMotorId = 5;
+        public static final int hopperMotorId = 6;
+    }
 
 }
