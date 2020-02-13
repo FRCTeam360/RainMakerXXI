@@ -13,41 +13,25 @@ import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
 
-/**
- * This class is where the bulk of the robot should be declared.  Since Command-based is a
- * "declarative" paradigm, very little robot logic should actually be handled in the {@link Robot}
- * periodic methods (other than the scheduler calls).  Instead, the structure of the robot
- * (including subsystems, commands, and button mappings) should be declared here.
- */
+
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  //private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  //private final DriveTrain drivetrain = new DriveTrain();
+
   private final Pneumatics pneumatics = new Pneumatics();
   private final Shifter shifter = new Shifter();
   private final SparkMaxes sparkMaxes = new SparkMaxes();
   private final Talons talons = new Talons();
 
-  //private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  //private final JoystickTankDrive joystickTankDrive = new JoystickTankDrive(drivetrain);
   private final Pressurize pressurize = new Pressurize(pneumatics);
   private final Shift shift = new Shift(shifter);
   private final RunMotors runMotors = new RunMotors(talons, sparkMaxes);
 
-
-
-  /**
-   * The container for the robot.  Contains subsystems, OI devices, and commands.
-   */
   public RobotContainer() {
 
-    //drivetrain.setDefaultCommand(joystickTankDrive);
     pneumatics.setDefaultCommand(pressurize);
     shifter.setDefaultCommand(shift);
-    talons.setDefaultCommand(runMotors);
-    //sparkMaxes.setDefaultCommand(runMotors);
+    talons.setDefaultCommand(runMotors); //no need to do: sparkMaxes.setDefaultCommand(runMotors);
 
-    // Configure the button bindings
     configureButtonBindings();
   }
 
