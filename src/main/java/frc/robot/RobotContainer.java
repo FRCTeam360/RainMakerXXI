@@ -40,6 +40,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final Limelight limelight = new Limelight();
   private final Intake intake = new Intake();
   private final Feeder feeder = new Feeder();
+  private final Climber climber = new Climber();
 
   private final JoystickTankDrive joystickTankDrive = new JoystickTankDrive(drivetrain);
   private final Pressurize pressurize = new Pressurize(pneumatics);
