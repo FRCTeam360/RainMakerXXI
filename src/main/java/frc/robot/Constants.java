@@ -32,6 +32,7 @@ public final class Constants {
         public static final double kF = (0.6 * 1023.0) / 15900.0;
         public static final double kPeakOutput = 1; 
         //public static final double targetRpm = 4000;
+        public static final double targetVelocity = 15000;
     }
     public static final class DriveTrainConstants {
         public static final int motorLMasterID = 1;

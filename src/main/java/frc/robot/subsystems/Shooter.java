@@ -51,11 +51,15 @@ public class Shooter extends SubsystemBase {
     shooterMaster.config_kD(kPIDLoopIdx, kD , kTimeOutMs );
   }
 
+  public double getVelocity() {
+    return shooterMaster.getSelectedSensorVelocity(0);
+  }
+
   public void run () {
     //double current = shooterMaster.getStatorCurrent(); //amps
     //int rawVelocity = shooterMaster.getSelectedSensorVelocity(); // raw sensor units
     //shooterMaster.set( ControlMode.PercentOutput , 1 );
-    shooterMaster.set(ControlMode.Velocity, 15000); //15900 native units is 60%
+    shooterMaster.set(ControlMode.Velocity, targetVelocity); //15900 native units is 60%
   }
 
   public void runWithJoy (double output) {
