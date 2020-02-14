@@ -13,6 +13,8 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Feeder;
 import edu.wpi.first.wpilibj.Timer;
 
+import frc.robot.Constants.ShooterConstants;
+
 public class AutoShootBalls extends CommandBase {
 
   private final Shooter myShooter;
@@ -28,24 +30,29 @@ public class AutoShootBalls extends CommandBase {
 
   @Override
   public void initialize() {
-    timer.start();
   }
 
   @Override
   public void execute() {
-    //run feeder && run shooter
+    myShooter.run();
+    if ( myShooter.getVelocity() > ShooterConstants.targetVelocity - 500 ){
+      myFeeder.runLoader(.5);
+      timer.start();
+    }
   }
 
   @Override
   public void end(boolean interrupted) { // Called once the command ends or is interrupted.
-    //stop shooter & feeder
+    myShooter.runWithJoy(0);
+    myFeeder.runLoader(0);
+
     timer.stop();
     timer.reset();
   }
 
   @Override
   public boolean isFinished() {   // Returns true when the command should end.
-    if ( timer.get() >= 3) { //If 3 seconds have elapsed
+    if ( timer.get() >= 3) { //How long the feeder needs to run for to feed all three balls
       return true;
     } else {
       return false;
