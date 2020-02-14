@@ -1,0 +1,6 @@
+
+Pneumatics run by default
+Shifter runs by default and will run pneumatics if needed
+
+Right joystick (joy 0), Y-axis, controls runs sparkmaxes
+Left joystick (joy 1), Y-axis controls run talons

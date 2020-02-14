@@ -40,7 +40,7 @@ public class RunMotors extends CommandBase {
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() { //Left side controls SparkMaxes, Right side controls Talons
+  public void execute() {
 
     if(Math.abs(joyR.getRawAxis(1)) >= .15){ //Right side moved
     	mySparkMaxes.runPercent(-1 * joyR.getRawAxis(1) * 0.8);
