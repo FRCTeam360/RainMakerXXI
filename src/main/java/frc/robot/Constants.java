@@ -81,7 +81,6 @@ public final class Constants {
         public static final double KpAim = 0;
         public static final double AimMinCmd = 0;
     }
-
     public static final class IntakeConstants{
         public static final int intakeId = 5;
 
@@ -91,6 +90,11 @@ public final class Constants {
     public static final class FeederConstants{
         public static final int loaderMotorId = 5;
         public static final int hopperMotorId = 6;
+    }
+    public static final class ClimberConstants { //Needs to be changed to proper values (just guessing right now)
+        public static final int erectorMotorId = 4;
+        public static final int motorMasterId = 5;
+        public static final int motorSlaveId = 6;
     }
 
     public static final class OIConstants {
