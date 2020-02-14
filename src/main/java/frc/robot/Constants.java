@@ -140,23 +140,29 @@ public final class Constants {
             config
         );
         //Left Auto Trajectory
+        /*
         public static final Trajectory leftAutoTrajectory = TrajectoryGenerator.generateTrajectory(
             new Pose2d(0,0, new Rotation2d(0)),
             List.of(new Translation2d(0, 0)  ), 
             new Pose2d(0, 0, new Rotation2d(0)), 
             config);
+        */
         //Middle Auto Trajectory
+        /*
         public static final Trajectory middleAutoTrajectory = TrajectoryGenerator.generateTrajectory(
             new Pose2d(0,0, new Rotation2d(0)),
             List.of(new Translation2d(0, 0)  ), 
             new Pose2d(0, 0, new Rotation2d(0)), 
             config);
+        */
         //Right Auto Trajectory
+        /*
         public static final Trajectory rightAutoTrajectory = TrajectoryGenerator.generateTrajectory(
             new Pose2d(0,0, new Rotation2d(0)),
             List.of(new Translation2d(0, 0)  ), 
             new Pose2d(0, 0, new Rotation2d(0)), 
             config);
+        */
         
     }
 

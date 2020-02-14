@@ -79,7 +79,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     new ParallelRaceGroup( 
       new AutoRunIntake(intake), 
       new RamseteCommand(
-        TrajectoryConstants.leftAutoTrajectory, 
+        TrajectoryConstants.testingTrajectory, //Should be "leftAutoTrajectory" when done
         drivetrain::getPose, 
         new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
         new SimpleMotorFeedforward(AutoConstants.ksVolts, AutoConstants.kvVoltSecondsPerMeter, AutoConstants.kaVoltSecondsSquaredPerMeter),
@@ -99,7 +99,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     new ParallelRaceGroup( 
       new AutoRunIntake(intake), 
       new RamseteCommand(
-        TrajectoryConstants.middleAutoTrajectory, 
+        TrajectoryConstants.testingTrajectory, //Should be "middleAutoTrajectory" when done
         drivetrain::getPose, 
         new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
         new SimpleMotorFeedforward(AutoConstants.ksVolts, AutoConstants.kvVoltSecondsPerMeter, AutoConstants.kaVoltSecondsSquaredPerMeter),
@@ -119,7 +119,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     new ParallelRaceGroup( 
       new AutoRunIntake(intake), 
       new RamseteCommand(
-        TrajectoryConstants.rightAutoTrajectory, 
+        TrajectoryConstants.testingTrajectory, //Should be "rightAutoTrajectory" when done
         drivetrain::getPose, 
         new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
         new SimpleMotorFeedforward(AutoConstants.ksVolts, AutoConstants.kvVoltSecondsPerMeter, AutoConstants.kaVoltSecondsSquaredPerMeter),
