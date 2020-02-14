@@ -27,7 +27,7 @@ public class ShootBalls extends CommandBase {
     myShooter = shooter;
     joyR = new Joystick(joyRPort);
     cont = new Joystick(contPort);
-    
+
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(myShooter);
   }
@@ -41,13 +41,13 @@ public class ShootBalls extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if ( joyR.getRawButton(1) ) {
+    if ( joyR.getRawButton(6) ) {
 
       myShooter.run();
 
-    } else if(joyR.getRawButton(6)) {
+    } else if(cont.getRawButton(10)) {
 
-      myShooter.runWithJoy((-joyR.getRawAxis(1)) * 0.6);
+      myShooter.runWithJoy((-cont.getRawAxis(1)) * 0.6);
 
     } else {
 

@@ -13,7 +13,7 @@ import frc.robot.subsystems.Feeder;
 
 import edu.wpi.first.wpilibj.Timer;
 
-public class LoadBalls extends CommandBase {
+public class LoadBalls extends CommandBase { //Used by AlignShoot command
 
   Feeder myFeeder;
   Timer myTimer;
