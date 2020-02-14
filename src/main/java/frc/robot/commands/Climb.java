@@ -34,6 +34,19 @@ public class Climb extends CommandBase { //Tele-op command / no isFinsihed() met
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
+    if(Math.abs(cont.getRawAxis(1)) >= .15) {
+      myClimber.runErector( -1 * cont.getRawAxis(1) * 0.8 );
+    } else {
+      myClimber.runErector(0);
+    }
+
+    if(Math.abs(cont.getRawAxis(3)) >= .15) {
+      myClimber.runErector( -1 * cont.getRawAxis(3) * 0.8 );
+    } else {
+      myClimber.runErector(0);
+    }
+
   }
 
   // Called once the command ends or is interrupted.
