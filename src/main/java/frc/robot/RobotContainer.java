@@ -50,6 +50,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final SwitchCamMode switchCamMode = new SwitchCamMode(limelight);
   private final ShootBalls shootBalls = new ShootBalls(shooter);
   private final RunFeeder runFeeder = new RunFeeder(feeder);
+  private final Climb climb = new Climb(climber);
 
   Joystick joy1 = new Joystick(OIConstants.joyRPort);
   Joystick joyOI = new Joystick(OIConstants.contPort);
@@ -141,6 +142,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     feeder.setDefaultCommand(runFeeder);
     intake.setDefaultCommand(runIntake);
     shooter.setDefaultCommand(shootBalls);
+    climber.setDefaultCommand(climb);
 
     configureButtonBindings();
 
