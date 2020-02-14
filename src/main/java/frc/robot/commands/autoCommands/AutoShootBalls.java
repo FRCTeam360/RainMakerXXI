@@ -10,19 +10,20 @@ package frc.robot.commands.autoCommands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.Shooter;
-//import frc.robot.subsystems.Feeder; //Or whatever it's gonna be called
+import frc.robot.subsystems.Feeder;
 import edu.wpi.first.wpilibj.Timer;
 
 public class AutoShootBalls extends CommandBase {
 
   private final Shooter myShooter;
-  //privat final Feeder myFeeder;
-  Timer timer;
+  private final Feeder myFeeder;
+  private final Timer timer;
 
-  public AutoShootBalls(Shooter shooter) {
+  public AutoShootBalls(Shooter shooter, Feeder feeder) {
     myShooter = shooter;
+    myFeeder = feeder;
     timer = new Timer();
-    addRequirements(shooter);
+    addRequirements(shooter, feeder);
   }
 
   @Override
@@ -38,6 +39,8 @@ public class AutoShootBalls extends CommandBase {
   @Override
   public void end(boolean interrupted) { // Called once the command ends or is interrupted.
     //stop shooter & feeder
+    timer.stop();
+    timer.reset();
   }
 
   @Override
