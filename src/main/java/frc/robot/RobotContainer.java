@@ -39,6 +39,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final Shooter shooter = new Shooter();
   private final Limelight limelight = new Limelight();
   private final Intake intake = new Intake();
+  private final Feeder feeder = new Feeder();
 
   private final JoystickTankDrive joystickTankDrive = new JoystickTankDrive(drivetrain);
   private final Pressurize pressurize = new Pressurize(pneumatics);
@@ -50,7 +51,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   Joystick joy1 = new Joystick(OIConstants.joyRPort);
   Joystick joyOI = new Joystick(OIConstants.contPort);
 
-  private final AlignShoot alignShoot = new AlignShoot(drivetrain, limelight, shooter);
+  private final AlignShoot alignShoot = new AlignShoot(drivetrain, limelight, shooter, feeder);
 
   private final RamseteCommand m_autoCommand_testing = new RamseteCommand(
     TrajectoryConstants.testingTrajectory,
@@ -84,7 +85,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
         drivetrain::tankDriveVolts,
         drivetrain) 
       ),                                                                                            
-    new AlignShoot(drivetrain, limelight, shooter)
+    new AlignShoot(drivetrain, limelight, shooter, feeder)
   );
 
   private final SequentialCommandGroup m_autoCommand_middle = new SequentialCommandGroup(
@@ -104,7 +105,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
         drivetrain::tankDriveVolts,
         drivetrain) 
       ),                                                                                            
-    new AlignShoot(drivetrain, limelight, shooter)
+    new AlignShoot(drivetrain, limelight, shooter, feeder)
   );
 
   private final SequentialCommandGroup m_autoCommand_right = new SequentialCommandGroup(
@@ -124,7 +125,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
         drivetrain::tankDriveVolts,
         drivetrain) 
       ),                                                                                            
-    new AlignShoot(drivetrain, limelight, shooter)
+    new AlignShoot(drivetrain, limelight, shooter, feeder)
   );
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();

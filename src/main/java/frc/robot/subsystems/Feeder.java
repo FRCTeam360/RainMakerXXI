@@ -17,9 +17,6 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 
 public class Feeder extends SubsystemBase {
-  /**
-   * Creates a new Feeder.
-   */
 
   private TalonSRX loader;
   private TalonSRX hopper;
