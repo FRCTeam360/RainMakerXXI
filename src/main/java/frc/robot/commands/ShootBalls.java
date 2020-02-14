@@ -17,14 +17,17 @@ public class ShootBalls extends CommandBase {
 
   private final Shooter myShooter;
 
-  private final Joystick joy;
+  private final Joystick joyR;
+  private final Joystick cont;
 
   /**
    * Creates a new ShootBalls.
    */
   public ShootBalls(Shooter shooter) {
     myShooter = shooter;
-    joy = new Joystick(joyRPort);
+    joyR = new Joystick(joyRPort);
+    cont = new Joystick(contPort);
+    
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(myShooter);
   }
@@ -38,19 +41,18 @@ public class ShootBalls extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if ( joy.getRawButton(1) ) {
+    if ( joyR.getRawButton(1) ) {
 
-      //shooterMaster.set(ControlMode.Velocity , (((Constants.targetRpm * 4096) / 600) / 2) ); //divided by 2 is for our gear ratio
-      //System.out.println( (( (Constants.targetRpm * 4096) / 600) / 2) + "   " );    //about= 13,650
       myShooter.run();
 
-    } else if(joy.getRawButton(6)) {
+    } else if(joyR.getRawButton(6)) {
 
-      myShooter.runWithJoy((-joy.getRawAxis(1)) * 0.6);
+      myShooter.runWithJoy((-joyR.getRawAxis(1)) * 0.6);
 
     } else {
+
       myShooter.runWithJoy(0);
-      //shooterMaster.set(ControlMode.PercentOutput , joy.getRawAxis(1) );
+
     } 
   }
 

@@ -36,14 +36,14 @@ public class RunIntake extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(joyOI.getRawButton(2)){
+    if(joyOI.getRawButton(6)){
       myIntake.run(1);
     }else{
       myIntake.run(0);
     }
-    if (joyOI.getRawButton(4)){
+    if (joyOI.getRawButton(5)){
       myIntake.intakeUp();
-    }else if (joyOI.getRawButton(2)){
+    }else if (joyOI.getRawButton(6)){
       myIntake.intakeDown();
     }
   }

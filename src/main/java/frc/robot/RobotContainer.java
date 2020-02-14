@@ -155,7 +155,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
 
   private void configureButtonBindings() {
     new JoystickButton(joy1, 5).whenPressed(switchCamMode);
-    new JoystickButton(joyOI , 3).whenPressed(alignShoot);
+    new JoystickButton(joyOI , 4).whenPressed(alignShoot);
   }
 
   public Command getAutonomousCommand() { //Called int robot autonomousInit which schedules the command sent to it

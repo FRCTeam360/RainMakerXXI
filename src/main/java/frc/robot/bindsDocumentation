@@ -2,23 +2,22 @@
 ========================================================================================
 Left Joystick:
 Yaw: left side of robot
-0:
 1:
 2:
 3:
 4:
-5:
+5: runs switchCamMode command
 6:
 7:
 8:
 9:
 10:
 11:
+12:
 
 ========================================================================================
 Right Joystick:
 Yaw: right side of robot
-0:
 1:
 2:
 3:
@@ -30,20 +29,21 @@ Yaw: right side of robot
 9:
 10:
 11:
+12:
 
 ========================================================================================
 Controller: (Mode light off)
-0 (x): 
-1 (a):
-2 (b): 
-3 (y):
-4 (L bumper):
-5 (R bumper):
-6 (L trigger):
-7 (R trigger):
-8 (back):
-9 (start):
-10 (L stick):
-11 (R stick):
+1 (x): 
+2 (a):
+3 (b): Abort AlignShoot (in command ShooterRamp) (usually unused)
+4 (y): Start AlignShoot (in RobotContainer)
+5 (L bumper): Intake up (in command RunIntake)
+6 (R bumper): Intake down && Run Intake full power (in command RunIntake)
+7 (L trigger): 
+8 (R trigger):
+9 (back):
+10 (start):
+11 (L stick):
+12 (R stick):
 
 ========================================================================================
