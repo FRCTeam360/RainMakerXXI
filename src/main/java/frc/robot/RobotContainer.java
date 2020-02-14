@@ -30,6 +30,7 @@ import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
@@ -151,7 +152,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     m_chooser.addOption("Middle Auto", m_autoCommand_middle);
     m_chooser.addOption("Right Auto", m_autoCommand_right);
 
-    Shuffleboard.getTab("Autonomous").add(m_chooser);
+    SmartDashboard.putData("Auto Choice", m_chooser);
   }
 
   public DriveTrain gDriveTrain () {
