@@ -39,8 +39,8 @@ Controller (Port 2): (Mode light off)
 4 (y): Start AlignShoot (in RobotContainer)
 5 (L bumper): Intake up (in command RunIntake)
 6 (R bumper): Intake down && Run Intake full power (in command RunIntake)
-7 (L trigger): 
-8 (R trigger):
+7 (L trigger): run loader (in RunFeeder command)
+8 (R trigger): run hopper (in RunFeeder command)
 9 (back):
 10 (start): When held allows for y-axis (left stick up and down) to controll shooter speed
 11 (L stick):

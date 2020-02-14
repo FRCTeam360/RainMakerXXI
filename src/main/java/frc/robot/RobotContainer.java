@@ -44,9 +44,11 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final JoystickTankDrive joystickTankDrive = new JoystickTankDrive(drivetrain);
   private final Pressurize pressurize = new Pressurize(pneumatics);
   private final Shift shift = new Shift(shifter);
+  private final RunIntake runIntake = new RunIntake(intake);
   private final RunCamera runCamera = new RunCamera(limelight);
   private final SwitchCamMode switchCamMode = new SwitchCamMode(limelight);
   private final ShootBalls shootBalls = new ShootBalls(shooter);
+  private final RunFeeder runFeeder = new RunFeeder(feeder);
 
   Joystick joy1 = new Joystick(OIConstants.joyRPort);
   Joystick joyOI = new Joystick(OIConstants.contPort);
@@ -135,8 +137,8 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     pneumatics.setDefaultCommand(pressurize);
     shifter.setDefaultCommand(shift);
     limelight.setDefaultCommand(runCamera);
-
-    // Configure the button bindings
+    feeder.setDefaultCommand(runFeeder);
+    intake.setDefaultCommand(runIntake);
     shooter.setDefaultCommand(shootBalls);
 
     configureButtonBindings();
