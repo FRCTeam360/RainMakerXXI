@@ -87,6 +87,10 @@ public final class Constants {
         public static final int forwardChannel = 2;
         public static final int reverseChannel = 3;
     }
+    public static final class FeederConstants{
+        public static final int loaderMotorId = 5;
+        public static final int hopperMotorId = 6;
+    }
 
     public static final class OIConstants {
 
