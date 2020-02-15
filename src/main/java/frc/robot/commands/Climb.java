@@ -35,7 +35,7 @@ public class Climb extends CommandBase { //Tele-op command / no isFinsihed() met
   @Override
   public void execute() {
 
-    if(Math.abs(cont.getRawAxis(1)) >= .15) {
+    if(Math.abs(cont.getRawAxis(1)) >= .15 && !(cont.getRawButton(10))) {
       myClimber.runErector( -1 * cont.getRawAxis(1) * 0.8 );
     } else {
       myClimber.runErector(0);
