@@ -74,8 +74,8 @@ public final class Constants {
         public static enum ShiftState {UP, DOWN, UNKNOWN};
         public static ShiftState shiftState; 
 
-        public static final int forwardChannel = 1;
-        public static final int reverseChannel = 0; 
+        public static final int forwardChannel = 5;
+        public static final int reverseChannel = 4; 
     }
     public static final class LimelightConstants {
         public static final double KpAim = 0;
@@ -85,7 +85,7 @@ public final class Constants {
         public static final int intakeId = 5;
 
         public static final int forwardChannel = 2;
-        public static final int reverseChannel = 3;
+        public static final int reverseChannel = 3;  //Still unkown
     }
     public static final class FeederConstants{
         public static final int loaderMotorId = 5;
