@@ -35,6 +35,11 @@ public final class Constants {
 
         public static final boolean isInAutoShift = false; //to ensure you don't shift when your in autonomous 
     }
+    public static final class ClimberConstants { //Needs to be changed to proper values (just guessing right now)
+        public static final int erectorMotorId = 4;
+        public static final int motorMasterId = 5;
+        public static final int motorSlaveId = 6;
+    }
 
 
     public static final class OIConstants {
