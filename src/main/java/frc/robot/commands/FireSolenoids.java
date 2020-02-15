@@ -7,27 +7,22 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
-import frc.robot.subsystems.Shifter;
-import static frc.robot.Constants.OIConstants.*;
-import static frc.robot.Constants.ShifterConstants.isInAutoShift;
-
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class Shift extends CommandBase {
+import frc.robot.subsystems.Solenoids;
 
-  private final Shifter shifter;
-  private final Joystick joystickR;
-  private final Joystick joystickL;
+import edu.wpi.first.wpilibj.Joystick;
+import static frc.robot.Constants.OIConstants.*;
 
-  public Shift(Shifter inShifter) {
-    shifter = inShifter;
+public class FireSolenoids extends CommandBase {
 
-    joystickR = new Joystick(joyRPort);
-    joystickL = new Joystick(joyLPort);
+  private final Solenoids mySol;
+  private final Joystick cont;
 
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(shifter);
+  public FireSolenoids(Solenoids inSol) {
+    mySol = inSol;
+    cont = new Joystick(contPort);
+    addRequirements(mySol);
   }
 
   // Called when the command is initially scheduled.
@@ -38,15 +33,25 @@ public class Shift extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if( isInAutoShift != true ){ //if not in autonomous mode
-
-      if ( joystickR.getRawButton(1) ) { //Shift up
-        shifter.shiftUp();
-      } else if ( joystickL.getRawButton(1) ) { //shift down 
-        shifter.shiftDown();
-      }
-
+    
+    if (cont.getRawButton(5) ) { //Left bumper
+      mySol.upS1();
+    } else if (cont.getRawButton(6)) { //Right bumper
+      mySol.downS1();
     }
+
+    if ( cont.getRawButton(7) ) { //left trig
+      mySol.upS2();
+    } else if ( cont.getRawButton(8) ) { //right trig
+      mySol.downS2();
+    }
+
+    if ( cont.getRawButton(9) ) { //back
+      mySol.upS3();
+    } else if ( cont.getRawButton(10) ) { //start
+      mySol.downS3();
+    }
+
   }
 
   // Called once the command ends or is interrupted.
