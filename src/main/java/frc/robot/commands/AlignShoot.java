@@ -25,8 +25,8 @@ public class AlignShoot extends ParallelRaceGroup {
     // super(new FooCommand(), new BarCommand());
     super(
       new SequentialCommandGroup(
-        new Align(driveTrain, limelight),
-        new Feeder()
+        new Align(driveTrain, limelight)
+        //new Feeder()
       ),
       new ShooterRamp(shooter)
     );
