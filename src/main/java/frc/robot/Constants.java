@@ -34,6 +34,7 @@ public final class Constants {
         public static final double kF = (0.6 * 1023.0) / 15900.0;
         public static final double kPeakOutput = 1; 
         //public static final double targetRpm = 4000;
+        public static final double targetVelocity = 15000;
     }
     public static final class DriveTrainConstants {
         public static final int motorLMasterID = 1;
@@ -45,8 +46,8 @@ public final class Constants {
         public static enum ShiftState {UP, DOWN, UNKNOWN};
         public static ShiftState shiftState; 
 
-        public static final int forwardChannel = 1;
-        public static final int reverseChannel = 0;
+        public static final int forwardChannel = 5;
+        public static final int reverseChannel = 4;
 
         public static final boolean isInAutoShift = false; //to ensure you don't shift when your in autonomous 
     }
