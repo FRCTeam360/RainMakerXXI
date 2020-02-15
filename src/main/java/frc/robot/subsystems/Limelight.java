@@ -65,5 +65,6 @@ public class Limelight extends SubsystemBase {
     SmartDashboard.putNumber("LimelightX", tx.getDouble(0.0));
     SmartDashboard.putNumber("LimelightY", ty.getDouble(0.0));
     SmartDashboard.putNumber("LimelightArea", ta.getDouble(0.0));
+    SmartDashboard.putBoolean("Valid Target", validTarget());
   }
 }
