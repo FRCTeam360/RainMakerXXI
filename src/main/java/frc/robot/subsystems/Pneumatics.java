@@ -13,7 +13,7 @@ import edu.wpi.first.wpilibj.Compressor;
 
 public class Pneumatics extends SubsystemBase {
 
-  public static Compressor comp;
+  private static Compressor comp;
 
   public Pneumatics() {
     comp = new Compressor();

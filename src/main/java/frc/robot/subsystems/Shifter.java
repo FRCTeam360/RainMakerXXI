@@ -15,7 +15,7 @@ import static frc.robot.Constants.ShifterConstants.*;
 
 public class Shifter extends SubsystemBase {
 
-  public static DoubleSolenoid shifter;
+  private static DoubleSolenoid shifter;
 
   public Shifter() {
     shifter = new DoubleSolenoid( forwardChannel , reverseChannel );
