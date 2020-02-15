@@ -10,7 +10,6 @@ package frc.robot;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.*;
-import frc.robot.commands.autos.*;
 import frc.robot.subsystems.*;
 import edu.wpi.first.wpilibj2.command.Command;
 
@@ -27,7 +26,6 @@ public class RobotContainer {
   private final Shifter shifter = new Shifter();
   private final Shooter shooter = new Shooter();
 
-  private final SeqAutoCmd m_autoCommand = new SeqAutoCmd(  ); //Define auto sequential command
   private final JoystickTankDrive joystickTankDrive = new JoystickTankDrive(drivetrain);
   private final Pressurize pressurize = new Pressurize(pneumatics);
   private final Shift shift = new Shift(shifter);
@@ -65,6 +63,6 @@ public class RobotContainer {
    * @return the command to run in autonomous
    */
   public Command getAutonomousCommand() {
-    return m_autoCommand;
+    return null;
   }
 }
