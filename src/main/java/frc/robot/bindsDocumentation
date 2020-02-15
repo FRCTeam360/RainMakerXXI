@@ -2,12 +2,12 @@
 This branch is basically nothing so the formatting here is poor, see pathweaver6 for a nice looking bindsDocumentation
 
 Pneumatics run by default
-Shifter runs by default and will run pneumatics if needed
+FireSolenoids runs by default and will run pneumatics if needed
 
 Right joystick (joy 0), Y-axis, controls runs sparkmaxes
 Left joystick (joy 1), Y-axis controls run talons
 
-Controller
+Controller (Left is the higher solenoids, for example, left bumper fires solenoid 1)
 Bumpers is Solenoid 0 & 1
 Triggers r Solenoid 2 & 3
 Start/Back r Solenoid 4 & 5

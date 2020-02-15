@@ -18,18 +18,18 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
 
   private final Pneumatics pneumatics = new Pneumatics();
-  private final SparkMaxes sparkMaxes = new SparkMaxes();
-  private final Talons talons = new Talons();
+  //private final SparkMaxes sparkMaxes = new SparkMaxes();
+  //private final Talons talons = new Talons();
   private final Solenoids solenoids = new Solenoids();
 
   private final Pressurize pressurize = new Pressurize(pneumatics);
-  private final RunMotors runMotors = new RunMotors(talons, sparkMaxes);
+  //private final RunMotors runMotors = new RunMotors(talons, sparkMaxes);
   private final FireSolenoids fireSolenoids = new FireSolenoids(solenoids);
 
   public RobotContainer() {
 
     pneumatics.setDefaultCommand(pressurize);
-    talons.setDefaultCommand(runMotors); //no need to do: sparkMaxes.setDefaultCommand(runMotors);
+    //talons.setDefaultCommand(runMotors); //no need to do: sparkMaxes.setDefaultCommand(runMotors);
     solenoids.setDefaultCommand(fireSolenoids);
 
     configureButtonBindings();
