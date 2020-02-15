@@ -77,6 +77,7 @@ public class Robot extends TimedRobot {
     m_autonomousCommand = m_robotContainer.getAutonomousCommand();
 
     m_robotContainer.gDriveTrain().brakeMode(); //Set brake mode
+    m_robotContainer.gShifter().shiftUp(); //Ensure in high gear for the Auto, 7.56 gear ratio 
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {

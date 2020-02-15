@@ -158,6 +158,10 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     return drivetrain;
   }
 
+  public Shifter gShifter() {
+    return shifter;
+  }
+
   private void configureButtonBindings() {
     new JoystickButton(joy1, 5).whenPressed(switchCamMode);
     new JoystickButton(joyOI , 4).whenPressed(alignShoot);
