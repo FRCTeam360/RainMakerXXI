@@ -56,9 +56,6 @@ public class Shooter extends SubsystemBase {
   }
 
   public void run () {
-    //double current = shooterMaster.getStatorCurrent(); //amps
-    //int rawVelocity = shooterMaster.getSelectedSensorVelocity(); // raw sensor units
-    //shooterMaster.set( ControlMode.PercentOutput , 1 );
     shooterMaster.set(ControlMode.Velocity, targetVelocity); //15900 native units is 60%
   }
 
@@ -66,29 +63,12 @@ public class Shooter extends SubsystemBase {
     shooterMaster.set(ControlMode.PercentOutput, output);
   }
 
-  private void displayRPM() {
+  @Override
+  public void periodic() { // This method will be called once per scheduler run
     SmartDashboard.putNumber("Shooter RPM", ((shooterMaster.getSelectedSensorVelocity(0) * 600.0) / 4096.0 / 2.0)); // (<velocity> * 2 * 600) / 4096 converts native units to RPM
     SmartDashboard.putNumber("Target RPM", targetRPM);
-  }
-
-  private void displayCurrentDraw() {
     SmartDashboard.putNumber("Total Shooter Current Draw", shooterMaster.getStatorCurrent() + shooterSlave.getStatorCurrent()); //amps of both motors driving shooter
-  }
-
-  private void displayVelocity() {
     SmartDashboard.putNumber("Shooter Velocity", shooterMaster.getSelectedSensorVelocity(0));
-  }
-
-  private void displayShooterError() {
     SmartDashboard.putNumber("Shooter Error", shooterMaster.getClosedLoopError());
-  }
-
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
-    displayRPM();
-    displayCurrentDraw();
-    displayVelocity();
-    displayShooterError();
   }
 }
