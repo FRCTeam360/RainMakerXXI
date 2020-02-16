@@ -52,7 +52,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final RunFeeder runFeeder = new RunFeeder(feeder, shooter);
   private final Climb climb = new Climb(climber);
 
-  Joystick joy1 = new Joystick(OIConstants.joyRPort);
+  Joystick joyR = new Joystick(OIConstants.joyRPort);
   Joystick joyOI = new Joystick(OIConstants.contPort);
 
   private final AlignShoot alignShoot = new AlignShoot(drivetrain, limelight, shooter, feeder);
@@ -163,8 +163,8 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   }
 
   private void configureButtonBindings() {
-    new JoystickButton(joy1, 5).whenPressed(switchCamMode);
-    new JoystickButton(joyOI , 4).whenPressed(alignShoot);
+    new JoystickButton(joyR, 5).whenPressed(switchCamMode);
+    new JoystickButton(joyR , 1).whenHeld(alignShoot);  //This whenHeld schedules a command when a trigger changes from inactive to active (or, accordingly, when a button is initially pressed) and cancels it when the trigger becomes inactive again (or the button is released). The command will not be re-scheduled if it finishes while the trigger is still active.
   }
 
   public Command getAutonomousCommand() { //Called int robot autonomousInit which schedules the command sent to it

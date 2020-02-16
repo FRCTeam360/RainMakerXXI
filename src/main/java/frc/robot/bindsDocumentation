@@ -1,7 +1,7 @@
 
 ========================================================================================
 Right Joystick (Port 0):
-1: 
+1: Start AlignShoot (in RobotContainer) (whenReleased cancels command )
 2:
 3: Shift up (in Shift command)
 4: Shift down (in Shift command)
@@ -43,7 +43,7 @@ Controller (Port 2): (Mode light off)
 1 (x): 
 2 (a):
 3 (b):
-4 (y): Start AlignShoot (in RobotContainer)
+4 (y):
 5 (L bumper): Intake up (in command RunIntake)
 6 (R bumper): Intake down && Run Intake full power (in command RunIntake)
 7 (L trigger): run loader (in RunFeeder command)
@@ -76,7 +76,6 @@ Talons:
 
 ========================================================================================
 To do:
-AlignShoot bind to right trigger Button 1, they have to hold it, releasing will abort, using whileHeld() in RobotContainer
 
 Test align shoot, does it block driver input?
 Test auto stuff
@@ -85,3 +84,4 @@ Done:
 Operator can't feed ball manually unless shooter is at speed
 Change shifter binds to top of right Joystick 3 & 4
 Remove operator Abort for now
+AlignShoot bind to right trigger Button 1, they have to hold it, releasing will abort, using whileHeld() in RobotContainer
