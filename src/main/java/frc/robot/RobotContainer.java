@@ -140,9 +140,9 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     shifter.setDefaultCommand(shift);
     limelight.setDefaultCommand(runCamera);
     feeder.setDefaultCommand(runFeeder);
-    intake.setDefaultCommand(runIntake);
+    //intake.setDefaultCommand(runIntake);
     shooter.setDefaultCommand(shootBalls);
-    climber.setDefaultCommand(climb);
+    //climber.setDefaultCommand(climb);
 
     configureButtonBindings();
 

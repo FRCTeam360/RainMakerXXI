@@ -58,3 +58,20 @@ Axis 2 (Z-axis , right stick left/right):
 Axis 3 (Z-rotate , right stick up/down): Move climber up/down (in command Climb)
 
 ========================================================================================
+CAN Ids & Binds:
+Sparks:
+    1. Lmaster
+    2. Lslave
+    3. Rmaster
+    4. RSalve
+    5. ClimbMast
+    6. Climbsalve
+Talons:
+    7. Feed1 (loader)
+    8. Feed2 (hopper)
+    9. Shoot1 (master)
+    10. Shoot2 (slave)
+    11. Intake1 (intake)
+    12. Climb1 (erector)
+
+========================================================================================

@@ -35,10 +35,10 @@ public class Shooter extends SubsystemBase {
 
     shooterMaster.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative , kPIDLoopIdx , kTimeOutMs);
 
-    shooterMaster.setInverted(false);
-    shooterSlave.setInverted(InvertType.FollowMaster);
+    shooterMaster.setInverted(true);
+    shooterSlave.setInverted(false);
 
-    shooterMaster.setSensorPhase(false);
+    shooterMaster.setSensorPhase(true);
 
     shooterMaster.configNominalOutputForward( 0 , kTimeOutMs);
     shooterMaster.configNominalOutputReverse( 0 , kTimeOutMs);

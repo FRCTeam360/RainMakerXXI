@@ -34,8 +34,8 @@ public final class Constants {
     public static boolean inAuto = false;
 
     public static final class ShooterConstants {
-        public static final int shooterMasterId = 5;
-        public static final int shooterSlaveId = 6;
+        public static final int shooterMasterId = 9; //Shoot1
+        public static final int shooterSlaveId = 10; //Shoot2
 
         public static final int kSlotIdx = 0;
         public static final int kTimeOutMs = 30;
@@ -46,7 +46,7 @@ public final class Constants {
         public static final double kF = (0.6 * 1023.0) / 15900.0;
         public static final double kPeakOutput = 1; 
         //public static final double targetRpm = 4000;
-        public static final double targetVelocity = 15000;
+        public static final double targetVelocity = 15000; //ticks per 100m/s
     }
     public static final class DriveTrainConstants {
         public static final int motorLMasterID = 1;
@@ -74,25 +74,25 @@ public final class Constants {
         public static enum ShiftState {UP, DOWN, UNKNOWN};
         public static ShiftState shiftState; 
 
-        public static final int forwardChannel = 5;
-        public static final int reverseChannel = 4; 
+        public static final int forwardChannel = 3; //high
+        public static final int reverseChannel = 2; //low
     }
     public static final class LimelightConstants {
         public static final double KpAim = 0;
         public static final double AimMinCmd = 0;
     }
     public static final class IntakeConstants{
-        public static final int intakeId = 5;
+        public static final int intakeId = 11; //Intake1
 
-        public static final int forwardChannel = 2;
-        public static final int reverseChannel = 3;  //Still unkown
+        public static final int forwardChannel = 4;
+        public static final int reverseChannel = 5;  //Still unkown
     }
     public static final class FeederConstants{
-        public static final int loaderMotorId = 5;
-        public static final int hopperMotorId = 6;
+        public static final int loaderMotorId = 7; //Feed1
+        public static final int hopperMotorId = 8; //feed2
     }
-    public static final class ClimberConstants { //Needs to be changed to proper values (just guessing right now)
-        public static final int erectorMotorId = 4;
+    public static final class ClimberConstants {
+        public static final int erectorMotorId = 12; //Climb1 in Phoenix
         public static final int motorMasterId = 5;
         public static final int motorSlaveId = 6;
     }
