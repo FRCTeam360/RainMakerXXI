@@ -11,19 +11,23 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.Joystick;
 
 import frc.robot.subsystems.Feeder;
+import frc.robot.subsystems.Shooter;
 
 import static frc.robot.Constants.OIConstants.*;
+import frc.robot.Constants.ShooterConstants;
 
 public class RunFeeder extends CommandBase {
 
   Feeder myFeeder;
+  Shooter myShooter;
   Joystick cont;
 
-  public RunFeeder(Feeder inFeeder) {
+  public RunFeeder(Feeder inFeeder, Shooter inShooter) {
     myFeeder = inFeeder;
+    myShooter = inShooter;
     cont = new Joystick(contPort);
     
-    addRequirements(myFeeder);  
+    addRequirements(myFeeder); //Not require myShooter so it doesn't cancel ShootBalls command
   }
 
 
@@ -35,10 +39,10 @@ public class RunFeeder extends CommandBase {
   @Override
   public void execute() {
     if ( cont.getRawButton(7) && cont.getRawButton(8) ) { //Run both
-      myFeeder.runLoader(-.5);
+      checkRunLoader(-.5);
       myFeeder.runHopper(1);
     } else if ( cont.getRawButton(7) ) { //run loader, hopper to none
-      myFeeder.runLoader(-.5);
+      checkRunLoader(-.5);
       myFeeder.runHopper(0);
     } else if ( cont.getRawButton(8) ) { //run hopper, loader to none
       myFeeder.runLoader(0);
@@ -47,7 +51,12 @@ public class RunFeeder extends CommandBase {
       myFeeder.runLoader(0);
       myFeeder.runHopper(0);
     }
+  }
 
+  private void checkRunLoader (double pPower) {
+    if ( myShooter.getVelocity() > ShooterConstants.targetVelocity - 500 ){
+      myFeeder.runLoader(pPower);
+    }
   }
 
   // Called once the command ends or is interrupted.

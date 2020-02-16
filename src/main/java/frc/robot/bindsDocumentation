@@ -83,3 +83,6 @@ AlignShoot bind to right trigger Button 1, they have to hold it, releasing will 
 
 Test align shoot, does it block driver input?
 Test auto stuff, 
+
+Done:
+Operator can't feed ball manually unless shooter is at speed
