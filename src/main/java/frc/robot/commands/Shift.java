@@ -18,13 +18,11 @@ public class Shift extends CommandBase {
 
   private final Shifter shifter;
   private final Joystick joystickR;
-  private final Joystick joystickL;
 
   public Shift(Shifter inShifter) {
     shifter = inShifter;
 
     joystickR = new Joystick(joyRPort);
-    joystickL = new Joystick(joyLPort);
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(shifter);
@@ -40,9 +38,9 @@ public class Shift extends CommandBase {
   public void execute() {
     if( inAuto != true ){ //if not in autonomous mode
 
-      if ( joystickR.getRawButton(1) ) { //Shift up
+      if ( joystickR.getRawButton(3) ) { //Shift up
         shifter.shiftUp();
-      } else if ( joystickL.getRawButton(1) ) { //shift down 
+      } else if ( joystickR.getRawButton(4) ) { //shift down 
         shifter.shiftDown();
       }
 

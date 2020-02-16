@@ -1,10 +1,10 @@
 
 ========================================================================================
 Right Joystick (Port 0):
-1: Shift up (in Shift command)
+1: 
 2:
-3:
-4:
+3: Shift up (in Shift command)
+4: Shift down (in Shift command)
 5:
 6: Run shooter normal speed (in ShootBalls command)
 7:
@@ -21,7 +21,7 @@ Axis 3 (slider, adjusty thingy):
 ========================================================================================
 Left Joystick (Port 1):
 Yaw: left side of robot
-1: Shift down (in Shift command)
+1:
 2:
 3:
 4:
@@ -76,13 +76,12 @@ Talons:
 
 ========================================================================================
 To do:
-
-Change shifter binds to top of right Joystick 3 & 4
 Remove operator Abort for now
 AlignShoot bind to right trigger Button 1, they have to hold it, releasing will abort, using whileHeld() in RobotContainer
 
 Test align shoot, does it block driver input?
-Test auto stuff, 
+Test auto stuff
 
 Done:
 Operator can't feed ball manually unless shooter is at speed
+Change shifter binds to top of right Joystick 3 & 4
