@@ -7,22 +7,17 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.Shooter;
-import static frc.robot.Constants.inAuto;
-import static frc.robot.Constants.OIConstants.*;
 
 public class ShooterRamp extends CommandBase {
   
   private final Shooter myShooter;
 
-  private final Joystick joyOI;
 
   public ShooterRamp(Shooter shooter) {
     myShooter = shooter;
-    joyOI = new Joystick(contPort);
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(myShooter);
   }
@@ -47,10 +42,13 @@ public class ShooterRamp extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    return false; //Removed operator abort feature
+    /*
     if(!inAuto && joyOI.getRawButton(3)) { //Programmed in abort feature
       return true;
     } else {
       return false;
     }
+    */
   }
 }
