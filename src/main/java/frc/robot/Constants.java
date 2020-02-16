@@ -44,8 +44,8 @@ public final class Constants {
         public static enum ShiftState {UP, DOWN, UNKNOWN};
         public static ShiftState shiftState; 
 
-        public static final int forwardChannel = 5;
-        public static final int reverseChannel = 4;
+        public static final int forwardChannel = 3; //High gear
+        public static final int reverseChannel = 2; //Low gear
 
         public static final boolean isInAutoShift = false; //to ensure you don't shift when your in autonomous 
     }
