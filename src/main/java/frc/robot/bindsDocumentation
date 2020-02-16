@@ -77,11 +77,8 @@ Talons:
 ========================================================================================
 To do:
 
-Test align shoot, does it block driver input?
-Test auto stuff
+Test:
+alignShoot, does it block driver input?
+auto stuff
 
 Done:
-Operator can't feed ball manually unless shooter is at speed
-Change shifter binds to top of right Joystick 3 & 4
-Remove operator Abort for now
-AlignShoot bind to right trigger Button 1, they have to hold it, releasing will abort, using whileHeld() in RobotContainer
