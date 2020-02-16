@@ -14,7 +14,7 @@ import static frc.robot.Constants.ShooterConstants.*;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-import com.ctre.phoenix.motorcontrol.InvertType;
+//import com.ctre.phoenix.motorcontrol.InvertType; //Used if you want to set one's setInverted to follow master
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class Shooter extends SubsystemBase {
