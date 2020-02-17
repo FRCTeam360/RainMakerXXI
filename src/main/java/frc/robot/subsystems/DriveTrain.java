@@ -166,29 +166,19 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void leftEnc(){
-    // gets the new position of the encoder
-    leftNewPos = motorLMaster.getEncoder().getPosition();
-    // puts raw number in smartdashboard
-    SmartDashboard.putNumber("Left Raw Pos", leftNewPos);
-    // finds the difference in the new and the old position
-    deltaLeftPos = leftNewPos - leftOldPos;
-    // gets the velocity of the left motor
-    leftVel = motorLMaster.getEncoder().getVelocity();
-    // puts raw number in smartdashboard
-    SmartDashboard.putNumber("Left Raw Vel", leftVel);
+    leftNewPos = motorLMaster.getEncoder().getPosition();     // gets the new position of the encoder
+    SmartDashboard.putNumber("Left Raw Pos", leftNewPos);     // puts raw number in smartdashboard
+    deltaLeftPos = leftNewPos - leftOldPos;     // finds the difference in the new and the old position
+    leftVel = motorLMaster.getEncoder().getVelocity();     // gets the velocity of the left motor
+    SmartDashboard.putNumber("Left Raw Vel", leftVel);     // puts raw number in smartdashboard
   }
 
   public void rightEnc(){
-    // gets the new position of the encoder
-    rightNewPos = motorRMaster.getEncoder().getPosition();
-    // puts raw number in smartdashboard
-    SmartDashboard.putNumber("Right Raw Pos", rightNewPos);
-    // finds the difference in the new and the old position
-    deltaRightPos = rightNewPos - rightOldPos;
-    // gets the velocity of the left motor
-    rightVel = motorRMaster.getEncoder().getVelocity();
-    // puts raw number in smartdashboard
-    SmartDashboard.putNumber("Right Raw Vel", rightVel);
+    rightNewPos = motorRMaster.getEncoder().getPosition();     // gets the new position of the encoder
+    SmartDashboard.putNumber("Right Raw Pos", rightNewPos);     // puts raw number in smartdashboard
+    deltaRightPos = rightNewPos - rightOldPos;     // finds the difference in the new and the old position
+    rightVel = motorRMaster.getEncoder().getVelocity();     // gets the velocity of the left motor
+    SmartDashboard.putNumber("Right Raw Vel", rightVel);     // puts raw number in smartdashboard
   }
 
   public void brakeMode() {
@@ -241,6 +231,11 @@ public class DriveTrain extends SubsystemBase {
     } 
   }
 
+  public void navxTestingDashboardReadouts () {
+    SmartDashboard.putNumber("NAV1", Math.IEEEremainder(navX.getAngle(), 360) );
+    SmartDashboard.putNumber("NAV2", navX.getAngle() );
+  }
+
   @Override
   public void periodic() {
     m_odometry.update( //Must be in meters according to internets
@@ -252,5 +247,6 @@ public class DriveTrain extends SubsystemBase {
     rightEnc();
     leftEnc();
     PIDDashboard();
+    //navxTestingDashboardReadouts(); //Here for testing
   }
 }
