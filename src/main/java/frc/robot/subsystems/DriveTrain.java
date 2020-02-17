@@ -234,6 +234,9 @@ public class DriveTrain extends SubsystemBase {
   public void navxTestingDashboardReadouts () {
     SmartDashboard.putNumber("NAV1", Math.IEEEremainder(navX.getAngle(), 360) );
     SmartDashboard.putNumber("NAV2", navX.getAngle() );
+
+    SmartDashboard.putBoolean("NAVC con", navX.isConnected());
+    SmartDashboard.putBoolean("NAV cal", navX.isCalibrating());
   }
 
   @Override
