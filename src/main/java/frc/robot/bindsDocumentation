@@ -76,11 +76,11 @@ Talons:
 
 ========================================================================================
 To do:
-Figure out direction of navX and use that in getHeading() method in DriveTrain subsystem
-Remove kGyroReversed from constants, its unused if above is finished
+Figure out direction of navX and use that in getHeading() method in DriveTrain subsystem -> Remove kGyroReversed from constants, its unused if above is finished
+Tune Mathew's PIDs
 
 Test:
 alignShoot, does it block driver input?
-auto stuff
+Start generating trajectories at the practice field
 
 Done:
