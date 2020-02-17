@@ -58,7 +58,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final AlignShoot alignShoot = new AlignShoot(drivetrain, limelight, shooter, feeder);
 
   private final RamseteCommand m_autoCommand_testing = new RamseteCommand(
-    TrajectoryConstants.testingTrajectory,
+    TrajectoryConstants.testingLineTrajectory,
     drivetrain::getPose,
     new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
     new SimpleMotorFeedforward(AutoConstants.ksVolts,

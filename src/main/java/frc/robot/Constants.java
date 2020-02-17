@@ -112,8 +112,8 @@ public final class Constants {
         public static final double kPDriveVel = 2.4; //Potentially used by AutoAlignShoot & AlightShoot (kpAim in limelight example) 
         public static final double kTrackwidthMeters = 0.4467848429564925; //PB - measured  0.63246
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
-        public static final double kMaxSpeedMetersPerSecond = 3; //Untuned
-        public static final double kMaxAccelerationMetersPerSecondSquared = 3; //Untuned
+        public static final double kMaxSpeedMetersPerSecond = 1; //Untuned
+        public static final double kMaxAccelerationMetersPerSecondSquared = .25; //Untuned
 
         // Very Reasonable baseline values for a RAMSETE follower in units of meters and seconds - maybe change later
         public static final double kRamseteB = 2;
@@ -144,6 +144,13 @@ public final class Constants {
             // Pass through these two interior waypoints, making an 's' curve path
             List.of( new Translation2d(1, 1), new Translation2d(2, -1) ),
             // End 3 meters straight ahead of where we started, facing forward
+            new Pose2d(3, 0, new Rotation2d(0)),
+            config
+        );
+        //Straight line trajectory
+        public static final Trajectory testingLineTrajectory = TrajectoryGenerator.generateTrajectory(
+            new Pose2d(0, 0, new Rotation2d(0)), //Starts facing +X
+            List.of( new Translation2d(1, 0), new Translation2d(2, 0) ),
             new Pose2d(3, 0, new Rotation2d(0)),
             config
         );
