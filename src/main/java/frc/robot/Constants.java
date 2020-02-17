@@ -105,12 +105,17 @@ public final class Constants {
     }
     
     public static final class AutoConstants {
+        //Conversions for the Neos
+        private static final double pi = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679;
+        public static final double ticksToMeters = (1 / 42) * ( ((15/85)*(30/40)) / 1 ) * ( (pi * .1524) / 1 ); //did with jake, confirmed is correct
+        public static final double hundredMstoSecond = 10;
+
         //Done with characterization, all values seem to be okay
         public static final double ksVolts = 0.198; //PB
         public static final double kvVoltSecondsPerMeter = 1.94; //PB
         public static final double kaVoltSecondsSquaredPerMeter = 0.472; //PB
         public static final double kPDriveVel = 2.4; //Potentially used by AutoAlignShoot & AlightShoot (kpAim in limelight example) 
-        public static final double kTrackwidthMeters = 0.4467848429564925; //PB - measured  0.63246
+        public static final double kTrackwidthMeters = 0.4467848429564925; //PB - measured  0.63246 - according to what i found online, ignore the measured and use what characterization says
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
 
         //These I just make up as I go, tho they seem to be ignored?

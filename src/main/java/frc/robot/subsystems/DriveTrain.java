@@ -87,6 +87,7 @@ public class DriveTrain extends SubsystemBase {
     motorRSlave.setInverted(true);
 
     navX = new AHRS(SPI.Port.kMXP); //For frc-characterization tool: "SPI.Port.kMXP" of type "NavX"
+    resetEncPos(); //Reset Encoders r navX yaw before m_odometry is defined 
     m_odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getHeading()));
 
     rightMaster = motorRMaster.getEncoder();
@@ -151,8 +152,11 @@ public class DriveTrain extends SubsystemBase {
     return m_odometry.getPoseMeters();
   }
 
-  public DifferentialDriveWheelSpeeds getWheelSpeeds() {
-    return new DifferentialDriveWheelSpeeds( motorLMaster.getEncoder().getVelocity() , motorRMaster.getEncoder().getVelocity() ); //m_leftEncoder.getRate() , m_rightEncoder.getRate()
+  public DifferentialDriveWheelSpeeds getWheelSpeeds() { //Must be in meters/second
+    return new DifferentialDriveWheelSpeeds(
+      motorLMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond,
+      motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond
+    ); //In example: m_leftEncoder.getRate() , m_rightEncoder.getRate()
   }
   
   public void velocityDrive (double setPoint) {
@@ -238,7 +242,11 @@ public class DriveTrain extends SubsystemBase {
 
   @Override
   public void periodic() {
-    m_odometry.update(Rotation2d.fromDegrees(getHeading()), motorLMaster.getEncoder().getPosition(), motorRMaster.getEncoder().getPosition() );
+    m_odometry.update( //Must be in meters according to internets
+      Rotation2d.fromDegrees(getHeading()),
+      motorLMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters,
+      motorRMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters
+    );
 
     rightEnc();
     leftEnc();
