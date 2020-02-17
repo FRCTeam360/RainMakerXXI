@@ -60,12 +60,12 @@ Axis 3 (Z-rotate , right stick up/down): Move climber up/down (in command Climb)
 ========================================================================================
 CAN Ids & Binds:
 Sparks:
-    1. Lmaster
-    2. Lslave
-    3. Rmaster
-    4. RSalve
-    5. ClimbMast
-    6. Climbsalve
+    1. Lmaster (DB-LA)
+    2. Lslave (DB-LB)
+    3. Rmaster (DB-RA)
+    4. RSalve (DB-RB)
+    5. ClimbMast (WINCH1)
+    6. Climbsalve (WINCH2)
 Talons:
     7. Feed1 (loader)
     8. Feed2 (hopper)
@@ -76,9 +76,9 @@ Talons:
 Pneumatics Solenoids IDs:
     0.
     1.
-    2.
-    3.
-    4.
+    2. Shifter: Low Gear & Reverse
+    3. Shifter: High Gear & Forward
+    4. 
     5.
 
 ========================================================================================
