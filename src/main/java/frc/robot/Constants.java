@@ -105,17 +105,17 @@ public final class Constants {
     }
     
     public static final class AutoConstants {
-        //ALL OF THESE R EXAMPLE VALUES, WE NEED TO DO CHARACTERIZATION TO FIGURE IT OUT. 9kTracksWidthMeters is done
-        public static final double ksVolts = 0.22;
-        public static final double kvVoltSecondsPerMeter = 1.98;
-        public static final double kaVoltSecondsSquaredPerMeter = 0.2;
-        public static final double kPDriveVel = 8.5; //Potentially used by AutoAlignShoot & AlightShoot (kpAim in limelight example) 
-        public static final double kTrackwidthMeters = 0.63246; //How wide the wheels r apart (meters) - 24.9 inches - measured middle of each wheel - this is actual number for practice bot
+        //Done with characterization
+        public static final double ksVolts = 0.198; //PB
+        public static final double kvVoltSecondsPerMeter = 1.94; //PB
+        public static final double kaVoltSecondsSquaredPerMeter = 0.472; //PB
+        public static final double kPDriveVel = 2.4; //Potentially used by AutoAlignShoot & AlightShoot (kpAim in limelight example) 
+        public static final double kTrackwidthMeters = 0.4467848429564925; //PB - measured  0.63246
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
-        public static final double kMaxSpeedMetersPerSecond = 3;
-        public static final double kMaxAccelerationMetersPerSecondSquared = 3;
+        public static final double kMaxSpeedMetersPerSecond = 3; //Untuned
+        public static final double kMaxAccelerationMetersPerSecondSquared = 3; //Untuned
 
-        // Reasonable baseline values for a RAMSETE follower in units of meters and seconds
+        // Very Reasonable baseline values for a RAMSETE follower in units of meters and seconds - maybe change later
         public static final double kRamseteB = 2;
         public static final double kRamseteZeta = 0.7;
         public static final boolean kGyroReversed = false;
