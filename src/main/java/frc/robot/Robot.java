@@ -78,6 +78,7 @@ public class Robot extends TimedRobot {
 
     m_robotContainer.gDriveTrain().brakeMode(); //Set brake mode
     m_robotContainer.gShifter().shiftUp(); //Ensure in high gear for the Auto, 7.56 gear ratio 
+    m_robotContainer.gDriveTrain().resetEncPos(); //Set encoders to zero
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
@@ -103,6 +104,7 @@ public class Robot extends TimedRobot {
     // this line or comment it out.
 
     m_robotContainer.gDriveTrain().brakeMode(); //Set brake
+    m_robotContainer.gDriveTrain().resetEncPos(); //Set encoders to zero
 
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();

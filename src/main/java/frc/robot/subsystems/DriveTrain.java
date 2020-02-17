@@ -130,6 +130,11 @@ public class DriveTrain extends SubsystemBase {
     motorLMaster.setVoltage(-rightVolts); //Does this need to be inverted? 
   }
 
+  public void resetEncPos () { //For initialization resets encoder positions, for ramsete
+    motorLMaster.getEncoder().setPosition(0);
+    motorRMaster.getEncoder().setPosition(0);
+  }
+
   public double getHeading() {
     return Math.IEEEremainder(navX.getAngle(), 360) * (AutoConstants.kGyroReversed ? -1.0 : 1.0);
   }
