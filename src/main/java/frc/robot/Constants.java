@@ -53,21 +53,8 @@ public final class Constants {
         public static final int motorRMasterID = 3;
         public static final int motorRSlaveID = 4;
 
-        public static double kPLeft = 0;
-        public static double kILeft = 0; 
-        public static double kDLeft = 0;
-        public static double kIzLeft = 0;
-        public static double kFFLeft = 0;
-        
-        public static double kPRight = 0;
-        public static double kIRight = 0; 
-        public static double kDRight = 0;
-        public static double kIzRight = 0;
-        public static double kFFRight = 0;
-
-        public static double kMaxOutput = 1;
-        public static double kMinOutput = -1;
-        public static double maxRPM = 0; //This can't be zero.... it's a multiplier in Align
+        public static double steer = 0.03; // how hard to turn toward the target
+        public static double maxDrive = 0.7; // Simple speed limit so we don't drive too fast
     }
     public static final class ShifterConstants {
         public static enum ShiftState {UP, DOWN, UNKNOWN};
@@ -77,8 +64,7 @@ public final class Constants {
         public static final int reverseChannel = 2; //low
     }
     public static final class LimelightConstants {
-        public static final double KpAim = 0;
-        public static final double AimMinCmd = 0;
+        public static final double AimMinCmd = 0.0;
     }
     public static final class IntakeConstants{
         public static final int intakeId = 11; //Intake1

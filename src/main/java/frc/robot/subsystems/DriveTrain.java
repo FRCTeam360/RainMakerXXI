@@ -8,10 +8,8 @@
 package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.ControlType;
 import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANEncoder;
-import com.revrobotics.CANPIDController;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import static frc.robot.Constants.DriveTrainConstants.*;
@@ -34,9 +32,6 @@ public class DriveTrain extends SubsystemBase {
   private static CANSparkMax motorLSlave;
   private static CANSparkMax motorRMaster;
   private static CANSparkMax motorRSlave;
-
-  private CANPIDController pidControllerLeft;
-  private CANPIDController pidControllerRight;
 
   public CANEncoder rightMaster;
   public CANEncoder rightSlave;
@@ -73,9 +68,6 @@ public class DriveTrain extends SubsystemBase {
     motorRMaster.restoreFactoryDefaults();
     motorRSlave.restoreFactoryDefaults();
 
-    pidControllerLeft = motorLMaster.getPIDController();
-    pidControllerRight = motorRMaster.getPIDController();
-
     // makes the second motor for left and right sides to follow the primary motor on the left and right
     motorLSlave.follow(motorLMaster);
     motorRSlave.follow(motorRMaster);
@@ -93,36 +85,9 @@ public class DriveTrain extends SubsystemBase {
     rightMaster = motorRMaster.getEncoder();
     leftMaster = motorLMaster.getEncoder();
 
-    pidControllerLeft.setP(kPLeft);
-    pidControllerLeft.setI(kILeft);
-    pidControllerLeft.setD(kDLeft);
-    pidControllerLeft.setIZone(kIzLeft);
-    pidControllerLeft.setFF(kFFLeft);
-
-    pidControllerRight.setP(kPRight);
-    pidControllerRight.setI(kIRight);
-    pidControllerRight.setD(kDRight);
-    pidControllerRight.setIZone(kIzRight);
-    pidControllerRight.setFF(kFFRight);
-
-    pidControllerLeft.setOutputRange(kMinOutput, kMaxOutput);
-    pidControllerRight.setOutputRange(kMinOutput, kMaxOutput);
-
     // display PID coefficients on SmartDashboard
-    SmartDashboard.putNumber("P Gain Left", kPLeft);
-    SmartDashboard.putNumber("I Gain Left", kILeft);
-    SmartDashboard.putNumber("D Gain Left", kDLeft);
-    SmartDashboard.putNumber("I Zone Left", kIzLeft);
-    SmartDashboard.putNumber("Feed Forward Left", kFFLeft);
-
-    SmartDashboard.putNumber("P Gain Right", kPRight);
-    SmartDashboard.putNumber("I Gain Right", kIRight);
-    SmartDashboard.putNumber("D Gain Right", kDRight);
-    SmartDashboard.putNumber("I Zone Right", kIzRight);
-    SmartDashboard.putNumber("Feed Forward Right", kFFRight);
-    
-    SmartDashboard.putNumber("Max Output", kMaxOutput);
-    SmartDashboard.putNumber("Min Output", kMinOutput);
+    SmartDashboard.putNumber("steer", steer);
+    SmartDashboard.putNumber("maxDrive", maxDrive);
 
   }
 
@@ -159,11 +124,6 @@ public class DriveTrain extends SubsystemBase {
       motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond
     ); //In example: m_leftEncoder.getRate() , m_rightEncoder.getRate()
   }
-  
-  public void velocityDrive (double setPoint) {
-    pidControllerLeft.setReference(setPoint, ControlType.kVelocity);
-    pidControllerRight.setReference(setPoint, ControlType.kVelocity); //Potentially we need to invert this
-  }
 
   public void leftEnc(){
     leftNewPos = motorLMaster.getEncoder().getPosition();     // gets the new position of the encoder
@@ -196,39 +156,12 @@ public class DriveTrain extends SubsystemBase {
 
   private void PIDDashboard() {
     // read PID coefficients from SmartDashboard
-    double pLeft = SmartDashboard.getNumber("Left P Gain", 0);
-    double iLeft = SmartDashboard.getNumber("Left I Gain", 0);
-    double dLeft = SmartDashboard.getNumber("Left D Gain", 0);
-    double izLeft = SmartDashboard.getNumber("Left I Zone", 0);
-    double ffLeft = SmartDashboard.getNumber("Left Feed Forward", 0);
-  
-    double pRight = SmartDashboard.getNumber("Rigth P Gain", 0);
-    double iRight = SmartDashboard.getNumber("Rigth I Gain", 0);
-    double dRight = SmartDashboard.getNumber("Rigth D Gain", 0);
-    double izRight = SmartDashboard.getNumber("Rigth I Zone", 0);
-    double ffRight = SmartDashboard.getNumber("Rigth Feed Forward", 0);
-
-    double max = SmartDashboard.getNumber("Max Output", 0);
-    double min = SmartDashboard.getNumber("Min Output", 0);
+    double s = SmartDashboard.getNumber("steer", 0);
+    double max = SmartDashboard.getNumber("maxDrive", 0);
 
     // if PID coefficients on SmartDashboard have changed, write new values to controller
-    if((pLeft != kPLeft)) { pidControllerLeft.setP(pLeft); kPLeft = pLeft; }
-    if((iLeft != kILeft)) { pidControllerLeft.setI(iLeft); kILeft = iLeft; }
-    if((dLeft != kDLeft)) { pidControllerLeft.setD(dLeft); kDLeft = dLeft; }
-    if((izLeft != kIzLeft)) { pidControllerLeft.setIZone(izLeft); kIzLeft = izLeft; }
-    if((ffLeft != kFFLeft)) { pidControllerLeft.setFF(ffLeft); kFFLeft = ffLeft; }
-
-    if((pRight != kPRight)) { pidControllerRight.setP(pRight); kPRight = pRight; }
-    if((iRight != kIRight)) { pidControllerRight.setI(iRight); kIRight = iRight; }
-    if((dRight != kDRight)) { pidControllerRight.setD(dRight); kDRight = dRight; }
-    if((izRight != kIzRight)) { pidControllerRight.setIZone(izRight); kIzRight = izRight; }
-    if((ffRight != kFFRight)) { pidControllerRight.setFF(ffRight); kFFRight = ffRight; }
-
-    if((max != kMaxOutput) || (min != kMinOutput)) { 
-      pidControllerLeft.setOutputRange(min, max);
-      pidControllerRight.setOutputRange(min, max); 
-      kMinOutput = min; kMaxOutput = max;
-    } 
+    if((s != steer)) { steer = s; }
+    if((max != maxDrive)) { maxDrive = max; }
   }
 
   public void navxTestingDashboardReadouts () {

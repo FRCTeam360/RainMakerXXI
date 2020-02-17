@@ -14,15 +14,15 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Limelight;
 
 import static frc.robot.Constants.LimelightConstants.*;
-import static frc.robot.Constants.DriveTrainConstants.maxRPM;
+import static frc.robot.Constants.DriveTrainConstants.*;
 
 public class Align extends CommandBase {
 
   private DriveTrain myDriveTrain;
-  private Limelight mylimelight;
-
-  private double aimError;
+  private Limelight myLimelight;
+  
   private double steeringAdjust;
+  private double aimError;
 
   private Timer timer;
 
@@ -31,16 +31,16 @@ public class Align extends CommandBase {
    */
   public Align(DriveTrain driveTrain, Limelight limelight) {
     myDriveTrain = driveTrain;
-    mylimelight = limelight;
+    myLimelight = limelight;
 
-    aimError = 0;
     steeringAdjust = 0;
+    aimError = 0;
 
     timer = new Timer();
     timer.stop();
 	  timer.reset();
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(myDriveTrain, mylimelight);
+    addRequirements(myDriveTrain, myLimelight);
   }
 
   // Called when the command is initially scheduled.
@@ -51,21 +51,21 @@ public class Align extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    aimError = mylimelight.getX() / 29.8;
-    steeringAdjust = KpAim * aimError;
-    if (mylimelight.getX() > .2) {
+    aimError = myLimelight.getX() / 29.8;
+    steeringAdjust = steer * aimError;
+    if (myLimelight.getX() > .2) {
       steeringAdjust += AimMinCmd;
       timer.stop();
       timer.reset();
-    }
-    else if (mylimelight.getX() < -.2){ 
+    } else if (myLimelight.getX() < -.2){ 
       steeringAdjust -= AimMinCmd;
       timer.stop();
       timer.reset();
     } else {
       timer.start();
     }
-    myDriveTrain.velocityDrive(steeringAdjust * maxRPM);
+    myDriveTrain.driveLMAX(steeringAdjust);
+    myDriveTrain.driveRMAX(-steeringAdjust);
   }
 
   // Called once the command ends or is interrupted.
@@ -78,6 +78,6 @@ public class Align extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return timer.get() >= .1 && Math.abs(mylimelight.getX()) < .2;
+    return timer.get() >= .1 && Math.abs(myLimelight.getX()) < .2;
   }
 }
