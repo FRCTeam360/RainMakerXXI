@@ -57,8 +57,22 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
 
   private final AlignShoot alignShoot = new AlignShoot(drivetrain, limelight, shooter, feeder);
 
-  private final RamseteCommand m_autoCommand_testing = new RamseteCommand(
-    TrajectoryConstants.testingTrajectory,
+  private final RamseteCommand m_autoCommand_sanityS = new RamseteCommand(
+    TrajectoryConstants.sanityS,
+    drivetrain::getPose,
+    new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
+    new SimpleMotorFeedforward(AutoConstants.ksVolts,
+    AutoConstants.kvVoltSecondsPerMeter,
+    AutoConstants.kaVoltSecondsSquaredPerMeter),
+    AutoConstants.kDriveKinematics,
+    drivetrain::getWheelSpeeds,
+    new PIDController(AutoConstants.kPDriveVel, 0, 0),
+    new PIDController(AutoConstants.kPDriveVel, 0, 0),
+    drivetrain::tankDriveVolts,
+    drivetrain
+  );
+  private final RamseteCommand m_autoCommand_sanityLine = new RamseteCommand(
+    TrajectoryConstants.sanityLine,
     drivetrain::getPose,
     new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
     new SimpleMotorFeedforward(AutoConstants.ksVolts,
@@ -78,7 +92,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     new ParallelRaceGroup( 
       new AutoRunIntake(intake), 
       new RamseteCommand(
-        TrajectoryConstants.testingTrajectory, //Should be "leftAutoTrajectory" when done
+        TrajectoryConstants.sanityLine, //Should be "leftAutoTrajectory" when done
         drivetrain::getPose, 
         new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
         new SimpleMotorFeedforward(AutoConstants.ksVolts, AutoConstants.kvVoltSecondsPerMeter, AutoConstants.kaVoltSecondsSquaredPerMeter),
@@ -98,7 +112,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     new ParallelRaceGroup( 
       new AutoRunIntake(intake), 
       new RamseteCommand(
-        TrajectoryConstants.testingTrajectory, //Should be "middleAutoTrajectory" when done
+        TrajectoryConstants.sanityLine, //Should be "middleAutoTrajectory" when done
         drivetrain::getPose, 
         new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
         new SimpleMotorFeedforward(AutoConstants.ksVolts, AutoConstants.kvVoltSecondsPerMeter, AutoConstants.kaVoltSecondsSquaredPerMeter),
@@ -118,7 +132,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     new ParallelRaceGroup( 
       new AutoRunIntake(intake), 
       new RamseteCommand(
-        TrajectoryConstants.testingTrajectory, //Should be "rightAutoTrajectory" when done
+        TrajectoryConstants.sanityLine, //Should be "rightAutoTrajectory" when done
         drivetrain::getPose, 
         new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
         new SimpleMotorFeedforward(AutoConstants.ksVolts, AutoConstants.kvVoltSecondsPerMeter, AutoConstants.kaVoltSecondsSquaredPerMeter),
@@ -146,7 +160,8 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
 
     configureButtonBindings();
 
-    m_chooser.addOption("Ramsete Testing", m_autoCommand_testing); //Right now is just the Ramsete Movement Command
+    m_chooser.addOption("Line Sanity", m_autoCommand_sanityLine);
+    m_chooser.addOption("S Sanity", m_autoCommand_sanityS);
     m_chooser.addOption("Left Auto", m_autoCommand_left);
     m_chooser.addOption("Middle Auto", m_autoCommand_middle);
     m_chooser.addOption("Right Auto", m_autoCommand_right);

@@ -149,7 +149,7 @@ public final class Constants {
             .addConstraint(autoVoltageConstraint);
             
 		// An example trajectory to follow(Converted to a testing trajectory; documentation is all default).  All units in meters.
-        public static final Trajectory testingTrajectory = TrajectoryGenerator.generateTrajectory(
+        public static final Trajectory sanityS = TrajectoryGenerator.generateTrajectory(
             // Start at the origin facing the +X direction
             new Pose2d(0, 0, new Rotation2d(0)),
             // Pass through these two interior waypoints, making an 's' curve path
@@ -159,7 +159,7 @@ public final class Constants {
             config
         );
         //Straight line trajectory
-        public static final Trajectory testingLineTrajectory = TrajectoryGenerator.generateTrajectory(
+        public static final Trajectory sanityLine = TrajectoryGenerator.generateTrajectory(
             new Pose2d(0, 0, new Rotation2d(0)), //Starts facing +X
             List.of(),
             new Pose2d(1, 0, new Rotation2d(0)),
