@@ -78,9 +78,6 @@ Talons:
 To do:
 Figure out direction of navX and use that in getHeading() method in DriveTrain subsystem
 Remove kGyroReversed from constants, its unused if above is finished
-getWheelSpeeds() in drivetrain needs to give meters/sec and not tick/100ms for velocity
-m_odometry.update() in periodic() in DriveTrain needs to return meters and not ticks for position
-Test trajectory again
 
 Test:
 alignShoot, does it block driver input?
