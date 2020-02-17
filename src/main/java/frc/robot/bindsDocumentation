@@ -79,7 +79,7 @@ Pneumatics Solenoids IDs:
     2. Shifter: Low Gear & Reverse
     3. Shifter: High Gear & Forward
     4. 
-    5.
+    5. (Solenoid channel for this is broken on the practiceBot)
 
 ========================================================================================
 To do:
