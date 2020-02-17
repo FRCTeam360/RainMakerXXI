@@ -232,8 +232,10 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void navxTestingDashboardReadouts () {
-    SmartDashboard.putNumber("NAV1", Math.IEEEremainder(navX.getAngle(), 360) );
-    SmartDashboard.putNumber("NAV2", navX.getAngle() );
+    //SmartDashboard.putNumber("N ang", Math.IEEEremainder(navX.getAngle(), 360) );
+    SmartDashboard.putNumber("NAV ang", navX.getAngle() );
+    //SmartDashboard.putNumber("N pre", navX.getBarometricPressure()); //why this no work cri, just tryna get the pressure
+    SmartDashboard.putNumber("N yaw", navX.getYaw());
 
     SmartDashboard.putBoolean("NAVC con", navX.isConnected());
     SmartDashboard.putBoolean("NAV cal", navX.isCalibrating());
