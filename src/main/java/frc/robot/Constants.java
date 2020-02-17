@@ -119,8 +119,8 @@ public final class Constants {
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
 
         //These I just make up as I go, tho they seem to be ignored?
-        public static final double kMaxSpeedMetersPerSecond = 1; //Untuned
-        public static final double kMaxAccelerationMetersPerSecondSquared = .25; //Untuned
+        public static final double kMaxSpeedMetersPerSecond = 3; //Untuned
+        public static final double kMaxAccelerationMetersPerSecondSquared = 2; //Untuned
 
         // Very Reasonable baseline values for a RAMSETE follower in units of meters and seconds - maybe change later
         public static final double kRamseteB = 2;
