@@ -129,16 +129,20 @@ public final class Constants {
     }
 	public static final class TrajectoryConstants {
         //Initializes Tarjectory configurations and Trajectories
-        private static final DifferentialDriveVoltageConstraint autoVoltageConstraint =
-        new DifferentialDriveVoltageConstraint(
-            new SimpleMotorFeedforward(AutoConstants.ksVolts,
-            AutoConstants.kvVoltSecondsPerMeter,
-            AutoConstants.kaVoltSecondsSquaredPerMeter),
+        private static final DifferentialDriveVoltageConstraint autoVoltageConstraint = new DifferentialDriveVoltageConstraint(
+            new SimpleMotorFeedforward(
+                AutoConstants.ksVolts,
+                AutoConstants.kvVoltSecondsPerMeter,
+                AutoConstants.kaVoltSecondsSquaredPerMeter
+            ),
             AutoConstants.kDriveKinematics,
-            10);
+            10
+        );
         private static final TrajectoryConfig config =
-   			new TrajectoryConfig(AutoConstants.kMaxSpeedMetersPerSecond,
-                         AutoConstants.kMaxAccelerationMetersPerSecondSquared)
+   			new TrajectoryConfig(
+                AutoConstants.kMaxSpeedMetersPerSecond,
+                AutoConstants.kMaxAccelerationMetersPerSecondSquared
+            )
         	// Add kinematics to ensure max speed is actually obeyed
         	.setKinematics(AutoConstants.kDriveKinematics)
         	// Apply the voltage constraint
