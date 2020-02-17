@@ -133,6 +133,7 @@ public class DriveTrain extends SubsystemBase {
   public void resetEncPos () { //For initialization resets encoder positions, for ramsete
     motorLMaster.getEncoder().setPosition(0);
     motorRMaster.getEncoder().setPosition(0);
+    navX.zeroYaw();
   }
 
   public double getHeading() {

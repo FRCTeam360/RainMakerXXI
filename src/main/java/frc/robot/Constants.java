@@ -105,13 +105,15 @@ public final class Constants {
     }
     
     public static final class AutoConstants {
-        //Done with characterization
+        //Done with characterization, all values seem to be okay
         public static final double ksVolts = 0.198; //PB
         public static final double kvVoltSecondsPerMeter = 1.94; //PB
         public static final double kaVoltSecondsSquaredPerMeter = 0.472; //PB
         public static final double kPDriveVel = 2.4; //Potentially used by AutoAlignShoot & AlightShoot (kpAim in limelight example) 
         public static final double kTrackwidthMeters = 0.4467848429564925; //PB - measured  0.63246
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
+
+        //These I just make up as I go, tho they seem to be ignored?
         public static final double kMaxSpeedMetersPerSecond = 1; //Untuned
         public static final double kMaxAccelerationMetersPerSecondSquared = .25; //Untuned
 
