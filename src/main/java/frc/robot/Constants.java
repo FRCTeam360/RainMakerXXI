@@ -60,8 +60,8 @@ public final class Constants {
         public static enum ShiftState {UP, DOWN, UNKNOWN};
         public static ShiftState shiftState; 
 
-        public static final int forwardChannel = 3; //high
-        public static final int reverseChannel = 2; //low
+        public static final int forwardChannel = 2; //high
+        public static final int reverseChannel = 3; //low
     }
     public static final class LimelightConstants {
         public static final double AimMinCmd = 0.0;
@@ -93,25 +93,25 @@ public final class Constants {
     public static final class AutoConstants {
         //Conversions for the Neos
         private static final double pi = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679;
-        public static final double ticksToMeters = (1 / 42) * ( ((15/85)*(30/40)) / 1 ) * ( (pi * .1524) / 1 ); //did with jake, confirmed is correct
-        public static final double hundredMstoSecond = 10;
+        public static final double ticksToMeters = ( ((15.0/85.0)*(30.0/40.0)) / 1.0 ) * ( (pi * .1524) / 1.0 ); //Correct now
+        public static final double hundredMstoSecond = 10.0;
 
         //Done with characterization, all values seem to be okay
-        public static final double ksVolts = 0.198; //PB
+        public static final double ksVolts = 0.124; //PB
         public static final double kvVoltSecondsPerMeter = 1.94; //PB
-        public static final double kaVoltSecondsSquaredPerMeter = 0.472; //PB
-        public static final double kPDriveVel = 2.4; //Potentially used by AutoAlignShoot & AlightShoot (kpAim in limelight example) 
-        public static final double kTrackwidthMeters = 0.4467848429564925; //PB - measured  0.63246 - according to what i found online, ignore the measured and use what characterization says
+        public static final double kaVoltSecondsSquaredPerMeter = 0.485; //PB
+        public static final double kPDriveVel = 2.43; //Potentially used by AutoAlignShoot & AlightShoot (kpAim in limelight example) 
+        public static final double kTrackwidthMeters = -0.02552892613083797; //PB - measured  0.63246 - according to what i found online, ignore the measured and use what characterization says
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
 
         //These I just make up as I go, tho they seem to be ignored?
-        public static final double kMaxSpeedMetersPerSecond = 1; //Untuned
-        public static final double kMaxAccelerationMetersPerSecondSquared = 1; //Untuned
+        public static final double kMaxSpeedMetersPerSecond = .1; //Untuned
+        public static final double kMaxAccelerationMetersPerSecondSquared = .15; //Untuned
 
         // Very Reasonable baseline values for a RAMSETE follower in units of meters and seconds - maybe change later
-        public static final double kRamseteB = .1; //0 to infinite
-        public static final double kRamseteZeta = 0.9; //0 to 1
-        public static final boolean kGyroReversed = false;
+        public static final double kRamseteB = 2.0; //0 to infinite
+        public static final double kRamseteZeta = 0.7; //0 to 1
+        public static final boolean kGyroReversed = true; //cuz characterization told me
     }
 	public static final class TrajectoryConstants {
         //Initializes Tarjectory configurations and Trajectories

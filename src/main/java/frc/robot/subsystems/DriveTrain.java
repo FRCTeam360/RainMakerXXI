@@ -167,11 +167,18 @@ public class DriveTrain extends SubsystemBase {
   public void navxTestingDashboardReadouts () {
     //SmartDashboard.putNumber("N ang", Math.IEEEremainder(navX.getAngle(), 360) );
     SmartDashboard.putNumber("NAV ang", navX.getAngle() );
+    SmartDashboard.putString("NA",  m_odometry.getPoseMeters().toString() );
     //SmartDashboard.putNumber("N pre", navX.getBarometricPressure()); //why this no work cri, just tryna get the pressure
-    SmartDashboard.putNumber("N yaw", navX.getYaw());
+    //SmartDashboard.putNumber("N yaw", navX.getYaw());
 
-    SmartDashboard.putBoolean("NAVC con", navX.isConnected());
-    SmartDashboard.putBoolean("NAV cal", navX.isCalibrating());
+    //SmartDashboard.putBoolean("NAVC con", navX.isConnected());
+    //SmartDashboard.putBoolean("NAV cal", navX.isCalibrating());
+  }
+
+  public void dashboardMetersTravelled() {
+    SmartDashboard.putNumber("Left Meters", motorLMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters);
+    SmartDashboard.putNumber("Right Meters", motorRMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters);
+    SmartDashboard.putNumber("Num", AutoConstants.ticksToMeters);
   }
 
   @Override
@@ -185,6 +192,7 @@ public class DriveTrain extends SubsystemBase {
     rightEnc();
     leftEnc();
     PIDDashboard();
-    //navxTestingDashboardReadouts(); //Here for testing
+    navxTestingDashboardReadouts(); //Here for testing
+    dashboardMetersTravelled();
   }
 }

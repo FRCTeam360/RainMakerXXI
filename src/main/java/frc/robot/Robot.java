@@ -60,7 +60,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void disabledInit() {
-    m_robotContainer.gDriveTrain().coastMode(); //When robot is initially disabled, set coast mode
+    m_robotContainer.gDriveTrain().brakeMode(); //When robot is initially disabled, set coast mode
   }
 
   @Override
