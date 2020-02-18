@@ -191,8 +191,8 @@ public class DriveTrain extends SubsystemBase {
       motorRMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters
     );
 
-    rightEnc();
-    leftEnc();
+    //rightEnc();
+    //leftEnc();
     PIDDashboard();
     navxTestingDashboardReadouts(); //Here for testing
     dashboardMetersTravelled();
