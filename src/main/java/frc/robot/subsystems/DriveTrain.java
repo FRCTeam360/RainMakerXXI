@@ -92,8 +92,8 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public void tankDriveVolts(double leftVolts, double rightVolts) {
-    motorRMaster.setVoltage(leftVolts);
-    motorLMaster.setVoltage(rightVolts); //Answer is no
+    motorRMaster.setVoltage(rightVolts);
+    motorLMaster.setVoltage(leftVolts); //Answer is no
   }
 
   public void resetEncPos () { //For initialization resets encoder positions, for ramsete
