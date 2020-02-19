@@ -22,7 +22,7 @@ public class Shooter extends SubsystemBase {
   private TalonSRX shooterMaster;
   private TalonSRX shooterSlave;
 
-  private static double targetRPM;
+  //private static double targetRPM;
 
   public Shooter() {
     shooterMaster = new TalonSRX(shooterMasterId);
