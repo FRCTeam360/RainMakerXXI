@@ -57,6 +57,11 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
 
   private final AlignShoot alignShoot = new AlignShoot(drivetrain, limelight, shooter, feeder);
 
+  private final Command m_autoCommand_backup = new SequentialCommandGroup(
+    new AutoBackupOnTicks( drivetrain ),
+    new AlignShoot(drivetrain, limelight, shooter, feeder)
+  );
+
   private final RamseteCommand m_autoCommand_sanityS = new RamseteCommand(
     TrajectoryConstants.sanityS,
     drivetrain::getPose,
@@ -162,6 +167,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
 
     m_chooser.addOption("Line Sanity", m_autoCommand_sanityLine);
     m_chooser.addOption("S Sanity", m_autoCommand_sanityS);
+    m_chooser.addOption("Backup Auto", m_autoCommand_backup);
     m_chooser.addOption("Left Auto", m_autoCommand_left);
     m_chooser.addOption("Middle Auto", m_autoCommand_middle);
     m_chooser.addOption("Right Auto", m_autoCommand_right);

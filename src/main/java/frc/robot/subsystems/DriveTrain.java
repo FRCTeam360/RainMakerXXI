@@ -174,6 +174,10 @@ public class DriveTrain extends SubsystemBase {
     //SmartDashboard.putBoolean("NAV cal", navX.isCalibrating());
   }
 
+  public double avgMeterTrav() { //Used exclusively by: AutoBackupOnTicks
+    return ((motorLMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters) + (motorRMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters)) / 2;
+  }
+
   public void dashboardMetersTravelled() {
     SmartDashboard.putNumber("Left Meters", motorLMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters);
     SmartDashboard.putNumber("Right Meters", motorRMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters);
