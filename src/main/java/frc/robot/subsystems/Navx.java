@@ -27,6 +27,7 @@ public class Navx extends SubsystemBase {
 
   @Override
   public void periodic() {
+    
     SmartDashboard.putNumber("NAV Raw Angle", navX.getAngle() );
     SmartDashboard.putNumber("NAV Final Angle", getHeading() );
 
