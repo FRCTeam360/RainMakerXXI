@@ -68,72 +68,44 @@ public class Robot extends TimedRobot {
   public void disabledPeriodic() {
   }
 
-  /**
-   * This autonomous runs the autonomous command selected by your {@link RobotContainer} class.
-   */
   @Override
-  public void autonomousInit() {
+  public void autonomousInit() { //This autonomous runs the autonomous command selected by your {@link RobotContainer} class.
     inAuto = true;
 
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    m_autonomousCommand = m_robotContainer.getAutonomousCommand(); //get auto command from robot container
 
     m_robotContainer.gDriveTrain().brakeMode(); //Set brake mode
     m_robotContainer.gShifter().shiftUp(); //Ensure in high gear for the Auto, 7.56 gear ratio 
     m_robotContainer.gDriveTrain().resetEncPos(); //Set encoders to zero
 
-    // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.schedule();
+    if (m_autonomousCommand != null) { //If auto command exists
+      m_autonomousCommand.schedule(); //run the auto command
     }
   }
-
-  /**
-   * This function is called periodically during autonomous.
-   */
   @Override
-  public void autonomousPeriodic() {
+  public void autonomousPeriodic() { //This function is called periodically during autonomous.
   }
 
   @Override
   public void teleopInit() {
-
-    inAuto = false;
-
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
-
+    inAuto = false; //Modify constant
     m_robotContainer.gDriveTrain().brakeMode(); //Set brake
     m_robotContainer.gDriveTrain().resetEncPos(); //Set encoders to zero
 
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
+    if (m_autonomousCommand != null) { //This makes sure that the autonomous stops running when teleop starts running.
+      m_autonomousCommand.cancel(); //If you want the autonomous to  continue until interrupted by another command comment it out.
     }
   }
-
-
-   //This function is called periodically during operator control.
-
   @Override
-  public void teleopPeriodic() {
-
-
-    
+  public void teleopPeriodic() {    //This function is called periodically during operator control.
   }
 
   @Override
-  public void testInit() {
-    // Cancels all running commands at the start of test mode.
-
+  public void testInit() {     // Cancels all running commands at the start of test mode.
     m_robotContainer.gDriveTrain().brakeMode(); //Set brake
-    CommandScheduler.getInstance().cancelAll();
+    CommandScheduler.getInstance().cancelAll(); //Clear all commands
   }
-
-  /**
-   * This function is called periodically during test mode.
-   */
   @Override
-  public void testPeriodic() {
+  public void testPeriodic() { //This function is called periodically during test mode.
   }
 }
