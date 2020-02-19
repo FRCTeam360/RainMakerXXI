@@ -65,10 +65,10 @@ public class Shooter extends SubsystemBase {
 
   @Override
   public void periodic() { // This method will be called once per scheduler run
-    SmartDashboard.putNumber("Shooter RPM", ((shooterMaster.getSelectedSensorVelocity(0) * 600.0) / 4096.0 / 2.0)); // (<velocity> * 2 * 600) / 4096 converts native units to RPM
-    SmartDashboard.putNumber("Target RPM", targetRPM);
+    //SmartDashboard.putNumber("Shooter RPM", ((shooterMaster.getSelectedSensorVelocity(0) * 600.0) / 4096.0 / 2.0)); // (<velocity> * 2 * 600) / 4096 converts native units to RPM
+    //SmartDashboard.putNumber("Target RPM", targetRPM);
     SmartDashboard.putNumber("Total Shooter Current Draw", shooterMaster.getStatorCurrent() + shooterSlave.getStatorCurrent()); //amps of both motors driving shooter
     SmartDashboard.putNumber("Shooter Velocity", shooterMaster.getSelectedSensorVelocity(0));
-    SmartDashboard.putNumber("Shooter Error", shooterMaster.getClosedLoopError());
+    //SmartDashboard.putNumber("Shooter Error", shooterMaster.getClosedLoopError());
   }
 }
