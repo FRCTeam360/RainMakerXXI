@@ -38,20 +38,16 @@ public class DriveTrain extends SubsystemBase {
   public CANEncoder leftMaster;
   public CANEncoder leftSlave;
 
-  // initializes velocities for left and right sides
-  double leftVel;
+
+  double leftVel;   // initializes velocities for left and right sides
   double rightVel;
-  // initializes new positions for left and right sides
-  double leftNewPos;
+  double leftNewPos;   // initializes new positions for left and right sides
   double rightNewPos;
-  // initializes old position values to zero
-  double leftOldPos = 0;
+  double leftOldPos = 0;   // initializes old position values to zero
   double rightOldPos = 0;
-  // initializes the output variable to zero for left and right sides
-  double leftOutput = 0;
+  double leftOutput = 0;   // initializes the output variable to zero for left and right sides
   double rightOutput = 0;
-  // initializes the changes in positions for left and right sides
-  double deltaRightPos;
+  double deltaRightPos;   // initializes the changes in positions for left and right sides
   double deltaLeftPos;
 
   AHRS navX;
