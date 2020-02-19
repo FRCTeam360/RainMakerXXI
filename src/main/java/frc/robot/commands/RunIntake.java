@@ -41,11 +41,13 @@ public class RunIntake extends CommandBase {
     }else{
       myIntake.run(0);
     }
+    /* //Disables the pneumatic
     if (joyOI.getRawButton(5)){
       myIntake.intakeUp();
     }else if (joyOI.getRawButton(6)){
       myIntake.intakeDown();
     }
+    */
   }
 
   // Called once the command ends or is interrupted.
