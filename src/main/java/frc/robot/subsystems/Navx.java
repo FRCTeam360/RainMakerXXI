@@ -22,7 +22,7 @@ public class Navx extends SubsystemBase {
   }
 
   public double getHeading() {
-    return Math.IEEEremainder(navX.getAngle(), 360) * (true ? -1.0 : 1.0); //True cuz oits this way in pathweav6
+    return Math.IEEEremainder(navX.getAngle(), 360) * -1.0; //True cuz oits this way in pathweav6 (false in pw6 = 1 && true pw6 = -1)
   }
 
   @Override
