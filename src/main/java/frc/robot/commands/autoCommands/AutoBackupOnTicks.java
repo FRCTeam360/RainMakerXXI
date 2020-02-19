@@ -22,8 +22,8 @@ public class AutoBackupOnTicks extends CommandBase {
 
   @Override
   public void execute() {   // Called every time the scheduler runs while the command is scheduled.
-    driveTrain.driveLMAX(.3);
-    driveTrain.driveRMAX(.3);
+    driveTrain.driveLMAX(.125);
+    driveTrain.driveRMAX(.125); //1/8 speed, fast enough robot moves, slow enough it goes slow
   }
 
   @Override
@@ -34,6 +34,6 @@ public class AutoBackupOnTicks extends CommandBase {
 
   @Override
   public boolean isFinished() {   // Returns true when the command should end.
-    return driveTrain.avgMeterTrav() >= 1;
+    return driveTrain.avgMeterTrav() >= .2; //.2 meters = 20 centimeters
   }
 }

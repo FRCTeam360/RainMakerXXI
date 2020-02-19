@@ -88,6 +88,11 @@ Auto Documentation:
     -ParallelRace: Ramsete(Path, 3 variations) && RunIntake: Ramsete Completion Will Stop
     -Command: AutoAlignShoot (Limelight aim n shoot): Internal Stop Method or FMS disables
 
+BackupAuto Documentation:
+	Sequential 
+    	AutoBackupOnTicks
+        AlignShoot
+        
 AlignShoot Documentation:
     ParallelRace
         sequential
