@@ -88,7 +88,6 @@ public class DriveTrain extends SubsystemBase {
     // display PID coefficients on SmartDashboard
     SmartDashboard.putNumber("steer", steer);
     SmartDashboard.putNumber("maxDrive", maxDrive);
-
   }
 
   public void tankDriveVolts(double leftVolts, double rightVolts) {
@@ -193,7 +192,7 @@ public class DriveTrain extends SubsystemBase {
 
     //rightEnc();
     //leftEnc();
-    //PIDDashboard(); //For mathew's PIDs
+    PIDDashboard(); //For mathew's PIDs
     navxTestingDashboardReadouts(); //Here for testing
     dashboardMetersTravelled();
   }
