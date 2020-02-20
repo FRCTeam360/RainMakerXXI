@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
@@ -41,8 +42,17 @@ public class Talons extends SubsystemBase {
     talon12.set(ControlMode.PercentOutput , pPower);
   }
 
+  public void encoderPrintout() {
+    SmartDashboard.putNumber("Talon7", talon7.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Talon8", talon8.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Talon9", talon9.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Talon10", talon10.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Talon11", talon11.getSelectedSensorPosition());
+    SmartDashboard.putNumber("Talon12", talon12.getSelectedSensorPosition());
+  }
+
   @Override
   public void periodic() {
-    // This method will be called once per scheduler run
+    //encoderPrintout();
   }
 }
