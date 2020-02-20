@@ -174,6 +174,30 @@ public class DriveTrain extends SubsystemBase {
     return ((motorLMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters) + (motorRMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters)) / 2;
   }
 
+  public void tempPrintouts() {
+    SmartDashboard.putNumber("LM Temp", motorLMaster.getMotorTemperature() );
+    SmartDashboard.putNumber("LS Temp", motorLSlave.getMotorTemperature() );
+    SmartDashboard.putNumber("RM Temp", motorRMaster.getMotorTemperature() );
+    SmartDashboard.putNumber("RS Temp", motorRSlave.getMotorTemperature() );
+  }
+
+  public void avgTempPrintouts() {
+    double total = 
+      motorLMaster.getMotorTemperature() + 
+      motorLSlave.getMotorTemperature() + 
+      motorRMaster.getMotorTemperature() +
+      motorRSlave.getMotorTemperature() ;
+    double avg = total / 4;
+    SmartDashboard.putNumber("Avg Drive Temp", avg);
+  }
+
+  public void ampPrintouts() {
+    SmartDashboard.putNumber("LM Amp", motorLMaster.getOutputCurrent() );
+    SmartDashboard.putNumber("LS Amp", motorLSlave.getOutputCurrent() );
+    SmartDashboard.putNumber("RM Amp", motorRMaster.getOutputCurrent() );
+    SmartDashboard.putNumber("RS Amp", motorRSlave.getOutputCurrent() );
+  }
+
   public void dashboardMetersTravelled() {
     SmartDashboard.putNumber("Left Meters", motorLMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters);
     SmartDashboard.putNumber("Right Meters", motorRMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters);
@@ -195,5 +219,8 @@ public class DriveTrain extends SubsystemBase {
     PIDDashboard(); //For mathew's PIDs
     navxTestingDashboardReadouts(); //Here for testing
     dashboardMetersTravelled();
+    //tempPrintouts();
+    //avgTempPrintouts();
+    //ampPrintouts();
   }
 }
