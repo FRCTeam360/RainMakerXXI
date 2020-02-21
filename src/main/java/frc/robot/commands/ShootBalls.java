@@ -13,29 +13,24 @@ import frc.robot.subsystems.Shooter;
 
 import static frc.robot.Constants.OIConstants.*;
 
-public class ShootBalls extends CommandBase {
+public class ShootBalls extends CommandBase { //CURRENTLY UNUSED DESPITE BEING SCHEDULED
 
   private final Shooter myShooter;
 
-  private final Joystick joyR;
+  //private final Joystick joyR;
   private final Joystick cont;
 
-  /**
-   * Creates a new ShootBalls.
-   */
   public ShootBalls(Shooter shooter) {
     myShooter = shooter;
-    joyR = new Joystick(joyRPort);
+    //joyR = new Joystick(joyRPort);
     cont = new Joystick(contPort);
 
-    // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(myShooter);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Shooting Balls");
   }
 
   // Called every time the scheduler runs while the command is scheduled.
