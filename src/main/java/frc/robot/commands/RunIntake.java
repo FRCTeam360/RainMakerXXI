@@ -24,13 +24,11 @@ public class RunIntake extends CommandBase {
     addRequirements(myIntake);
   }
 
-  // Called when the command is initially scheduled.
-  @Override
+  @Override   // Called when the command is initially scheduled.
   public void initialize() {
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
+  @Override   // Called every time the scheduler runs while the command is scheduled.
   public void execute() {
     //X is 1 && 7 is Left Trigger
     if ( cont.getRawButton(7) ) {
@@ -43,30 +41,11 @@ public class RunIntake extends CommandBase {
       myIntake.run(0.0); //If 7 isn't hit, stop it
     }
     
-    /* //Disables old binds for intake
-    if(joyOI.getRawButton(6)){
-      myIntake.run(.85); //Full power was too much according to the vande boy
-    }else{
-      myIntake.run(0);
-    }
-    */
-    /* //Disables the pneumatic
-    if (joyOI.getRawButton(5)){
-      myIntake.intakeUp();
-    }else if (joyOI.getRawButton(6)){
-      myIntake.intakeDown();
-    }
-    */
   }
 
-  // Called once the command ends or is interrupted.
-  @Override
-  public void end(boolean interrupted) {
-  }
+  @Override   // Called once the command ends or is interrupted.
+  public void end(boolean interrupted) {}
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() {
-    return false;
-  }
+  @Override   // Returns true when the command should end.
+  public boolean isFinished() { return false; }
 }
