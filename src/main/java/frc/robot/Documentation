@@ -76,8 +76,9 @@ Axis 2 right stick left/right:
 Axis 3 right stick up/down: Right climber winch up/down
 
 Issues:
-    no bind for erector 
-    no way to reverse shooter
+    no bind for erector - this is fine because this doesn't exist yet on the robot
+    no way to reverse shooter - implement the hold start and left stick for manual back down
+    remove ability for driver to run shooter
 
 ========================================================================================
 CAN Ids & Binds:
