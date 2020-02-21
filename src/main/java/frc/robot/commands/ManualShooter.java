@@ -32,7 +32,7 @@ public class ManualShooter extends CommandBase {
   @Override   // Called every time the scheduler runs while the command is scheduled.
   public void execute() {
     if (cont.getRawButton( 10 )) { //If start button held
-      shooter.runWithJoy( cont.getRawAxis(1) );
+      shooter.runWithJoy( -cont.getRawAxis(1) ); //if button held, run it, needs to be reversed cuz the controller is low iq
     } else {
       shooter.runWithJoy(0.0);
     }
