@@ -27,7 +27,7 @@ public class Intake extends SubsystemBase {
 
   //Intake motor speed
   public void run (double speed){
-    intake.set(ControlMode.PercentOutput, speed);
+    intake.set(ControlMode.PercentOutput, -speed); //Reversed
   }
 
   /* //Intake no longer uses a pneumatic
