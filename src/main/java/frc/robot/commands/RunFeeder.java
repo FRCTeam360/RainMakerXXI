@@ -72,16 +72,8 @@ public class RunFeeder extends CommandBase {
     }
     */
   }
-	/* //Was used by old code
-  private void checkRunLoader (double pPower) {
-    if ( myShooter.getVelocity() > ShooterConstants.targetVelocity - 500 ){
-      myFeeder.runLoader(pPower);
-    }
-  }
-  */
 
-  // Called once the command ends or is interrupted.
-  @Override
+  @Override   // Called once the command ends or is interrupted.
   public void end(boolean interrupted) {
   }
 
