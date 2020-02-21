@@ -6,7 +6,7 @@ Right Joystick (Port 0):
 3: Shift up (in Shift command)
 4: Shift down (in Shift command)
 5:
-6: Run shooter normal speed (in ShootBalls command)
+6:
 7:
 8:
 9:
@@ -78,7 +78,6 @@ Axis 3 right stick up/down: Right climber winch up/down
 Issues:
     no bind for erector - this is fine because this doesn't exist yet on the robot
     no way to reverse shooter - implement the hold start and left stick for manual back down
-    remove ability for driver to run shooter
 
 ========================================================================================
 CAN Ids & Binds:

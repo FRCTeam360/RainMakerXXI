@@ -41,18 +41,16 @@ public class ShootBalls extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    /*
     if ( joyR.getRawButton(6) ) {
-
       myShooter.run();
+    }
+    */
 
-    } else if(cont.getRawButton(10)) {
-
+    if(cont.getRawButton(10)) {
       myShooter.runWithJoy((-cont.getRawAxis(1)) * 0.6);
-
     } else {
-
       myShooter.runWithJoy(0);
-
     } 
   }
 
