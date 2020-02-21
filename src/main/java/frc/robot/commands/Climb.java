@@ -35,11 +35,27 @@ public class Climb extends CommandBase { //Tele-op command / no isFinsihed() met
   @Override
   public void execute() {
 
+    if (Math.abs(cont.getRawAxis(1)) >= .10 && !(cont.getRawButton(10)) ) {
+			myClimber.runLeftClimber( cont.getRawAxis(1) ); //Might need reversal
+    } else {
+			myClimber.runLeftClimber(0.0);
+    }
+
+    if (Math.abs(cont.getRawAxis(3)) >= .10  ) {
+			myClimber.runRightClimber( cont.getRawAxis(3) ); //Might need reversal
+    } else {
+			myClimber.runRightClimber(0.0);
+    }
+
+
+
+    /* //Removed code for erector
     if(Math.abs(cont.getRawAxis(1)) >= .10  && !(cont.getRawButton(10)) ) { //Erector up/down control
       myClimber.runErector( -1 * cont.getRawAxis(1) * 0.8 );
     } else {
       myClimber.runErector(0);
     }
+    */
 
     /* //Need code for the climbing winches
     if( (Math.abs(cont.getRawAxis(3)) >= .15) ) {
