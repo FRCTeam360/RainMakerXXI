@@ -23,41 +23,35 @@ public class Climber extends SubsystemBase {
 
   private static TalonSRX erector;   //One bag motor to raise it up (controlled by talon) 
   
-  private static CANSparkMax motorMaster; //2 Neos mast/slav to pull robot up "climber"
-  private static CANSparkMax motorSlave;
+  //private static CANSparkMax motorMaster; //2 Neos mast/slav to pull robot up "climber"
+  //private static CANSparkMax motorSlave;
+  private static CANSparkMax motorLeft;
+  private static CANSparkMax motorRight;
 
   public Climber() {
     erector = new TalonSRX(erectorMotorId);
-    motorMaster = new CANSparkMax(motorMasterId, MotorType.kBrushless); //For encoders, only based on Master
-    motorSlave = new CANSparkMax(motorSlaveId, MotorType.kBrushless);
+    motorLeft = new CANSparkMax(motorLeftId, MotorType.kBrushless); //For encoders, only based on Master
+    motorRight = new CANSparkMax(motorRightId, MotorType.kBrushless);
 
-    motorSlave.follow(motorMaster);
+    motorLeft.setInverted(false); //Currently Unkown - this is a guess
+    motorRight.setInverted(true);   
 
-    motorMaster.setInverted(false); //This is only a guess
-    motorSlave.setInverted(true);   //May change later
-
-    motorMaster.setIdleMode(IdleMode.kBrake); //Set brake mode on the climber
-  }
-
-  public void resetClimberEncoder () {
-    motorMaster.getEncoder().setPosition(0);
-  }
-  public double getClimberEncoderPos() {
-    return motorMaster.getEncoder().getPosition();
-  }
-  public void runClimber (double pPower) {
-    motorMaster.set(pPower);
+    motorLeft.setIdleMode(IdleMode.kBrake); //Set brake mode on the climber
+    motorRight.setIdleMode(IdleMode.kBrake);
   }
 
-  public void resetErectorEncoder() {
-    erector.setSelectedSensorPosition(0);
+  public void resetClimberEncoders() {
+    motorLeft.getEncoder().setPosition(0);
+    motorRight.getEncoder().setPosition(0);
   }
-  public double getErectorEncoderPos() {
-    return erector.getSelectedSensorPosition();
-  }
-  public void runErector(double pPower) {
-    erector.set(ControlMode.PercentOutput, pPower);
-  }
+  public double getLeftPos () { return motorLeft.getEncoder().getPosition(); }
+  public double getRightPos() { return motorRight.getEncoder().getPosition(); }
+  public void runLeftClimber (double pPow) { motorLeft.set(pPow); }
+  public void runRightClimber (double pPow) { motorRight.set(pPow); }
+
+  public void resetErectorEncoder() { erector.setSelectedSensorPosition(0); }
+  public double getErectorEncoderPos() { return erector.getSelectedSensorPosition(); }
+  public void runErector(double pPower) { erector.set(ControlMode.PercentOutput, pPower); }
 
   @Override
   public void periodic() { // This method will be called once per scheduler run - Velocity & Position of each motor

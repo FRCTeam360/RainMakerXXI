@@ -39,7 +39,7 @@ Axis 2 (z-rotate, stick rotate left/right):
 Axis 3 (slider, adjusty thingy):
 
 ========================================================================================
-Controller (Port 2): (Mode light off)
+Controller (Port 2): (Mode light off always)
 1 (x): 
 2 (a):
 3 (b): Abort alignShoot (in ShooterRamp command, which is called by AlignShoot)
@@ -55,7 +55,25 @@ Controller (Port 2): (Mode light off)
 Axis 0 (X-axis , left stick left/right):
 Axis 1 (Y-axis , left stick up/down): If 10 held (See button 10 for action) || Move erector up/down (in command Climb) (if button 10 not held)
 Axis 2 (Z-axis , right stick left/right):
-Axis 3 (Z-rotate , right stick up/down): Move climber up/down (in command Climb)
+Axis 3 (Z-rotate , right stick up/down):
+
+========================================================================================
+Jake's ideal controller binds:
+1 x: Reverse bumper/stick binds
+2 a: 
+3 b: Abort alignShoot
+4 y: 
+5 L bump: run loader (reeversible)
+6 R bump: run hopper (reeversible)
+7 L trigger: run intake (reeversible)
+8 R trigger: Run shooter @ constant rpm (reeversible) & delay then & loader & hopper
+9 back: 
+10 start: 
+11 L stick & 12 R Stick : NavX auto even out the robot (or at least try)
+Axis 0 left stick left/right:
+Axis 1 left stick up/down: Left climber winch up/down 
+Axis 2 right stick left/right:
+Axis 3 right stick up/down: Right climber winch up/down
 
 ========================================================================================
 CAN Ids & Binds:
@@ -64,8 +82,8 @@ Sparks:
     2. Lslave (DB-LB)
     3. Rmaster (DB-RA)
     4. RSalve (DB-RB)
-    5. ClimbMast (WINCH1)
-    6. Climbsalve (WINCH2)
+    5. ClimbLeft (WINCH1)
+    6. ClimbRight (WINCH2)
 Talons:
     7. Feed1 (loader)
     8. Feed2 (hopper)

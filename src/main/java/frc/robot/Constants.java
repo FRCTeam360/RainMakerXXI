@@ -78,8 +78,8 @@ public final class Constants {
     }
     public static final class ClimberConstants {
         public static final int erectorMotorId = 12; //Climb1 in Phoenix
-        public static final int motorMasterId = 5;
-        public static final int motorSlaveId = 6;
+        public static final int motorLeftId = 5;
+        public static final int motorRightId = 6;
     }
 
     public static final class OIConstants {
