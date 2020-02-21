@@ -37,6 +37,7 @@ public class RunFeeder extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    /*
     if ( cont.getRawButton(7) && cont.getRawButton(8) ) { //Run both
       checkRunLoader(-.5);
       myFeeder.runHopper(1);
@@ -50,6 +51,7 @@ public class RunFeeder extends CommandBase {
       myFeeder.runLoader(0);
       myFeeder.runHopper(0);
     }
+    */
   }
 
   private void checkRunLoader (double pPower) {
