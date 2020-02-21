@@ -38,7 +38,7 @@ public class Shooter extends SubsystemBase {
     shooterMaster.setInverted(true);
     shooterSlave.setInverted(false);
 
-    shooterMaster.setSensorPhase(true);
+    shooterMaster.setSensorPhase(true); //the Slave isn't harvested for it's encoder therefor rotation doesn't need to be modified
 
     shooterMaster.configNominalOutputForward( 0 , kTimeOutMs);
     shooterMaster.configNominalOutputReverse( 0 , kTimeOutMs);
