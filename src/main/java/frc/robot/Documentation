@@ -47,7 +47,7 @@ Controller (Port 2): (Mode light off always)
 5 (L bumper): Run loader (Reversible if holding X) (in command RunFeeder)
 6 (R bumper): Run hopper (Reversible if holding x) (in command RunFeeder)
 7 (L trigger): Run Intake (Reversible if holding X) (in command RunIntake)
-8 (R trigger):
+8 (R trigger): Run shooter velcoity & if at velocity run loader + hopper (in RobotContainer configureButtonBinds() command is ShootBalls)
 9 (back):
 10 (start): When held allows for y-axis (left stick up and down) to controll shooter speed (in command ShootBalls)
 11 (L stick):
@@ -60,10 +60,6 @@ Axis 3 (Z-rotate , right stick up/down): Right climber winch up/down (in command
 Issues:
     no bind for erector - this is fine because this doesn't exist yet on the robot later date but hold back and right stick up/down maybe
     no bind for navX auto even out robot while climbed, later date maybe set this to A or Y (2 or 4), must be a hold thing tho, revoke driver winch control
-
-========================================================================================
-Jake's ideal controller binds (that i still need to add):
-8 R trigger: Run shooter velcoity & if at velocity run loader + hopper
 
 ========================================================================================
 CAN Ids & Binds:
