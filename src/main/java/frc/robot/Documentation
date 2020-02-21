@@ -40,13 +40,13 @@ Axis 3 (slider, adjusty thingy):
 
 ========================================================================================
 Controller (Port 2): (Mode light off always)
-1 (x): Reverse direction of binds on: leftTrigger, 
+1 (x): Reverse direction of binds on: leftTrigger, leftBumper, & rightBumper
 2 (a):
 3 (b): Abort alignShoot (in ShooterRamp command, which is called by AlignShoot)
 4 (y):
-5 (L bumper): 
-6 (R bumper): 
-7 (L trigger): Run Intake (Reversible if holding X)
+5 (L bumper): Run loader (Reversible if holding X) (in command RunFeeder)
+6 (R bumper): Run hopper (Reversible if holding x) (in command RunFeeder)
+7 (L trigger): Run Intake (Reversible if holding X) (in command RunIntake)
 8 (R trigger):
 9 (back):
 10 (start): When held allows for y-axis (left stick up and down) to controll shooter speed (in command ShootBalls)
@@ -63,9 +63,6 @@ Issues:
 
 ========================================================================================
 Jake's ideal controller binds (that i still need to add):
-1 x: Reverse direction of binds on; leftBump & rightBump
-5 L bump: run loader (reeversible)
-6 R bump: run hopper (reeversible)
 8 R trigger: Run shooter velcoity & if at velocity run loader + hopper
 
 ========================================================================================

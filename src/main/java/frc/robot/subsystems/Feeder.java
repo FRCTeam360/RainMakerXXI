@@ -32,7 +32,7 @@ public class Feeder extends SubsystemBase {
   }
 
   public void runLoader (double speed) {
-    loader.set(ControlMode.PercentOutput, speed);
+    loader.set(ControlMode.PercentOutput, -speed); //Needs to be reversed in order to take in positive numbers and go forwards
     
   }
 

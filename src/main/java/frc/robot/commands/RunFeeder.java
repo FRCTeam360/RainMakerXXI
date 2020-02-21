@@ -11,20 +11,18 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj.Joystick;
 
 import frc.robot.subsystems.Feeder;
-import frc.robot.subsystems.Shooter;
+//import frc.robot.subsystems.Shooter;
 
 import static frc.robot.Constants.OIConstants.*;
-import frc.robot.Constants.ShooterConstants;
+//import frc.robot.Constants.ShooterConstants;
 
 public class RunFeeder extends CommandBase {
 
   Feeder myFeeder;
-  Shooter myShooter;
   Joystick cont;
 
-  public RunFeeder(Feeder inFeeder, Shooter inShooter) {
+  public RunFeeder(Feeder inFeeder) {
     myFeeder = inFeeder;
-    myShooter = inShooter;
     cont = new Joystick(contPort);
     
     addRequirements(myFeeder); //Not require myShooter so it doesn't cancel ShootBalls command
@@ -37,7 +35,28 @@ public class RunFeeder extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    /*
+  	//5 is for run loader, 1 is for reverse, 6 is run hopper
+    if (cont.getRawButton(5)) {
+			if (!cont.getRawButton(1)) {
+				myFeeder.runLoader(.5); //Button 5 held & button 1 isn't held, run forwards
+      } else {
+				myFeeder.runLoader(-.5); //Button 5 held & button 1 is held, run reverse
+      }
+    } else {
+      myFeeder.runLoader(0.0); //Button 5 isn't held, don't run
+    }
+
+    if (cont.getRawButton(6)) {
+			if (!cont.getRawButton(1)) {
+				myFeeder.runHopper(.85); //Button 6 held & button 1 isn't held, run forwards
+      } else {
+				myFeeder.runHopper(-.85); //Button 6 held & button 1 is held, run reverse
+      }
+    } else {
+      myFeeder.runHopper(0.0); //Button 6 isnt held, dont run
+    }
+
+    /* //Old code for old binds, unneeded now!
     if ( cont.getRawButton(7) && cont.getRawButton(8) ) { //Run both
       checkRunLoader(-.5);
       myFeeder.runHopper(1);
@@ -53,12 +72,13 @@ public class RunFeeder extends CommandBase {
     }
     */
   }
-
+	/* //Was used by old code
   private void checkRunLoader (double pPower) {
     if ( myShooter.getVelocity() > ShooterConstants.targetVelocity - 500 ){
       myFeeder.runLoader(pPower);
     }
   }
+  */
 
   // Called once the command ends or is interrupted.
   @Override

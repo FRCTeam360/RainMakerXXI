@@ -22,7 +22,6 @@ public class RunIntake extends CommandBase {
     cont = new Joystick(contPort);
     myIntake = intake;
     addRequirements(myIntake);
-
   }
 
   // Called when the command is initially scheduled.
