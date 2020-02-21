@@ -5,7 +5,7 @@ Right Joystick (Port 0):
 2:
 3: Shift up (in Shift command)
 4: Shift down (in Shift command)
-5:
+5: Run switchCamMode command (in RobotContainer)
 6:
 7:
 8:
@@ -25,7 +25,7 @@ Yaw: left side of robot
 2:
 3:
 4:
-5: Run switchCamMode command (in RobotContainer)
+5: 
 6:
 7:
 8:
