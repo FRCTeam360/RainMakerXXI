@@ -37,7 +37,14 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledInit() { //This function is called once each time the robot enters Disabled mode.
-    m_robotContainer.gDriveTrain().brakeMode(); //Here for the auto testing, want robot to stop after auto sends it full speed into a wall
+
+    if ( m_robotContainer.gDriveTrain().getHighestVelocity() >= .10 ) { //if either side is going more then .1 m/s
+      m_robotContainer.gDriveTrain().brakeMode();
+    } else {
+      m_robotContainer.gDriveTrain().coastMode();
+    }
+
+    //m_robotContainer.gDriveTrain().brakeMode(); //Here for the auto testing, want robot to stop after auto sends it full speed into a wall
     //m_robotContainer.gDriveTrain().coastMode(); //When robot is initially disabled, set coast mode
   }
 

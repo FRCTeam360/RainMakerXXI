@@ -174,6 +174,13 @@ public class DriveTrain extends SubsystemBase {
     return ((motorLMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters) + (motorRMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters)) / 2;
   }
 
+  public double getHighestVelocity () { 
+    double leftSpeed = motorLMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond;
+    double rightSpeed = motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond;
+    double highSpeed = Math.max( Math.abs(leftSpeed), Math.abs(rightSpeed) ); //Make em both positive
+    return highSpeed; //In meters per second
+  }
+
   public void tempPrintouts() {
     SmartDashboard.putNumber("LM Temp", motorLMaster.getMotorTemperature() );
     SmartDashboard.putNumber("LS Temp", motorLSlave.getMotorTemperature() );
