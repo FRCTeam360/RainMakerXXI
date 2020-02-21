@@ -13,50 +13,32 @@ import frc.robot.subsystems.Shooter;
 
 import static frc.robot.Constants.OIConstants.*;
 
-public class ShootBalls extends CommandBase { //CURRENTLY UNUSED DESPITE BEING SCHEDULED
+public class ShootBalls extends CommandBase {
 
   private final Shooter myShooter;
 
-  //private final Joystick joyR;
   private final Joystick cont;
 
   public ShootBalls(Shooter shooter) {
     myShooter = shooter;
-    //joyR = new Joystick(joyRPort);
     cont = new Joystick(contPort);
-
     addRequirements(myShooter);
   }
 
-  // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
+  public void initialize() { // Called when the command is initially scheduled.
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    /*
-    if ( joyR.getRawButton(6) ) {
-      myShooter.run();
-    }
-    */
-
-    if(cont.getRawButton(10)) {
-      myShooter.runWithJoy((-cont.getRawAxis(1)) * 0.6);
-    } else {
-      myShooter.runWithJoy(0);
-    } 
+  public void execute() {   // Called every time the scheduler runs while the command is scheduled.
   }
 
-  // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
+  public void end(boolean interrupted) {   // Called once the command ends or is interrupted.
   }
 
-  // Returns true when the command should end.
   @Override
-  public boolean isFinished() {
+  public boolean isFinished() {   // Returns true when the command should end.
     return false;
   }
 }
