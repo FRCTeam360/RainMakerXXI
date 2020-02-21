@@ -60,7 +60,7 @@ Axis 3 (Z-rotate , right stick up/down):
 ========================================================================================
 Jake's ideal controller binds:
 1 x: Reverse direction of binds on; leftBump & rightBump & leftTrigger
-2 a: 
+2 a: NavX auto even out robot while climbed, will remove operator ability to control left/right climbing winch
 3 b: Abort alignShoot
 4 y: 
 5 L bump: run loader (reeversible)
@@ -68,10 +68,11 @@ Jake's ideal controller binds:
 7 L trigger: run intake (reeversible)
 8 R trigger: Run shooter velcoity & if at velocity run loader + hopper
 9 back: 
-10 start: 
-11 L stick & 12 R Stick : NavX auto even out the robot (or at least try)
+10 start: If held down see func2 of Axis 1
+11 L stick :
+12 R Stick : 
 Axis 0 left stick left/right:
-Axis 1 left stick up/down: Left climber winch up/down 
+Axis 1 left stick up/down: Left climber winch up/down || if butoon 10 held, control shooter manually for backing it down 
 Axis 2 right stick left/right:
 Axis 3 right stick up/down: Right climber winch up/down
 
