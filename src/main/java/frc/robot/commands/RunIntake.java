@@ -37,7 +37,7 @@ public class RunIntake extends CommandBase {
   @Override
   public void execute() {
     if(joyOI.getRawButton(6)){
-      myIntake.run(1);
+      myIntake.run(.85); //Full power was too much according to the vande boy
     }else{
       myIntake.run(0);
     }

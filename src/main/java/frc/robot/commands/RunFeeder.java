@@ -30,7 +30,6 @@ public class RunFeeder extends CommandBase {
     addRequirements(myFeeder); //Not require myShooter so it doesn't cancel ShootBalls command
   }
 
-
   @Override   // Called when the command is initially scheduled.
   public void initialize() {
   }

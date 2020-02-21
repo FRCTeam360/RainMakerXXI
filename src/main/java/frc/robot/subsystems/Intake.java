@@ -10,22 +10,19 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-import edu.wpi.first.wpilibj.DoubleSolenoid;
+//import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.Constants.IntakeConstants.*;
 
 public class Intake extends SubsystemBase {
-  /**
-   * Creates a new Intake.
-   */
 
   private TalonSRX intake;
-  private DoubleSolenoid intakeMover;
+  //private DoubleSolenoid intakeMover;
 
   public Intake() {
     intake = new TalonSRX(intakeId);
-    intakeMover = new DoubleSolenoid(forwardChannel, reverseChannel);
+    //intakeMover = new DoubleSolenoid(forwardChannel, reverseChannel);
   }
 
   //Intake motor speed
@@ -33,15 +30,14 @@ public class Intake extends SubsystemBase {
     intake.set(ControlMode.PercentOutput, speed);
   }
 
-  //Moves intake up
-  public void intakeUp(){
+  /* //Intake no longer uses a pneumatic
+  public void intakeUp(){   //Moves intake up
     intakeMover.set(DoubleSolenoid.Value.kForward);
   }
-
-  //Moves intake down
-  public void intakeDown(){
+  public void intakeDown(){ //Moves intake down
     intakeMover.set(DoubleSolenoid.Value.kReverse); 
   }
+  */
 
   @Override
   public void periodic() {

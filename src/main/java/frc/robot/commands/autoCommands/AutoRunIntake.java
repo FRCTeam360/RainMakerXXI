@@ -17,30 +17,26 @@ public class AutoRunIntake extends CommandBase {
 
   public AutoRunIntake(Intake intake) {
     myIntake = intake;
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(intake);
+    addRequirements(intake);     // Use addRequirements() here to declare subsystem dependencies.
   }
 
-  // Called when the command is initially scheduled.
   @Override
-  public void initialize() {
+  public void initialize() {   // Called when the command is initially scheduled.
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
   @Override
-  public void execute() {
-    myIntake.run(.5); //Half Speed?
+  public void execute() {   // Called every time the scheduler runs while the command is scheduled.
+    myIntake.run(.65); //lil bit less
   }
 
-  // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {
+  public void end(boolean interrupted) {   // Called once the command ends or is interrupted.
     myIntake.run(0.0); //Stops the intake when the command is ended
   }
 
-  // Returns true when the command should end.
-  @Override
-  public boolean isFinished() { //Will be run as part of a parelel race and is therefore unneeded
-    return false;
+
+  @Override   
+  public boolean isFinished() {  // Returns true when the command should end.
+    return false; //Will be run as part of a parelel race and is therefore unneeded
   }
 }

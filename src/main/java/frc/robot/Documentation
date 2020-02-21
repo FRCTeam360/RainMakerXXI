@@ -44,8 +44,8 @@ Controller (Port 2): (Mode light off always)
 2 (a):
 3 (b): Abort alignShoot (in ShooterRamp command, which is called by AlignShoot)
 4 (y):
-5 (L bumper): Intake up (in command RunIntake)
-6 (R bumper): Intake down && Run Intake full power (in command RunIntake)
+5 (L bumper):
+6 (R bumper): Run Intake full power (in command RunIntake)
 7 (L trigger): run loader (in RunFeeder command)
 8 (R trigger): run hopper (in RunFeeder command)
 9 (back):
@@ -105,7 +105,6 @@ Pneumatics Solenoids IDs:
 
 ========================================================================================
 Auto Documentation:
-    -Inst Cmd: LowerIntake: Inst Cmd Stop
     -Command: AutoShootBalls(Spin up shooter and then feed): Internal Timer Stop
     -ParallelRace: Ramsete(Path, 3 variations) && RunIntake: Ramsete Completion Will Stop
     -Command: AutoAlignShoot (Limelight aim n shoot): Internal Stop Method or FMS disables
