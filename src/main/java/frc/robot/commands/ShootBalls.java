@@ -18,10 +18,12 @@ public class ShootBalls extends CommandBase {
 
   private final Shooter myShooter;
   private final Feeder myFeeder;
+  private boolean shouldFeed;
 
   public ShootBalls(Shooter shooter, Feeder feeder) {
     myShooter = shooter;
     myFeeder = feeder;
+    shouldFeed = false;
     addRequirements(myShooter, myFeeder);
   }
 
@@ -30,11 +32,19 @@ public class ShootBalls extends CommandBase {
 
   @Override
   public void execute() {   // Called every time the scheduler runs while the command is scheduled.
-    myShooter.run();
-    if ( myShooter.getVelocity() > ShooterConstants.targetVelocity - 500 ){
+    myShooter.run(); //Always run shooter
+
+    if (shouldFeed) {
       myFeeder.runLoader(0.5); //Half speed forward
       myFeeder.runHopper(0.85); //Forward almost full speed
     }
+
+    if (myShooter.getVelocity() > ShooterConstants.targetVelocity - 100 ) { //If velcoity above 100 less than target
+      shouldFeed = true;
+    } else if (myShooter.getVelocity() < ShooterConstants.targetVelocity - 500) { //If velocity less than 500 under target
+      shouldFeed = false;
+    }
+
   }
 
   @Override
