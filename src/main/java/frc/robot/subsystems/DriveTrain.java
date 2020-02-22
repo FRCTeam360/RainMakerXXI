@@ -68,8 +68,9 @@ public class DriveTrain extends SubsystemBase {
     motorRSlave.setInverted(true);
 
     navX = new AHRS(SPI.Port.kMXP); //For frc-characterization tool: "SPI.Port.kMXP" of type "NavX"
-    resetEncPos(); //Reset Encoders r navX yaw before m_odometry is defined 
     m_odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getHeading()));
+    
+    resetEncPos(); //Reset Encoders r navX yaw before m_odometry is defined 
 
     motorLMaster.getEncoder().setVelocityConversionFactor(1/42.0); //42 is encoder resolution
     motorRMaster.getEncoder().setVelocityConversionFactor(1/42.0);
@@ -82,13 +83,13 @@ public class DriveTrain extends SubsystemBase {
     SmartDashboard.putNumber("maxDrive", maxDrive);
 
     m_differentialDrive = new DifferentialDrive(leftGroup, rightGroup);
-    m_differentialDrive.setSafetyEnabled(false);
+    m_differentialDrive.setSafetyEnabled(false); //So it won't stop the motors from moving
   }
 
   public void tankDriveVolts(double leftVolts, double rightVolts) {
     leftGroup.setVoltage(leftVolts); //Answer is no   //Set to motor groups
     rightGroup.setVoltage(rightVolts); //it's big brain time
-    m_differentialDrive.feed();
+    m_differentialDrive.feed(); //Feed the motorsafety class so it doesnt disable the motors
   }
 
   public void resetEncPos () { //For initialization resets encoder positions, for ramsete
@@ -117,7 +118,7 @@ public class DriveTrain extends SubsystemBase {
     return new DifferentialDriveWheelSpeeds(
       motorLMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond,
       motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond
-    ); //In example: m_leftEncoder.getRate() , m_rightEncoder.getRate()
+    ); //In example: m_leftEncoder.getRate() , m_rightEncoder.getRate() however, they set their rate to inclue their conversions
   }
 
   public void leftEnc(){

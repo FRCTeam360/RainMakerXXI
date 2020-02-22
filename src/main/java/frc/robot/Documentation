@@ -59,7 +59,7 @@ Axis 3 (Z-rotate , right stick up/down): Right climber winch up/down (in command
 
 Issues:
     no bind for erector - this is fine because this doesn't exist yet on the robot later date but hold back and right stick up/down maybe
-    no bind for navX auto even out robot while climbed, later date maybe set this to A or Y (2 or 4), must be a hold thing tho, revoke driver winch control
+    no bind for navX auto even out robot while climbed, later date maybe set this to A, must be a hold thing tho, revoke driver winch control
 
 ========================================================================================
 CAN Ids & Binds:
