@@ -82,6 +82,7 @@ public class DriveTrain extends SubsystemBase {
     SmartDashboard.putNumber("maxDrive", maxDrive);
 
     m_differentialDrive = new DifferentialDrive(leftGroup, rightGroup);
+    m_differentialDrive.setSafetyEnabled(false);
   }
 
   public void tankDriveVolts(double leftVolts, double rightVolts) {
