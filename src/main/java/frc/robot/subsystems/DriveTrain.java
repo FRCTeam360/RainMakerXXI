@@ -9,7 +9,6 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
-//import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import static frc.robot.Constants.DriveTrainConstants.*;
@@ -17,13 +16,14 @@ import frc.robot.Constants.AutoConstants;
 
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
-//import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 
 import com.kauailabs.navx.frc.AHRS; //If error here check updates: install vendor online use: https://www.kauailabs.com/dist/frc/2020/navx_frc.json
-import edu.wpi.first.wpilibj.SPI;
-//import edu.wpi.first.wpilibj.drive.DifferentialDrive;
+import edu.wpi.first.wpilibj.SPI; //Port NavX is on
+
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -34,23 +34,17 @@ public class DriveTrain extends SubsystemBase {
   private static CANSparkMax motorRMaster;
   private static CANSparkMax motorRSlave;
 
-  //private final DifferentialDrive m_differentialDrive;
+  private final DifferentialDrive m_differentialDrive;
 
-  double leftVel;   // initializes velocities for left and right sides
-  double rightVel;
-  double leftNewPos;   // initializes new positions for left and right sides
-  double rightNewPos;
-  double leftOldPos = 0;   // initializes old position values to zero
-  double rightOldPos = 0;
-  double leftOutput = 0;   // initializes the output variable to zero for left and right sides
-  double rightOutput = 0;
-  double deltaRightPos;   // initializes the changes in positions for left and right sides
-  double deltaLeftPos;
+  private double leftVel;   // initializes velocities for left and right sides
+  private double rightVel;
+  private double leftNewPos;   // initializes new positions for left and right sides
+  private double rightNewPos;
 
-  AHRS navX;
+  private AHRS navX;
   private final DifferentialDriveOdometry m_odometry;
-  //private final SpeedControllerGroup leftGroup;
-  //private final SpeedControllerGroup rightGroup;
+  private final SpeedControllerGroup leftGroup;
+  private final SpeedControllerGroup rightGroup;
 
   public DriveTrain() {
     motorLMaster = new CANSparkMax(motorLMasterID, MotorType.kBrushless);
@@ -80,27 +74,27 @@ public class DriveTrain extends SubsystemBase {
     motorLMaster.getEncoder().setVelocityConversionFactor(1/42.0); //42 is encoder resolution
     motorRMaster.getEncoder().setVelocityConversionFactor(1/42.0);
 
-    //leftGroup = new SpeedControllerGroup( motorLMaster , motorLSlave );
-    //rightGroup = new SpeedControllerGroup( motorRMaster , motorRSlave );
+    leftGroup = new SpeedControllerGroup( motorLMaster , motorLSlave );
+    rightGroup = new SpeedControllerGroup( motorRMaster , motorRSlave );
 
     // display PID coefficients on SmartDashboard
     SmartDashboard.putNumber("steer", steer);
     SmartDashboard.putNumber("maxDrive", maxDrive);
 
-    //m_differentialDrive = new DifferentialDrive(leftGroup, rightGroup);
+    m_differentialDrive = new DifferentialDrive(leftGroup, rightGroup);
   }
 
   public void tankDriveVolts(double leftVolts, double rightVolts) {
-    motorLMaster.setVoltage(leftVolts); //Answer is no   //Set to motor groups
-    motorRMaster.setVoltage(rightVolts); //it's big brain time
-    //m_differentialDrive.feed();
+    leftGroup.setVoltage(leftVolts); //Answer is no   //Set to motor groups
+    rightGroup.setVoltage(rightVolts); //it's big brain time
+    m_differentialDrive.feed();
   }
 
   public void resetEncPos () { //For initialization resets encoder positions, for ramsete
     motorLMaster.getEncoder().setPosition(0);
     motorRMaster.getEncoder().setPosition(0);
     navX.zeroYaw();
-    //navX.setAngleAdjustment(-90); //I think we need to do this, https://www.kauailabs.com/public_files/navx-mxp/apidocs/java/com/kauailabs/navx/frc/AHRS.html & https://pdocs.kauailabs.com/navx-mxp/installation/orientation-2/
+    m_odometry.resetPosition(new Pose2d(), Rotation2d.fromDegrees(getHeading())); //Set odomentry to zero
   }
 
   public double getHeading() {
@@ -128,7 +122,6 @@ public class DriveTrain extends SubsystemBase {
   public void leftEnc(){
     leftNewPos = motorLMaster.getEncoder().getPosition();     // gets the new position of the encoder
     SmartDashboard.putNumber("Left Raw Pos", leftNewPos);     // puts raw number in smartdashboard
-    deltaLeftPos = leftNewPos - leftOldPos;     // finds the difference in the new and the old position
     leftVel = motorLMaster.getEncoder().getVelocity();     // gets the velocity of the left motor
     SmartDashboard.putNumber("Left Raw Vel", leftVel);     // puts raw number in smartdashboard
   }
@@ -136,7 +129,6 @@ public class DriveTrain extends SubsystemBase {
   public void rightEnc(){
     rightNewPos = motorRMaster.getEncoder().getPosition();     // gets the new position of the encoder
     SmartDashboard.putNumber("Right Raw Pos", rightNewPos);     // puts raw number in smartdashboard
-    deltaRightPos = rightNewPos - rightOldPos;     // finds the difference in the new and the old position
     rightVel = motorRMaster.getEncoder().getVelocity();     // gets the velocity of the left motor
     SmartDashboard.putNumber("Right Raw Vel", rightVel);     // puts raw number in smartdashboard
   }
