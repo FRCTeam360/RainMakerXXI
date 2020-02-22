@@ -67,9 +67,11 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     TrajectoryConstants.sanityS,
     drivetrain::getPose,
     new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
-    new SimpleMotorFeedforward(AutoConstants.ksVolts,
-    AutoConstants.kvVoltSecondsPerMeter,
-    AutoConstants.kaVoltSecondsSquaredPerMeter),
+    new SimpleMotorFeedforward(
+      AutoConstants.ksVolts,
+      AutoConstants.kvVoltSecondsPerMeter,
+      AutoConstants.kaVoltSecondsSquaredPerMeter
+    ),
     AutoConstants.kDriveKinematics,
     drivetrain::getWheelSpeeds,
     new PIDController(AutoConstants.kPDriveVel, 0, 0),
