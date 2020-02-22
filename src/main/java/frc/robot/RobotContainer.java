@@ -59,8 +59,8 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final AlignShoot alignShoot = new AlignShoot(drivetrain, limelight, shooter, feeder);
 
   private final Command m_autoCommand_backup = new SequentialCommandGroup(
-    new AutoBackupOnTicks( drivetrain ),
-    new AlignShoot(drivetrain, limelight, shooter, feeder)
+    new AlignShoot(drivetrain, limelight, shooter, feeder),
+    new AutoBackupOnTicks( drivetrain )
   );
 
   private final RamseteCommand m_autoCommand_sanityS = new RamseteCommand(
