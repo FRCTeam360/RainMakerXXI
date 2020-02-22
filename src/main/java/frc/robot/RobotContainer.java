@@ -183,10 +183,12 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
 
   private void configureButtonBindings() {
     new JoystickButton(joyR, 5).whenPressed(switchCamMode);
-    new JoystickButton(joyOI, 8).whenHeld(shootBalls); 
-    new JoystickButton(joyR , 1).whenHeld(alignShoot);  //This whenHeld schedules a command when a trigger changes from inactive to active (or, accordingly, when a button is initially pressed) and cancels it when the trigger becomes inactive again (or the button is released). The command will not be re-scheduled if it finishes while the trigger is still active.
+    new JoystickButton(joyOI, 8).whenHeld(shootBalls);
+    if(limelight.validTarget()) { 
+      new JoystickButton(joyR , 1).whenHeld(alignShoot);  //This whenHeld schedules a command when a trigger changes from inactive to active (or, accordingly, when a button is initially pressed) and cancels it when the trigger becomes inactive again (or the button is released). The command will not be re-scheduled if it finishes while the trigger is still active.
+    }
   }
-
+  
   public Command getAutonomousCommand() { //Called int robot autonomousInit which schedules the command sent to it
     return m_chooser.getSelected(); //Sends the selected autonomous command initialized above 
   }
