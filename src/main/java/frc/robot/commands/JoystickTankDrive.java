@@ -36,12 +36,12 @@ public class JoystickTankDrive extends CommandBase {
 
   @Override
   public void execute() {   // Called every time the scheduler runs while the command is scheduled.
-    if(Math.abs(joyR.getRawAxis(1)) >= .15){
+    if(Math.abs(joyR.getRawAxis(1)) >= .125){
     	myDriveTrain.driveRMAX(-1 * joyR.getRawAxis(1) * 0.8);
     }else{
     	myDriveTrain.driveRMAX(0);
     }
-    if(Math.abs(joyL.getRawAxis(1)) >= .15){
+    if(Math.abs(joyL.getRawAxis(1)) >= .125){
       myDriveTrain.driveLMAX(-1 * joyL.getRawAxis(1) * 0.8);
     }else{
     	myDriveTrain.driveLMAX(0);

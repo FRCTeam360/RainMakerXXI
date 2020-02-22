@@ -9,7 +9,7 @@ package frc.robot.subsystems;
 
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANEncoder;
+//import com.revrobotics.CANEncoder;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import static frc.robot.Constants.DriveTrainConstants.*;
@@ -17,12 +17,13 @@ import frc.robot.Constants.AutoConstants;
 
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveOdometry;
 import edu.wpi.first.wpilibj.kinematics.DifferentialDriveWheelSpeeds;
+//import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 
 import com.kauailabs.navx.frc.AHRS; //If error here check updates: install vendor online use: https://www.kauailabs.com/dist/frc/2020/navx_frc.json
 import edu.wpi.first.wpilibj.SPI;
-
+//import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
@@ -33,11 +34,7 @@ public class DriveTrain extends SubsystemBase {
   private static CANSparkMax motorRMaster;
   private static CANSparkMax motorRSlave;
 
-  public CANEncoder rightMaster;
-  public CANEncoder rightSlave;
-  public CANEncoder leftMaster;
-  public CANEncoder leftSlave;
-
+  //private final DifferentialDrive m_differentialDrive;
 
   double leftVel;   // initializes velocities for left and right sides
   double rightVel;
@@ -52,6 +49,8 @@ public class DriveTrain extends SubsystemBase {
 
   AHRS navX;
   private final DifferentialDriveOdometry m_odometry;
+  //private final SpeedControllerGroup leftGroup;
+  //private final SpeedControllerGroup rightGroup;
 
   public DriveTrain() {
     motorLMaster = new CANSparkMax(motorLMasterID, MotorType.kBrushless);
@@ -78,17 +77,23 @@ public class DriveTrain extends SubsystemBase {
     resetEncPos(); //Reset Encoders r navX yaw before m_odometry is defined 
     m_odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getHeading()));
 
-    rightMaster = motorRMaster.getEncoder();
-    leftMaster = motorLMaster.getEncoder();
+    motorLMaster.getEncoder().setVelocityConversionFactor(1/42.0); //42 is encoder resolution
+    motorRMaster.getEncoder().setVelocityConversionFactor(1/42.0);
+
+    //leftGroup = new SpeedControllerGroup( motorLMaster , motorLSlave );
+    //rightGroup = new SpeedControllerGroup( motorRMaster , motorRSlave );
 
     // display PID coefficients on SmartDashboard
     SmartDashboard.putNumber("steer", steer);
     SmartDashboard.putNumber("maxDrive", maxDrive);
+
+    //m_differentialDrive = new DifferentialDrive(leftGroup, rightGroup);
   }
 
   public void tankDriveVolts(double leftVolts, double rightVolts) {
-    motorLMaster.setVoltage(leftVolts); //Answer is no
+    motorLMaster.setVoltage(leftVolts); //Answer is no   //Set to motor groups
     motorRMaster.setVoltage(rightVolts); //it's big brain time
+    //m_differentialDrive.feed();
   }
 
   public void resetEncPos () { //For initialization resets encoder positions, for ramsete
@@ -226,8 +231,9 @@ public class DriveTrain extends SubsystemBase {
     PIDDashboard(); //For mathew's PIDs
     navxTestingDashboardReadouts(); //Here for testing
     dashboardMetersTravelled();
-    //tempPrintouts();
+    tempPrintouts();
+    SmartDashboard.putNumber("Cons", AutoConstants.ticksToMeters);
     //avgTempPrintouts();
-    //ampPrintouts();
+    ampPrintouts();
   }
 }

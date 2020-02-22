@@ -14,8 +14,6 @@ import static frc.robot.Constants.FeederConstants.*;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
-
-
 public class Feeder extends SubsystemBase {
 
   private TalonSRX loader;
@@ -28,18 +26,15 @@ public class Feeder extends SubsystemBase {
 
   public void runHopper (double speed) {
     hopper.set(ControlMode.PercentOutput, speed);
-    
   }
 
   public void runLoader (double speed) {
     loader.set(ControlMode.PercentOutput, -speed); //Needs to be reversed in order to take in positive numbers and go forwards
-    
   }
 
   public void runBoth (double speed) {
     loader.set(ControlMode.PercentOutput, speed);
     hopper.set(ControlMode.PercentOutput, speed);
-
   }
 
   @Override

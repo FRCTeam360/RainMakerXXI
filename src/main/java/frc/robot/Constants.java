@@ -100,8 +100,8 @@ public final class Constants {
         public static final double ksVolts = 0.124; //PB
         public static final double kvVoltSecondsPerMeter = 1.94; //PB
         public static final double kaVoltSecondsSquaredPerMeter = 0.485; //PB
-        public static final double kPDriveVel = 2.43; //Potentially used by AutoAlignShoot & AlightShoot (kpAim in limelight example) 
-        public static final double kTrackwidthMeters = -0.02552892613083797; //PB - measured  0.63246 - according to what i found online, ignore the measured and use what characterization says
+        public static final double kPDriveVel = 1.5; //2.43 //Potentially used by AutoAlignShoot & AlightShoot (kpAim in limelight example) 
+        public static final double kTrackwidthMeters = -0.02552892613083797; // .02552892613083797 PB - measured  0.63246 - according to what i found online, ignore the measured and use what characterization says
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
 
         //These I just make up as I go, tho they seem to be ignored?
@@ -148,7 +148,7 @@ public final class Constants {
         public static final Trajectory sanityLine = TrajectoryGenerator.generateTrajectory(
             new Pose2d(0, 0, new Rotation2d(0)), //Starts facing +X
             List.of(),
-            new Pose2d(1, 0, new Rotation2d(0)),
+            new Pose2d(1.5, 0, new Rotation2d(0)),
             config
         );
         //Left Auto Trajectory
