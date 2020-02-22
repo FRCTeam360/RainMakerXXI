@@ -69,7 +69,7 @@ public class DriveTrain extends SubsystemBase {
 
     navX = new AHRS(SPI.Port.kMXP); //For frc-characterization tool: "SPI.Port.kMXP" of type "NavX"
     m_odometry = new DifferentialDriveOdometry(Rotation2d.fromDegrees(getHeading()));
-    
+
     resetEncPos(); //Reset Encoders r navX yaw before m_odometry is defined 
 
     motorLMaster.getEncoder().setVelocityConversionFactor(1/42.0); //42 is encoder resolution
