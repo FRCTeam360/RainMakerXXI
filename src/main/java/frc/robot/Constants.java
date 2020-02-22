@@ -44,8 +44,7 @@ public final class Constants {
         public static final double kD = 0;
         public static final double kF = (0.6 * 1023.0) / 15900.0;
         public static final double kPeakOutput = 1; 
-        //public static final double targetRpm = 4000;
-        public static final double targetVelocity = 15000; //ticks per 100m/s
+        public static final double targetVelocity = 15000; //ticks per 100m/s //Used by a few classes
     }
     public static final class DriveTrainConstants {
         public static final int motorLMasterID = 1;
@@ -69,8 +68,6 @@ public final class Constants {
     public static final class IntakeConstants{
         public static final int intakeId = 11; //Intake1
 
-        public static final int forwardChannel = 4;
-        public static final int reverseChannel = 5;  //Still unkown
     }
     public static final class FeederConstants{
         public static final int loaderMotorId = 7; //Feed1
@@ -83,11 +80,9 @@ public final class Constants {
     }
 
     public static final class OIConstants {
-
         public static final int joyRPort = 0;
         public static final int joyLPort = 1;
         public static final int contPort = 2; // port of xbox controller connected
-    
     }
     
     public static final class AutoConstants {
@@ -129,13 +124,11 @@ public final class Constants {
                 AutoConstants.kMaxSpeedMetersPerSecond,
                 AutoConstants.kMaxAccelerationMetersPerSecondSquared
             )
-        	// Add kinematics to ensure max speed is actually obeyed
-        	.setKinematics(AutoConstants.kDriveKinematics)
-        	// Apply the voltage constraint
-            .addConstraint(autoVoltageConstraint);
+        	.setKinematics(AutoConstants.kDriveKinematics) // Add kinematics to ensure max speed is actually obeyed
+            .addConstraint(autoVoltageConstraint); // Apply the voltage constraint
             
 		// An example trajectory to follow(Converted to a testing trajectory; documentation is all default).  All units in meters.
-        public static final Trajectory sanityS = TrajectoryGenerator.generateTrajectory(
+        public static final Trajectory sanityS = TrajectoryGenerator.generateTrajectory( //If fails, it's ur AutoConstants not this.
             // Start at the origin facing the +X direction
             new Pose2d(0, 0, new Rotation2d(0)),
             // Pass through these two interior waypoints, making an 's' curve path
