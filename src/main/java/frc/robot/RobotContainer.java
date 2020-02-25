@@ -56,10 +56,11 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   Joystick joyR = new Joystick(OIConstants.joyRPort);
   Joystick joyOI = new Joystick(OIConstants.contPort);
 
-  private final AlignShoot alignShoot = new AlignShoot(drivetrain, limelight, shooter, feeder);
+  private final AlignShoot alignShoot = new AlignShoot(drivetrain, limelight, shooter, feeder, intake);
+  private final Align align = new Align(drivetrain, limelight);
 
   private final Command m_autoCommand_backup = new SequentialCommandGroup(
-    new AlignShoot(drivetrain, limelight, shooter, feeder),
+    new AlignShoot(drivetrain, limelight, shooter, feeder, intake),
     new AutoBackupOnTicks( drivetrain )
   );
 
@@ -93,7 +94,63 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     drivetrain::tankDriveVolts,
     drivetrain
   );
+
+  private final Command m_autoCommand_fwdRev = new SequentialCommandGroup(
+    new RamseteCommand(
+      TrajectoryConstants.sanityLine,
+      drivetrain::getPose,
+      new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
+      new SimpleMotorFeedforward(AutoConstants.ksVolts,
+      AutoConstants.kvVoltSecondsPerMeter,
+      AutoConstants.kaVoltSecondsSquaredPerMeter),
+      AutoConstants.kDriveKinematics,
+      drivetrain::getWheelSpeeds,
+      new PIDController(AutoConstants.kPDriveVel, 0, 0),
+      new PIDController(AutoConstants.kPDriveVel, 0, 0),
+      drivetrain::tankDriveVolts,
+      drivetrain
+    ),
+    new RamseteCommand(
+      TrajectoryConstants.sanityLineRev,
+      drivetrain::getPose,
+      new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
+      new SimpleMotorFeedforward(AutoConstants.ksVolts,
+      AutoConstants.kvVoltSecondsPerMeter,
+      AutoConstants.kaVoltSecondsSquaredPerMeter),
+      AutoConstants.kDriveKinematics,
+      drivetrain::getWheelSpeeds,
+      new PIDController(AutoConstants.kPDriveVel, 0, 0),
+      new PIDController(AutoConstants.kPDriveVel, 0, 0),
+      drivetrain::tankDriveVolts,
+      drivetrain
+    )
+  );
   
+  private final Command m_autoCommand_left = new SequentialCommandGroup(
+    new ParallelRaceGroup(      
+      new Align(drivetrain, limelight), 
+      new AutoLoadBalls(feeder, limelight, shooter), //This one has the abort feature in it
+      new AutoRunIntake(intake),
+      new ShooterRamp(shooter) 
+    ),
+    new ParallelRaceGroup(
+      new AutoRunIntake(intake), //Never ends
+      new RamseteCommand( //Ends itself
+        TrajectoryConstants.theAutoPathFirstStage,
+        drivetrain::getPose, 
+        new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
+        new SimpleMotorFeedforward(AutoConstants.ksVolts, AutoConstants.kvVoltSecondsPerMeter, AutoConstants.kaVoltSecondsSquaredPerMeter),
+        AutoConstants.kDriveKinematics, 
+        drivetrain::getWheelSpeeds, 
+        new PIDController(AutoConstants.kPDriveVel, 0, 0), 
+        new PIDController(AutoConstants.kPDriveVel, 0, 0), 
+        drivetrain::tankDriveVolts,
+        drivetrain
+      ) 
+    )
+  );
+
+  /*
 	private final SequentialCommandGroup m_autoCommand_left = new SequentialCommandGroup(
     new AutoShootBalls(shooter, feeder),
     new ParallelRaceGroup( 
@@ -110,8 +167,9 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
         drivetrain::tankDriveVolts,
         drivetrain) 
       ),                                                                                            
-    new AlignShoot(drivetrain, limelight, shooter, feeder)
+    new AlignShoot(drivetrain, limelight, shooter, feeder, intake)
   );
+  */
 
   private final SequentialCommandGroup m_autoCommand_middle = new SequentialCommandGroup(
     new AutoShootBalls(shooter, feeder),
@@ -129,7 +187,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
         drivetrain::tankDriveVolts,
         drivetrain) 
       ),                                                                                            
-    new AlignShoot(drivetrain, limelight, shooter, feeder)
+    new AlignShoot(drivetrain, limelight, shooter, feeder, intake)
   );
 
   private final SequentialCommandGroup m_autoCommand_right = new SequentialCommandGroup(
@@ -148,7 +206,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
         drivetrain::tankDriveVolts,
         drivetrain) 
       ),                                                                                            
-    new AlignShoot(drivetrain, limelight, shooter, feeder)
+    new AlignShoot(drivetrain, limelight, shooter, feeder, intake)
   );
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
@@ -165,7 +223,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
 
     configureButtonBindings();
 
-    m_chooser.addOption("Line Sanity", m_autoCommand_sanityLine);
+    m_chooser.addOption("Line Sanity", m_autoCommand_fwdRev);
     m_chooser.addOption("S Sanity", m_autoCommand_sanityS);
     m_chooser.addOption("Backup Auto", m_autoCommand_backup);
     m_chooser.addOption("Left Auto", m_autoCommand_left);

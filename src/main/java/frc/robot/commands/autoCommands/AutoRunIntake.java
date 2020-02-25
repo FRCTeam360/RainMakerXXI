@@ -26,7 +26,7 @@ public class AutoRunIntake extends CommandBase {
 
   @Override
   public void execute() {   // Called every time the scheduler runs while the command is scheduled.
-    myIntake.run(.65); //lil bit less
+    myIntake.run(.85); //lil bit less
   }
 
   @Override

@@ -1,11 +1,7 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+
+
+package frc.robot.commands.autoCommands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import static frc.robot.Constants.ShooterConstants;
@@ -16,7 +12,7 @@ import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class LoadBalls extends CommandBase { //Used by AlignShoot command
+public class AutoLoadBalls extends CommandBase { //Used by AlignShoot command
 
   Feeder myFeeder;
   Limelight myLimelight;
@@ -24,7 +20,7 @@ public class LoadBalls extends CommandBase { //Used by AlignShoot command
   Timer myTimer;
 
   //feeder, limelight, shooter, intake
-  public LoadBalls(Feeder inFeeder, Limelight limelight, Shooter shooter) {
+  public AutoLoadBalls(Feeder inFeeder, Limelight limelight, Shooter shooter) {
     myFeeder = inFeeder;
     myLimelight = limelight;
     myShooter = shooter;
@@ -36,22 +32,22 @@ public class LoadBalls extends CommandBase { //Used by AlignShoot command
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    //myTimer.start();
+    myTimer.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
     if ((myShooter.getVelocity() >= ShooterConstants.targetVelocity - 200) && (Math.abs(myLimelight.getX()) <= 0.8)) {
-      myTimer.start();
+      //myTimer.start();
       //if(myTimer.get() >= .25) {
         myFeeder.runHopper(.5);
         myFeeder.runLoader(.4);
       //}
     } else {
       //myFeeder.runBoth(0);
-      myTimer.stop();
-      myTimer.reset();
+      //myTimer.stop();
+      //myTimer.reset();
     }
     SmartDashboard.putNumber("Shooter Timer", myTimer.get());
   }
@@ -67,6 +63,6 @@ public class LoadBalls extends CommandBase { //Used by AlignShoot command
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return false; //Go until 3 seconds
+    return myTimer.get() >= 7;
   }
 }

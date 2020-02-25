@@ -39,12 +39,12 @@ public final class Constants {
         public static final int kSlotIdx = 0;
         public static final int kTimeOutMs = 30;
         public static final int kPIDLoopIdx = 0;
-        public static final double kP = ((0.05 * 1023.0) / 1001.0) * 2; //(0.05 * 1023.0) / 453.0;
+        public static final double kP = ((0.05 * 1023.0) / 1001.0) * 4; //(0.05 * 1023.0) / 453.0;
         public static final double kI = 0;
         public static final double kD = 0;
         public static final double kF = (0.6 * 1023.0) / 15900.0;
         public static final double kPeakOutput = 1; 
-        public static final double targetVelocity = 15000; //ticks per 100m/s //Used by a few classes
+        public static final double targetVelocity = 14800; //ticks per 100m/s //Used by a few classes
     }
     public static final class DriveTrainConstants {
         public static final int motorLMasterID = 1;
@@ -52,7 +52,7 @@ public final class Constants {
         public static final int motorRMasterID = 3;
         public static final int motorRSlaveID = 4;
 
-        public static double steer = 0.03; // how hard to turn toward the target
+        public static double steer = 0.25; // how hard to turn toward the target
         public static double maxDrive = 0.7; // Simple speed limit so we don't drive too fast
     }
     public static final class ShifterConstants {
@@ -63,7 +63,7 @@ public final class Constants {
         public static final int reverseChannel = 3; //low
     }
     public static final class LimelightConstants {
-        public static final double AimMinCmd = 0.0;
+        public static final double AimMinCmd = 0.01;
     }
     public static final class IntakeConstants{
         public static final int intakeId = 11; //Intake1
@@ -92,20 +92,20 @@ public final class Constants {
         public static final double hundredMstoSecond = 10.0;
 
         //Done with characterization, all values seem to be okay
-        public static final double ksVolts = 0.124; //PB
-        public static final double kvVoltSecondsPerMeter = 1.94; //PB
-        public static final double kaVoltSecondsSquaredPerMeter = 0.485; //PB
-        public static final double kPDriveVel = 2.43; //2.43 //Potentially used by AutoAlignShoot & AlightShoot (kpAim in limelight example) 
-        public static final double kTrackwidthMeters = -0.6631036031211316; // -.02552892613083797 PB - measured  0.63246 - according to what i found online, ignore the measured and use what characterization says
+        public static final double ksVolts = 0.222; //PB
+        public static final double kvVoltSecondsPerMeter = 1.96; //PB
+        public static final double kaVoltSecondsSquaredPerMeter = 0.473; //PB
+        public static final double kPDriveVel = 0.005; //2.43 //Potentially used by AutoAlignShoot & AlightShoot (kpAim in limelight example) 
+        public static final double kTrackwidthMeters = 0.6663144130546255; // -.02552892613083797 PB - measured  0.63246 - according to what i found online, ignore the measured and use what characterization says
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
 
         //These I just make up as I go, tho they seem to be ignored?
         public static final double kMaxSpeedMetersPerSecond = 3; //Untuned
-        public static final double kMaxAccelerationMetersPerSecondSquared = 3; //Untuned
+        public static final double kMaxAccelerationMetersPerSecondSquared = 0.5; //Untuned
 
         // Very Reasonable baseline values for a RAMSETE follower in units of meters and seconds - maybe change later
-        public static final double kRamseteB = 2.0; //0 to infinite
-        public static final double kRamseteZeta = 0.7; //0 to 1
+        public static final double kRamseteB = 3.75; //0 to infinite
+        public static final double kRamseteZeta = 1.0; //0 to 1
         public static final boolean kGyroReversed = true; //cuz characterization told me
     }
 	public static final class TrajectoryConstants {
@@ -125,7 +125,17 @@ public final class Constants {
                 AutoConstants.kMaxAccelerationMetersPerSecondSquared
             )
         	.setKinematics(AutoConstants.kDriveKinematics) // Add kinematics to ensure max speed is actually obeyed
-            .addConstraint(autoVoltageConstraint); // Apply the voltage constraint
+            .addConstraint(autoVoltageConstraint) // Apply the voltage constraint
+            .setReversed(false); //reversed
+    
+        private static final TrajectoryConfig configRev =
+            new TrajectoryConfig(
+             AutoConstants.kMaxSpeedMetersPerSecond,
+             AutoConstants.kMaxAccelerationMetersPerSecondSquared
+         )
+         .setKinematics(AutoConstants.kDriveKinematics) // Add kinematics to ensure max speed is actually obeyed
+         .addConstraint(autoVoltageConstraint) // Apply the voltage constraint
+         .setReversed(true); //reversed
             
 		// An example trajectory to follow(Converted to a testing trajectory; documentation is all default).  All units in meters.
         public static final Trajectory sanityS = TrajectoryGenerator.generateTrajectory( //If fails, it's ur AutoConstants not this.
@@ -140,10 +150,24 @@ public final class Constants {
         //Straight line trajectory
         public static final Trajectory sanityLine = TrajectoryGenerator.generateTrajectory(
             new Pose2d(0, 0, new Rotation2d(0)), //Starts facing +X
-            List.of(),
-            new Pose2d(1.5, 0, new Rotation2d(0)),
+            List.of(  ),
+            new Pose2d(2, 0, new Rotation2d(0)),
             config
         );
+        public static final Trajectory sanityLineRev = TrajectoryGenerator.generateTrajectory(
+            new Pose2d(2, 0, new Rotation2d(0)), 
+            List.of(  ),
+            new Pose2d(1, 0, new Rotation2d(0)),
+            configRev
+        );
+
+        public static final Trajectory theAutoPathFirstStage = TrajectoryGenerator.generateTrajectory(
+            new Pose2d(0, 0, new Rotation2d(0)), 
+            List.of(),
+            new Pose2d(-2, 0, new Rotation2d(0)),
+            configRev
+        );
+
         //Left Auto Trajectory
         /*
         public static final Trajectory leftAutoTrajectory = TrajectoryGenerator.generateTrajectory(

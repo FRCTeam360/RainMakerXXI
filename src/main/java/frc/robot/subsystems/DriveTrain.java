@@ -96,6 +96,7 @@ public class DriveTrain extends SubsystemBase {
     motorLMaster.getEncoder().setPosition(0);
     motorRMaster.getEncoder().setPosition(0);
     navX.zeroYaw();
+    navX.setAngleAdjustment( -navX.getAngle() ); //Set angle offset
     m_odometry.resetPosition(new Pose2d(), Rotation2d.fromDegrees(getHeading())); //Set odomentry to zero
   }
 
