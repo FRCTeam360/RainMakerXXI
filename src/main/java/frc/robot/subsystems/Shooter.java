@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.Constants.ShooterConstants.*;
+import static frc.robot.Constants.inAuto;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
@@ -56,7 +57,11 @@ public class Shooter extends SubsystemBase {
   }
 
   public void run () {
-    shooterMaster.set(ControlMode.Velocity, targetVelocity); //15900 native units is 60%
+    if(inAuto) {
+      shooterMaster.set(ControlMode.Velocity, targetVelocity + 200); //15900 native units is 60%
+    } else {
+      shooterMaster.set(ControlMode.Velocity, targetVelocity);
+    }
   }
 
   public void runWithJoy (double output) {

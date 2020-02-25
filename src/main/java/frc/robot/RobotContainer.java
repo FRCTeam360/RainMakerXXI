@@ -150,33 +150,17 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     )
   );
 
-  /*
-	private final SequentialCommandGroup m_autoCommand_left = new SequentialCommandGroup(
-    new AutoShootBalls(shooter, feeder),
-    new ParallelRaceGroup( 
-      new AutoRunIntake(intake), 
-      new RamseteCommand(
-        TrajectoryConstants.sanityLine, //Should be "leftAutoTrajectory" when done
-        drivetrain::getPose, 
-        new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
-        new SimpleMotorFeedforward(AutoConstants.ksVolts, AutoConstants.kvVoltSecondsPerMeter, AutoConstants.kaVoltSecondsSquaredPerMeter),
-        AutoConstants.kDriveKinematics, 
-        drivetrain::getWheelSpeeds, 
-        new PIDController(AutoConstants.kPDriveVel, 0, 0), 
-        new PIDController(AutoConstants.kPDriveVel, 0, 0), 
-        drivetrain::tankDriveVolts,
-        drivetrain) 
-      ),                                                                                            
-    new AlignShoot(drivetrain, limelight, shooter, feeder, intake)
-  );
-  */
-
   private final SequentialCommandGroup m_autoCommand_middle = new SequentialCommandGroup(
-    new AutoShootBalls(shooter, feeder),
-    new ParallelRaceGroup( 
-      new AutoRunIntake(intake), 
-      new RamseteCommand(
-        TrajectoryConstants.sanityLine, //Should be "middleAutoTrajectory" when done
+    new ParallelRaceGroup(      
+      new Align(drivetrain, limelight), 
+      new AutoLoadBalls(feeder, limelight, shooter), //This one has the abort feature in it
+      new AutoRunIntake(intake),
+      new ShooterRamp(shooter) 
+    ),
+    new ParallelRaceGroup(
+      new AutoRunIntake(intake), //Never ends
+      new RamseteCommand( //Ends itself
+        TrajectoryConstants.theAutoPathFirstStage, //Stage 1
         drivetrain::getPose, 
         new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
         new SimpleMotorFeedforward(AutoConstants.ksVolts, AutoConstants.kvVoltSecondsPerMeter, AutoConstants.kaVoltSecondsSquaredPerMeter),
@@ -185,11 +169,33 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
         new PIDController(AutoConstants.kPDriveVel, 0, 0), 
         new PIDController(AutoConstants.kPDriveVel, 0, 0), 
         drivetrain::tankDriveVolts,
-        drivetrain) 
-      ),                                                                                            
-    new AlignShoot(drivetrain, limelight, shooter, feeder, intake)
+        drivetrain
+      ) 
+    ),
+    new ParallelRaceGroup(
+      new AutoRunIntake(intake), //Never ends
+      new RamseteCommand( //Ends itself
+        TrajectoryConstants.theAutoPathSecondStage, //Stage 2
+        drivetrain::getPose, 
+        new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
+        new SimpleMotorFeedforward(AutoConstants.ksVolts, AutoConstants.kvVoltSecondsPerMeter, AutoConstants.kaVoltSecondsSquaredPerMeter),
+        AutoConstants.kDriveKinematics, 
+        drivetrain::getWheelSpeeds, 
+        new PIDController(AutoConstants.kPDriveVel, 0, 0), 
+        new PIDController(AutoConstants.kPDriveVel, 0, 0), 
+        drivetrain::tankDriveVolts,
+        drivetrain
+      ) 
+    ),
+    new ParallelRaceGroup(      
+      new Align(drivetrain, limelight), 
+      new AutoLoadBalls(feeder, limelight, shooter), //This one has the abort feature in it
+      new AutoRunIntake(intake),
+      new ShooterRamp(shooter) 
+    )
+    
   );
-
+  /*
   private final SequentialCommandGroup m_autoCommand_right = new SequentialCommandGroup(
     new AutoShootBalls(shooter, feeder),
     new ParallelRaceGroup( 
@@ -208,6 +214,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
       ),                                                                                            
     new AlignShoot(drivetrain, limelight, shooter, feeder, intake)
   );
+  */
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -228,7 +235,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     m_chooser.addOption("Backup Auto", m_autoCommand_backup);
     m_chooser.addOption("Left Auto", m_autoCommand_left);
     m_chooser.addOption("Middle Auto", m_autoCommand_middle);
-    m_chooser.addOption("Right Auto", m_autoCommand_right);
+    //m_chooser.addOption("Right Auto", m_autoCommand_right);
 
     SmartDashboard.putData("Auto Choice", m_chooser);
   }

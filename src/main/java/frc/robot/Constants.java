@@ -39,7 +39,7 @@ public final class Constants {
         public static final int kSlotIdx = 0;
         public static final int kTimeOutMs = 30;
         public static final int kPIDLoopIdx = 0;
-        public static final double kP = ((0.05 * 1023.0) / 1001.0) * 4; //(0.05 * 1023.0) / 453.0;
+        public static final double kP = ((0.05 * 1023.0) / 1001.0) * 4.5; //(0.05 * 1023.0) / 453.0;
         public static final double kI = 0;
         public static final double kD = 0;
         public static final double kF = (0.6 * 1023.0) / 15900.0;
@@ -163,9 +163,17 @@ public final class Constants {
 
         public static final Trajectory theAutoPathFirstStage = TrajectoryGenerator.generateTrajectory(
             new Pose2d(0, 0, new Rotation2d(0)), 
-            List.of(),
-            new Pose2d(-2, 0, new Rotation2d(0)),
+            List.of( new Translation2d(-2, -0.5) ),
+            new Pose2d(-3, 0.5, new Rotation2d(-45)),
             configRev
+        );
+
+        //-2, -1
+        public static final Trajectory theAutoPathSecondStage = TrajectoryGenerator.generateTrajectory(
+            new Pose2d(-3, 0.5, new Rotation2d(-45)),
+            List.of(),
+            new Pose2d(-2, -1, new Rotation2d(0)), 
+            config
         );
 
         //Left Auto Trajectory
