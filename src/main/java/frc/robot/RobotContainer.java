@@ -57,7 +57,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   Joystick joyOI = new Joystick(OIConstants.contPort);
 
   private final AlignShoot alignShoot = new AlignShoot(drivetrain, limelight, shooter, feeder, intake);
-  private final Align align = new Align(drivetrain, limelight);
+  //private final Align align = new Align(drivetrain, limelight); //This is unused currently and is called only in alignShoot
 
   private final Command m_autoCommand_backup = new SequentialCommandGroup(
     new AlignShoot(drivetrain, limelight, shooter, feeder, intake),
@@ -230,7 +230,8 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
 
     configureButtonBindings();
 
-    m_chooser.addOption("Line Sanity", m_autoCommand_fwdRev);
+    m_chooser.addOption("fwd & rev Sanity", m_autoCommand_fwdRev);
+    m_chooser.addOption("Line Sanity", m_autoCommand_sanityLine);
     m_chooser.addOption("S Sanity", m_autoCommand_sanityS);
     m_chooser.addOption("Backup Auto", m_autoCommand_backup);
     m_chooser.addOption("Left Auto", m_autoCommand_left);
