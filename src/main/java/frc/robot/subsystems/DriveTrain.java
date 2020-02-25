@@ -227,7 +227,7 @@ public class DriveTrain extends SubsystemBase {
     navxTestingDashboardReadouts(); //Here for testing
     dashboardMetersTravelled();
     tempPrintouts();
-    SmartDashboard.putNumber("Cons", AutoConstants.ticksToMeters);
+    //SmartDashboard.putNumber("Cons", AutoConstants.ticksToMeters);
     //avgTempPrintouts();
     ampPrintouts();
   }

@@ -7,6 +7,7 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 //import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -44,6 +45,7 @@ public class Climber extends SubsystemBase {
     motorLeft.getEncoder().setPosition(0);
     motorRight.getEncoder().setPosition(0);
   }
+
   public double getLeftPos () { return motorLeft.getEncoder().getPosition(); }
   public double getRightPos() { return motorRight.getEncoder().getPosition(); }
   public void runLeftClimber (double pPow) { motorLeft.set(pPow); }
@@ -53,11 +55,22 @@ public class Climber extends SubsystemBase {
   public double getErectorEncoderPos() { return erector.getSelectedSensorPosition(); }
   public void runErector(double pPower) { erector.set(ControlMode.PercentOutput, pPower); }
 
+  public void tempPrintouts() {
+    SmartDashboard.putNumber("LC Temp", motorLeft.getMotorTemperature() );
+    SmartDashboard.putNumber("RC Temp", motorRight.getMotorTemperature() );
+  }
+
+  public void ampPrintouts() {
+    SmartDashboard.putNumber("LC Temp", motorLeft.getOutputCurrent() );
+    SmartDashboard.putNumber("RC Temp", motorRight.getOutputCurrent() );
+  }
+
   @Override
   public void periodic() { // This method will be called once per scheduler run - Velocity & Position of each motor
-    //SmartDashboard.putNumber("Climber Pos" , motorMaster.getEncoder().getPosition() );
-    //SmartDashboard.putNumber("Climber Vel", motorMaster.getEncoder().getVelocity() );
-    //SmartDashboard.putNumber("Erector Pos", erector.getSelectedSensorPosition() );
-    //SmartDashboard.putNumber("Erector Vel", erector.getSelectedSensorVelocity() );
+    //SmartDashboard.putNumber("Left Climber", motorLeft.getEncoder().getPosition() );
+    //SmartDashboard.putNumber("Right Climber", motorRight.getEncoder().getPosition() );
+    //tempPrintouts();
+    //ampPrintouts();
+    //SmartDashboard.putNumber("Erector", erector.getSelectedSensorPosition() );
   }
 }

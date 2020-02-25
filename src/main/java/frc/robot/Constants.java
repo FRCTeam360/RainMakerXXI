@@ -126,7 +126,7 @@ public final class Constants {
             )
         	.setKinematics(AutoConstants.kDriveKinematics) // Add kinematics to ensure max speed is actually obeyed
             .addConstraint(autoVoltageConstraint) // Apply the voltage constraint
-            .setReversed(false); //reversed
+            .setReversed(false); //forward
     
         private static final TrajectoryConfig configRev =
             new TrajectoryConfig(
@@ -139,21 +139,19 @@ public final class Constants {
             
 		// An example trajectory to follow(Converted to a testing trajectory; documentation is all default).  All units in meters.
         public static final Trajectory sanityS = TrajectoryGenerator.generateTrajectory( //If fails, it's ur AutoConstants not this.
-            // Start at the origin facing the +X direction
-            new Pose2d(0, 0, new Rotation2d(0)),
-            // Pass through these two interior waypoints, making an 's' curve path
-            List.of( new Translation2d(1, 1), new Translation2d(2, -1) ),
-            // End 3 meters straight ahead of where we started, facing forward
-            new Pose2d(3, 0, new Rotation2d(0)),
+            new Pose2d(0, 0, new Rotation2d(0)), // Start at the origin facing the +X direction
+            List.of( new Translation2d(1, 1), new Translation2d(2, -1) ), // Pass through these two interior waypoints, making an 's' curve path
+            new Pose2d(3, 0, new Rotation2d(0)), // End 3 meters straight ahead of where we started, facing forward
             config
         );
-        //Straight line trajectory
+        //Straight line trajectory, runs forward 2 meters
         public static final Trajectory sanityLine = TrajectoryGenerator.generateTrajectory(
             new Pose2d(0, 0, new Rotation2d(0)), //Starts facing +X
             List.of(  ),
             new Pose2d(2, 0, new Rotation2d(0)),
             config
         );
+        //Sanity line to go reverse 1 meter after being ran forward 2
         public static final Trajectory sanityLineRev = TrajectoryGenerator.generateTrajectory(
             new Pose2d(2, 0, new Rotation2d(0)), 
             List.of(  ),
@@ -161,46 +159,19 @@ public final class Constants {
             configRev
         );
 
-        public static final Trajectory theAutoPathFirstStage = TrajectoryGenerator.generateTrajectory(
+        public static final Trajectory theAutoPathFirstStage = TrajectoryGenerator.generateTrajectory( //Auto stage 1 - backup to center
             new Pose2d(0, 0, new Rotation2d(0)), 
             List.of( new Translation2d(-2, -0.5) ),
             new Pose2d(-3, 0.5, new Rotation2d(-45)),
             configRev
         );
-
-        //-2, -1
-        public static final Trajectory theAutoPathSecondStage = TrajectoryGenerator.generateTrajectory(
+        public static final Trajectory theAutoPathSecondStage = TrajectoryGenerator.generateTrajectory( //Auto stage 2 - forward 2 shooter location
             new Pose2d(-3, 0.5, new Rotation2d(-45)),
             List.of(),
             new Pose2d(-2, -1, new Rotation2d(0)), 
             config
         );
 
-        //Left Auto Trajectory
-        /*
-        public static final Trajectory leftAutoTrajectory = TrajectoryGenerator.generateTrajectory(
-            new Pose2d(0,0, new Rotation2d(0)),
-            List.of(new Translation2d(0, 0)  ), 
-            new Pose2d(0, 0, new Rotation2d(0)), 
-            config);
-        */
-        //Middle Auto Trajectory
-        /*
-        public static final Trajectory middleAutoTrajectory = TrajectoryGenerator.generateTrajectory(
-            new Pose2d(0,0, new Rotation2d(0)),
-            List.of(new Translation2d(0, 0)  ), 
-            new Pose2d(0, 0, new Rotation2d(0)), 
-            config);
-        */
-        //Right Auto Trajectory
-        /*
-        public static final Trajectory rightAutoTrajectory = TrajectoryGenerator.generateTrajectory(
-            new Pose2d(0,0, new Rotation2d(0)),
-            List.of(new Translation2d(0, 0)  ), 
-            new Pose2d(0, 0, new Rotation2d(0)), 
-            config);
-        */
-        
     }
 
 }
