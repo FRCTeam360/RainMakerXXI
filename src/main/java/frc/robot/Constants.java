@@ -106,7 +106,7 @@ public final class Constants {
         // Very Reasonable baseline values for a RAMSETE follower in units of meters and seconds - maybe change later
         public static final double kRamseteB = 3.75; //0 to infinite
         public static final double kRamseteZeta = 1.0; //0 to 1
-        public static final boolean kGyroReversed = true; //cuz characterization told me
+        public static final boolean kGyroReversed = true; //cuz characterization told me and dint tell me
     }
 	public static final class TrajectoryConstants {
         //Initializes Tarjectory configurations and Trajectories
