@@ -216,11 +216,11 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     configureButtonBindings();
 
     //m_chooser.addOption("fwd & rev Sanity", m_autoCommand_fwdRev);
-    //m_chooser.addOption("Line Sanity", m_autoCommand_sanityLine);
-    //m_chooser.addOption("S Sanity", m_autoCommand_sanityS);
+    m_chooser.addOption("Line Sanity", m_autoCommand_sanityLine);
+    m_chooser.addOption("S Sanity", m_autoCommand_sanityS);
 
     m_chooser.addOption("Anywhere Auto", m_autoCommand_backup); //Shoot & backup
-    //m_chooser.addOption("Left Auto", m_autoCommand_left); //Unused
+    //m_chooser.addOption("Left Auto", m_autoCommand_left); 
     m_chooser.addOption("Middle Auto", m_autoCommand_middle); //Middle auto
     m_chooser.addOption("Right Auto", m_autoCommand_right); //Right auto for the trench run
 

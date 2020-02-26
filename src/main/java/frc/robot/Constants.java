@@ -89,13 +89,13 @@ public final class Constants {
         //Conversions for the Neos
         private static final double pi = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679;
         public static final double ticksToMeters = ( ((15.0/85.0)*(30.0/40.0)) / 1.0 ) * ( (pi * .1524) / 1.0 ); //Correct now
-        public static final double hundredMstoSecond = 10.0;
+        public static final double hundredMstoSecond = 1.0; //This isn't needed and im lazy to get rid of it, week 5 project
 
         //Done with characterization, all values seem to be okay
         public static final double ksVolts = 0.222; //PB
         public static final double kvVoltSecondsPerMeter = 1.96; //PB
         public static final double kaVoltSecondsSquaredPerMeter = 0.473; //PB
-        public static final double kPDriveVel = 0.005; //2.43 //Potentially used by AutoAlignShoot & AlightShoot (kpAim in limelight example) 
+        public static final double kPDriveVel = 0.4; //0.005 //2.43 //Potentially used by AutoAlignShoot & AlightShoot (kpAim in limelight example) 
         public static final double kTrackwidthMeters = 0.6663144130546255; // -.02552892613083797 PB - measured  0.63246 - according to what i found online, ignore the measured and use what characterization says
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
 
@@ -104,8 +104,8 @@ public final class Constants {
         public static final double kMaxAccelerationMetersPerSecondSquared = 0.5; //Untuned
 
         // Very Reasonable baseline values for a RAMSETE follower in units of meters and seconds - maybe change later
-        public static final double kRamseteB = 3.75; //0 to infinite
-        public static final double kRamseteZeta = 1.0; //0 to 1
+        public static final double kRamseteB = 4.0; //0 to infinite
+        public static final double kRamseteZeta = 0.7; //1.0 //0 to 1
         public static final boolean kGyroReversed = true; //cuz characterization told me and dint tell me
     }
 	public static final class TrajectoryConstants {
