@@ -171,6 +171,30 @@ public final class Constants {
             new Pose2d(-2, -1, new Rotation2d(0)), 
             config
         );
+        public static final Trajectory trenchRunPathFirstStage = TrajectoryGenerator.generateTrajectory( //Stage 1 trenchRun
+            new Pose2d(0, 0, new Rotation2d(0)),
+            List.of( 
+                new Translation2d(-1.07, .40), //a = 1
+                new Translation2d(-2.15, .80), //a = 2
+                new Translation2d(-3.23, 1.21), // a = 3
+                new Translation2d(-4.31, 1.61), // a = 4
+                new Translation2d(-5.39, 2.02) // a = 5
+            ),
+            new Pose2d(-5.85, 2.19, new Rotation2d(0)),  //a = 5.43
+            configRev //reverse path
+        );
+        public static final Trajectory trenchRunPathSecondStage = TrajectoryGenerator.generateTrajectory( //Stage 2 trenchRun
+            new Pose2d(-5.85, 2.19, new Rotation2d(0)),
+            List.of(
+                new Translation2d(-5.39, 2.02), // a = 5
+                new Translation2d(-4.31, 1.61), // a = 4
+                new Translation2d(-3.23, 1.21), // a = 3
+                new Translation2d(-2.15, .80), //a = 2
+                new Translation2d(-1.07, .40) //a = 1
+            ),
+            new Pose2d(0, 0, new Rotation2d(0)), 
+            config
+        );
 
     }
 

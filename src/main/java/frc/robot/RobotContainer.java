@@ -196,7 +196,49 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     
   );
   
-  private final SequentialCommandGroup m_autoCommand_right = new SequentialCommandGroup( //Shoot, run trench, shoot
+  private final SequentialCommandGroup m_autoCommand_right = new SequentialCommandGroup( //Trench Run Auto
+    new ParallelRaceGroup(      
+      //new Align(drivetrain, limelight), //Disabled if it's lined up correctly
+      new AutoLoadBalls(feeder, limelight, shooter),  //Ends after a time in seconds
+      new AutoRunIntake(intake), 
+      new ShooterRamp(shooter) 
+    ),
+    new ParallelRaceGroup(
+      new RamseteCommand( //Ends itself
+        TrajectoryConstants.trenchRunPathFirstStage, //Stage 1
+        drivetrain::getPose, 
+        new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
+        new SimpleMotorFeedforward(AutoConstants.ksVolts, AutoConstants.kvVoltSecondsPerMeter, AutoConstants.kaVoltSecondsSquaredPerMeter),
+        AutoConstants.kDriveKinematics, 
+        drivetrain::getWheelSpeeds, 
+        new PIDController(AutoConstants.kPDriveVel, 0, 0), 
+        new PIDController(AutoConstants.kPDriveVel, 0, 0), 
+        drivetrain::tankDriveVolts,
+        drivetrain
+      ),
+      new AutoRunIntake(intake) //never ends, just runs intake full bohr
+    ),
+    new ParallelRaceGroup(
+      new RamseteCommand( //Ends itself
+        TrajectoryConstants.trenchRunPathSecondStage, //Stage 2
+        drivetrain::getPose, 
+        new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
+        new SimpleMotorFeedforward(AutoConstants.ksVolts, AutoConstants.kvVoltSecondsPerMeter, AutoConstants.kaVoltSecondsSquaredPerMeter),
+        AutoConstants.kDriveKinematics, 
+        drivetrain::getWheelSpeeds, 
+        new PIDController(AutoConstants.kPDriveVel, 0, 0), 
+        new PIDController(AutoConstants.kPDriveVel, 0, 0), 
+        drivetrain::tankDriveVolts,
+        drivetrain
+      )
+      //Intake not needed for return trip
+    ),
+    new ParallelRaceGroup(      
+      new Align(drivetrain, limelight), //Auto shoot @ the end
+      new AutoLoadBalls(feeder, limelight, shooter),  //Ends after a time in seconds
+      new AutoRunIntake(intake), 
+      new ShooterRamp(shooter) 
+    )
 
   );
   
@@ -222,7 +264,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     m_chooser.addOption("Anywhere Auto", m_autoCommand_backup); //Shoot & backup
     //m_chooser.addOption("Left Auto", m_autoCommand_left); 
     m_chooser.addOption("Middle Auto", m_autoCommand_middle); //Middle auto
-    m_chooser.addOption("Right Auto", m_autoCommand_right); //Right auto for the trench run
+    m_chooser.addOption("Trench Run Auto", m_autoCommand_right); //Right auto for the trench run
 
     SmartDashboard.putData("Auto Choice", m_chooser);
   }

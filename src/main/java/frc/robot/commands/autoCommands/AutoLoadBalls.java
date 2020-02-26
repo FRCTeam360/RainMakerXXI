@@ -63,6 +63,6 @@ public class AutoLoadBalls extends CommandBase { //Used by AlignShoot command
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return myTimer.get() >= 7;
+    return myTimer.get() >= 4.5;
   }
 }

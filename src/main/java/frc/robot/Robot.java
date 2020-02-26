@@ -42,7 +42,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
-    if ( m_robotContainer.gDriveTrain().getHighestVelocity() >= 15 ) { //if either side is going more then 10 m/s, about 1/5 of top speed high gear
+    if ( m_robotContainer.gDriveTrain().getHighestVelocity() >= 1.7 ) { //if either side is going more then 10 m/s, about 1/5 of top speed high gear
       m_robotContainer.gDriveTrain().brakeMode();
     } else {
       m_robotContainer.gDriveTrain().coastMode();
