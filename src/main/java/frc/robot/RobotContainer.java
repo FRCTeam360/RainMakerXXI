@@ -94,7 +94,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     drivetrain::tankDriveVolts,
     drivetrain
   );
-
+  /*
   private final Command m_autoCommand_fwdRev = new SequentialCommandGroup(
     new RamseteCommand(
       TrajectoryConstants.sanityLine,
@@ -125,7 +125,8 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
       drivetrain
     )
   );
-  
+  */
+  /*
   private final Command m_autoCommand_left = new SequentialCommandGroup(
     new ParallelRaceGroup(      
       new Align(drivetrain, limelight), 
@@ -149,6 +150,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
       ) 
     )
   );
+  */
 
   private final SequentialCommandGroup m_autoCommand_middle = new SequentialCommandGroup( //shoot, backup, mid balls,shoot
     new ParallelRaceGroup(      
