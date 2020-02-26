@@ -150,7 +150,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     )
   );
 
-  private final SequentialCommandGroup m_autoCommand_middle = new SequentialCommandGroup(
+  private final SequentialCommandGroup m_autoCommand_middle = new SequentialCommandGroup( //shoot, backup, mid balls,shoot
     new ParallelRaceGroup(      
       new Align(drivetrain, limelight), 
       new AutoLoadBalls(feeder, limelight, shooter), //This one has the abort feature in it
@@ -195,26 +195,11 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     )
     
   );
-  /*
-  private final SequentialCommandGroup m_autoCommand_right = new SequentialCommandGroup(
-    new AutoShootBalls(shooter, feeder),
-    new ParallelRaceGroup( 
-      new AutoRunIntake(intake), 
-      new RamseteCommand(
-        TrajectoryConstants.sanityLine, //Should be "rightAutoTrajectory" when done
-        drivetrain::getPose, 
-        new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
-        new SimpleMotorFeedforward(AutoConstants.ksVolts, AutoConstants.kvVoltSecondsPerMeter, AutoConstants.kaVoltSecondsSquaredPerMeter),
-        AutoConstants.kDriveKinematics, 
-        drivetrain::getWheelSpeeds, 
-        new PIDController(AutoConstants.kPDriveVel, 0, 0), 
-        new PIDController(AutoConstants.kPDriveVel, 0, 0), 
-        drivetrain::tankDriveVolts,
-        drivetrain) 
-      ),                                                                                            
-    new AlignShoot(drivetrain, limelight, shooter, feeder, intake)
+  
+  private final SequentialCommandGroup m_autoCommand_right = new SequentialCommandGroup( //Shoot, run trench, shoot
+
   );
-  */
+  
 
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -230,13 +215,14 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
 
     configureButtonBindings();
 
-    m_chooser.addOption("fwd & rev Sanity", m_autoCommand_fwdRev);
-    m_chooser.addOption("Line Sanity", m_autoCommand_sanityLine);
-    m_chooser.addOption("S Sanity", m_autoCommand_sanityS);
-    m_chooser.addOption("Backup Auto", m_autoCommand_backup);
-    m_chooser.addOption("Left Auto", m_autoCommand_left);
-    m_chooser.addOption("Middle Auto", m_autoCommand_middle);
-    //m_chooser.addOption("Right Auto", m_autoCommand_right);
+    //m_chooser.addOption("fwd & rev Sanity", m_autoCommand_fwdRev);
+    //m_chooser.addOption("Line Sanity", m_autoCommand_sanityLine);
+    //m_chooser.addOption("S Sanity", m_autoCommand_sanityS);
+
+    m_chooser.addOption("Anywhere Auto", m_autoCommand_backup); //Shoot & backup
+    //m_chooser.addOption("Left Auto", m_autoCommand_left); //Unused
+    m_chooser.addOption("Middle Auto", m_autoCommand_middle); //Middle auto
+    m_chooser.addOption("Right Auto", m_autoCommand_right); //Right auto for the trench run
 
     SmartDashboard.putData("Auto Choice", m_chooser);
   }
