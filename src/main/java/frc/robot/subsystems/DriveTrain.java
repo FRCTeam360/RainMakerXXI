@@ -78,9 +78,10 @@ public class DriveTrain extends SubsystemBase {
     leftGroup = new SpeedControllerGroup( motorLMaster , motorLSlave );
     rightGroup = new SpeedControllerGroup( motorRMaster , motorRSlave );
 
-    // display PID coefficients on SmartDashboard
+    /* //Was here for testing
     SmartDashboard.putNumber("steer", steer);
     SmartDashboard.putNumber("maxDrive", maxDrive);
+    */  // display PID coefficients on SmartDashboard
 
     m_differentialDrive = new DifferentialDrive(leftGroup, rightGroup);
     m_differentialDrive.setSafetyEnabled(false); //So it won't stop the motors from moving
@@ -149,6 +150,7 @@ public class DriveTrain extends SubsystemBase {
     motorRSlave.setIdleMode(IdleMode.kCoast);
   }
 
+  /* //Was here for testing
   private void PIDDashboard() {
     // read PID coefficients from SmartDashboard
     double s = SmartDashboard.getNumber("steer", 0);
@@ -158,6 +160,7 @@ public class DriveTrain extends SubsystemBase {
     if((s != steer)) { steer = s; }
     if((max != maxDrive)) { maxDrive = max; }
   }
+  */
 
   public void navxTestingDashboardReadouts () {
     //SmartDashboard.putNumber("N ang", Math.IEEEremainder(navX.getAngle(), 360) );
