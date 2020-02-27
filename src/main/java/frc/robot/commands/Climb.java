@@ -41,29 +41,17 @@ public class Climb extends CommandBase { //Tele-op command / no isFinsihed() met
 			myClimber.runLeftClimber(0.0);
     }
 
-    if (Math.abs(cont.getRawAxis(3)) >= .10  ) {
+    if ( (Math.abs(cont.getRawAxis(3)) >= .10)  && !(cont.getRawButton(10)) ) {
 			myClimber.runRightClimber( -cont.getRawAxis(3) ); //If direction wrong, modify in Climber subsystem
     } else {
 			myClimber.runRightClimber(0.0);
     }
 
-
-
-    /* //Removed code for erector
-    if(Math.abs(cont.getRawAxis(1)) >= .10  && !(cont.getRawButton(10)) ) { //Erector up/down control
-      myClimber.runErector( -1 * cont.getRawAxis(1) * 0.8 );
+    if ( cont.getRawButton(10) ) {
+        myClimber.runErector(-cont.getRawAxis(3) ); //If button hit, run the erector on the axis
     } else {
-      myClimber.runErector(0);
-    }
-    */
-
-    /* //Need code for the climbing winches
-    if( (Math.abs(cont.getRawAxis(3)) >= .15) ) {
-      myClimber.runClimber( -1 * cont.getRawAxis(3) * 0.8 );
-    } else {
-      myClimber.runClimber(0);
-    }
-    */
+      myClimber.runErector(0.0);
+    } 
 
   }
 
