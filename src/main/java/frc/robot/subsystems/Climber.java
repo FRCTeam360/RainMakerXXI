@@ -67,8 +67,8 @@ public class Climber extends SubsystemBase {
 
   @Override
   public void periodic() { // This method will be called once per scheduler run - Velocity & Position of each motor
-    //SmartDashboard.putNumber("Left Climber", motorLeft.getEncoder().getPosition() );
-    //SmartDashboard.putNumber("Right Climber", motorRight.getEncoder().getPosition() );
+    SmartDashboard.putNumber("Left Climber", motorLeft.getEncoder().getPosition() ); //Testing
+    SmartDashboard.putNumber("Right Climber", motorRight.getEncoder().getPosition() ); //Testing
     //tempPrintouts();
     //ampPrintouts();
     //SmartDashboard.putNumber("Erector", erector.getSelectedSensorPosition() );

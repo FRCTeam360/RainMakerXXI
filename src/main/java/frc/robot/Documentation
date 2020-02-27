@@ -102,4 +102,7 @@ limelight: this is the limelight view screen
 Shooter Velocity: the velocity of the shooter in ticks
 Shooter Ready: is the velocity below targetVelocity & more than 200 less than velocity (200 is from LoadBalls command)
 
+Testing:
+Left climber & Right Climber: prints out position of the climbers
+
 ========================================================================================
