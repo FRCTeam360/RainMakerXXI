@@ -244,7 +244,6 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
 
   );
   
-
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   public RobotContainer() {
