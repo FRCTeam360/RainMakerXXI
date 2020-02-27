@@ -41,26 +41,20 @@ public class Climber extends SubsystemBase {
     motorRight.setIdleMode(IdleMode.kBrake);
   }
 
-  public void resetClimberEncoders() {
-    motorLeft.getEncoder().setPosition(0);
-    motorRight.getEncoder().setPosition(0);
-  }
-
-  public double getLeftPos () { return motorLeft.getEncoder().getPosition(); }
-  public double getRightPos() { return motorRight.getEncoder().getPosition(); }
   public void runLeftClimber (double pPow) { motorLeft.set(pPow); }
   public void runRightClimber (double pPow) { motorRight.set(pPow); }
-
-  public void resetErectorEncoder() { erector.setSelectedSensorPosition(0); }
-  public double getErectorEncoderPos() { return erector.getSelectedSensorPosition(); }
   public void runErector(double pPower) { erector.set(ControlMode.PercentOutput, pPower); }
 
-  public void tempPrintouts() {
+  public void resetClimberEncoders() { motorLeft.getEncoder().setPosition(0); motorRight.getEncoder().setPosition(0); }
+  public void resetErectorEncoder() { erector.setSelectedSensorPosition(0); }
+
+  public double getErectorEncoderPos() { return erector.getSelectedSensorPosition(); }
+  public double getLeftPos () { return motorLeft.getEncoder().getPosition(); }
+  public double getRightPos() { return motorRight.getEncoder().getPosition(); }
+
+  public void printouts() {
     SmartDashboard.putNumber("LC Temp", motorLeft.getMotorTemperature() );
     SmartDashboard.putNumber("RC Temp", motorRight.getMotorTemperature() );
-  }
-
-  public void ampPrintouts() {
     SmartDashboard.putNumber("LC Temp", motorLeft.getOutputCurrent() );
     SmartDashboard.putNumber("RC Temp", motorRight.getOutputCurrent() );
   }
@@ -69,8 +63,7 @@ public class Climber extends SubsystemBase {
   public void periodic() { // This method will be called once per scheduler run - Velocity & Position of each motor
     SmartDashboard.putNumber("Left Climber", motorLeft.getEncoder().getPosition() ); //Testing
     SmartDashboard.putNumber("Right Climber", motorRight.getEncoder().getPosition() ); //Testing
-    //tempPrintouts();
-    //ampPrintouts();
     //SmartDashboard.putNumber("Erector", erector.getSelectedSensorPosition() );
+    //printouts();
   }
 }
