@@ -49,7 +49,7 @@ Controller (Port 2): (Mode light off always)
 7 (L trigger): Run Intake (Reversible if holding X) (in command RunIntake)
 8 (R trigger): Run shooter velcoity & if at velocity run loader + hopper (in RobotContainer configureButtonBinds() command is ShootBalls)
 9 (back): When held allows for ____ (right stick up and down) to control the erector up and down (in command Climb)
-10 (start): When held allows for y-axis (left stick up and down) to controll shooter speed (in command ManualShooter)
+10 (start): When held allows for y-axis (left stick up and down) to controll shooter speed (in command ManualShooter) (Scaled by 0.65)
 11 (L stick):
 12 (R stick):
 Axis 0 (X-axis , left stick left/right):
