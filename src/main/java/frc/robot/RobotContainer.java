@@ -60,8 +60,13 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   //private final Align align = new Align(drivetrain, limelight); //This is unused currently and is called only in alignShoot
 
   private final Command m_autoCommand_backup = new SequentialCommandGroup(
-    new AlignShoot(drivetrain, limelight, shooter, feeder, intake),
-    new AutoBackupOnTicks( drivetrain )
+    new ParallelRaceGroup(      
+      new Align(drivetrain, limelight), 
+      new AutoLoadBalls(feeder, limelight, shooter), //This one has the abort feature in it
+      new AutoRunIntake(intake),
+      new ShooterRamp(shooter) 
+    ),
+    new AutoBackupOnTicks(drivetrain)
   );
 
   private final RamseteCommand m_autoCommand_sanityS = new RamseteCommand(
@@ -80,19 +85,35 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     drivetrain::tankDriveVolts,
     drivetrain
   );
-  private final RamseteCommand m_autoCommand_sanityLine = new RamseteCommand(
-    TrajectoryConstants.sanityLine,
-    drivetrain::getPose,
-    new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
-    new SimpleMotorFeedforward(AutoConstants.ksVolts,
-    AutoConstants.kvVoltSecondsPerMeter,
-    AutoConstants.kaVoltSecondsSquaredPerMeter),
-    AutoConstants.kDriveKinematics,
-    drivetrain::getWheelSpeeds,
-    new PIDController(AutoConstants.kPDriveVel, 0, 0),
-    new PIDController(AutoConstants.kPDriveVel, 0, 0),
-    drivetrain::tankDriveVolts,
-    drivetrain
+  private final Command m_autoCommand_sanityLine = new SequentialCommandGroup(
+    new RamseteCommand(
+      TrajectoryConstants.sanityLine,
+      drivetrain::getPose,
+      new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
+      new SimpleMotorFeedforward(AutoConstants.ksVolts,
+      AutoConstants.kvVoltSecondsPerMeter,
+      AutoConstants.kaVoltSecondsSquaredPerMeter),
+      AutoConstants.kDriveKinematics,
+      drivetrain::getWheelSpeeds,
+      new PIDController(AutoConstants.kPDriveVel, 0, 0),
+      new PIDController(AutoConstants.kPDriveVel, 0, 0),
+      drivetrain::tankDriveVolts,
+      drivetrain
+    ),
+    new RamseteCommand(
+      TrajectoryConstants.sanityLineRev,
+      drivetrain::getPose,
+      new RamseteController(AutoConstants.kRamseteB, AutoConstants.kRamseteZeta),
+      new SimpleMotorFeedforward(AutoConstants.ksVolts,
+      AutoConstants.kvVoltSecondsPerMeter,
+      AutoConstants.kaVoltSecondsSquaredPerMeter),
+      AutoConstants.kDriveKinematics,
+      drivetrain::getWheelSpeeds,
+      new PIDController(AutoConstants.kPDriveVel, 0, 0),
+      new PIDController(AutoConstants.kPDriveVel, 0, 0),
+      drivetrain::tankDriveVolts,
+      drivetrain
+    )
   );
   /*
   private final Command m_autoCommand_fwdRev = new SequentialCommandGroup(

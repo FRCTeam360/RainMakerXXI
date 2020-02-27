@@ -36,18 +36,18 @@ public class Climb extends CommandBase { //Tele-op command / no isFinsihed() met
   public void execute() {
 
     if (Math.abs(cont.getRawAxis(1)) >= .10 && !(cont.getRawButton(10)) ) {
-			myClimber.runLeftClimber( -cont.getRawAxis(1) ); //If direction wrong, modify in Climber subsystem
+			myClimber.runLeftClimber( -cont.getRawAxis(1) ); 
     } else {
 			myClimber.runLeftClimber(0.0);
     }
 
-    if ( (Math.abs(cont.getRawAxis(3)) >= .10)  && !(cont.getRawButton(10)) ) {
-			myClimber.runRightClimber( -cont.getRawAxis(3) ); //If direction wrong, modify in Climber subsystem
+    if ( (Math.abs(cont.getRawAxis(3)) >= .10)  && !(cont.getRawButton(9)) ) {
+			myClimber.runRightClimber( -cont.getRawAxis(3) ); 
     } else {
 			myClimber.runRightClimber(0.0);
     }
 
-    if ( cont.getRawButton(10) ) {
+    if ( cont.getRawButton(9) ) {
         myClimber.runErector(-cont.getRawAxis(3) ); //If button hit, run the erector on the axis
     } else {
       myClimber.runErector(0.0);

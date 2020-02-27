@@ -59,6 +59,7 @@ Axis 3 (Z-rotate , right stick up/down): If 9 held see it || if not held Right c
 
 Issues:
     no bind for navX auto even out robot while climbed, later date maybe set this to A, must be a hold thing tho, revoke driver winch control
+    possibility to misclick climbers during match (no way to reverse em) so disable until 30 seconds to end of match
 
 ========================================================================================
 CAN Ids & Binds:

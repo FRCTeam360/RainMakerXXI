@@ -32,15 +32,17 @@ public class Climber extends SubsystemBase {
     motorLeft = new CANSparkMax(motorLeftId, MotorType.kBrushless); //For encoders, only based on Master
     motorRight = new CANSparkMax(motorRightId, MotorType.kBrushless);
 
-    motorLeft.setInverted(false); //WE MUST DETERMINE THIS, ALSO MAKE GOING NEGATIVE IMPOSSIBLE CUZ IT WILL DESTROY MOTORS
+    motorLeft.setInverted(true); //WE MUST DETERMINE THIS, ALSO MAKE GOING NEGATIVE IMPOSSIBLE CUZ IT WILL DESTROY MOTORS
     motorRight.setInverted(true);   
 
     motorLeft.setIdleMode(IdleMode.kBrake); //Set brake mode on the climber
     motorRight.setIdleMode(IdleMode.kBrake);
+    //motorLeft.setIdleMode(IdleMode.kCoast);
+    //motorRight.setIdleMode(IdleMode.kCoast);
   }
 
-  public void runLeftClimber (double pPow) { motorLeft.set(pPow); }
-  public void runRightClimber (double pPow) { motorRight.set(pPow); }
+  public void runLeftClimber (double pPow) { motorLeft.set( Math.abs(pPow) ); } //abs cuz it opnly runs positive
+  public void runRightClimber (double pPow) { motorRight.set( Math.abs(pPow) ); }
   public void runErector(double pPower) { erector.set(ControlMode.PercentOutput, pPower); }
 
   public void resetClimberEncoders() { motorLeft.getEncoder().setPosition(0); motorRight.getEncoder().setPosition(0); }
@@ -59,8 +61,8 @@ public class Climber extends SubsystemBase {
 
   @Override
   public void periodic() { // This method will be called once per scheduler run - Velocity & Position of each motor
-    SmartDashboard.putNumber("Left Climber", motorLeft.getEncoder().getPosition() ); //Testing
-    SmartDashboard.putNumber("Right Climber", motorRight.getEncoder().getPosition() ); //Testing
+    //SmartDashboard.putNumber("Left Climber", motorLeft.getEncoder().getPosition() ); //Testing
+    //SmartDashboard.putNumber("Right Climber", motorRight.getEncoder().getPosition() ); //Testing
     //SmartDashboard.putNumber("Erector", erector.getSelectedSensorPosition() );
     //printouts();
   }

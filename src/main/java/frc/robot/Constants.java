@@ -39,7 +39,7 @@ public final class Constants {
         public static final int kSlotIdx = 0;
         public static final int kTimeOutMs = 30;
         public static final int kPIDLoopIdx = 0;
-        public static final double kP = ((0.05 * 1023.0) / 1001.0) * 4.5; //(0.05 * 1023.0) / 453.0;
+        public static final double kP = ((0.05 * 1023.0) / 1001.0) * 5.5; //(0.05 * 1023.0) / 453.0;
         public static final double kI = 0;
         public static final double kD = 0;
         public static final double kF = (0.6 * 1023.0) / 15900.0;
@@ -189,10 +189,10 @@ public final class Constants {
                 new Translation2d(-5.39, 2.02), // a = 5
                 new Translation2d(-4.31, 1.61), // a = 4
                 new Translation2d(-3.23, 1.21), // a = 3
-                new Translation2d(-2.15, .80), //a = 2
-                new Translation2d(-1.07, .40) //a = 1
+                new Translation2d(-2.15, .80) //a = 2
+                //new Translation2d(-1.07, .40) //a = 1
             ),
-            new Pose2d(0, 0, new Rotation2d(0)), 
+            new Pose2d(-1.07, .40, new Rotation2d(0)), 
             config
         );
 

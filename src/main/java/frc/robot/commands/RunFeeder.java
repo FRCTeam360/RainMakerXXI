@@ -48,9 +48,9 @@ public class RunFeeder extends CommandBase {
 
     if (cont.getRawButton(5)) {
 			if (!cont.getRawButton(1)) {
-				myFeeder.runHopper(.4); //Button 6 held & button 1 isn't held, run forwards
+				myFeeder.runHopper(.6); //Button 6 held & button 1 isn't held, run forwards
       } else {
-				myFeeder.runHopper(-.4); //Button 6 held & button 1 is held, run reverse
+				myFeeder.runHopper(-.6); //Button 6 held & button 1 is held, run reverse
       }
     } else {
       myFeeder.runHopper(0.0); //Button 6 isnt held, dont run
