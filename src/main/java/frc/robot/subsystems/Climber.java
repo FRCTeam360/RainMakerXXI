@@ -22,10 +22,8 @@ import static frc.robot.Constants.ClimberConstants.*;
 
 public class Climber extends SubsystemBase {
 
-  private static TalonSRX erector;   //One bag motor to raise it up (controlled by talon) 
+  private static TalonSRX erector;
   
-  //private static CANSparkMax motorMaster; //2 Neos mast/slav to pull robot up "climber"
-  //private static CANSparkMax motorSlave;
   private static CANSparkMax motorLeft;
   private static CANSparkMax motorRight;
 
@@ -34,7 +32,7 @@ public class Climber extends SubsystemBase {
     motorLeft = new CANSparkMax(motorLeftId, MotorType.kBrushless); //For encoders, only based on Master
     motorRight = new CANSparkMax(motorRightId, MotorType.kBrushless);
 
-    motorLeft.setInverted(false); //Currently Unkown - this is a guess
+    motorLeft.setInverted(false); //WE MUST DETERMINE THIS, ALSO MAKE GOING NEGATIVE IMPOSSIBLE CUZ IT WILL DESTROY MOTORS
     motorRight.setInverted(true);   
 
     motorLeft.setIdleMode(IdleMode.kBrake); //Set brake mode on the climber
