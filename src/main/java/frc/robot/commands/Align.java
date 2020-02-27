@@ -26,9 +26,6 @@ public class Align extends CommandBase {
 
   private Timer timer;
 
-  /**
-   * Creates a new Align.
-   */
   public Align(DriveTrain driveTrain, Limelight limelight) {
     myDriveTrain = driveTrain;
     myLimelight = limelight;

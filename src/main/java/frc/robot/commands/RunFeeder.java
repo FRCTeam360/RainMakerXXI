@@ -56,21 +56,6 @@ public class RunFeeder extends CommandBase {
       myFeeder.runHopper(0.0); //Button 6 isnt held, dont run
     }
 
-    /* //Old code for old binds, unneeded now!
-    if ( cont.getRawButton(7) && cont.getRawButton(8) ) { //Run both
-      checkRunLoader(-.5);
-      myFeeder.runHopper(1);
-    } else if ( cont.getRawButton(7) ) { //run loader, hopper to none
-      checkRunLoader(-.5);
-      myFeeder.runHopper(0);
-    } else if ( cont.getRawButton(8) ) { //run hopper, loader to none
-      myFeeder.runLoader(0);
-      myFeeder.runHopper(1);
-    } else { //Set both to none
-      myFeeder.runLoader(0);
-      myFeeder.runHopper(0);
-    }
-    */
   }
 
   @Override   // Called once the command ends or is interrupted.
