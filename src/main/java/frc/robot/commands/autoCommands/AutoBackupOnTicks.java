@@ -34,6 +34,6 @@ public class AutoBackupOnTicks extends CommandBase {
 
   @Override
   public boolean isFinished() {   // Returns true when the command should end.
-    return driveTrain.avgMeterTrav() >= .2; //.2 meters = 20 centimeters
+    return driveTrain.avgMeterTrav() >= .5; //.2 meters = 20 centimeters
   }
 }
