@@ -76,5 +76,9 @@ public class Shooter extends SubsystemBase {
     //SmartDashboard.putNumber("Shooter Error", shooterMaster.getClosedLoopError());
 
     SmartDashboard.putNumber("Shooter Velocity", shooterMaster.getSelectedSensorVelocity(0)); //Comp Stuff
+    SmartDashboard.putBoolean("Shooter Ready",
+      shooterMaster.getSelectedSensorVelocity(0) > targetVelocity - 200 && //200 is from LoadBalls command
+      shooterMaster.getSelectedSensorVelocity(0) < targetVelocity
+    ); //Comp Stuff
   }
 }
