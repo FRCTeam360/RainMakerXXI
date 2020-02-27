@@ -36,7 +36,7 @@ public class RunFeeder extends CommandBase {
   @Override
   public void execute() {
   	//5 is for run loader, 1 is for reverse, 6 is run hopper
-    if (cont.getRawButton(5)) {
+    if (cont.getRawButton(6)) {
 			if (!cont.getRawButton(1)) {
 				myFeeder.runLoader(.5); //Button 5 held & button 1 isn't held, run forwards
       } else {
@@ -46,7 +46,7 @@ public class RunFeeder extends CommandBase {
       myFeeder.runLoader(0.0); //Button 5 isn't held, don't run
     }
 
-    if (cont.getRawButton(6)) {
+    if (cont.getRawButton(5)) {
 			if (!cont.getRawButton(1)) {
 				myFeeder.runHopper(.4); //Button 6 held & button 1 isn't held, run forwards
       } else {
