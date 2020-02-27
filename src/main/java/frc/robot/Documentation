@@ -95,3 +95,9 @@ BackupAuto Documentation:
 AlignShoot Documentation:
 
 ========================================================================================
+Comp Bot Dashboard Items:
+Lime Targ: green if limelioght has a target
+Lime X: is limelight x offset, zeroed if no target
+Shooter Velocity: the velocity of the shooter in ticks
+
+
