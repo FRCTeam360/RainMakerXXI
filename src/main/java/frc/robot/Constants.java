@@ -99,9 +99,10 @@ public final class Constants {
         public static final double kTrackwidthMeters = 0.6663144130546255; // -.02552892613083797 PB - measured  0.63246 - according to what i found online, ignore the measured and use what characterization says
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
 
-        //These I just make up as I go, tho they seem to be ignored?
-        public static final double kMaxSpeedMetersPerSecond = 3; //Untuned
-        public static final double kMaxAccelerationMetersPerSecondSquared = 0.5; //Untuned
+        //These I just make up as I go, tho they seem to be ignored? Goal is 15-9 = 6seconds for the trench run auto
+        //Tested @ prac field, 3, 0.5 total25-9=16:   Testing match #1 6, 1:   Testing match #2 6, 2
+        public static final double kMaxSpeedMetersPerSecond = 6;
+        public static final double kMaxAccelerationMetersPerSecondSquared = 1;
 
         // Very Reasonable baseline values for a RAMSETE follower in units of meters and seconds - maybe change later
         public static final double kRamseteB = 4.0; //0 to infinite
