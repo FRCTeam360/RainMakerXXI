@@ -88,6 +88,7 @@ Lime X: is limelight x offset, zeroed if no target (in sub LimeLight)
 limelight: this is the limelight view screen (in sub LimeLight)
 Shooter Velocity: the velocity of the shooter in ticks (in sub Shooter)
 Shooter Ready: is the velocity below targetVelocity & more than 200 less than velocity (200 is from LoadBalls command) (in sub Shooter)
+Shooter Timer: when align shoot is ran it displays time since shooter started revving up (in cmd LoadBalls & AutoLoadBalls)
 Climber Enable: boolean of whether or not the toggle button has been hit (if green climber is enabled, if red climber is disabled) (in cmd Climb)
 
 ========================================================================================
