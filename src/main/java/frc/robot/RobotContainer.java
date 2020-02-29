@@ -75,7 +75,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
       new AutoRunIntake(intake),
       new ShooterRamp(shooter) 
     ),
-    new AutoMoveOnTicks(drivetrain, 1) //Second peram is distance, positive values go forward, negative values go reverse
+    new AutoMoveOnTicks(drivetrain, 1.75) //Second peram is distance, positive values go forward, negative values go reverse
   );
 
   /*
