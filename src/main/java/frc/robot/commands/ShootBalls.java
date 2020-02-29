@@ -11,18 +11,20 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Feeder;
-
+import frc.robot.subsystems.Intake;
 import frc.robot.Constants.ShooterConstants;
 
 public class ShootBalls extends CommandBase {
 
   private final Shooter myShooter;
   private final Feeder myFeeder;
+  private final Intake myIntake;
   private boolean shouldFeed;
 
-  public ShootBalls(Shooter shooter, Feeder feeder) {
+  public ShootBalls(Shooter shooter, Feeder feeder, Intake intake) {
     myShooter = shooter;
     myFeeder = feeder;
+    myIntake = intake;
     shouldFeed = false;
     addRequirements(myShooter, myFeeder);
   }
@@ -35,13 +37,14 @@ public class ShootBalls extends CommandBase {
     myShooter.run(); //Always run shooter
 
     if (shouldFeed) {
-      myFeeder.runLoader(0.5); //Half speed forward
+      myFeeder.runLoader(0.4); //Half speed forward
       myFeeder.runHopper(0.85); //Forward almost full speed
+      myIntake.run(1);
     }
 
-    if (myShooter.getVelocity() >= ShooterConstants.targetVelocity - 100 ) { //If velcoity above 100 less than target
+    if (myShooter.getVelocity() >= ShooterConstants.targetVelocity - 250 ) { //If velcoity above 100 less than target
       shouldFeed = true;
-    } else if (myShooter.getVelocity() <= ShooterConstants.targetVelocity - 200) { //If velocity less than 200 under target
+    } else if (myShooter.getVelocity() <= ShooterConstants.targetVelocity - 350) { //If velocity less than 200 under target
       shouldFeed = false;
     }
 

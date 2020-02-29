@@ -31,6 +31,7 @@ public class Climb extends CommandBase { //Tele-op command / no isFinsihed() met
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    enableClimberMotors = false;
   }
 
   // Called every time the scheduler runs while the command is scheduled.
