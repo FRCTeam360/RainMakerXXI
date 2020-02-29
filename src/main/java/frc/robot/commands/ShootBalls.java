@@ -54,6 +54,7 @@ public class ShootBalls extends CommandBase {
   public void end(boolean interrupted) {   // Called once the command ends or is interrupted. //When the button is released
     myFeeder.runBoth(0.0); //Stop loader & Feeder 
     myShooter.runWithJoy(0.0); //Stop the shooter
+    myIntake.run(0.0); //Default command stops it anyway, but here just in case
   }
 
   @Override // Returns true when the command should end. //Stops when it's key it's bound to in robotContainer let go

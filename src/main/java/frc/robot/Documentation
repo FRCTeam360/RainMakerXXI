@@ -47,7 +47,7 @@ Controller (Port 2): (Mode light off always)
 5 (L bumper): Run hopper (Reversible if holding x) (in command RunFeeder)
 6 (R bumper): Run loader (Reversible if holding X) (in command RunFeeder)
 7 (L trigger): Run Intake (Reversible if holding X) (in command RunIntake)
-8 (R trigger): Run shooter velcoity & if at velocity run loader + hopper (in RobotContainer configureButtonBinds() command is ShootBalls)
+8 (R trigger): Run shooter velcoity & if at velocity run loader+hopper+intake (in RobotContainer configureButtonBinds() command is ShootBalls)
 9 (back): When held allows for ?-axis (right stick up and down) to control the erector up and down (in command Climb)
 10 (start): When held allows for y-axis (left stick up and down) to controll shooter speed (in command ManualShooter) (Scaled by 0.65)
 11 (L stick):
@@ -90,5 +90,6 @@ Shooter Velocity: the velocity of the shooter in ticks (in sub Shooter)
 Shooter Ready: is the velocity below targetVelocity & more than 200 less than velocity (200 is from LoadBalls command) (in sub Shooter)
 Shooter Timer: when align shoot is ran it displays time since shooter started revving up (in cmd LoadBalls & AutoLoadBalls)
 Climber Enable: boolean of whether or not the toggle button has been hit (if green climber is enabled, if red climber is disabled) (in cmd Climb)
+Auto Choice: Is a sendable chooser to select which auto we want to run
 
 ========================================================================================
