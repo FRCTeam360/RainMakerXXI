@@ -69,6 +69,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     new AutoBackupOnTicks(drivetrain)
   );
 
+  /*
   private final RamseteCommand m_autoCommand_sanityS = new RamseteCommand(
     TrajectoryConstants.sanityS,
     drivetrain::getPose,
@@ -115,6 +116,8 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
       drivetrain
     )
   );
+  */
+
   /*
   private final Command m_autoCommand_fwdRev = new SequentialCommandGroup(
     new RamseteCommand(
@@ -280,13 +283,13 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     configureButtonBindings();
 
     //m_chooser.addOption("fwd & rev Sanity", m_autoCommand_fwdRev);
-    m_chooser.addOption("Line Sanity", m_autoCommand_sanityLine);
-    m_chooser.addOption("S Sanity", m_autoCommand_sanityS);
-
-    m_chooser.addOption("Anywhere Auto", m_autoCommand_backup); //Shoot & backup
+    //m_chooser.addOption("Line Sanity", m_autoCommand_sanityLine);
+    //m_chooser.addOption("S Sanity", m_autoCommand_sanityS);
     //m_chooser.addOption("Left Auto", m_autoCommand_left); 
-    m_chooser.addOption("Middle Auto", m_autoCommand_middle); //Middle auto
-    m_chooser.addOption("Trench Run Auto", m_autoCommand_right); //Right auto for the trench run
+
+    m_chooser.addOption("Anywhere Auto: Works", m_autoCommand_backup); //Shoot & backup
+    m_chooser.addOption("Middle Auto: Scuffed", m_autoCommand_middle); //Middle auto
+    m_chooser.addOption("Trench Run Auto: Just No", m_autoCommand_right); //Right auto for the trench run
 
     SmartDashboard.putData("Auto Choice", m_chooser);
   }
@@ -302,9 +305,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private void configureButtonBindings() {
     new JoystickButton(joyR, 5).whenPressed(switchCamMode);
     new JoystickButton(joyOI, 8).whenHeld(shootBalls);
-    //if(limelight.validTarget()) { 
-      new JoystickButton(joyR , 1).whenHeld(alignShoot);  //This whenHeld schedules a command when a trigger changes from inactive to active (or, accordingly, when a button is initially pressed) and cancels it when the trigger becomes inactive again (or the button is released). The command will not be re-scheduled if it finishes while the trigger is still active.
-   // }
+    new JoystickButton(joyR , 1).whenHeld(alignShoot);  //This whenHeld schedules a command when a trigger changes from inactive to active (or, accordingly, when a button is initially pressed) and cancels it when the trigger becomes inactive again (or the button is released). The command will not be re-scheduled if it finishes while the trigger is still active.
   }
   
   public Command getAutonomousCommand() { //Called int robot autonomousInit which schedules the command sent to it
