@@ -68,6 +68,15 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     ),
     new AutoBackupOnTicks(drivetrain)
   );
+  private final Command m_autoCommand_variableMove = new SequentialCommandGroup(
+    new ParallelRaceGroup(      
+      new Align(drivetrain, limelight), 
+      new AutoLoadBalls(feeder, limelight, shooter), //This one has the abort feature in it
+      new AutoRunIntake(intake),
+      new ShooterRamp(shooter) 
+    ),
+    new AutoMoveOnTicks(drivetrain, 1) //Second peram is distance, positive values go forward, negative values go reverse
+  );
 
   /*
   private final RamseteCommand m_autoCommand_sanityS = new RamseteCommand(
@@ -290,6 +299,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     m_chooser.addOption("Anywhere Auto: Works", m_autoCommand_backup); //Shoot & backup
     m_chooser.addOption("Middle Auto: Scuffed", m_autoCommand_middle); //Middle auto
     m_chooser.addOption("Trench Run Auto: Just No", m_autoCommand_right); //Right auto for the trench run
+    m_chooser.addOption("Variable Anywhere Auto: Untested", m_autoCommand_variableMove); //Goes set distance, if our alliances mates want it
 
     SmartDashboard.putData("Auto Choice", m_chooser);
   }
