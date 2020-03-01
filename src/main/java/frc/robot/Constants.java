@@ -19,13 +19,9 @@ import edu.wpi.first.wpilibj.trajectory.TrajectoryGenerator;
 import edu.wpi.first.wpilibj.trajectory.constraint.DifferentialDriveVoltageConstraint;
 import edu.wpi.first.wpilibj.controller.SimpleMotorFeedforward;
 
-/**
- * The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean
- * constants.  This class should not be used for any other purpose.  All constants should be
- * declared globally (i.e. public static).  Do not put anything functional in this class.
- * <p>It is advised to statically import this class (or one of its inner classes) wherever the
- * constants are needed, to reduce verbosity.
- */
+ //The Constants class provides a convenient place for teams to hold robot-wide numerical or boolean constants.  
+ //This class should not be used for any other purpose.  All constants should be declared globally (i.e. public static). 
+ //Do not put anything functional in this class. It is advised that you statically import this.
 
 public final class Constants {
     public static final int PDPId = 0;
@@ -67,7 +63,6 @@ public final class Constants {
     }
     public static final class IntakeConstants{
         public static final int intakeId = 11; //Intake1
-
     }
     public static final class FeederConstants{
         public static final int loaderMotorId = 7; //Feed1
@@ -88,28 +83,26 @@ public final class Constants {
     public static final class AutoConstants {
         //Conversions for the Neos
         private static final double pi = 3.1415926535897932384626433832795028841971693993751058209749445923078164062862089986280348253421170679;
-        public static final double ticksToMeters = ( ((15.0/85.0)*(30.0/40.0)) / 1.0 ) * ( (pi * .1524) / 1.0 ); //Correct now
-        public static final double hundredMstoSecond = 1.0; //This isn't needed and im lazy to get rid of it, week 5 project
+        public static final double ticksToMeters = ( ((15.0/85.0)*(30.0/40.0)) / 1.0 ) * ( (pi * .1524) / 1.0 ); 
 
-        //Done with characterization, all values seem to be okay
-        public static final double ksVolts = 0.222; //PB
-        public static final double kvVoltSecondsPerMeter = 1.96; //PB
-        public static final double kaVoltSecondsSquaredPerMeter = 0.473; //PB
-        public static final double kPDriveVel = 0.4; //0.005 //2.43 //Potentially used by AutoAlignShoot & AlightShoot (kpAim in limelight example) 
-        public static final double kTrackwidthMeters = 0.6663144130546255; // -.02552892613083797 PB - measured  0.63246 - according to what i found online, ignore the measured and use what characterization says
+        //Values for Ramsete controller - baseline from characterization & manually tuned
+        public static final double ksVolts = 0.222; 
+        public static final double kvVoltSecondsPerMeter = 1.96; 
+        public static final double kaVoltSecondsSquaredPerMeter = 0.473;
+        public static final double kPDriveVel = 0.4; 
+        public static final double kTrackwidthMeters = 0.6663144130546255; //Value from Characterization, not actual
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
 
-        //These I just make up as I go, tho they seem to be ignored? Goal is 15-9 = 6seconds for the trench run auto
-        //Tested @ prac field, 3, 0.5 total25-9=16:   Testing match #1 6, 1:   Testing match #2 6, 2
-        public static final double kMaxSpeedMetersPerSecond = 6;
+        //3,0.5 works and so does 6, 1 if want to increase more only change acceleration as 6 is near max robot velocity
+        public static final double kMaxSpeedMetersPerSecond = 6; //Robot is 0-6.5 about
         public static final double kMaxAccelerationMetersPerSecondSquared = 1;
 
-        // Very Reasonable baseline values for a RAMSETE follower in units of meters and seconds - maybe change later
-        public static final double kRamseteB = 4.0; //0 to infinite
-        public static final double kRamseteZeta = 0.7; //1.0 //0 to 1
-        public static final boolean kGyroReversed = true; //cuz characterization told me and dint tell me
+        //Ramsete Values - 2,.7 are default and these have been tuned by hand
+        public static final double kRamseteB = 4.0; //0 to infinite - Agression
+        public static final double kRamseteZeta = 0.7; //1.0 //0 to 1 - Masking
+        public static final boolean kGyroReversed = true; //Characterization says this isn't necessary but it seems to perform better....
     }
-	public static final class TrajectoryConstants {
+	public static final class TrajConfig { // Remember, can't be named "TrajectoryConfig(s)" cuz thats an imported class
         //Initializes Tarjectory configurations and Trajectories
         private static final DifferentialDriveVoltageConstraint autoVoltageConstraint = new DifferentialDriveVoltageConstraint(
             new SimpleMotorFeedforward(
@@ -120,7 +113,7 @@ public final class Constants {
             AutoConstants.kDriveKinematics,
             10
         );
-        private static final TrajectoryConfig config =
+        public static final TrajectoryConfig configFwd =
    			new TrajectoryConfig(
                 AutoConstants.kMaxSpeedMetersPerSecond,
                 AutoConstants.kMaxAccelerationMetersPerSecondSquared
@@ -129,7 +122,7 @@ public final class Constants {
             .addConstraint(autoVoltageConstraint) // Apply the voltage constraint
             .setReversed(false); //forward
     
-        private static final TrajectoryConfig configRev =
+        public static final TrajectoryConfig configRev =
             new TrajectoryConfig(
              AutoConstants.kMaxSpeedMetersPerSecond,
              AutoConstants.kMaxAccelerationMetersPerSecondSquared
@@ -137,29 +130,39 @@ public final class Constants {
          .setKinematics(AutoConstants.kDriveKinematics) // Add kinematics to ensure max speed is actually obeyed
          .addConstraint(autoVoltageConstraint) // Apply the voltage constraint
          .setReversed(true); //reversed
-            
-		// An example trajectory to follow(Converted to a testing trajectory; documentation is all default).  All units in meters.
+    }
+
+    public static final class SanityTrajectories {
+        // An example trajectory to follow(Converted to a testing trajectory; documentation is all default).  All units in meters.
         public static final Trajectory sanityS = TrajectoryGenerator.generateTrajectory( //If fails, it's ur AutoConstants not this.
             new Pose2d(0, 0, new Rotation2d(0)), // Start at the origin facing the +X direction
             List.of( new Translation2d(1, 1), new Translation2d(2, -1) ), // Pass through these two interior waypoints, making an 's' curve path
             new Pose2d(3, 0, new Rotation2d(0)), // End 3 meters straight ahead of where we started, facing forward
-            config
+            TrajConfig.configFwd 
         );
         //Straight line trajectory, runs forward 2 meters
         public static final Trajectory sanityLine = TrajectoryGenerator.generateTrajectory(
             new Pose2d(0, 0, new Rotation2d(0)), //Starts facing +X
             List.of(  ),
             new Pose2d(2, 0, new Rotation2d(0)),
-            config
+            TrajConfig.configFwd
         );
         //Sanity line to go reverse 1 meter after being ran forward 2
         public static final Trajectory sanityLineRev = TrajectoryGenerator.generateTrajectory(
             new Pose2d(2, 0, new Rotation2d(0)), 
             List.of(  ),
             new Pose2d(1, 0, new Rotation2d(0)),
-            configRev
+            TrajConfig.configRev
         );
+    }
+    
+}
 
+
+
+
+//Week 1 Trajectories, we can get rid of em if we know we won't need to refrence them
+ /*
         public static final Trajectory theAutoPathFirstStage = TrajectoryGenerator.generateTrajectory( //Auto stage 1 - backup to center
             new Pose2d(0, 0, new Rotation2d(0)), 
             List.of( new Translation2d(-2, -0.5) ),
@@ -196,7 +199,6 @@ public final class Constants {
             new Pose2d(-1.07, .40, new Rotation2d(0)), 
             config
         );
+        */
 
-    }
 
-}

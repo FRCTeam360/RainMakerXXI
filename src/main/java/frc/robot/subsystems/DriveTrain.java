@@ -118,8 +118,8 @@ public class DriveTrain extends SubsystemBase {
 
   public DifferentialDriveWheelSpeeds getWheelSpeeds() { //Must be in meters/second
     return new DifferentialDriveWheelSpeeds(
-      motorLMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond,
-      motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond
+      motorLMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters,
+      motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters
     ); //In example: m_leftEncoder.getRate() , m_rightEncoder.getRate() however, they set their rate to inclue their conversions
   }
 
@@ -178,8 +178,8 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public double getHighestVelocity () { 
-    double leftSpeed = motorLMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond;
-    double rightSpeed = motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond;
+    double leftSpeed = motorLMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters;
+    double rightSpeed = motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters;
     double highSpeed = Math.max( Math.abs(leftSpeed), Math.abs(rightSpeed) ); //Make em both positive
     return highSpeed; //In meters per second
   }
@@ -212,8 +212,8 @@ public class DriveTrain extends SubsystemBase {
     SmartDashboard.putNumber("Left Meters", motorLMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters);
     SmartDashboard.putNumber("Right Meters", motorRMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters);
     //SmartDashboard.putNumber("Num", AutoConstants.ticksToMeters);
-    SmartDashboard.putNumber("Left m/s", motorLMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond);
-    SmartDashboard.putNumber("Right m/s", motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond);
+    SmartDashboard.putNumber("Left m/s", motorLMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters );
+    SmartDashboard.putNumber("Right m/s", motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters );
   }
 
   @Override
