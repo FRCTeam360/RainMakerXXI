@@ -35,7 +35,7 @@ public class RunIntake extends CommandBase {
       if (!cont.getRawButton(1)) {
 				myIntake.run(0.95); //If left trigger is pressed and x isn't pressed, run forward
       } else {
-				myIntake.run(-0.95); //If left trigger is pressed and x is pressed, run backwards
+				myIntake.run(-0.60); //If left trigger is pressed and x is pressed, run backwards
       }
     } else {
       myIntake.run(0.0); //If 7 isn't hit, stop it

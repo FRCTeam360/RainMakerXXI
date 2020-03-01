@@ -300,6 +300,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     m_chooser.addOption("Middle Auto: Scuffed", m_autoCommand_middle); //Middle auto
     m_chooser.addOption("Trench Run Auto: Just No", m_autoCommand_right); //Right auto for the trench run
     m_chooser.addOption("Variable Anywhere Auto: Untested", m_autoCommand_variableMove); //Goes set distance, if our alliances mates want it
+    m_chooser.setDefaultOption("Anywhere Auto: Default Works", m_autoCommand_backup); //Makes backup auto the defaulr
 
     SmartDashboard.putData("Auto Choice", m_chooser);
   }
