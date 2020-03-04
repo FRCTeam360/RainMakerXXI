@@ -10,21 +10,19 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj.Joystick;
 import frc.robot.subsystems.Shifter;
 import static frc.robot.Constants.OIConstants.*;
-import static frc.robot.Constants.ShifterConstants.isInAutoShift;
+import static frc.robot.Constants.inAuto;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
-public class Shift extends CommandBase {
+public class Shift extends CommandBase { //https://first.wpi.edu/FRC/roborio/beta/docs/java/edu/wpi/first/wpilibj/DoubleSolenoid.html seems as tho u can do .get() to see the starting state
 
   private final Shifter shifter;
   private final Joystick joystickR;
-  private final Joystick joystickL;
 
   public Shift(Shifter inShifter) {
     shifter = inShifter;
 
     joystickR = new Joystick(joyRPort);
-    joystickL = new Joystick(joyLPort);
 
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(shifter);
@@ -38,11 +36,11 @@ public class Shift extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if( isInAutoShift != true ){ //if not in autonomous mode
+    if( inAuto != true ){ //if not in autonomous mode
 
-      if ( joystickR.getRawButton(1) ) { //Shift up
+      if ( joystickR.getRawButton(3) ) { //Shift up
         shifter.shiftUp();
-      } else if ( joystickL.getRawButton(1) ) { //shift down 
+      } else if ( joystickR.getRawButton(4) ) { //shift down 
         shifter.shiftDown();
       }
 

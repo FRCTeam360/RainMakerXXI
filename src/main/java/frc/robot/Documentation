@@ -1,0 +1,95 @@
+
+========================================================================================
+Right Joystick (Port 0):
+1: Start AlignShoot (in RobotContainer) (whenReleased cancels command & Operator can cancel it )
+2:
+3: Shift up (in Shift command)
+4: Shift down (in Shift command)
+5: Run switchCamMode command (in RobotContainer)
+6:
+7:
+8:
+9:
+10:
+11:
+12:
+Axis 0 (X-axis, stick left/right):
+Axis 1 (y-axis, stick forward/backward): Right side drivetrain (in command JoystickTankDrive)
+Axis 2 (z-rotate, stick rotate left/right):
+Axis 3 (slider, adjusty thingy):
+
+========================================================================================
+Left Joystick (Port 1):
+Yaw: left side of robot
+1:
+2:
+3:
+4:
+5: 
+6:
+7:
+8:
+9:
+10:
+11:
+12:
+Axis 0 (X-axis, stick left/right):
+Axis 1 (y-axis, stick forward/backward): Left side drivetrain (in command JoystickTankDrive)
+Axis 2 (z-rotate, stick rotate left/right):
+Axis 3 (slider, adjusty thingy):
+
+========================================================================================
+Controller (Port 2): (Mode light off always)
+1 (x): Reverse direction of binds on: leftTrigger, leftBumper, & rightBumper (in runFeeder & RunIntake)
+2 (a): Enables the climber, tap it once and ur good to go (in command Climb)
+3 (b): Abort alignShoot (in ShooterRamp command, which is called by AlignShoot)
+4 (y): Run shooter at set velocity (in ManualShooter) (won't run hopper/loader if at targetVelocity)
+5 (L bumper): Run hopper (Reversible if holding x) (in command RunFeeder)
+6 (R bumper): Run loader (Reversible if holding X) (in command RunFeeder)
+7 (L trigger): Run Intake (Reversible if holding X) (in command RunIntake) (Whenr reversed runs at 60 percent, when forward 95 percent)
+8 (R trigger): Run shooter velcoity & if at velocity run loader+hopper+intake (in RobotContainer configureButtonBinds() command is ShootBalls)
+9 (back): When held allows for ?-axis (right stick up and down) to control the erector up and down (in command Climb)
+10 (start): When held allows for y-axis (left stick up and down) to controll shooter speed (in command ManualShooter) (Scaled by 0.65)
+11 (L stick):
+12 (R stick):
+Axis 0 (X-axis , left stick left/right):
+Axis 1 (Y-axis , left stick up/down): If 10 held see it || if not held and enabled (see "a") Left climber winch up/down (in command Climb)
+Axis 2 (Z-axis , right stick left/right):
+Axis 3 (Z-rotate , right stick up/down): If 9 held see it || if not held and enabled (see "a") Right climber winch up/down (in command Climb) 
+
+========================================================================================
+CAN Ids & Binds:
+Sparks:
+    1. Lmaster (DB-LA)
+    2. Lslave (DB-LB)
+    3. Rmaster (DB-RA)
+    4. RSalve (DB-RB)
+    5. ClimbLeft (WINCH1)
+    6. ClimbRight (WINCH2)
+Talons:
+    7. Feed1 (loader)
+    8. Feed2 (hopper)
+    9. Shoot1 (master)
+    10. Shoot2 (slave)
+    11. Intake1 (intake)
+    12. Climb1 (erector)
+Pneumatics Solenoids IDs:
+    0.
+    1.
+    2. Shifter: Low Gear & Reverse
+    3. Shifter: High Gear & Forward
+    4. 
+    5. (Solenoid channel for this is broken on the practiceBot)
+
+========================================================================================
+Comp Bot Dashboard Items:
+Lime Target: green if limelioght has a target (in sub LimeLight)
+Lime X: is limelight x offset, zeroed if no target (in sub LimeLight)
+limelight: this is the limelight view screen (in sub LimeLight)
+Shooter Velocity: the velocity of the shooter in ticks (in sub Shooter)
+Shooter Ready: is the velocity below targetVelocity & more than 200 less than velocity (200 is from LoadBalls command) (in sub Shooter)
+Shooter Timer: when align shoot is ran it displays time since shooter started revving up (in cmd LoadBalls & AutoLoadBalls)
+Climber Enable: boolean of whether or not the toggle button has been hit (if green climber is enabled, if red climber is disabled) (in cmd Climb)
+Auto Choice: Is a sendable chooser to select which auto we want to run (in RobotContainer constructor)
+
+========================================================================================

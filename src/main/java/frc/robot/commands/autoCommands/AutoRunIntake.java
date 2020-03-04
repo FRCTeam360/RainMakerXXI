@@ -5,29 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.autoCommands;
 
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import frc.robot.subsystems.DriveTrain;
 
-import static frc.robot.Constants.OIConstants.*;
+import frc.robot.subsystems.Intake;
 
-public class JoystickTankDrive extends CommandBase {
+public class AutoRunIntake extends CommandBase {
 
-  private final DriveTrain myDriveTrain;
+  private final Intake myIntake;
 
-  private final Joystick joyR;
-  private final Joystick joyL;
-
-  public JoystickTankDrive(DriveTrain driveTrain) {
-
-    joyR = new Joystick(joyRPort);
-    joyL = new Joystick(joyLPort);
-
-    myDriveTrain = driveTrain;
-
-    addRequirements(myDriveTrain); // Use addRequirements() here to declare subsystem dependencies.
+  public AutoRunIntake(Intake intake) {
+    myIntake = intake;
+    addRequirements(intake);     // Use addRequirements() here to declare subsystem dependencies.
   }
 
   @Override
@@ -36,24 +26,17 @@ public class JoystickTankDrive extends CommandBase {
 
   @Override
   public void execute() {   // Called every time the scheduler runs while the command is scheduled.
-    if(Math.abs(joyR.getRawAxis(1)) >= .125){
-    	myDriveTrain.driveRMAX(-1 * joyR.getRawAxis(1) * 0.8);
-    }else{
-    	myDriveTrain.driveRMAX(0);
-    }
-    if(Math.abs(joyL.getRawAxis(1)) >= .125){
-      myDriveTrain.driveLMAX(-1 * joyL.getRawAxis(1) * 0.8);
-    }else{
-    	myDriveTrain.driveLMAX(0);
-    }
+    myIntake.run(1); //full sped
   }
 
   @Override
   public void end(boolean interrupted) {   // Called once the command ends or is interrupted.
+    myIntake.run(0.0); //Stops the intake when the command is ended
   }
 
-  @Override
+
+  @Override   
   public boolean isFinished() {  // Returns true when the command should end.
-    return false;
+    return false; //Will be run as part of a parelel race and is therefore unneeded
   }
 }

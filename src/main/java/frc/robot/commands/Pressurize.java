@@ -14,8 +14,8 @@ import edu.wpi.first.wpilibj.Timer;
 
 public class Pressurize extends CommandBase {
 
-  Timer timer;
-  boolean shouldRun;
+  private Timer timer;
+  private boolean shouldRun;
 
   private final Pneumatics pneumatics;
 
@@ -26,8 +26,7 @@ public class Pressurize extends CommandBase {
 	  timer.reset();
     timer.stop();
     
-    // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(inPneumatics);
+    addRequirements(inPneumatics); // Use addRequirements() here to declare subsystem dependencies.
   }
 
   // Called when the command is initially scheduled.
