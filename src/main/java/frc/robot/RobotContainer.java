@@ -13,11 +13,12 @@ import edu.wpi.first.wpilibj.Joystick;
 
 import frc.robot.Constants.OIConstants;
 import frc.robot.commands.*;
+import frc.robot.commands.autos.*;
 import frc.robot.subsystems.*;
 
 import edu.wpi.first.wpilibj2.command.Command;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+//import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+//import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -49,15 +50,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
 
   private final AlignShoot alignShoot = new AlignShoot(drivetrain, limelight, shooter, feeder, intake);
 
-  private final Command m_autoCommand_backup = new SequentialCommandGroup(
-    new ParallelRaceGroup(      
-      new Align(drivetrain, limelight), 
-      new AutoLoadBalls(feeder, limelight, shooter), //This one has the abort feature in it
-      new AutoRunIntake(intake),
-      new ShooterRamp(shooter) 
-    ),
-    new AutoBackupOnTicks(drivetrain)
-  );
+  private final Command m_autoCommand_backup = new ThreeBallsAndLine( drivetrain, limelight, feeder, shooter, intake );
   
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -73,8 +66,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
 
     configureButtonBindings();
 
-    m_chooser.addOption("Anywhere Auto: Works", m_autoCommand_backup); //Shoot & backup
-    m_chooser.setDefaultOption("Anywhere Auto: Default Works", m_autoCommand_backup); //Makes backup auto the defaulr
+    m_chooser.setDefaultOption("Anywhere Auto: Works", m_autoCommand_backup); //Makes backup auto the defaulr
 
     SmartDashboard.putData("Auto Choice", m_chooser);
   }
