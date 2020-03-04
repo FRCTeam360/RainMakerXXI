@@ -21,7 +21,7 @@ Axis 3 (slider, adjusty thingy):
 ========================================================================================
 Left Joystick (Port 1):
 Yaw: left side of robot
-1: Start ManualShooter runs at set velocity (DNE) =-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-
+1: Start ManualShooter runs at set velocity (in RobotContainer)
 2:
 3:
 4:
