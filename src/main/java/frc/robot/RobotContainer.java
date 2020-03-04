@@ -80,7 +80,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   }
   private void configureAutonomousChooser() {
     m_chooser.setDefaultOption("Anywhere Auto: Works", m_autoCommand_backup); //Makes backup auto the defaulr
-
+		//m_chooser.addOption(name, object);
     SmartDashboard.putData("Auto Choice", m_chooser);
   }
 
