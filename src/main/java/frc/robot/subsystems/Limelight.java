@@ -23,9 +23,6 @@ public class Limelight extends SubsystemBase {
 
   NetworkTableEntry camMode = table.getEntry("camMode");
   
-  /**
-   * Creates a new Limelight.
-   */
   public Limelight() {
   }
 
@@ -66,6 +63,6 @@ public class Limelight extends SubsystemBase {
 
     SmartDashboard.putBoolean("Lime Target", validTarget()); //Comp Setup
     SmartDashboard.putNumber("Lime X", tx.getDouble(0.0)); //Comp Setup
-    //Potentially add limelight display here
+    //SmartDashboard.putNumber("Shooter Target",  ); //Comp Setup
   }
 }
