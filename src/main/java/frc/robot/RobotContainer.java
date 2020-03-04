@@ -57,6 +57,12 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   public RobotContainer() {
+    configureDefaultCommands();
+    configureButtonBindings();
+    configureAutonomousChooser();
+  }
+
+  private void configureDefaultCommands() {
     drivetrain.setDefaultCommand(joystickTankDrive);
     pneumatics.setDefaultCommand(pressurize);
     shifter.setDefaultCommand(shift);
@@ -65,9 +71,14 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     intake.setDefaultCommand(runIntake);
     climber.setDefaultCommand(climb);
     shooter.setDefaultCommand(manualShooter);
-
-    configureButtonBindings();
-
+  }
+  private void configureButtonBindings() {
+    new JoystickButton(joyR, 5).whenPressed(switchCamMode);
+    new JoystickButton(joyOI, 8).whenHeld(shootBalls);
+    new JoystickButton(joyL, 1).whenHeld( shooterRamp );
+    new JoystickButton(joyR , 1).whenHeld(alignShoot);  //This whenHeld schedules a command when a trigger changes from inactive to active (or, accordingly, when a button is initially pressed) and cancels it when the trigger becomes inactive again (or the button is released). The command will not be re-scheduled if it finishes while the trigger is still active.
+  }
+  private void configureAutonomousChooser() {
     m_chooser.setDefaultOption("Anywhere Auto: Works", m_autoCommand_backup); //Makes backup auto the defaulr
 
     SmartDashboard.putData("Auto Choice", m_chooser);
@@ -76,13 +87,6 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   public DriveTrain gDriveTrain () { return drivetrain; }
   public Shifter gShifter() { return shifter; }
 
-  private void configureButtonBindings() {
-    new JoystickButton(joyR, 5).whenPressed(switchCamMode);
-    new JoystickButton(joyOI, 8).whenHeld(shootBalls);
-    new JoystickButton(joyL, 1).whenHeld( shooterRamp );
-    new JoystickButton(joyR , 1).whenHeld(alignShoot);  //This whenHeld schedules a command when a trigger changes from inactive to active (or, accordingly, when a button is initially pressed) and cancels it when the trigger becomes inactive again (or the button is released). The command will not be re-scheduled if it finishes while the trigger is still active.
-  }
-  
   public Command getAutonomousCommand() { //Called int robot autonomousInit which schedules the command sent to it
     return m_chooser.getSelected(); //Sends the selected autonomous command initialized above 
   }
