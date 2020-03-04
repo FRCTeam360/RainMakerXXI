@@ -40,7 +40,9 @@ public final class Constants {
         public static final double kD = 0;
         public static final double kF = (0.6 * 1023.0) / 15900.0;
         public static final double kPeakOutput = 1; 
-        public static final double targetVelocity = 14800; //ticks per 100m/s //Used by a few classes
+
+        public static final double backupTargetVelocity = 14800; //Constant
+        public static double targetVelocity = backupTargetVelocity; //will get changed in the future by limelight subsystem or a command...
     }
     public static final class DriveTrainConstants {
         public static final int motorLMasterID = 1;
