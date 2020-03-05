@@ -7,8 +7,6 @@
 
 package frc.robot.commands.autos;
 
-import static frc.robot.Constants.SanityTrajectories.*;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import edu.wpi.first.wpilibj.DriverStation;
@@ -17,8 +15,6 @@ import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 
 import edu.wpi.first.wpilibj2.command.InstantCommand;
-import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
