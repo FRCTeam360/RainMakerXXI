@@ -14,12 +14,9 @@ import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj.Joystick;
 import static frc.robot.Constants.OIConstants.*;
 
-import static frc.robot.Constants.inAuto;
-
 public class ShooterRamp extends CommandBase {
   
   private final Shooter myShooter;
-
   Joystick cont;
 
   public ShooterRamp(Shooter shooter) {
