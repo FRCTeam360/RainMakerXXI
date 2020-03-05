@@ -21,22 +21,22 @@ import frc.robot.subsystems.*;
 
 public class PathTesting extends InstantCommand {
 
-  public String sCurveTrajectoryString;
+  public String trajectoryString;
   public DriveTrain drivetrain;
 
   public Path path;
   public Trajectory traj;
 
-  public PathTesting( String sCurveTrajectoryStringInput , DriveTrain drivetrainInput ) {
+  public PathTesting( String trajectoryStringInput , DriveTrain drivetrainInput ) {
 
-    sCurveTrajectoryString = sCurveTrajectoryStringInput;
+    trajectoryString = trajectoryStringInput;
     drivetrain = drivetrainInput;
 
     try {
-      path = Filesystem.getDeployDirectory().toPath().resolve(sCurveTrajectoryString);
+      path = Filesystem.getDeployDirectory().toPath().resolve(trajectoryString);
       traj = TrajectoryUtil.fromPathweaverJson(path);
     } catch (IOException ex) {
-      DriverStation.reportError("Unable to open trajectory: " + sCurveTrajectoryString, ex.getStackTrace());
+      DriverStation.reportError("Unable to open trajectory: " + trajectoryString, ex.getStackTrace());
     }
     
     addRequirements(drivetrain);
