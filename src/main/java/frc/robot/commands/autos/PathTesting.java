@@ -38,7 +38,7 @@ public class PathTesting extends InstantCommand {
 
     try {
       path = Filesystem.getDeployDirectory().toPath().resolve(sCurveTrajectoryString);
-      Trajectory trajectory = TrajectoryUtil.fromPathweaverJson(path);
+      traj = TrajectoryUtil.fromPathweaverJson(path);
     } catch (IOException ex) {
       DriverStation.reportError("Unable to open trajectory: " + sCurveTrajectoryString, ex.getStackTrace());
     }
