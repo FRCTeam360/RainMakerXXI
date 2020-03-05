@@ -33,8 +33,6 @@ public class ManualShooter extends CommandBase {
   public void execute() {
     if (cont.getRawButton( 10 )) { //If start button held
       shooter.runWithJoy( -cont.getRawAxis(1) * 0.65 ); //if button held, run it, needs to be reversed cuz the controller is low iq
-    } else if ( cont.getRawButton(4) ) { 
-      shooter.run(); //if Button 4 pressed run at the target velocity
     } else {
       shooter.runWithJoy(0.0); //Don't run
     }
