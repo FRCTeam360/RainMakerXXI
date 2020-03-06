@@ -53,7 +53,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final ShooterRamp shooterRamp = new ShooterRamp(shooter);
 
   private final Command m_autoCommand_backup = new ThreeBallsAndLine( drivetrain, limelight, feeder, shooter, intake );
-  private final Command m_autoCommand_pathTesting = new PathTesting("paths/sCurve.wpilib.json", drivetrain);
+  private final Command m_autoCommand_pathTesting = new PathTesting("sCurve.wpilib.json", drivetrain);
   
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
