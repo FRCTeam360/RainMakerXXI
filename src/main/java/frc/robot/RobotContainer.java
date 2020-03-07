@@ -81,8 +81,11 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   }
   private void configureAutonomousChooser() {
     m_chooser.setDefaultOption("Anywhere Auto: Works", m_autoCommand_backup); //Makes backup auto the defaulr
-    m_chooser.setDefaultOption("Path Testing: Testing", m_autoCommand_pathTesting);
-    m_chooser.setDefaultOption("Trench Run: Testing", m_autoCommand_trenchRun);
+    m_chooser.addOption("Path Testing: Testing", m_autoCommand_pathTesting);
+    m_chooser.addOption("Trench Run Split: Testing", m_autoCommand_trenchRun);
+    m_chooser.addOption("Trench Run Full: DNE", m_autoCommand_backup);
+    m_chooser.addOption("Trench Steal: DNE", m_autoCommand_backup);
+    m_chooser.addOption("Middle Auto: DNE", m_autoCommand_backup);
 		//m_chooser.addOption(name, object);
     SmartDashboard.putData("Auto Choice", m_chooser);
   }
