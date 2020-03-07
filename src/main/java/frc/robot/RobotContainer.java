@@ -44,16 +44,16 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final ManualShooter manualShooter = new ManualShooter(shooter);
   private final RunFeeder runFeeder = new RunFeeder(feeder);
   private final Climb climb = new Climb(climber);
+  private final AlignShoot alignShoot = new AlignShoot(drivetrain, limelight, shooter, feeder, intake);
+  private final ShooterRamp shooterRamp = new ShooterRamp(shooter);
 
   private Joystick joyR = new Joystick(OIConstants.joyRPort);
   private Joystick joyL = new Joystick(OIConstants.joyLPort);
   private Joystick joyOI = new Joystick(OIConstants.contPort);
 
-  private final AlignShoot alignShoot = new AlignShoot(drivetrain, limelight, shooter, feeder, intake);
-  private final ShooterRamp shooterRamp = new ShooterRamp(shooter);
-
   private final Command m_autoCommand_backup = new ThreeBallsAndLine( drivetrain, limelight, feeder, shooter, intake );
   private final Command m_autoCommand_pathTesting = new PathTesting("straightLine.wpilib.json", drivetrain).getCommand();
+  private final Command m_autoCommand_trenchRun = new TrenchRun( drivetrain, limelight, feeder, shooter, intake );
   
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -81,7 +81,8 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   }
   private void configureAutonomousChooser() {
     m_chooser.setDefaultOption("Anywhere Auto: Works", m_autoCommand_backup); //Makes backup auto the defaulr
-    m_chooser.setDefaultOption("Path Testing", m_autoCommand_pathTesting);
+    m_chooser.setDefaultOption("Path Testing: Testing", m_autoCommand_pathTesting);
+    m_chooser.setDefaultOption("Trench Run: Testing", m_autoCommand_trenchRun);
 		//m_chooser.addOption(name, object);
     SmartDashboard.putData("Auto Choice", m_chooser);
   }
