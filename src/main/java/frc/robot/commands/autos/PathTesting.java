@@ -11,8 +11,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
-import edu.wpi.first.wpilibj.geometry.Pose2d;
-import edu.wpi.first.wpilibj.geometry.Rotation2d;
+//import edu.wpi.first.wpilibj.geometry.Pose2d;
+//import edu.wpi.first.wpilibj.geometry.Rotation2d;
 //import edu.wpi.first.wpilibj.geometry.Transform2d;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
@@ -30,7 +30,7 @@ public class PathTesting {
   public Path path;
   public Trajectory traj;
   public Trajectory transTraj;
-  public Pose2d bOrigin;
+  //public Pose2d bOrigin;
 
   public PathTesting( String trajectoryStringInput , DriveTrain drivetrainInput ) {
     trajectoryString = trajectoryStringInput;
@@ -45,9 +45,13 @@ public class PathTesting {
       System.out.println("======Unable to open trajectory: " + trajectoryString + "======");
     }
 
+    /*
     bOrigin = new Pose2d(0, 0, Rotation2d.fromDegrees(0));
     transTraj = traj.relativeTo(bOrigin);
     System.out.println(transTraj.toString());
+    */
+    var transform = drivetrainInput.getPose().minus(traj.getInitialPose());
+    transTraj = traj.transformBy(transform);
   }
 
   public SequentialCommandGroup getCommand() {
