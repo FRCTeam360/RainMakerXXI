@@ -15,8 +15,8 @@ import frc.robot.Constants.trenchRunTrajectories;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
-public class TrenchRun extends SequentialCommandGroup {
-  public TrenchRun( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
+public class FullTrenchRun extends SequentialCommandGroup {
+  public FullTrenchRun( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
     super(
       new ParallelRaceGroup(    //Align shoot
         new Align(drivetrain, limelight), 

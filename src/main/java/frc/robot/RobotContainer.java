@@ -53,7 +53,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
 
   private final Command m_autoCommand_backup = new ThreeBallsAndLine( drivetrain, limelight, feeder, shooter, intake );
   private final Command m_autoCommand_pathTesting = new PathTesting("straightLine.wpilib.json", drivetrain).getCommand();
-  private final Command m_autoCommand_trenchRun = new TrenchRun( drivetrain, limelight, feeder, shooter, intake );
+  private final Command m_autoCommand_trenchRun = new FullTrenchRun( drivetrain, limelight, feeder, shooter, intake );
   
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
