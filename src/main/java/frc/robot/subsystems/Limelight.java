@@ -13,6 +13,8 @@ import edu.wpi.first.networktables.NetworkTableInstance;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import static frc.robot.Constants.ShooterConstants.*;
+
 public class Limelight extends SubsystemBase {
 
   NetworkTable table = NetworkTableInstance.getDefault().getTable("limelight");
@@ -56,13 +58,23 @@ public class Limelight extends SubsystemBase {
     return ta.getDouble(0.0);
   }
 
+  public void updateShooterVelocity () {
+    if ( validTarget() == true ) {
+      double yLime = getY();
+      targetVelocity = (aVal * yLime * yLime) + (bVal * yLime) + ( cVal ) ;
+    } else {
+      targetVelocity = backupTargetVelocity;
+    }
+  }
+
   @Override
   public void periodic() {     // This method will be called once per scheduler run
-    //SmartDashboard.putNumber("LimelightY", ty.getDouble(0.0));
     //SmartDashboard.putNumber("LimelightArea", ta.getDouble(0.0));
-
     SmartDashboard.putBoolean("Lime Target", validTarget()); //Comp Setup
     SmartDashboard.putNumber("Lime X", tx.getDouble(0.0)); //Comp Setup
-    //SmartDashboard.putNumber("Shooter Target",  ); //Comp Setup
+    SmartDashboard.putNumber("Lime Y", ty.getDouble(0.0)); //Comp Setup
+    SmartDashboard.putNumber("Shooter Target", targetVelocity ); //Comp Setup
+
+    updateShooterVelocity();
   }
 }

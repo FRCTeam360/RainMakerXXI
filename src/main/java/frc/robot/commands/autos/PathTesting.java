@@ -13,42 +13,44 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Filesystem;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
+//import edu.wpi.first.wpilibj.geometry.Transform2d;
 import edu.wpi.first.wpilibj.trajectory.Trajectory;
 import edu.wpi.first.wpilibj.trajectory.TrajectoryUtil;
 
-import edu.wpi.first.wpilibj2.command.InstantCommand;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
-public class PathTesting extends InstantCommand {
+public class PathTesting {
 
   public String trajectoryString;
   public DriveTrain drivetrain;
 
   public Path path;
   public Trajectory traj;
+  public Trajectory transTraj;
   public Pose2d bOrigin;
 
   public PathTesting( String trajectoryStringInput , DriveTrain drivetrainInput ) {
     trajectoryString = trajectoryStringInput;
     drivetrain = drivetrainInput;
-    
+
     try {
       path = Filesystem.getDeployDirectory().toPath().resolve(trajectoryString);
       traj = TrajectoryUtil.fromPathweaverJson(path);
+      //System.out.println("======Able to open trajectory: " + trajectoryString + "======");
     } catch (IOException ex) {
       DriverStation.reportError("Unable to open trajectory: " + trajectoryString, ex.getStackTrace());
+      System.out.println("======Unable to open trajectory: " + trajectoryString + "======");
     }
 
     bOrigin = new Pose2d(0, 0, Rotation2d.fromDegrees(0));
-    traj.relativeTo(bOrigin);
-    
-    addRequirements(drivetrain);
+    transTraj = traj.relativeTo(bOrigin);
+    System.out.println(transTraj.toString());
   }
 
-  @Override   // Called when the command is initially scheduled.
-  public void initialize() {
-    new MoveWithRamsete(traj, drivetrain).andThen(() -> drivetrain.tankDriveVolts(0,0));
+  public SequentialCommandGroup getCommand() {
+    return new MoveWithRamsete(transTraj, drivetrain).andThen(() -> drivetrain.tankDriveVolts(0,0));
   }
 }

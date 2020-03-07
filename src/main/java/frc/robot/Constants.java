@@ -35,14 +35,18 @@ public final class Constants {
         public static final int kSlotIdx = 0;
         public static final int kTimeOutMs = 30;
         public static final int kPIDLoopIdx = 0;
-        public static final double kP = ((0.05 * 1023.0) / 1001.0) * 5.5; //(0.05 * 1023.0) / 453.0;
+        public static final double kP = 1.0;//((0.05 * 1023.0) / 1001.0) * 7.5 * 2.5; //(0.05 * 1023.0) / 453.0;
         public static final double kI = 0;
-        public static final double kD = 0;
+        public static final double kD = 1.5;
         public static final double kF = (0.6 * 1023.0) / 15900.0;
         public static final double kPeakOutput = 1; 
 
-        public static final double backupTargetVelocity = 14800; //Constant
+        public static final double backupTargetVelocity = 14000; //Constant
         public static double targetVelocity = backupTargetVelocity; //will get changed in the future by limelight subsystem or a command...
+
+        public static final double aVal = 6.897; //Quad Ratic regression values
+        public static final double bVal = -162.069;
+        public static final double cVal = 14546.552;
     }
     public static final class DriveTrainConstants {
         public static final int motorLMasterID = 1;
