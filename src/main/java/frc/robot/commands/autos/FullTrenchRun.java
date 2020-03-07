@@ -29,8 +29,8 @@ public class FullTrenchRun extends SequentialCommandGroup {
           trenchRunTrajectories.stageOne, //Ends when path is complete
           drivetrain
         )
-        .andThen(() -> drivetrain.tankDriveVolts(0,0)),
-        new AutoRunIntake(intake)
+        .andThen(() -> drivetrain.tankDriveVolts(0,0))
+        //new AutoRunIntake(intake)
       )
     );
 

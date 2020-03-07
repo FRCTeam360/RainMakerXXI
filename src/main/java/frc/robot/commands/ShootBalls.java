@@ -42,9 +42,9 @@ public class ShootBalls extends CommandBase {
       myIntake.run(1);
     }
 
-    if (myShooter.getVelocity() >= ShooterConstants.targetVelocity - 250 ) { //If velcoity above 100 less than target
+    if (myShooter.getVelocity() >= ShooterConstants.targetVelocity - 100 ) { //If velcoity above 100 less than target
       shouldFeed = true;
-    } else if (myShooter.getVelocity() <= ShooterConstants.targetVelocity - 350) { //If velocity less than 200 under target
+    } else if (myShooter.getVelocity() <= ShooterConstants.targetVelocity - 200) { //If velocity less than 200 under target
       shouldFeed = false;
     }
 

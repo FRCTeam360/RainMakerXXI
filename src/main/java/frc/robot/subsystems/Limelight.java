@@ -67,14 +67,23 @@ public class Limelight extends SubsystemBase {
     }
   }
 
+  private void VelocityDashboard() {
+    // read PID coefficients from SmartDashboard
+    double t = SmartDashboard.getNumber("Shooter Target", 0);
+
+    // if PID coefficients on SmartDashboard have changed, write new values to controller
+    if((t != targetVelocity)) { targetVelocity = t; }
+  }
+
   @Override
   public void periodic() {     // This method will be called once per scheduler run
     //SmartDashboard.putNumber("LimelightArea", ta.getDouble(0.0));
     SmartDashboard.putBoolean("Lime Target", validTarget()); //Comp Setup
     SmartDashboard.putNumber("Lime X", tx.getDouble(0.0)); //Comp Setup
     SmartDashboard.putNumber("Lime Y", ty.getDouble(0.0)); //Comp Setup
-    SmartDashboard.putNumber("Shooter Target", targetVelocity ); //Comp Setup
+    SmartDashboard.putNumber("Shooter Target", targetVelocity); //Comp Setup
 
+    //VelocityDashboard();
     updateShooterVelocity();
   }
 }

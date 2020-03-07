@@ -41,12 +41,12 @@ public final class Constants {
         public static final double kF = (0.6 * 1023.0) / 15900.0;
         public static final double kPeakOutput = 1; 
 
-        public static final double backupTargetVelocity = 14000; //Constant
+        public static final double backupTargetVelocity = 14500; //Constant
         public static double targetVelocity = backupTargetVelocity; //will get changed in the future by limelight subsystem or a command...
 
-        public static final double aVal = 6.897; //Quad Ratic regression values
-        public static final double bVal = -162.069;
-        public static final double cVal = 14546.552;
+        public static final double aVal = 2.697; //Quad Ratic regression values
+        public static final double bVal = -52.912;
+        public static final double cVal = 14815.146;
     }
     public static final class DriveTrainConstants {
         public static final int motorLMasterID = 1;
@@ -165,8 +165,14 @@ public final class Constants {
         public static final Trajectory stageOne = TrajectoryGenerator.generateTrajectory(
             new Pose2d(0, 0, new Rotation2d(0)), 
             List.of(  ),
-            new Pose2d(-5, 0, new Rotation2d(0)),
+            new Pose2d(-4, 0, new Rotation2d(0)),
             TrajConfig.configRev
+        );
+        public static final Trajectory stagetwo = TrajectoryGenerator.generateTrajectory(
+            new Pose2d(-4, 0, new Rotation2d(0)), 
+            List.of(  ),
+            new Pose2d(-2, 1.5, new Rotation2d(0)),
+            TrajConfig.configFwd
         );
     }
     

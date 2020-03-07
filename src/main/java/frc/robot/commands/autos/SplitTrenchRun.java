@@ -8,11 +8,41 @@
 package frc.robot.commands.autos;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 
+import frc.robot.Constants.trenchRunTrajectories;
+
+import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 
 public class SplitTrenchRun extends SequentialCommandGroup {
+  public SplitTrenchRun( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
+    super(
+      new ParallelRaceGroup(    //Align shoot
+        new Align(drivetrain, limelight), 
+        new AutoLoadBalls(feeder, limelight, shooter), //4.5 seconds total
+        new AutoRunIntake(intake),
+        new ShooterRamp(shooter) 
+      ),
+      new ParallelRaceGroup( //Run path and intake
+        new MoveWithRamsete(
+          trenchRunTrajectories.stageOne, //Ends when path is complete
+          drivetrain
+        )
+        .andThen(() -> drivetrain.tankDriveVolts(0,0)),
+        new AutoRunIntake(intake)
+      ),
+      new MoveWithRamsete(
+        trenchRunTrajectories.stagetwo, //Ends when path is complete
+        drivetrain
+      ),
+      new ParallelRaceGroup(    //Align shoot
+        new Align(drivetrain, limelight), 
+        new AutoLoadBalls(feeder, limelight, shooter), //4.5 seconds total
+        new AutoRunIntake(intake),
+        new ShooterRamp(shooter) 
+      )
+    );
 
-  public SplitTrenchRun() {
-    super();
   }
 }

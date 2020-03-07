@@ -38,7 +38,7 @@ public class AutoLoadBalls extends CommandBase { //Used by AlignShoot command
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (((myShooter.getVelocity() >= ShooterConstants.targetVelocity-300) && (Math.abs(myLimelight.getX()) <= 0.8)) || (myTimer.get() > 1.70 )){
+    if (((myShooter.getVelocity() >= ShooterConstants.targetVelocity-50) && (Math.abs(myLimelight.getX()) <= 0.8)) || (myTimer.get() > 1.70 )){
         myFeeder.runHopper(.5);
         myFeeder.runLoader(.4);
     }
@@ -56,6 +56,6 @@ public class AutoLoadBalls extends CommandBase { //Used by AlignShoot command
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return myTimer.get() >= 4.5;
+    return myTimer.get() >= 4.0;
   }
 }

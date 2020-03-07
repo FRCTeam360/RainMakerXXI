@@ -53,7 +53,8 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
 
   private final Command m_autoCommand_backup = new ThreeBallsAndLine( drivetrain, limelight, feeder, shooter, intake );
   private final Command m_autoCommand_pathTesting = new PathTesting("straightLine.wpilib.json", drivetrain).getCommand();
-  private final Command m_autoCommand_trenchRun = new FullTrenchRun( drivetrain, limelight, feeder, shooter, intake );
+  private final Command m_autoCommand_fullTrenchRun = new FullTrenchRun( drivetrain, limelight, feeder, shooter, intake );
+  private final Command m_autoCommand_splitTrenchRun = new SplitTrenchRun( drivetrain, limelight, feeder, shooter, intake );
   
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -82,8 +83,8 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private void configureAutonomousChooser() {
     m_chooser.setDefaultOption("Anywhere Auto: Works", m_autoCommand_backup); //Makes backup auto the defaulr
     m_chooser.addOption("Path Testing: Testing", m_autoCommand_pathTesting);
-    m_chooser.addOption("Trench Run Split: Testing", m_autoCommand_trenchRun);
-    m_chooser.addOption("Trench Run Full: DNE", m_autoCommand_backup);
+    m_chooser.addOption("Trench Run Split: Testing", m_autoCommand_splitTrenchRun);
+    m_chooser.addOption("Trench Run Full: Testing", m_autoCommand_fullTrenchRun);
     m_chooser.addOption("Trench Steal: DNE", m_autoCommand_backup);
     m_chooser.addOption("Middle Auto: DNE", m_autoCommand_backup);
 		//m_chooser.addOption(name, object);
