@@ -57,11 +57,11 @@ public class Shooter extends SubsystemBase {
   }
 
   public void run () {
-    if(inAuto) {
-      shooterMaster.set(ControlMode.Velocity, targetVelocity + 200); //15900 native units is 60%
-    } else {
+    // if(inAuto) {
+    //   shooterMaster.set(ControlMode.Velocity, targetVelocity + 200); //15900 native units is 60%
+    // } else {
       shooterMaster.set(ControlMode.Velocity, targetVelocity);
-    }
+    //}
   }
 
   public void runWithJoy (double output) {
