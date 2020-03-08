@@ -42,7 +42,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final RunIntake runIntake = new RunIntake(intake);
   private final RunCamera runCamera = new RunCamera(limelight);
   private final SwitchCamMode switchCamMode = new SwitchCamMode(limelight);
-  private final ShootBalls shootBalls = new ShootBalls(shooter, feeder, intake);
+  //private final ShootBalls shootBalls = new ShootBalls(shooter, feeder, intake);
   private final ManualShooter manualShooter = new ManualShooter(shooter);
   private final RunFeeder runFeeder = new RunFeeder(feeder);
   private final Climb climb = new Climb(climber);
