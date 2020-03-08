@@ -206,6 +206,20 @@ public final class Constants {
             TrajConfig.configFwd
         );
     }
+    public static final class stealBallsTrajectories {
+        public static final Trajectory stageOne = TrajectoryGenerator.generateTrajectory(
+            new Pose2d(0, 0, new Rotation2d(0)), 
+            List.of(), 
+            new Pose2d(-3, 0, new Rotation2d(0)),
+            TrajConfig.configRev
+        );
+        public static final Trajectory stageTwo = TrajectoryGenerator.generateTrajectory(
+            new Pose2d(-3, 0, new Rotation2d(0)),
+            List.of(),
+            new Pose2d(0, -4, new Rotation2d(0)),
+            TrajConfig.configFwd
+        );
+    }
     
 }
 
