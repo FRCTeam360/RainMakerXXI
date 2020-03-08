@@ -19,7 +19,7 @@ public class ThreeBallsAndLine extends SequentialCommandGroup { //Could be inlin
     super(
       new ParallelRaceGroup(      
         new Align(drivetrain, limelight), 
-        new AutoLoadBalls(feeder, limelight, shooter), //This one has the abort feature in it
+        new AutoLoadBalls(feeder, limelight, shooter, 4.0), //This one has the abort feature in it
         new AutoRunIntake(intake),
         new ShooterRamp(shooter) 
       ),

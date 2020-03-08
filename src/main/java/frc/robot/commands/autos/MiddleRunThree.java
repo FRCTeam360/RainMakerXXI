@@ -20,7 +20,7 @@ public class MiddleRunThree extends SequentialCommandGroup {
     super(
       new ParallelRaceGroup(    //Align shoot
         new Align(drivetrain, limelight), 
-        new AutoLoadBalls(feeder, limelight, shooter), //4.5 seconds total
+        new AutoLoadBalls(feeder, limelight, shooter, 4.0), //4.5 seconds total
         new AutoRunIntake(intake),
         new ShooterRamp(shooter) 
       ),
@@ -42,7 +42,7 @@ public class MiddleRunThree extends SequentialCommandGroup {
       ),
       new ParallelRaceGroup(    //Align shoot
         new Align(drivetrain, limelight), 
-        new AutoLoadBalls(feeder, limelight, shooter), //4.5 seconds total
+        new AutoLoadBalls(feeder, limelight, shooter, 4.0), //4.5 seconds total
         new AutoRunIntake(intake),
         new ShooterRamp(shooter) 
       )

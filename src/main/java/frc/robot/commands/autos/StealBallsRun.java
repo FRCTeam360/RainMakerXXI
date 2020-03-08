@@ -36,7 +36,7 @@ public class StealBallsRun extends SequentialCommandGroup {
       ),
       new ParallelRaceGroup(    //Align shoot
         new Align(drivetrain, limelight), 
-        new AutoLoadBalls(feeder, limelight, shooter), //4.5 seconds total
+        new AutoLoadBalls(feeder, limelight, shooter, 8.0), //4.5 seconds total
         new AutoRunIntake(intake),
         new ShooterRamp(shooter) 
       )

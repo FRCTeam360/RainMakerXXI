@@ -1,42 +1,47 @@
-
-
+/*----------------------------------------------------------------------------*/
+/* Copyright (c) 2019 FIRST. All Rights Reserved.                             */
+/* Open Source Software - may be modified and shared by FRC teams. The code   */
+/* must be accompanied by the FIRST BSD license file in the root directory of */
+/* the project.                                                               */
+/*----------------------------------------------------------------------------*/
 
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
-import static frc.robot.Constants.ShooterConstants;
-import frc.robot.subsystems.Feeder;
-//import frc.robot.subsystems.Intake;
-import frc.robot.subsystems.Limelight;
-import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import static frc.robot.Constants.ShooterConstants;
+
+import frc.robot.subsystems.Feeder;
+import frc.robot.subsystems.Limelight;
+import frc.robot.subsystems.Shooter;
+
 public class AutoLoadBalls extends CommandBase { //Used by AlignShoot command
 
-  Feeder myFeeder;
-  Limelight myLimelight;
-  Shooter myShooter;
-  Timer myTimer;
+  private Feeder myFeeder;
+  private Limelight myLimelight;
+  private Shooter myShooter;
+  private Timer myTimer;
+  private double amountOfTime;
 
-  //feeder, limelight, shooter, intake
-  public AutoLoadBalls(Feeder inFeeder, Limelight limelight, Shooter shooter) {
+  public AutoLoadBalls(Feeder inFeeder, Limelight limelight, Shooter shooter, double amountOfTimeIn) {
     myFeeder = inFeeder;
     myLimelight = limelight;
     myShooter = shooter;
+    amountOfTime = amountOfTimeIn;
+
     myTimer = new Timer();
-    // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(myFeeder);
   }
 
-  // Called when the command is initially scheduled.
-  @Override
+
+  @Override   // Called when the command is initially scheduled.
   public void initialize() {
     myTimer.start();
   }
 
-  // Called every time the scheduler runs while the command is scheduled.
-  @Override
+  @Override   // Called every time the scheduler runs while the command is scheduled.
   public void execute() {
     if (((myShooter.getVelocity() >= ShooterConstants.targetVelocity-50) && (Math.abs(myLimelight.getX()) <= 0.8)) || (myTimer.get() > 1.70 )){
         myFeeder.runHopper(-.25);
@@ -45,17 +50,15 @@ public class AutoLoadBalls extends CommandBase { //Used by AlignShoot command
     SmartDashboard.putNumber("Shooter Timer", myTimer.get());
   }
 
-  // Called once the command ends or is interrupted.
-  @Override
+  @Override // Called once the command ends or is interrupted.
   public void end(boolean interrupted) {
     myFeeder.runBoth(0);
     myTimer.stop();
     myTimer.reset();
   }
 
-  // Returns true when the command should end.
-  @Override
+  @Override   // Returns true when the command should end.
   public boolean isFinished() {
-    return myTimer.get() >= 4.0;
+    return myTimer.get() >= amountOfTime;
   }
 }
