@@ -24,13 +24,12 @@ public class AlignShoot extends ParallelRaceGroup {
   /**
    * Creates a new AlignShoot.
    */
-  public AlignShoot(DriveTrain driveTrain, Limelight limelight, Shooter shooter, Feeder feeder, Intake intake) {
+  public AlignShoot(DriveTrain driveTrain, Limelight limelight, Shooter shooter, Feeder feeder) {
     // Add your commands in the super() call, e.g.
     // super(new FooCommand(), new BarCommand());
     super(
       new Align(driveTrain, limelight), //ends when aligned
       new LoadBalls(feeder, limelight, shooter), //ends on timer
-      new AutoRunIntake(intake),
       new ShooterRamp(shooter) //Ends on abort button
     );
   }
