@@ -17,7 +17,9 @@ import frc.robot.subsystems.Feeder;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Shooter;
 
-public class AutoLoadBalls extends CommandBase { //Used by AlignShoot command
+//Used by AlignShoot command in autonomous
+//Take in a time to run
+public class AutoLoadBalls extends CommandBase { 
 
   private Feeder myFeeder;
   private Limelight myLimelight;
@@ -34,7 +36,6 @@ public class AutoLoadBalls extends CommandBase { //Used by AlignShoot command
     myTimer = new Timer();
     addRequirements(myFeeder);
   }
-
 
   @Override   // Called when the command is initially scheduled.
   public void initialize() {
