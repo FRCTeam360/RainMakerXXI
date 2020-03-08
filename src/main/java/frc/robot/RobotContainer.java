@@ -57,6 +57,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   //private final Command m_autoCommand_pathTesting = new PathTesting("straightLine.wpilib.json", drivetrain).getCommand();
   private final Command m_autoCommand_splitTrenchRun = new SplitTrenchRun( drivetrain, limelight, feeder, shooter, intake ); 
   private final Command m_autoCommand_middleRun = new MiddleRunThree( drivetrain, limelight, feeder, shooter, intake );
+  private final Command m_autoCommand_halfMiddleRun = new HalfMiddleRunThree( drivetrain, limelight, feeder, shooter, intake );
   
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -89,7 +90,8 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     //m_chooser.addOption("Trench Run Full: Testing", m_autoCommand_fullTrenchRun);
     //m_chooser.addOption("Sanity: Testing", m_autoCommand_sanity);
     //m_chooser.addOption("Trench Steal: DNE", m_autoCommand_backup);
-    m_chooser.addOption("Middle Auto: Testing", m_autoCommand_middleRun);
+    m_chooser.addOption("Middle Auto: SemiWorks", m_autoCommand_middleRun);
+    m_chooser.addOption("Half Middle Auto: Testing", m_autoCommand_halfMiddleRun);
 		//m_chooser.addOption(name, object);
     SmartDashboard.putData("Auto Choice", m_chooser);
   }
