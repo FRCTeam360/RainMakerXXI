@@ -53,14 +53,10 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private Joystick joyL = new Joystick(OIConstants.joyLPort);
   private Joystick joyOI = new Joystick(OIConstants.contPort);
 
-  private final Command m_autoCommand_sanity = new SequentialCommandGroup(
-    new MoveWithRamsete(trenchRunTrajectories.stageOne, drivetrain).andThen(() -> drivetrain.tankDriveVolts(0,0)),
-    new MoveWithRamsete(trenchRunTrajectories.stagetwo, drivetrain).andThen(() -> drivetrain.tankDriveVolts(0,0))
-  );
   private final Command m_autoCommand_backup = new ThreeBallsAndLine( drivetrain, limelight, feeder, shooter, intake );
-  private final Command m_autoCommand_pathTesting = new PathTesting("straightLine.wpilib.json", drivetrain).getCommand();
-  private final Command m_autoCommand_fullTrenchRun = new FullTrenchRun( drivetrain, limelight, feeder, shooter, intake );
-  private final Command m_autoCommand_splitTrenchRun = new SplitTrenchRun( drivetrain, limelight, feeder, shooter, intake );
+  //private final Command m_autoCommand_pathTesting = new PathTesting("straightLine.wpilib.json", drivetrain).getCommand();
+  private final Command m_autoCommand_splitTrenchRun = new SplitTrenchRun( drivetrain, limelight, feeder, shooter, intake ); 
+  private final Command m_autoCommand_middleRun = new MiddleRunThree( drivetrain, limelight, feeder, shooter, intake );
   
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -87,13 +83,13 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     new JoystickButton(joyR , 1).whenHeld(alignShoot);  //This whenHeld schedules a command when a trigger changes from inactive to active (or, accordingly, when a button is initially pressed) and cancels it when the trigger becomes inactive again (or the button is released). The command will not be re-scheduled if it finishes while the trigger is still active.
   }
   private void configureAutonomousChooser() {
-    m_chooser.setDefaultOption("Anywhere Auto: Works", m_autoCommand_backup); //Makes backup auto the defaulr
-    m_chooser.addOption("Path Testing: Testing", m_autoCommand_pathTesting);
-    m_chooser.addOption("Trench Run Split: Works", m_autoCommand_splitTrenchRun);
-    m_chooser.addOption("Trench Run Full: Testing", m_autoCommand_fullTrenchRun);
-    m_chooser.addOption("Sanity: Testing", m_autoCommand_sanity);
-    m_chooser.addOption("Trench Steal: DNE", m_autoCommand_backup);
-    m_chooser.addOption("Middle Auto: DNE", m_autoCommand_backup);
+    m_chooser.setDefaultOption("Anywhere Auto: Works", m_autoCommand_backup); //Anywhere Auto - Works 100%
+    //m_chooser.addOption("Path Testing: Testing", m_autoCommand_pathTesting);
+    m_chooser.addOption("Trench Run Split: Works", m_autoCommand_splitTrenchRun); //TrenchRunThree - Works 100%
+    //m_chooser.addOption("Trench Run Full: Testing", m_autoCommand_fullTrenchRun);
+    //m_chooser.addOption("Sanity: Testing", m_autoCommand_sanity);
+    //m_chooser.addOption("Trench Steal: DNE", m_autoCommand_backup);
+    m_chooser.addOption("Middle Auto: Testing", m_autoCommand_middleRun);
 		//m_chooser.addOption(name, object);
     SmartDashboard.putData("Auto Choice", m_chooser);
   }
