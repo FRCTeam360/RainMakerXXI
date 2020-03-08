@@ -32,9 +32,12 @@ public class SplitTrenchRun extends SequentialCommandGroup {
         .andThen(() -> drivetrain.tankDriveVolts(0,0)),
         new AutoRunIntake(intake)
       ),
-      new MoveWithRamsete(
-        trenchRunTrajectories.stagetwo, //Ends when path is complete
-        drivetrain
+      new ParallelRaceGroup(
+        new MoveWithRamsete(
+          trenchRunTrajectories.stagetwo, //Ends when path is complete
+          drivetrain
+        ),
+        new ShooterRamp(shooter)
       ),
       new ParallelRaceGroup(    //Align shoot
         new Align(drivetrain, limelight), 

@@ -39,7 +39,7 @@ public class AutoLoadBalls extends CommandBase { //Used by AlignShoot command
   @Override
   public void execute() {
     if (((myShooter.getVelocity() >= ShooterConstants.targetVelocity-50) && (Math.abs(myLimelight.getX()) <= 0.8)) || (myTimer.get() > 1.70 )){
-        myFeeder.runHopper(.5);
+        myFeeder.runHopper(-.25);
         myFeeder.runLoader(.4);
     }
     SmartDashboard.putNumber("Shooter Timer", myTimer.get());

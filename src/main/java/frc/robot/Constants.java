@@ -101,7 +101,7 @@ public final class Constants {
 
         //3,0.5 works and so does 6, 1 if want to increase more only change acceleration as 6 is near max robot velocity
         public static final double kMaxSpeedMetersPerSecond = 6; //Robot is 0-6.5 about
-        public static final double kMaxAccelerationMetersPerSecondSquared = 1;
+        public static final double kMaxAccelerationMetersPerSecondSquared = 2.5;
 
         //Ramsete Values - 2,.7 are default and these have been tuned by hand
         public static final double kRamseteB = 4.0; //0 to infinite - Agression
@@ -165,11 +165,11 @@ public final class Constants {
         public static final Trajectory stageOne = TrajectoryGenerator.generateTrajectory(
             new Pose2d(0, 0, new Rotation2d(0)), 
             List.of(  ),
-            new Pose2d(-4, 0, new Rotation2d(0)),
+            new Pose2d(-4.1, 0, new Rotation2d(0)),
             TrajConfig.configRev
         );
         public static final Trajectory stagetwo = TrajectoryGenerator.generateTrajectory(
-            new Pose2d(-4, 0, new Rotation2d(0)), 
+            new Pose2d(-4.1, 0, new Rotation2d(0)), 
             List.of(  ),
             new Pose2d(-2, 1.5, new Rotation2d(0)),
             TrajConfig.configFwd

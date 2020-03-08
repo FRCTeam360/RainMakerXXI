@@ -12,12 +12,14 @@ import edu.wpi.first.wpilibj.Joystick;
 //import edu.wpi.first.wpilibj.XboxController;
 
 import frc.robot.Constants.OIConstants;
+import frc.robot.Constants.trenchRunTrajectories;
+
 import frc.robot.commands.*;
 import frc.robot.commands.autos.*;
 import frc.robot.subsystems.*;
 
 import edu.wpi.first.wpilibj2.command.Command;
-//import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 //import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -51,6 +53,10 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private Joystick joyL = new Joystick(OIConstants.joyLPort);
   private Joystick joyOI = new Joystick(OIConstants.contPort);
 
+  private final Command m_autoCommand_sanity = new SequentialCommandGroup(
+    new MoveWithRamsete(trenchRunTrajectories.stageOne, drivetrain).andThen(() -> drivetrain.tankDriveVolts(0,0)),
+    new MoveWithRamsete(trenchRunTrajectories.stagetwo, drivetrain).andThen(() -> drivetrain.tankDriveVolts(0,0))
+  );
   private final Command m_autoCommand_backup = new ThreeBallsAndLine( drivetrain, limelight, feeder, shooter, intake );
   private final Command m_autoCommand_pathTesting = new PathTesting("straightLine.wpilib.json", drivetrain).getCommand();
   private final Command m_autoCommand_fullTrenchRun = new FullTrenchRun( drivetrain, limelight, feeder, shooter, intake );
@@ -83,8 +89,9 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private void configureAutonomousChooser() {
     m_chooser.setDefaultOption("Anywhere Auto: Works", m_autoCommand_backup); //Makes backup auto the defaulr
     m_chooser.addOption("Path Testing: Testing", m_autoCommand_pathTesting);
-    m_chooser.addOption("Trench Run Split: Testing", m_autoCommand_splitTrenchRun);
+    m_chooser.addOption("Trench Run Split: Works", m_autoCommand_splitTrenchRun);
     m_chooser.addOption("Trench Run Full: Testing", m_autoCommand_fullTrenchRun);
+    m_chooser.addOption("Sanity: Testing", m_autoCommand_sanity);
     m_chooser.addOption("Trench Steal: DNE", m_autoCommand_backup);
     m_chooser.addOption("Middle Auto: DNE", m_autoCommand_backup);
 		//m_chooser.addOption(name, object);
