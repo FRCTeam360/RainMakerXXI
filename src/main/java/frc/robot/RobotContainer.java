@@ -7,12 +7,10 @@
 
 package frc.robot;
 
-//import edu.wpi.first.wpilibj.GenericHID;
-import edu.wpi.first.wpilibj.Joystick;
-//import edu.wpi.first.wpilibj.XboxController;
+import edu.wpi.first.wpilibj.Joystick; 
+//import edu.wpi.first.wpilibj.buttons.POVButton; //up is 0, right is 90, down is 180, left is 270, and if its unpressed, its -1, use 45 intervals
 
 import frc.robot.Constants.OIConstants;
-//import frc.robot.Constants.trenchRunTrajectories;
 
 import frc.robot.commands.*;
 import frc.robot.commands.autos.*;
@@ -78,6 +76,14 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     shooter.setDefaultCommand(manualShooter);
   }
   private void configureButtonBindings() {
+    /*
+    new POVButton(joyOI, 0).whenPressed(intakeUp);
+    new POVButton(joyOI, 45).whenPressed(intakeUp);
+    new POVButton(joyOI, 315).whenPressed(intakeUp);
+    new POVButton(joyOI, 180).whenPressed(intakeDown);
+    new POVButton(joyOI, 135).whenPressed(intakeDown);
+    new POVButton(joyOI, 225).whenPressed(intakeDown);
+    */
     new JoystickButton(joyR, 5).whenPressed(switchCamMode);
     new JoystickButton(joyL, 1).whenHeld( shooterRamp );
     new JoystickButton(joyOI, 8).whenHeld(shooterRamp);
