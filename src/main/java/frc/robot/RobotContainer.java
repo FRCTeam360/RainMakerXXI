@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick; 
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 //import edu.wpi.first.wpilibj.buttons.POVButton; //up is 0, right is 90, down is 180, left is 270, and if its unpressed, its -1, use 45 intervals
 
 import frc.robot.Constants.OIConstants;
@@ -22,7 +23,6 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 public class RobotContainer {   // The robot's subsystems and commands are defined here...
   private final DriveTrain drivetrain = new DriveTrain();
