@@ -76,14 +76,12 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     shooter.setDefaultCommand(manualShooter);
   }
   private void configureButtonBindings() {
-    /*
-    new POVButton(joyOI, 0).whenPressed(intakeUp);
-    new POVButton(joyOI, 45).whenPressed(intakeUp);
-    new POVButton(joyOI, 315).whenPressed(intakeUp);
-    new POVButton(joyOI, 180).whenPressed(intakeDown);
-    new POVButton(joyOI, 135).whenPressed(intakeDown);
-    new POVButton(joyOI, 225).whenPressed(intakeDown);
-    */
+    //new POVButton(joyOI, 0).whenPressed(intakeUp);
+    //new POVButton(joyOI, 45).whenPressed(intakeUp);
+    //new POVButton(joyOI, 315).whenPressed(intakeUp);
+    //new POVButton(joyOI, 180).whenPressed(intakeDown);
+    //new POVButton(joyOI, 135).whenPressed(intakeDown);
+    //new POVButton(joyOI, 225).whenPressed(intakeDown);
     new JoystickButton(joyR, 5).whenPressed(switchCamMode);
     new JoystickButton(joyL, 1).whenHeld( shooterRamp );
     new JoystickButton(joyOI, 8).whenHeld(shooterRamp);
