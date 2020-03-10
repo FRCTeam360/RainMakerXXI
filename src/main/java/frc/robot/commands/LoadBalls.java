@@ -61,7 +61,7 @@ public class LoadBalls extends CommandBase { //Used by AlignShoot command
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    myFeeder.runLoader(0);
+    myFeeder.runBoth(0);
     myTimer.stop();
     myTimer.reset();
   }
