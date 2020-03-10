@@ -176,7 +176,7 @@ public final class Constants {
         );
     }
     public static final class middleRunTrajectories {
-        public static final Trajectory theAutoPathFirstStage = TrajectoryGenerator.generateTrajectory(
+        public static final Trajectory stageOne = TrajectoryGenerator.generateTrajectory(
             new Pose2d(0, 0, new Rotation2d(0)), 
             List.of(
                 new Translation2d(-2, -0.5),
@@ -185,7 +185,7 @@ public final class Constants {
             new Pose2d( -2.55, 3.0, new Rotation2d(-45) ), 
             TrajConfig.configRev
         );
-        public static final Trajectory theAutoPathSecondStage = TrajectoryGenerator.generateTrajectory(
+        public static final Trajectory stagetwo = TrajectoryGenerator.generateTrajectory(
             new Pose2d( -2.55, 3.0, new Rotation2d(-45) ), 
             List.of(  ),
             new Pose2d(-1, 2.25, new Rotation2d(0)),

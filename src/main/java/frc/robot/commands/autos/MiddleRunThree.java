@@ -26,7 +26,7 @@ public class MiddleRunThree extends SequentialCommandGroup {
       ),
       new ParallelRaceGroup( //Run path and intake
         new MoveWithRamsete(
-          middleRunTrajectories.theAutoPathFirstStage, //Ends when path is complete
+          middleRunTrajectories.stageOne, //Ends when path is complete
           drivetrain
         )
         .andThen(() -> drivetrain.tankDriveVolts(0,0)),
@@ -34,7 +34,7 @@ public class MiddleRunThree extends SequentialCommandGroup {
       ),
       new ParallelRaceGroup( //Run path and intake
         new MoveWithRamsete(
-          middleRunTrajectories.theAutoPathSecondStage, //Ends when path is complete
+          middleRunTrajectories.stagetwo, //Ends when path is complete
           drivetrain
         )
         .andThen(() -> drivetrain.tankDriveVolts(0,0)),
