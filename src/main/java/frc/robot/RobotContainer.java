@@ -52,7 +52,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private Joystick joyOI = new Joystick(OIConstants.contPort);
 
   private final Command m_autoCommand_backup = new BackupGroup( drivetrain, limelight, feeder, shooter, intake );
-  private final Command m_autoCommand_splitTrenchRun = new SplitTrenchRun( drivetrain, limelight, feeder, shooter, intake ); 
+  private final Command m_autoCommand_splitTrench = new SplitTrenchRun( drivetrain, limelight, feeder, shooter, intake ); 
   private final Command m_autoCommand_middleRun = new MiddleRunThree( drivetrain, limelight, feeder, shooter, intake );
   private final Command m_autoCommand_halfMiddleRun = new HalfMiddleRunThree( drivetrain, limelight, feeder, shooter, intake );
   private final Command m_autoCommand_stealBallsRun = new StealBallsRun( drivetrain, limelight, feeder, shooter, intake );
@@ -89,7 +89,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   }
   private void configureAutonomousChooser() {
     m_chooser.setDefaultOption("Backup", m_autoCommand_backup);
-    m_chooser.addOption("Trench Run Split: Works", m_autoCommand_splitTrenchRun); 
+    m_chooser.addOption("Split Trench", m_autoCommand_splitTrench); 
     m_chooser.addOption("Middle Auto: SemiWorks", m_autoCommand_middleRun);
     m_chooser.addOption("Half Middle Auto: Works", m_autoCommand_halfMiddleRun);
     m_chooser.addOption("Steal Balls Auto: Works", m_autoCommand_stealBallsRun);
