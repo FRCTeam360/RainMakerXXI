@@ -52,7 +52,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private Joystick joyOI = new Joystick(OIConstants.contPort);
 
   private final Command m_autoCommand_backup = new BackupGroup( drivetrain, limelight, feeder, shooter, intake );
-  private final Command m_autoCommand_splitTrench = new SplitTrenchRun( drivetrain, limelight, feeder, shooter, intake ); 
+  private final Command m_autoCommand_splitTrench = new SplitTrenchGroup( drivetrain, limelight, feeder, shooter, intake ); 
   private final Command m_autoCommand_halfMiddleRun = new HalfMiddleRunThree( drivetrain, limelight, feeder, shooter, intake );
   private final Command m_autoCommand_stealBallsRun = new StealBallsRun( drivetrain, limelight, feeder, shooter, intake );
   private final Command m_autoCommand_middleRun = new MiddleRunThree( drivetrain, limelight, feeder, shooter, intake );
