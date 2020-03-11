@@ -51,7 +51,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private Joystick joyL = new Joystick(OIConstants.joyLPort);
   private Joystick joyOI = new Joystick(OIConstants.contPort);
 
-  private final Command m_autoCommand_backup = new ThreeBallsAndLine( drivetrain, limelight, feeder, shooter, intake );
+  private final Command m_autoCommand_backup = new BackupGroup( drivetrain, limelight, feeder, shooter, intake );
   private final Command m_autoCommand_splitTrenchRun = new SplitTrenchRun( drivetrain, limelight, feeder, shooter, intake ); 
   private final Command m_autoCommand_middleRun = new MiddleRunThree( drivetrain, limelight, feeder, shooter, intake );
   private final Command m_autoCommand_halfMiddleRun = new HalfMiddleRunThree( drivetrain, limelight, feeder, shooter, intake );
@@ -88,7 +88,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     new JoystickButton(joyR , 1).whenHeld(alignShoot);  //This whenHeld schedules a command when a trigger changes from inactive to active (or, accordingly, when a button is initially pressed) and cancels it when the trigger becomes inactive again (or the button is released). The command will not be re-scheduled if it finishes while the trigger is still active.
   }
   private void configureAutonomousChooser() {
-    m_chooser.setDefaultOption("Anywhere Auto: Works", m_autoCommand_backup);
+    m_chooser.setDefaultOption("Backup", m_autoCommand_backup);
     m_chooser.addOption("Trench Run Split: Works", m_autoCommand_splitTrenchRun); 
     m_chooser.addOption("Middle Auto: SemiWorks", m_autoCommand_middleRun);
     m_chooser.addOption("Half Middle Auto: Works", m_autoCommand_halfMiddleRun);

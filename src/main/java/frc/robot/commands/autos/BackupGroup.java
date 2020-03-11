@@ -13,8 +13,8 @@ import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
-public class ThreeBallsAndLine extends SequentialCommandGroup { //Could be inline but done like this for simplicity
-  public ThreeBallsAndLine( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
+public class BackupGroup extends SequentialCommandGroup { //Could be inline but done like this for simplicity
+  public BackupGroup( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
 
     super(
       new ParallelRaceGroup(      
