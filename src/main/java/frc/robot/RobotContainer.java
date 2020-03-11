@@ -88,11 +88,11 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     new JoystickButton(joyR , 1).whenHeld(alignShoot);  //This whenHeld schedules a command when a trigger changes from inactive to active (or, accordingly, when a button is initially pressed) and cancels it when the trigger becomes inactive again (or the button is released). The command will not be re-scheduled if it finishes while the trigger is still active.
   }
   private void configureAutonomousChooser() {
-    m_chooser.setDefaultOption("Backup", m_autoCommand_backup);
-    m_chooser.addOption("Split Trench", m_autoCommand_splitTrench); 
-    m_chooser.addOption("Middle Auto: SemiWorks", m_autoCommand_middleRun);
+    m_chooser.setDefaultOption("Backup", m_autoCommand_backup); //#1, Works
+    m_chooser.addOption("Split Trench", m_autoCommand_splitTrench); //#2, Works
     m_chooser.addOption("Half Middle Auto: Works", m_autoCommand_halfMiddleRun);
     m_chooser.addOption("Steal Balls Auto: Works", m_autoCommand_stealBallsRun);
+    m_chooser.addOption("Middle Auto: SemiWorks", m_autoCommand_middleRun);
 		//m_chooser.addOption(name, object);
     SmartDashboard.putData("Auto Choice", m_chooser);
   }
