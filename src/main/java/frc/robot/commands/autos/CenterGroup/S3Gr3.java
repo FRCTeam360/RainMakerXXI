@@ -5,17 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.autos.AnywhereGroup;
+package frc.robot.commands.autos.CenterGroup;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 //import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 
+//import frc.robot.Constants.????;
+
 //import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
-public class S3F extends SequentialCommandGroup { //Could be inline but done like this for simplicity
-  public S3F( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
-
+public class S3Gr3 extends SequentialCommandGroup {
+  public S3Gr3( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
     super(
 
     );

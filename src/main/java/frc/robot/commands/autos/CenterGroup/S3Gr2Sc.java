@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.autos.UnsortedGroup;
+package frc.robot.commands.autos.CenterGroup;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
@@ -15,8 +15,8 @@ import frc.robot.Constants.halfMiddleRunTrajectories;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
-public class HalfMiddleRunThree extends SequentialCommandGroup {
-  public HalfMiddleRunThree( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
+public class S3Gr2Sc extends SequentialCommandGroup {
+  public S3Gr2Sc( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
     super(
       new ParallelRaceGroup(    //Align shoot
         new Align(drivetrain, limelight), 
