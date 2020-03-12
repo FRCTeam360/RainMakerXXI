@@ -21,14 +21,14 @@ import frc.robot.subsystems.*;
 //import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 
 public class RobotContainer {   // The robot's subsystems and commands are defined here...
-  private final DriveTrain drivetrain = new DriveTrain();
-  private final Pneumatics pneumatics = new Pneumatics();
-  private final Shifter shifter = new Shifter();
-  private final Shooter shooter = new Shooter();
-  private final Limelight limelight = new Limelight();
-  private final Intake intake = new Intake();
-  private final Feeder feeder = new Feeder();
-  private final Climber climber = new Climber();
+  public final DriveTrain drivetrain = new DriveTrain();
+  public final Pneumatics pneumatics = new Pneumatics();
+  public final Shifter shifter = new Shifter();
+  public final Shooter shooter = new Shooter();
+  public final Limelight limelight = new Limelight();
+  public final Intake intake = new Intake();
+  public final Feeder feeder = new Feeder();
+  public final Climber climber = new Climber();
 
   private final JoystickTankDrive joystickTankDrive = new JoystickTankDrive(drivetrain);
   private final Pressurize pressurize = new Pressurize(pneumatics);
@@ -74,8 +74,5 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     new JoystickButton(joyOI, 8).whenHeld(shooterRamp);
     new JoystickButton(joyR , 1).whenHeld(alignShoot);  //This whenHeld schedules a command when a trigger changes from inactive to active (or, accordingly, when a button is initially pressed) and cancels it when the trigger becomes inactive again (or the button is released). The command will not be re-scheduled if it finishes while the trigger is still active.
   }
-
-  public DriveTrain gDriveTrain () { return drivetrain; }
-  public Shifter gShifter() { return shifter; }
 
 }
