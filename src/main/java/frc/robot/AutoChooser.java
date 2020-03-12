@@ -46,6 +46,11 @@ public class AutoChooser {
 
     public AutoChooser(RobotContainer container) {
 
+        selectedLocation = "None";
+
+        locationChooser = new SendableChooser<>();
+        autoChooser = new SendableChooser<>();
+
         a_S3F = new S3F(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
         a_S3R = new S3R(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
         c_S3Gr2Sc = new S3Gr2Sc(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
@@ -65,10 +70,7 @@ public class AutoChooser {
         t_S3Gt5St = new S3Gt5St(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
         t_S3Gt5StCf = new S3Gt5StCf(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
 
-        selectedLocation = "None";
-
-        locationChooser = new SendableChooser<>();
-        autoChooser = new SendableChooser<>();
+        //autoChooser starts without options, it gets initialized in periodic anyways
 
         locationChooser.addOption("OurTrench", "OurTrench");
         locationChooser.addOption("Center", "Center");
@@ -87,21 +89,42 @@ public class AutoChooser {
             autoChooser = new SendableChooser<>(); //Clear the auto chooser
 
             if (selectedLocation.equals("OurTrench")) {
-                //autoChooser.addOption(name, object);
-                //autoChooser.setDefaultOption(name, object);
+
+                autoChooser.addOption("Shoot 3 & Get Trench 3 & Shoot Center to Bullseye", t_S3Gt3Sc);
+                autoChooser.addOption("Shoot 3 & Get Trench 3 & Shoot from Trench", t_S3Gt3St);
+                autoChooser.addOption("Shoot 3 & Get Trench 5 & Shoot Center to Bullseye", t_S3Gt5Sc);
+                autoChooser.addOption("Shoot 3 & Get Trench 5 & Shoot from Trench", t_S3Gt5St);
+                autoChooser.addOption("Shoot 3 & Get Trench 5 & Shoot from Deep Trench & Come to our Feeder ", t_S3Gt5StCf);
+
             } else if (selectedLocation.equals("Center")) {
-                //autoChooser.addOption(name, object);
-                //autoChooser.setDefaultOption(name, object);
+
+                autoChooser.addOption("Shoot 3 & Get Rendezvous 2 & Shoot Center to Bullseye", c_S3Gr2Sc);
+                autoChooser.addOption("Shoot 3 & Steal Rendezvous 3", c_S3Gr3);
+                autoChooser.addOption("Shoot 3 &  Get Rendezvous 5 & Shoot Midfield", c_S3Gr5Sm);
+                autoChooser.addOption("Shoot 3 & Get Trench 5 & Shoot Center to Bullseye", c_S3Gt5Sc);
+
             } else if (selectedLocation.equals("Midfield")) {
-                //autoChooser.addOption(name, object);
-                //autoChooser.setDefaultOption(name, object);
+
+                autoChooser.addOption("", object);
+                autoChooser.addOption("", object);
+                autoChooser.addOption("", object);
+
             } else if (selectedLocation.equals("OpposingTrench")) {
-                //autoChooser.addOption(name, object);
-                //autoChooser.setDefaultOption(name, object);
-            } else { //"Anywhere"
-                //autoChooser.addOption(name, object);
-                //autoChooser.setDefaultOption(name, object);
+
+                autoChooser.addOption("", object);
+                autoChooser.addOption("", object);
+                autoChooser.addOption("", object);
+                autoChooser.addOption("", object);
+
+            } else { //"Anywhere" or anything else if there's an error
+
+                autoChooser.addOption("", object);
+                autoChooser.addOption("", object);
+
             }
+
+            SmartDashboard.putData("Auto Choice", autoChooser); //Update the Auto Choice with the new options and new chooser
+
         }
         //Else do nothing 
     }
