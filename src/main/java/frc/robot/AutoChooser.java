@@ -9,7 +9,11 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 
-import frc.robot.commands.autos.*;
+import frc.robot.commands.autos.AnywhereGroup.*;
+import frc.robot.commands.autos.CenterGroup.*;
+import frc.robot.commands.autos.MidfieldGroup.*;
+import frc.robot.commands.autos.OpposingTrenchGroup.*;
+import frc.robot.commands.autos.OurTrenchGroup.*;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -21,35 +25,28 @@ public class AutoChooser {
 
     private String selectedLocation;
 
-    /*
-    private Command doNothingAuto;
-	private Command crossLineMotionProfiled;
-	private Command startCenterDropCubeLeftSwitch;
-	private Command startCenterDropCubeRightSwitch;
-	private Command startCenterDropCubeLeftSwitch2Cube;
-	private Command startCenterDropCubeRightSwitch2Cube;
-	private Command startLeftDropCubeLeftSwitch;
-	private Command startLeftDropCubeRightScale;
-	private Command startLeftDropCubeLeftScale;
-	private Command startRightDropCubeLeftScale;
-	private Command startRightDropCubeRightSwitch;
-    private Command startRightDropCubeRightScale;
-    */
+    private final Command a_S3F; //AnywhereGroup
+    private final Command a_S3R;
+    private final Command c_S3Gr2Sc; //CenterGroup
+    private final Command c_S3Gr3;
+    private final Command c_S3Gr5Sm;
+    private final Command c_S3Gt5Sc;
+    private final Command m_S3Cof; //MidfieldGroup
+    private final Command m_S3Gr3Sm;
+    private final Command m_S3Gr5Sm;
+    private final Command s_Gr2Sm; //OpposingTrenchGroup
+    private final Command s_St2Sm;
+    private final Command s_St3Sm;
+    private final Command s_St3SmGr3Sm;
+    private final Command t_S3Gt3Sc; //OurTrenchGroup
+    private final Command t_S3Gt3St;
+    private final Command t_S3Gt5Sc;
+    private final Command t_S3Gt5St;
+    private final Command t_S3Gt5StCf;
 
     public AutoChooser(RobotContainer container) {
-        /*
-		crossLineMotionProfiled = new CrossLineMotionProfiled();
-		startCenterDropCubeLeftSwitch = new StartCenterDropCubeLeftSwitch();
-		startCenterDropCubeRightSwitch = new StartCenterDropCubeRightSwitch();
-		startLeftDropCubeLeftScale = new StartLeftDropCubeLeftScale();
-		startLeftDropCubeLeftSwitch = new StartLeftDropCubeLeftSwitch();
-		startLeftDropCubeRightScale = new StartLeftDropCubeRightScale();
-		startRightDropCubeLeftScale = new StartRightDropCubeLeftScale();
-		startRightDropCubeRightScale = new StartRightDropCubeRightScale();
-		startRightDropCubeRightSwitch = new StartRightDropCubeRightSwitch();
-		startCenterDropCubeLeftSwitch2Cube = new StartCenterDropCubeLeftSwitch2Cube();
-        startCenterDropCubeRightSwitch2Cube = new StartCenterDropCubeRightSwitch2Cube();
-        */
+
+
 
         selectedLocation = "None";
 
