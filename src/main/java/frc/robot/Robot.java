@@ -20,15 +20,18 @@ public class Robot extends TimedRobot {
 
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
+  private AutoChooser m_autoChooser;
 
   @Override
   public void robotInit() { //This function is run when the robot is first started up and should be used for any initialization code.
     m_robotContainer = new RobotContainer(); //Instantiate our RobotContainer. This will perform all our button bindings, and put our autonomous chooser on the dashboard.
+    m_autoChooser = new AutoChooser();
   }
   
   @Override
   public void robotPeriodic() { //This function is called every robot packet, no matter the mode. Use for things wanted in all modes
     CommandScheduler.getInstance().run();//Runs Command Scheduler, must be called for any command to work
+    //m_autoChooser.periodic(); //In disabled init right now
   }
 
 
@@ -45,6 +48,9 @@ public class Robot extends TimedRobot {
     } else {
       m_robotContainer.gDriveTrain().coastMode();
     }
+
+    m_autoChooser.periodic(); //For the autonomous chooser
+
   }
 
 
@@ -53,7 +59,7 @@ public class Robot extends TimedRobot {
   public void autonomousInit() { //This autonomous runs the autonomous command selected by your {@link RobotContainer} class.
     inAuto = true;
 
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand(); //get auto command from robot container
+    m_autonomousCommand = m_autoChooser.getCommand(); //get auto command from robot container
 
     m_robotContainer.gDriveTrain().brakeMode(); //Set brake mode
     //m_robotContainer.gDriveTrain().coastMode();
