@@ -15,8 +15,8 @@ import frc.robot.Constants.middleRunTrajectories;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
-public class S3Gr5Sm extends SequentialCommandGroup {
-  public S3Gr5Sm( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
+public class cS3Gr5Sm extends SequentialCommandGroup {
+  public cS3Gr5Sm( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
     super(
       new ParallelRaceGroup(    //Align shoot
         new Align(drivetrain, limelight), 

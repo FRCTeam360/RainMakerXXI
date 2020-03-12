@@ -15,8 +15,8 @@ import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 //import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
-public class S3Gr5Sm extends SequentialCommandGroup {
-  public S3Gr5Sm( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
+public class mS3Gr5Sm extends SequentialCommandGroup {
+  public mS3Gr5Sm( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
     super(
 
     );

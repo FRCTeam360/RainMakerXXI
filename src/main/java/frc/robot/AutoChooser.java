@@ -50,11 +50,11 @@ public class AutoChooser {
         a_S3R = new S3R(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
         c_S3Gr2Sc = new S3Gr2Sc(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
         c_S3Gr3 = new S3Gr3(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
-        //c_S3Gr5Sm = new S3Gr5Sm(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        c_S3Gr5Sm = new cS3Gr5Sm(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
         c_S3Gt5Sc = new cS3Gt5Sc(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
         m_S3Cof = new S3Cof(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
         m_S3Gr3Sm = new S3Gr3Sm(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
-        //m_S3Gr5Sm = new S3Gr5Sm(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        m_S3Gr5Sm = new mS3Gr5Sm(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
         s_Gr2Sm = new Gr2Sm(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
         s_St2Sm = new St2Sm(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
         s_St3Sm = new St3Sm(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
