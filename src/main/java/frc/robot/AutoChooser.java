@@ -46,7 +46,24 @@ public class AutoChooser {
 
     public AutoChooser(RobotContainer container) {
 
-
+        a_S3F = new S3F(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        a_S3R = new S3R(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        c_S3Gr2Sc = new S3Gr2Sc(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        c_S3Gr3 = new S3Gr3(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        c_S3Gr5Sm = new S3Gr5Sm(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        c_S3Gt5Sc = new S3Gt5Sc(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        m_S3Cof = new S3Cof(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        m_S3Gr3Sm = new S3Gr3Sm(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        m_S3Gr5Sm = new S3Gr5Sm(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        s_Gr2Sm = new Gr2Sm(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        s_St2Sm = new St2Sm(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        s_St3Sm = new St3Sm(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        s_St3SmGr3Sm = new St3SmGr3Sm(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        t_S3Gt3Sc = new S3Gt3Sc(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        t_S3Gt3St = new S3Gt3St(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        t_S3Gt5Sc = new S3Gt5Sc(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        t_S3Gt5St = new S3Gt5St(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
+        t_S3Gt5StCf = new S3Gt5StCf(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
 
         selectedLocation = "None";
 
