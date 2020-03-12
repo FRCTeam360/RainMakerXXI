@@ -20,14 +20,6 @@ public class AutoChooser {
     private SendableChooser<Command> autoChooser;
 
     private String selectedLocation;
-    
-    /*
-	private SendableChooser<Command> OurTrench;
-	private SendableChooser<Command> Center;
-	private SendableChooser<Command> Midfield;
-    private SendableChooser<Command> OpposingTrench;
-    private SendableChooser<Command> Anywhere;
-    */
 
     /*
     private Command doNothingAuto;
@@ -44,7 +36,7 @@ public class AutoChooser {
     private Command startRightDropCubeRightScale;
     */
 
-    public AutoChooser() {
+    public AutoChooser(RobotContainer container) {
         /*
 		crossLineMotionProfiled = new CrossLineMotionProfiled();
 		startCenterDropCubeLeftSwitch = new StartCenterDropCubeLeftSwitch();
