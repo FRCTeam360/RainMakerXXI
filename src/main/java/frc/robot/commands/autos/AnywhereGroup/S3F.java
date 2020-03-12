@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.autos.UnsortedGroup;
+package frc.robot.commands.autos.AnywhereGroup;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
@@ -13,17 +13,11 @@ import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
-public class BackupGroup extends SequentialCommandGroup { //Could be inline but done like this for simplicity
-  public BackupGroup( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
+public class S3F extends SequentialCommandGroup { //Could be inline but done like this for simplicity
+  public S3F( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
 
     super(
-      new ParallelRaceGroup(      
-        new Align(drivetrain, limelight), 
-        new AutoLoadBalls(feeder, limelight, shooter, 4.0), //This one has the abort feature in it
-        new AutoRunIntake(intake),
-        new ShooterRamp(shooter) 
-      ),
-      new AutoBackupOnTicks(drivetrain)
+
     );
 
   }
