@@ -5,7 +5,7 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.autos.UnsortedGroup;
+package frc.robot.commands.autos.OpposingTrenchGroup;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
@@ -15,8 +15,8 @@ import frc.robot.Constants.stealBallsTrajectories;
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
-public class StealBallsRun extends SequentialCommandGroup {
-  public StealBallsRun( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
+public class St2Sm extends SequentialCommandGroup {
+  public St2Sm( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
     super(
       new ParallelRaceGroup( //Run path and intake
         new MoveWithRamsete(
