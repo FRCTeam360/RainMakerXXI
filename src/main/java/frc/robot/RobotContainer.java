@@ -14,15 +14,11 @@ import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 import frc.robot.Constants.OIConstants;
 
 import frc.robot.commands.*;
-import frc.robot.commands.autos.*;
 import frc.robot.subsystems.*;
 
-import edu.wpi.first.wpilibj2.command.Command;
+//import edu.wpi.first.wpilibj2.command.Command;
 //import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 //import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
-
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RobotContainer {   // The robot's subsystems and commands are defined here...
   private final DriveTrain drivetrain = new DriveTrain();
@@ -51,18 +47,9 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private Joystick joyL = new Joystick(OIConstants.joyLPort);
   private Joystick joyOI = new Joystick(OIConstants.contPort);
 
-  private final Command m_autoCommand_backup = new BackupGroup( drivetrain, limelight, feeder, shooter, intake );
-  private final Command m_autoCommand_splitTrench = new SplitTrenchGroup( drivetrain, limelight, feeder, shooter, intake ); 
-  private final Command m_autoCommand_halfMiddleRun = new HalfMiddleRunThree( drivetrain, limelight, feeder, shooter, intake );
-  private final Command m_autoCommand_stealBallsRun = new StealBallsRun( drivetrain, limelight, feeder, shooter, intake );
-  private final Command m_autoCommand_middleRun = new MiddleRunThree( drivetrain, limelight, feeder, shooter, intake );
-
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
-
   public RobotContainer() {
     configureDefaultCommands();
     configureButtonBindings();
-    configureAutonomousChooser();
   }
 
   private void configureDefaultCommands() {
@@ -87,20 +74,8 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     new JoystickButton(joyOI, 8).whenHeld(shooterRamp);
     new JoystickButton(joyR , 1).whenHeld(alignShoot);  //This whenHeld schedules a command when a trigger changes from inactive to active (or, accordingly, when a button is initially pressed) and cancels it when the trigger becomes inactive again (or the button is released). The command will not be re-scheduled if it finishes while the trigger is still active.
   }
-  private void configureAutonomousChooser() {
-    m_chooser.setDefaultOption("Backup", m_autoCommand_backup); //#1, Works
-    m_chooser.addOption("Split Trench", m_autoCommand_splitTrench); //#2, Works
-    m_chooser.addOption("Half Middle Auto: Works", m_autoCommand_halfMiddleRun);
-    m_chooser.addOption("Steal Balls Auto: Works", m_autoCommand_stealBallsRun);
-    m_chooser.addOption("Middle Auto: SemiWorks", m_autoCommand_middleRun);
-
-    SmartDashboard.putData("Auto Choice", m_chooser);
-  }
 
   public DriveTrain gDriveTrain () { return drivetrain; }
   public Shifter gShifter() { return shifter; }
 
-  public Command getAutonomousCommand() { //Called int robot autonomousInit which schedules the command sent to it
-    return m_chooser.getSelected(); //Sends the selected autonomous command initialized above 
-  }
 }
