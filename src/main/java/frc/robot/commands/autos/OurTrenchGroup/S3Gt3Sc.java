@@ -5,18 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands.autos.UnsortedGroup;
+package frc.robot.commands.autos.OurTrenchGroup;
 
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 
-import frc.robot.Constants.middleRunTrajectories;
+import frc.robot.Constants.trenchRunTrajectories;
 
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
-public class MiddleRunThree extends SequentialCommandGroup {
-  public MiddleRunThree( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
+public class S3Gt3Sc extends SequentialCommandGroup {
+  public S3Gt3Sc( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
     super(
       new ParallelRaceGroup(    //Align shoot
         new Align(drivetrain, limelight), 
@@ -26,19 +26,18 @@ public class MiddleRunThree extends SequentialCommandGroup {
       ),
       new ParallelRaceGroup( //Run path and intake
         new MoveWithRamsete(
-          middleRunTrajectories.stageOne, //Ends when path is complete
+          trenchRunTrajectories.stageOne, //Ends when path is complete
           drivetrain
         )
         .andThen(() -> drivetrain.tankDriveVolts(0,0)),
         new AutoRunIntake(intake)
       ),
-      new ParallelRaceGroup( //Run path and intake
+      new ParallelRaceGroup(
         new MoveWithRamsete(
-          middleRunTrajectories.stagetwo, //Ends when path is complete
+          trenchRunTrajectories.stagetwo, //Ends when path is complete
           drivetrain
-        )
-        .andThen(() -> drivetrain.tankDriveVolts(0,0)),
-        new AutoRunIntake(intake)
+        ),
+        new ShooterRamp(shooter)
       ),
       new ParallelRaceGroup(    //Align shoot
         new Align(drivetrain, limelight), 
