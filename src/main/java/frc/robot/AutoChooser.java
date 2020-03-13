@@ -105,28 +105,28 @@ public class AutoChooser {
 
             } else if (selectedLocation.equals("Midfield")) {
 
-                autoChooser.addOption("", object);
-                autoChooser.addOption("", object);
-                autoChooser.addOption("", object);
+                autoChooser.addOption("Shoot 3 & Come to Opposing Feeder Station", m_S3Cof);
+                autoChooser.addOption("Shoot 3 & Get Rendezvous 3 & Shoot Midfield", m_S3Gr3Sm);
+                autoChooser.addOption("Shoot 3 & Get Rendezvous 5 & Shoot Midfield", m_S3Gr5Sm);
 
             } else if (selectedLocation.equals("OpposingTrench")) {
 
-                autoChooser.addOption("", object);
-                autoChooser.addOption("", object);
-                autoChooser.addOption("", object);
-                autoChooser.addOption("", object);
+                autoChooser.addOption("Get Rendezvous 2 & Shoot Midfield", s_Gr2Sm);
+                autoChooser.addOption("Steal 2 & Shoot Midfield", s_St2Sm);
+                autoChooser.addOption("Steal 3 & Shoot Midfield", s_St3Sm);
+                autoChooser.addOption("Steal 2 & Shoot Midfield & Get Rendezvous 3 & Shoot Midfield", s_St3SmGr3Sm);
 
-            } else { //"Anywhere" or anything else if there's an error
+            } else { //"Anywhere" or anything else if there's an error or on initialization it is "None"
 
-                autoChooser.addOption("", object);
-                autoChooser.addOption("", object);
+                autoChooser.addOption("Shoot 3 & Forward", a_S3F);
+                autoChooser.addOption("Shoot 3 & Reverse", a_S3R);
 
             }
 
             SmartDashboard.putData("Auto Choice", autoChooser); //Update the Auto Choice with the new options and new chooser
 
         }
-        //Else do nothing 
+        //Else do nothing cuz the location chooser hasn't changed states
     }
 
     public Command getCommand() {
