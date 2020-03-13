@@ -31,7 +31,7 @@ public class Climber extends SubsystemBase {
     motorLeft = new CANSparkMax(motorLeftId, MotorType.kBrushless); //For encoders, only based on Master
     motorRight = new CANSparkMax(motorRightId, MotorType.kBrushless);
 
-    motorLeft.setInverted(true); //WE MUST DETERMINE THIS, ALSO MAKE GOING NEGATIVE IMPOSSIBLE CUZ IT WILL DESTROY MOTORS
+    motorLeft.setInverted(true); 
     motorRight.setInverted(true);   
 
     motorLeft.setIdleMode(IdleMode.kBrake); //Set brake mode on the climber
@@ -41,7 +41,7 @@ public class Climber extends SubsystemBase {
   }
 
   public void runLeftClimber (double pPow) { motorLeft.set( Math.abs(pPow) ); } //abs cuz it opnly runs positive
-  public void runRightClimber (double pPow) { motorRight.set( Math.abs(pPow) ); }
+  public void runRightClimber (double pPow) { motorRight.set( Math.abs(pPow) ); } //Range = -1 to +1, 0 is stationary
   public void runErector(double pPower) { erector.set(ControlMode.PercentOutput, pPower); }
 
   public void resetClimberEncoders() { motorLeft.getEncoder().setPosition(0); motorRight.getEncoder().setPosition(0); }
