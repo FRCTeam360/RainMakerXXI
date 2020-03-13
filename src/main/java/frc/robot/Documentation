@@ -50,8 +50,8 @@ Controller (Port 2): (Mode light off always)
 8 (R trigger): Spins shooter (in configure button binds using shooterRamp)
 9 (back): When held allows for ?-axis (right stick up and down) to control the erector up and down (in command Climb)
 10 (start): When held allows for y-axis (left stick up and down) to controll shooter speed (in command ManualShooter) (Scaled by 0.65)
-11 (L stick): Intake up pneumatic (DNE) =-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-
-12 (R stick): Intake down pneumatic (DNE) =-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-
+11 (L stick): 
+12 (R stick): 
 Axis 0 (X-axis , left stick left/right):
 Axis 1 (Y-axis , left stick up/down): If 10 held see it || if not held and enabled (see "a") Left climber winch up/down (in command Climb)
 Axis 2 (Z-axis , right stick left/right):
@@ -74,8 +74,8 @@ Talons:
     11. Intake1 (intake)
     12. Climb1 (erector)
 Pneumatics Solenoids IDs:
-    0. Intake: Up (DNE) =-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-
-    1. Intake: Down (DNE) =-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-
+    0. 
+    1. 
     2. Shifter: Low Gear & Reverse (in Constants)
     3. Shifter: High Gear & Forward (in Constants)
     4. 
@@ -85,13 +85,14 @@ Pneumatics Solenoids IDs:
 Comp Bot Dashboard Items:
 Lime Target: green if limelioght has a target (in sub LimeLight)
 Lime X: is limelight x offset, zeroed if no target (in sub LimeLight)
-Shooter Target: is the target ticks/100ms of the shooter based on Limelight Y value (DNE) =-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-=-=--=-=-
+Shooter Target: is the target units/sec of the shooter (in sub LimeLight)
 limelight: this is the limelight view screen (in sub LimeLight)
 Shooter Velocity: the velocity of the shooter in ticks (in sub Shooter)
 Shooter Ready: is the velocity below targetVelocity & more than 200 less than velocity (200 is from LoadBalls command) (in sub Shooter)
 Shooter Timer: when align shoot is ran it displays time since shooter started revving up (in cmd LoadBalls & AutoLoadBalls)
 Climber Enable: boolean of whether or not the toggle button has been hit (if green climber is enabled, if red climber is disabled) (in cmd Climb)
-Auto Choice: Is a sendable chooser to select which auto we want to run (in RobotContainer constructor)
+Auto Choice: chooser for the autonomous to be ran, options change based on "Start Location" chooser (in AutoChooser) 
+Start Location: chooser for starting location of the autonomous, modifies options in "Auto Choice" chooser (in AutoChooser) 
 
 ========================================================================================
 Autonomous Documentation:
