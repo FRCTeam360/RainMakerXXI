@@ -94,3 +94,8 @@ Climber Enable: boolean of whether or not the toggle button has been hit (if gre
 Auto Choice: Is a sendable chooser to select which auto we want to run (in RobotContainer constructor)
 
 ========================================================================================
+Autonomous Documentation:
+For what ever auto does and where to go in order to find it please see the google document
+https://docs.google.com/document/d/1ZzKN8307v-F8J6IOMjoKNzDeHFn1hQQgfZHeF83wKGE
+
+========================================================================================
