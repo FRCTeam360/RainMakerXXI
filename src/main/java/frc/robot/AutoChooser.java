@@ -14,6 +14,7 @@ import frc.robot.commands.autos.CenterGroup.*;
 import frc.robot.commands.autos.MidfieldGroup.*;
 import frc.robot.commands.autos.OpposingTrenchGroup.*;
 import frc.robot.commands.autos.OurTrenchGroup.*;
+import frc.robot.commands.autos.SkillsOneGroup.*;
 
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -43,6 +44,8 @@ public class AutoChooser {
     private final Command t_S3Gt5Sc;
     private final Command t_S3Gt5St;
     private final Command t_S3Gt5StCf;
+    private final Command teachingAutonomous; //SkillsOne
+    private final Command barrelRun; 
 
     public AutoChooser(RobotContainer container) {
 
@@ -69,13 +72,15 @@ public class AutoChooser {
         t_S3Gt5Sc = new tS3Gt5Sc(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
         t_S3Gt5St = new S3Gt5St(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
         t_S3Gt5StCf = new S3Gt5StCf(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
-
+        teachingAutonomous = new TeachingAutonomous(container.drivetrain);
+        barrelRun = new BarrelRun(container.drivetrain);
         //autoChooser starts without options, it gets initialized in periodic anyways
 
         locationChooser.addOption("OurTrench", "OurTrench");
         locationChooser.addOption("Center", "Center");
         locationChooser.addOption("Midfield", "Midfield");
         locationChooser.addOption("OpposingTrench", "OpposingTrench");
+        locationChooser.addOption("SkillsOne", "SkillsOne" );
         locationChooser.setDefaultOption("Anywhere", "Anywhere");
 
         SmartDashboard.putData("Start Location", locationChooser);
@@ -115,6 +120,11 @@ public class AutoChooser {
                 autoChooser.addOption("Steal 2 & Shoot Midfield", s_St2Sm);
                 autoChooser.addOption("Steal 3 & Shoot Midfield", s_St3Sm);
                 autoChooser.addOption("Steal 2 & Shoot Midfield & Get Rendezvous 3 & Shoot Midfield", s_St3SmGr3Sm);
+
+            } else if (selectedLocation.equals("SkillsOne")) {
+
+                autoChooser.addOption("Testing Autonomous", teachingAutonomous);
+                autoChooser.addOption("Barrel Run", barrelRun);
 
             } else { //"Anywhere" or anything else if there's an error or on initialization it is "None"
 

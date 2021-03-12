@@ -100,8 +100,8 @@ public final class Constants {
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
 
         //3,0.5 works and so does 6, 1 if want to increase more only change acceleration as 6 is near max robot velocity
-        public static final double kMaxSpeedMetersPerSecond = 6; //6 is great
-        public static final double kMaxAccelerationMetersPerSecondSquared = 2.0; //3 seems a bit too fast so 2.5 is meta asf
+        public static final double kMaxSpeedMetersPerSecond = 1.5; //6 is great
+        public static final double kMaxAccelerationMetersPerSecondSquared = 1.0; //3 seems a bit too fast so 2.5 is meta asf
 
         //Ramsete Values - 2,.7 are default and these have been tuned by hand
         public static final double kRamseteB = 4.0; //0 to infinite - Agression
@@ -150,15 +150,51 @@ public final class Constants {
         public static final Trajectory sanityLine = TrajectoryGenerator.generateTrajectory(
             new Pose2d(0, 0, new Rotation2d(0)), //Starts facing +X
             List.of(  ),
-            new Pose2d(2, 0, new Rotation2d(0)),
+            new Pose2d(1, 0, new Rotation2d(0)),
             TrajConfig.configFwd
         );
         //Sanity line to go reverse 1 meter after being ran forward 2
         public static final Trajectory sanityLineRev = TrajectoryGenerator.generateTrajectory(
-            new Pose2d(2, 0, new Rotation2d(0)), 
+            new Pose2d(1, 0, new Rotation2d(0)), 
             List.of(  ),
-            new Pose2d(1, 0, new Rotation2d(0)),
+            new Pose2d(0, 0, new Rotation2d(0)),
             TrajConfig.configRev
+        );
+    }
+    public static final class teachihngTrajectories {
+        public static final Trajectory rev = TrajectoryGenerator.generateTrajectory(
+            new Pose2d(0, 0, new Rotation2d(0)), //Starts facing +X
+            List.of(  ),
+            new Pose2d(-2.07, 0.5, new Rotation2d(0)),
+            TrajConfig.configRev
+        );
+        public static final Trajectory fwd = TrajectoryGenerator.generateTrajectory(
+            new Pose2d(-2.07, 0.5, new Rotation2d(0)), 
+            List.of(  ),
+            new Pose2d(1.5, -1.2, new Rotation2d(0)),
+            TrajConfig.configFwd
+        );
+        public static final Trajectory rev2 = TrajectoryGenerator.generateTrajectory(
+            new Pose2d(1.5, -1.2, new Rotation2d(0)), //Starts facing +X
+            List.of(  ),
+            new Pose2d(0, 0, new Rotation2d(0)),
+            TrajConfig.configRev
+        );
+    }
+    public static final class BarrelRunTrajectories {
+        public static final Trajectory first = TrajectoryGenerator.generateTrajectory(
+            new Pose2d(0, 0, new Rotation2d(0)), //Starts facing +X
+            List.of( 
+                new Translation2d(2.5, -0.20),
+                new Translation2d(3.5, -1),
+                new Translation2d(2.5, -1.8),
+                new Translation2d(2.0, -1),
+                new Translation2d(5.5,0),
+                new Translation2d(4.5,1),
+                new Translation2d(4.25,0)
+            ),
+            new Pose2d(6, -1.5, new Rotation2d(0)),
+            TrajConfig.configFwd
         );
     }
     public static final class trenchRunTrajectories {
