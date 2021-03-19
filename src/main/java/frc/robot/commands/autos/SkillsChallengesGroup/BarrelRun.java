@@ -20,7 +20,13 @@ public class BarrelRun extends SequentialCommandGroup {
           BarrelRunTrajectories.first, 
           drivetrain
         )
-        .andThen(() -> drivetrain.tankDriveVolts(0,0))
+        .andThen(() -> drivetrain.tankDriveVolts(0,0))/*,
+        new ResetEncorderPosition(drivetrain),
+        new MoveWithRamsete(
+          BarrelRunTrajectories.backFromZero, 
+          drivetrain
+        )
+        .andThen(() -> drivetrain.tankDriveVolts(0,0)) */
     );
   }
 }

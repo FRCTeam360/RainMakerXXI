@@ -100,8 +100,8 @@ public final class Constants {
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
 
         //3,0.5 works and so does 6, 1 if want to increase more only change acceleration as 6 is near max robot velocity
-        public static final double kMaxSpeedMetersPerSecond = 1.5; //6 is great
-        public static final double kMaxAccelerationMetersPerSecondSquared = 1.0; //3 seems a bit too fast so 2.5 is meta asf
+        public static final double kMaxSpeedMetersPerSecond = 1.0; //6 is great
+        public static final double kMaxAccelerationMetersPerSecondSquared = 0.5; //3 seems a bit too fast so 2.5 is meta asf
 
         //Ramsete Values - 2,.7 are default and these have been tuned by hand
         public static final double kRamseteB = 4.0; //0 to infinite - Agression
@@ -182,7 +182,7 @@ public final class Constants {
         );
     }
     public static final class BarrelRunTrajectories {
-        public static final Trajectory first = TrajectoryGenerator.generateTrajectory(
+        public static final Trajectory firstExperiment = TrajectoryGenerator.generateTrajectory( //initial, bad cuz random guess pretty much
             new Pose2d(0, 0, new Rotation2d(0)), //Starts facing +X
             List.of( 
                 new Translation2d(2.5, -0.20),
@@ -195,6 +195,70 @@ public final class Constants {
             ),
             new Pose2d(6, -1.5, new Rotation2d(0)),
             TrajConfig.configFwd
+        );
+        public static final Trajectory firstUGTYERIUYU = TrajectoryGenerator.generateTrajectory( //Jakes raw numbers first shot
+            new Pose2d(0, 0, new Rotation2d(0)), 
+            List.of( 
+                new Translation2d(2.0193, 0),
+                new Translation2d(3.3147, 0),
+                new Translation2d(3.7465, -0.4318),
+                new Translation2d(3.3147, -0.8636),
+                new Translation2d(2.8829, -0.4318),
+                new Translation2d(3.3147, 0),
+                new Translation2d(5.7151, 0.6758),
+                new Translation2d(6.0325, 1.0922),
+                new Translation2d(5.6007, 1.5240),
+                new Translation2d(5.1689, 1.0922),
+                new Translation2d(6.8194, -.62 ), //Guessed y-val as jake left it unkown
+                new Translation2d(7.1247, -0.8636),
+                new Translation2d(7.5565, -0.4318),
+                new Translation2d(7.1247, 0)
+             ),
+            new Pose2d(0.25, 0, new Rotation2d(180)),
+            TrajConfig.configFwd
+        );
+        public static final Trajectory first = TrajectoryGenerator.generateTrajectory( //jake nums + shift, no return
+            new Pose2d(0, 0, new Rotation2d(0)), 
+            List.of( 
+                new Translation2d(2.0193, 0),
+                new Translation2d(3.3147, 0 + 0.1),
+                new Translation2d(3.7465 + 0.1, -0.4318),
+                new Translation2d(3.3147, -0.8636 + -0.1),
+                new Translation2d(2.8829 + -0.1, -0.4318),
+                new Translation2d(3.3147, 0 + 0.1),
+                new Translation2d(5.7151, 0.6758 + -0.1),
+                new Translation2d(6.0325 + 0.1, 1.0922),
+                new Translation2d(5.6007, 1.5240 + 0.1),
+                new Translation2d(5.1689 + -0.1, 1.0922),
+                //new Translation2d(6.8194 + -0.05, -.62 + -0.05 ), //Guessed y-val as jake left it unkown
+                new Translation2d(7.1247, -0.8636 + -0.1),
+                //new Translation2d(7.4300 + 0.05, 0.7371 + -0.05), //New circle rez point
+                new Translation2d(7.5565 + 0.1, -0.4318),
+                new Translation2d(7.1247, 0 + 0.1)
+            ),
+            new Pose2d(0.25, 0, new Rotation2d(0)),
+            TrajConfig.configFwd
+        );
+        public static final Trajectory backFromZero = TrajectoryGenerator.generateTrajectory( //ASSUME RESETENC POS
+            new Pose2d(0, 0, new Rotation2d(0)), //Starts facing +X
+            List.of(  ),
+            new Pose2d(6.9, 0, new Rotation2d(0)),
+            TrajConfig.configFwd
+        );
+        public static final Trajectory hitAllPoints = TrajectoryGenerator.generateTrajectory( //hit all of the points
+        new Pose2d(0, 0, new Rotation2d(0)), //Starts facing +X
+        List.of( 
+            // new Translation2d(3.3147,-0.4318), 
+            // new Translation2d(5.6007,1.0922), 
+            // new Translation2d(7.1247,-0.4318)
+            new Translation2d(7.1247, -0.8636 + -0.1),
+            //new Translation2d(7.4300 + 0.05, 0.7371 + -0.05), //New circle rez point
+            new Translation2d(7.5565 + 0.1, -0.4318),
+            new Translation2d(7.1247, 0 + 0.1)
+
+         ),
+        new Pose2d(0.5, 0, new Rotation2d(0)),
+        TrajConfig.configFwd
         );
     }
     public static final class trenchRunTrajectories {
