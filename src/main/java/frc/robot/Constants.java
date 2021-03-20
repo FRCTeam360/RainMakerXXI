@@ -100,8 +100,8 @@ public final class Constants {
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
 
         //3,0.5 works and so does 6, 1 if want to increase more only change acceleration as 6 is near max robot velocity
-        public static final double kMaxSpeedMetersPerSecond = 3.5; //6 is great
-        public static final double kMaxAccelerationMetersPerSecondSquared = 1.5; //3 seems a bit too fast so 2.5 is meta asf
+        public static final double kMaxSpeedMetersPerSecond = 3.0; //6 is great
+        public static final double kMaxAccelerationMetersPerSecondSquared = 1.0; //3 seems a bit too fast so 2.5 is meta asf
 
         //Ramsete Values - 2,.7 are default and these have been tuned by hand
         public static final double kRamseteB = 4.0; //0 to infinite - Agression
@@ -283,10 +283,68 @@ public final class Constants {
         );
     }
     public static final class SlalomRunTrajectories {
-        public static final Trajectory slalomPath = TrajectoryGenerator.generateTrajectory(
+        public static final Trajectory slalomPathTangent = TrajectoryGenerator.generateTrajectory(
             new Pose2d(0, 0, new Rotation2d(0)), 
-            List.of(  ),
-            new Pose2d(0, 0, new Rotation2d(0)),
+            List.of( 
+                new Translation2d(1.066, 0.000),
+                new Translation2d(2.023, 1.443),
+                new Translation2d(2.552, 1.727),
+                new Translation2d(5.600, 1.727),
+                new Translation2d(6.129, 1.443),
+                new Translation2d(6.595, 0.741),
+                new Translation2d(7.124, 0.457),
+                new Translation2d(7.759, 1.092),
+                new Translation2d(7.124, 1.727),
+                new Translation2d(6.595, 1.443),
+                new Translation2d(6.129, 0.741),
+                new Translation2d(5.600, 0.457),
+                new Translation2d(2.552, 0.457),
+                new Translation2d(2.023, 0.741),
+                new Translation2d(1.369, 1.727)
+            ),
+            new Pose2d(0.152, 1.727, new Rotation2d(0)),
+            TrajConfig.configFwd
+        );
+        public static final Trajectory slalomPathInteriorPoints = TrajectoryGenerator.generateTrajectory(
+            new Pose2d(0, 0, new Rotation2d(0)), 
+            List.of( 
+                new Translation2d(1.263, 0.502),
+                new Translation2d(1.557, 0.741),
+                new Translation2d(2.023, 1.443 + 0.2), //
+                new Translation2d(2.552, 1.727 + 0.2), //
+                new Translation2d(5.600, 1.727),
+                new Translation2d(6.129, 1.443),
+                new Translation2d(6.595, 0.741),
+                new Translation2d(7.124, 0.457),
+                new Translation2d(7.759, 1.092),
+                new Translation2d(7.124, 1.727),
+                new Translation2d(6.595, 1.443),
+                new Translation2d(6.129, 0.741),
+                new Translation2d(5.600, 0.457),
+                new Translation2d(2.552, 0.457),
+                new Translation2d(2.023, 0.741),
+                new Translation2d(1.557, 1.443),
+                new Translation2d(1.028, 1.727)
+            ),
+            new Pose2d(0.200, 1.727, new Rotation2d(0)),
+            TrajConfig.configFwd
+        );
+        public static final Trajectory slalomPath = TrajectoryGenerator.generateTrajectory( //v=3 a=1
+            new Pose2d(0, 0, new Rotation2d(0)), 
+            List.of( 
+                new Translation2d(1.448, 0.575),
+                new Translation2d(2.211, 1.727),
+                new Translation2d(5.941, 1.727),
+                //new Translation2d(6.783, 0.457), //6.595, 0.741 (old val tangent)
+                new Translation2d(7.124, 0.056), //7.124, 0.457
+                new Translation2d(8.273, 1.092), //7.759, 1.092
+                new Translation2d(7.124, 2.241), //7.124, 1.727
+                //new Translation2d(6.783, 1.727), //6.595, 1.443 (old val tangent)
+                new Translation2d(5.941, 0.457),
+                new Translation2d(2.211, 0.457),
+                new Translation2d(1.369, 1.727)
+             ),
+            new Pose2d(0.200, 1.727, new Rotation2d(0)),
             TrajConfig.configFwd
         );
     }
