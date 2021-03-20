@@ -7,17 +7,17 @@ package frc.robot.commands.autos.SkillsChallengesGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 //import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 
-import frc.robot.Constants.BarrelRunTrajectories;
+import frc.robot.Constants.SlalomRunTrajectories;
 
 import frc.robot.commands.*;
 import frc.robot.subsystems.*;
 
-//Skills Challenge: Barrell Racing Path
-public class BarrelRun extends SequentialCommandGroup {
-  public BarrelRun(DriveTrain drivetrain) {
+//Skills Challenge: Slalom Racing Path
+public class SlalomRun extends SequentialCommandGroup {
+  public SlalomRun(DriveTrain drivetrain) {
     super(
         new MoveWithRamsete(
-          BarrelRunTrajectories.first, 
+          SlalomRunTrajectories.slalomPath, 
           drivetrain
         )
         .andThen(() -> drivetrain.tankDriveVolts(0,0))

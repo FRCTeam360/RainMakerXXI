@@ -46,6 +46,7 @@ public class AutoChooser {
     private final Command t_S3Gt5St;
     private final Command t_S3Gt5StCf;
     private final Command barrelRun; //SkillsChallengeGroup
+    private final Command slalomRun; 
     private final Command teachingAutonomous; //TeachingGroup 
 
     public AutoChooser(RobotContainer container) {
@@ -74,6 +75,7 @@ public class AutoChooser {
         t_S3Gt5St = new S3Gt5St(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
         t_S3Gt5StCf = new S3Gt5StCf(container.drivetrain, container.limelight, container.feeder, container.shooter, container.intake);
         barrelRun = new BarrelRun(container.drivetrain);
+        slalomRun = new SlalomRun(container.drivetrain);
         teachingAutonomous = new TeachingAutonomous(container.drivetrain);
         
         //autoChooser starts without options, it gets initialized in periodic anyways
@@ -127,6 +129,7 @@ public class AutoChooser {
             } else if (selectedLocation.equals("SkillsChallenge")) {
 
                 autoChooser.addOption("Barrel Run", barrelRun);
+                autoChooser.addOption("Slalom Run", slalomRun);
 
 			} else if (selectedLocation.equals("Teaching")) {
 

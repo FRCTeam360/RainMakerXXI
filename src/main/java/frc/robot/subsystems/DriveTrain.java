@@ -231,7 +231,7 @@ public class DriveTrain extends SubsystemBase {
     //dashboardMetersTravelled(); //Here for testing, comment out before the competition
     //tempPrintouts();
     //SmartDashboard.putNumber("Cons", AutoConstants.ticksToMeters);
-    //avgTempPrintouts();
+    avgTempPrintouts();
     //ampPrintouts();
   }
 }

@@ -100,8 +100,8 @@ public final class Constants {
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
 
         //3,0.5 works and so does 6, 1 if want to increase more only change acceleration as 6 is near max robot velocity
-        public static final double kMaxSpeedMetersPerSecond = 1.0; //6 is great
-        public static final double kMaxAccelerationMetersPerSecondSquared = 0.5; //3 seems a bit too fast so 2.5 is meta asf
+        public static final double kMaxSpeedMetersPerSecond = 3.5; //6 is great
+        public static final double kMaxAccelerationMetersPerSecondSquared = 1.5; //3 seems a bit too fast so 2.5 is meta asf
 
         //Ramsete Values - 2,.7 are default and these have been tuned by hand
         public static final double kRamseteB = 4.0; //0 to infinite - Agression
@@ -196,7 +196,7 @@ public final class Constants {
             new Pose2d(6, -1.5, new Rotation2d(0)),
             TrajConfig.configFwd
         );
-        public static final Trajectory firstUGTYERIUYU = TrajectoryGenerator.generateTrajectory( //Jakes raw numbers first shot
+        public static final Trajectory firstJakeNums = TrajectoryGenerator.generateTrajectory( //Jakes raw numbers first shot
             new Pose2d(0, 0, new Rotation2d(0)), 
             List.of( 
                 new Translation2d(2.0193, 0),
@@ -217,7 +217,7 @@ public final class Constants {
             new Pose2d(0.25, 0, new Rotation2d(180)),
             TrajConfig.configFwd
         );
-        public static final Trajectory first = TrajectoryGenerator.generateTrajectory( //jake nums + shift, no return
+        public static final Trajectory firstJakeNumsShift = TrajectoryGenerator.generateTrajectory( //jake nums + shift, no return
             new Pose2d(0, 0, new Rotation2d(0)), 
             List.of( 
                 new Translation2d(2.0193, 0),
@@ -239,26 +239,55 @@ public final class Constants {
             new Pose2d(0.25, 0, new Rotation2d(0)),
             TrajConfig.configFwd
         );
-        public static final Trajectory backFromZero = TrajectoryGenerator.generateTrajectory( //ASSUME RESETENC POS
-            new Pose2d(0, 0, new Rotation2d(0)), //Starts facing +X
-            List.of(  ),
-            new Pose2d(6.9, 0, new Rotation2d(0)),
+
+        public static final Trajectory firstRaw = TrajectoryGenerator.generateTrajectory( //3/1.5 is 14.75 secs - 3.5/1.5 is 13.31 secs - 3/2 is 13.41 sec : settle on velo increase
+            new Pose2d(0, 0, new Rotation2d(0)), 
+            List.of( 
+                new Translation2d(3.282, +0.164),
+                new Translation2d(3.949, -0.469),
+                new Translation2d(3.314, -1.104),
+                new Translation2d(2.679, -0.469),
+                new Translation2d(3.246, +0.161),
+                new Translation2d(5.668, +0.422),
+                new Translation2d(6.234, +1.093),
+                new Translation2d(5.600, +1.689),
+                new Translation2d(4.966, +1.093),
+                new Translation2d(5.151, +0.605),
+                new Translation2d(6.675, -0.918),
+                new Translation2d(7.711, -0.712),
+                new Translation2d(7.124, +0.165)
+            ),
+            new Pose2d(0.533 + 0.5, 0.165 + 0.3, new Rotation2d(0)),
             TrajConfig.configFwd
         );
-        public static final Trajectory hitAllPoints = TrajectoryGenerator.generateTrajectory( //hit all of the points
-        new Pose2d(0, 0, new Rotation2d(0)), //Starts facing +X
-        List.of( 
-            // new Translation2d(3.3147,-0.4318), 
-            // new Translation2d(5.6007,1.0922), 
-            // new Translation2d(7.1247,-0.4318)
-            new Translation2d(7.1247, -0.8636 + -0.1),
-            //new Translation2d(7.4300 + 0.05, 0.7371 + -0.05), //New circle rez point
-            new Translation2d(7.5565 + 0.1, -0.4318),
-            new Translation2d(7.1247, 0 + 0.1)
-
-         ),
-        new Pose2d(0.5, 0, new Rotation2d(0)),
-        TrajConfig.configFwd
+        public static final Trajectory first = TrajectoryGenerator.generateTrajectory( //v=3.5 & a=1.5 is about 13.31 secs - Tuned Vals
+            new Pose2d(0, 0, new Rotation2d(0)), 
+            List.of( 
+                new Translation2d(3.282, +0.164), //ok
+                new Translation2d(3.949 +.2, -0.469 -.2),
+                new Translation2d(3.314, -1.104 -.2), // y-0.2
+                //new Translation2d(3.763, -0.918), //Added interrior circle point
+                new Translation2d(2.679 -.1, -0.469),
+                new Translation2d(3.246 -.1, +0.161),
+                new Translation2d(5.668, +0.422),
+                new Translation2d(6.234 +.2, +1.093),
+                new Translation2d(5.600, +1.689),
+                new Translation2d(4.966 -.2, +1.093),
+                //new Translation2d(5.151, +0.605),
+                new Translation2d(6.675, -0.918),
+                new Translation2d(7.711 -.1, -0.712),
+                new Translation2d(7.124, +0.165)
+            ),
+            new Pose2d(1.000, 1.250, new Rotation2d(0)),
+            TrajConfig.configFwd
+        );
+    }
+    public static final class SlalomRunTrajectories {
+        public static final Trajectory slalomPath = TrajectoryGenerator.generateTrajectory(
+            new Pose2d(0, 0, new Rotation2d(0)), 
+            List.of(  ),
+            new Pose2d(0, 0, new Rotation2d(0)),
+            TrajConfig.configFwd
         );
     }
     public static final class trenchRunTrajectories {
