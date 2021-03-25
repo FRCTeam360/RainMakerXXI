@@ -100,8 +100,8 @@ public final class Constants {
         public static final DifferentialDriveKinematics kDriveKinematics = new DifferentialDriveKinematics(kTrackwidthMeters);
 
         //3,0.5 works and so does 6, 1 if want to increase more only change acceleration as 6 is near max robot velocity
-        public static final double kMaxSpeedMetersPerSecond = 2.5; //6 is great
-        public static final double kMaxAccelerationMetersPerSecondSquared = 2.75; //3 seems a bit too fast so 2.5 is meta asf
+        public static final double kMaxSpeedMetersPerSecond = 3.0; //6 is great
+        public static final double kMaxAccelerationMetersPerSecondSquared = 1.0; //3 seems a bit too fast so 2.5 is meta asf
 
         //Ramsete Values - 2,.7 are default and these have been tuned by hand
         public static final double kRamseteB = 4.0; //0 to infinite - Agression
@@ -340,11 +340,11 @@ public final class Constants {
                 new Translation2d(8.273, 1.092), //7.759, 1.092
                 new Translation2d(7.124, 2.241), //7.124, 1.727
                 //new Translation2d(6.783, 1.727), //6.595, 1.443 (old val tangent)
-                new Translation2d(5.941, 0.457),
+                new Translation2d(5.941, 0.457 -.2), //slight adjustment to avoid hitting a ball
                 new Translation2d(2.211, 0.457),
-                new Translation2d(1.369, 1.727)
+                new Translation2d(1.369 + .5, 1.727) //point right before finishing line in theory
              ),
-            new Pose2d(0.200, 1.727, new Rotation2d(0)),
+            new Pose2d(0.618, 2.859, new Rotation2d(0)),
             TrajConfig.configFwd
         );
     }
