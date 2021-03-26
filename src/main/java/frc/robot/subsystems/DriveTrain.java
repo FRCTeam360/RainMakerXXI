@@ -229,9 +229,9 @@ public class DriveTrain extends SubsystemBase {
     //PIDDashboard(); //For mathew's PIDs
     navxTestingDashboardReadouts(); //Here for testing
     //dashboardMetersTravelled(); //Here for testing, comment out before the competition
-    //tempPrintouts();
+    tempPrintouts();
     //SmartDashboard.putNumber("Cons", AutoConstants.ticksToMeters);
-    avgTempPrintouts();
+    //avgTempPrintouts();
     //ampPrintouts();
   }
 }
