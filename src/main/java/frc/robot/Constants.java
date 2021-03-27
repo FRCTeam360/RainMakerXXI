@@ -348,37 +348,37 @@ public final class Constants {
             TrajConfig.configFwd
         );
     }
-    public static final class BounceRunTrajectories { //v=2.5, a=2.75
+    public static final class BounceRunTrajectories { //v=4 a=5
         public static final Trajectory stageOne = TrajectoryGenerator.generateTrajectory(
             new Pose2d(0, 0, new Rotation2d(0)), 
             List.of(  ),
-            new Pose2d(1.790 -.1, 1.327 + 0.050, new Rotation2d(90)),
+            new Pose2d(1.790 -.5, 1.327 + 1.050 - 0.2 - 0.2, new Rotation2d(90)),
             TrajConfig.configFwd
         );
         public static final Trajectory stageTwo = TrajectoryGenerator.generateTrajectory(
-            new Pose2d(1.790 -.1, 1.327 + 0.050, new Rotation2d(90)), 
+            new Pose2d(1.790 -.5, 1.327 + 1.050 - 0.2 - 0.2, new Rotation2d(90)), 
             List.of( 
-                new Translation2d(2.739, -0.700),
-                new Translation2d(3.430, -1.056),
+                new Translation2d(2.739 -0.3, -0.700),
+                new Translation2d(3.430, -1.056 -0.4),
                 new Translation2d(3.948, -0.477)
             ),
-            new Pose2d(4.076 +.3, 1.327 + 0.050, new Rotation2d(-90)),
+            new Pose2d(4.076 +.3 +0.2 +0.1, 1.327 + 1.050 - 0.2, new Rotation2d(-90)),
             TrajConfig.configRev
         );
         public static final Trajectory stageThree = TrajectoryGenerator.generateTrajectory(
-            new Pose2d(4.076 +.3, 1.327 + 0.050, new Rotation2d(-90)), 
+            new Pose2d(4.076 +.3 +0.2 +0.1, 1.327 + 1.050 - 0.2, new Rotation2d(-90)), 
             List.of( 
-                new Translation2d(4.205, -0.477),
+                new Translation2d(4.205 +1.25, -0.477),
                 //new Translation2d(4.838, -1.066), 
-                new Translation2d(5.219, -1.447),
+                new Translation2d(5.219, -1.056),
                 //new Translation2d(5.600, -1.066),
                 new Translation2d(6.234 +.25, -0.477)
             ),
-            new Pose2d(6.362 +0.2, 1.327 + 0.050, new Rotation2d(90)),
+            new Pose2d(6.362 +0.2, 1.327 + 1.050 - 0.2, new Rotation2d(90)),
             TrajConfig.configFwd
         );
         public static final Trajectory stageFour = TrajectoryGenerator.generateTrajectory(
-            new Pose2d(6.362 +0.2, 1.327 + 0.050, new Rotation2d(90)), 
+            new Pose2d(6.362 +0.2, 1.327 + 1.050 - 0.2, new Rotation2d(90)), 
             List.of(  ),
             new Pose2d(7.883, -1.202, new Rotation2d(-180)), //tecnical finish point 8.153, 0.355
             TrajConfig.configRev
