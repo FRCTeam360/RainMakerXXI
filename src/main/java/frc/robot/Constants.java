@@ -109,7 +109,7 @@ public final class Constants {
         public static final boolean kGyroReversed = true; //Characterization says this isn't necessary but it seems to perform better....
     }
 	public static final class TrajConfig { // Remember, can't be named "TrajectoryConfig(s)" cuz thats an imported class
-        //Initializes Tarjectory configurations and Trajectories
+        //Initializes Trajectory configurations and Trajectories
         private static final DifferentialDriveVoltageConstraint autoVoltageConstraint = new DifferentialDriveVoltageConstraint(
             new SimpleMotorFeedforward(
                 AutoConstants.ksVolts,
