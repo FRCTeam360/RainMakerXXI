@@ -260,23 +260,23 @@ public final class Constants {
             new Pose2d(0.533 + 0.5, 0.165 + 0.3, new Rotation2d(0)),
             TrajConfig.configFwd
         );
-        public static final Trajectory first = TrajectoryGenerator.generateTrajectory( //v=3.5 & a=1.5 is about 13.31 secs - Tuned Vals
+        public static final Trajectory first = TrajectoryGenerator.generateTrajectory( //starting full speed v=4 & a=5
             new Pose2d(0, 0, new Rotation2d(0)), 
             List.of( 
-                new Translation2d(3.282, +0.164), //ok
-                new Translation2d(3.949 +.2, -0.469 -.2),
-                new Translation2d(3.314, -1.104 -.2), // y-0.2
+                new Translation2d(3.282, +0.164 +.4), //ok[][\]
+                new Translation2d(3.949 +.1, -0.469 -.2),
+                new Translation2d(3.314 -.2, -1.104 -.6), // y-0.2
                 //new Translation2d(3.763, -0.918), //Added interrior circle point
-                new Translation2d(2.679 -.1, -0.469),
+                new Translation2d(2.679 -.3, -0.469),
                 new Translation2d(3.246 -.1, +0.161),
-                new Translation2d(5.668, +0.422),
-                new Translation2d(6.234 +.2, +1.093),
-                new Translation2d(5.600, +1.689),
-                new Translation2d(4.966 -.2, +1.093),
+                new Translation2d(5.668, +0.422 -.4),
+                new Translation2d(6.234 -.1, +1.093),
+                new Translation2d(5.600 -.3, +1.689 +.2),
+                new Translation2d(4.966 -.85, +1.093),
                 //new Translation2d(5.151, +0.605),
-                new Translation2d(7.124, -1.104), //6.675, -0.918
-                new Translation2d(7.759, -0.469), //7.711 -.1, -0.712
-                new Translation2d(7.124, +0.165)
+                new Translation2d(7.124, -0.104), //6.675, -0.918
+                new Translation2d(7.124 +.5, -0.104 +.5), //7.711 -.1, -0.712 //7.759 -1, -0.469
+                new Translation2d(7.124, -0.104 +1) //7.124, +0.165 -.5
             ),
             new Pose2d(1.000, 1.250, new Rotation2d(0)),
             TrajConfig.configFwd

@@ -216,6 +216,13 @@ public class DriveTrain extends SubsystemBase {
     SmartDashboard.putNumber("Right m/s", motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters );
   }
 
+  public void velocityPrintouts() { //In m/s
+    double leftSpeed = motorLMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters;
+    double rightSpeed = motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters;
+    SmartDashboard.putNumber("Left Velocity", leftSpeed);
+    SmartDashboard.putNumber("Right Velocity", rightSpeed);
+  }
+
   @Override
   public void periodic() {
     m_odometry.update( //Must be in meters according to internets
@@ -233,5 +240,6 @@ public class DriveTrain extends SubsystemBase {
     //SmartDashboard.putNumber("Cons", AutoConstants.ticksToMeters);
     //avgTempPrintouts();
     //ampPrintouts();
+    velocityPrintouts();
   }
 }
