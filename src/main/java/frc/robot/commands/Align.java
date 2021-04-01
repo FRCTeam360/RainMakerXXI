@@ -75,6 +75,6 @@ public class Align extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return timer.get() >= .1 && Math.abs(myLimelight.getX()) < .2;
+    return timer.get() >= .1 && Math.abs(myLimelight.getX()) < .4;
   }
 }

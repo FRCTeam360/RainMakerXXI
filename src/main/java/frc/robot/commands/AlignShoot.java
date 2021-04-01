@@ -7,7 +7,7 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 //import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
 //import frc.robot.commands.AutoRunIntake;
@@ -20,7 +20,7 @@ import frc.robot.subsystems.Feeder;
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class AlignShoot extends ParallelRaceGroup {
+public class AlignShoot extends ParallelCommandGroup {
   /**
    * Creates a new AlignShoot.
    */
