@@ -17,16 +17,9 @@ import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Feeder;
 //import frc.robot.subsystems.Intake;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
+//AlignShoot (Comments on lines 24, 25, & 26 should not be taken seriously)
 public class AlignShoot extends ParallelCommandGroup {
-  /**
-   * Creates a new AlignShoot.
-   */
   public AlignShoot(DriveTrain driveTrain, Limelight limelight, Shooter shooter, Feeder feeder) {
-    // Add your commands in the super() call, e.g.
-    // super(new FooCommand(), new BarCommand());
     super(
       new Align(driveTrain, limelight), //ends when aligned
       new LoadBalls(feeder, limelight, shooter), //ends on timer
