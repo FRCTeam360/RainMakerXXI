@@ -11,3 +11,7 @@ Controller (Left is the higher solenoids, for example, left bumper fires solenoi
 Bumpers is Solenoid 0 & 1
 Triggers r Solenoid 2 & 3
 Start/Back r Solenoid 4 & 5
+
+1-6 CAN IDs are Spark Maxes
+7-12 CAN IDs are Talon SRXs
+13 CAN ID is Talon FX
