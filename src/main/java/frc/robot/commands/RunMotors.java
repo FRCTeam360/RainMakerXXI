@@ -10,9 +10,11 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import edu.wpi.first.wpilibj.Joystick;
+import static frc.robot.Constants.OIConstants.*;
+
 import frc.robot.subsystems.Talons;
 import frc.robot.subsystems.SparkMaxes;
-import static frc.robot.Constants.OIConstants.*;
+import frc.robot.subsystems.Falcons;
 
 public class RunMotors extends CommandBase {
 
@@ -21,10 +23,12 @@ public class RunMotors extends CommandBase {
 
   private final Talons myTalons;
   private final SparkMaxes mySparkMaxes;
+  private final Falcons myFalcons;
 
-  public RunMotors(Talons talons , SparkMaxes sparkMaxes ) {
+  public RunMotors(Talons talons, SparkMaxes sparkMaxes, Falcons falcons ) {
     myTalons = talons;
     mySparkMaxes = sparkMaxes;
+    myFalcons = falcons;
 
     joyR = new Joystick(joyRPort);
     joyL = new Joystick(joyLPort);
@@ -53,6 +57,14 @@ public class RunMotors extends CommandBase {
     }else{
     	myTalons.runPercent(0);
     }
+
+    /* //Uncomment if you want to use the Falcons
+    if () {
+      myFalcons.runPercent(-1 * joyL.getRawAxis(1) * 0.8);
+    } else {
+      myFalcons.runPercent(0);
+    }
+    */
 
   }
 

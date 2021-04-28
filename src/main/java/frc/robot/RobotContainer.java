@@ -18,11 +18,12 @@ public class RobotContainer {
   private final Solenoids solenoids = new Solenoids();
   private final SparkMaxes sparkMaxes = new SparkMaxes();
   private final Talons talons = new Talons();
+  private final Falcons falcons = new Falcons();
   private final Navx navx = new Navx();
 
   private final Pressurize pressurize = new Pressurize(pneumatics);
   private final FireSolenoids fireSolenoids = new FireSolenoids(solenoids);
-  private final RunMotors runMotors = new RunMotors(talons, sparkMaxes);
+  private final RunMotors runMotors = new RunMotors(talons, sparkMaxes, falcons);
   private final NavReadout navReadout = new NavReadout(navx);
 
   public RobotContainer() {
