@@ -30,8 +30,9 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   public final Feeder feeder = new Feeder();
   public final Climber climber = new Climber();
 
-  private final JoystickTankDrive joystickTankDrive = new JoystickTankDrive(drivetrain);
+  //private final JoystickTankDrive joystickTankDrive = new JoystickTankDrive(drivetrain);
   //private final JoystickArcadeDrive joystickArcadeDrive = new JoystickArcadeDrive(drivetrain);
+  private final XboxArcadeDrive xboxArcadeDrive = new XboxArcadeDrive(drivetrain);
   private final Pressurize pressurize = new Pressurize(pneumatics);
   private final Shift shift = new Shift(shifter);
   private final RunIntake runIntake = new RunIntake(intake);
@@ -54,7 +55,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   }
 
   private void configureDefaultCommands() {
-    drivetrain.setDefaultCommand(joystickTankDrive);
+    drivetrain.setDefaultCommand(xboxArcadeDrive);
     pneumatics.setDefaultCommand(pressurize);
     shifter.setDefaultCommand(shift);
     limelight.setDefaultCommand(runCamera);
