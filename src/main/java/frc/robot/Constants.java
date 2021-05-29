@@ -83,6 +83,7 @@ public final class Constants {
         public static final int joyRPort = 0;
         public static final int joyLPort = 1;
         public static final int contPort = 2; // port of xbox controller connected
+        public static final int xboxControllerPort = 0;
     }
     
     public static final class AutoConstants {
