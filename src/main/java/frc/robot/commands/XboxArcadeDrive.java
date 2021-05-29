@@ -33,22 +33,22 @@ public class XboxArcadeDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Math.abs(driverCont.getY(Hand.kLeft)) >= xboxDeadzone || Math.abs(driverCont.getX(Hand.kLeft)) >= xboxDeadzone){
-      if(driverCont.getX(Hand.kLeft) <= -xboxDeadzone){
+    if(Math.abs(driverCont.getY(Hand.kLeft)) >= xboxDeadzone || Math.abs(driverCont.getX(Hand.kRight)) >= xboxDeadzone){
+      if(driverCont.getX(Hand.kRight) <= -xboxDeadzone){
         System.out.println("less than -" + xboxDeadzone);
-        myDriveTrain.driveRMAX(-1 * driverCont.getX(Hand.kLeft) * 0.8);
+        myDriveTrain.driveRMAX(-1 * driverCont.getY(Hand.kLeft) * 0.8);
         if(Math.abs(driverCont.getY(Hand.kLeft)) >= xboxDeadzone){
           myDriveTrain.driveLMAX(-1 * driverCont.getY(Hand.kLeft) * 0.8);
         } else {
-          myDriveTrain.driveLMAX(0);
+          myDriveTrain.driveLMAX(1 * driverCont.getX(Hand.kRight) * 0.8);
         }
-      } else if(driverCont.getX(Hand.kLeft) >= xboxDeadzone) {
+      } else if(driverCont.getX(Hand.kRight) >= xboxDeadzone) {
         System.out.println("greater than " + xboxDeadzone);
-        myDriveTrain.driveLMAX(1 * driverCont.getX(Hand.kLeft) * 0.8);
+        myDriveTrain.driveLMAX(1 * driverCont.getX(Hand.kRight) * 0.8);
         if(Math.abs(driverCont.getY(Hand.kLeft)) >= xboxDeadzone){
           myDriveTrain.driveRMAX(-1 * driverCont.getY(Hand.kLeft));
         } else {
-          myDriveTrain.driveRMAX(0);
+          myDriveTrain.driveRMAX(-1 * driverCont.getX(Hand.kRight));
         }
       } else {
         System.out.println("forward");
