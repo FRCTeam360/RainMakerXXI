@@ -36,7 +36,7 @@ public class XboxArcadeDrive extends CommandBase {
     if(Math.abs(driverCont.getY(Hand.kLeft)) >= xboxDeadzone || Math.abs(driverCont.getX(Hand.kRight)) >= xboxDeadzone){
       if(driverCont.getX(Hand.kRight) <= -xboxDeadzone){
         System.out.println("less than -" + xboxDeadzone);
-        myDriveTrain.driveRMAX(-1 * driverCont.getY(Hand.kLeft) * 0.8);
+        myDriveTrain.driveRMAX(-1 * driverCont.getX(Hand.kRight) * 0.8);
         if(Math.abs(driverCont.getY(Hand.kLeft)) >= xboxDeadzone){
           myDriveTrain.driveLMAX(-1 * driverCont.getY(Hand.kLeft) * 0.8);
         } else {
