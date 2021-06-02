@@ -33,32 +33,33 @@ public class XboxArcadeDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if(Math.abs(driverCont.getY(Hand.kLeft)) >= xboxDeadzone || Math.abs(driverCont.getX(Hand.kRight)) >= xboxDeadzone){
-      if(driverCont.getX(Hand.kRight) <= -xboxDeadzone){
-        System.out.println("less than -" + xboxDeadzone);
-        myDriveTrain.driveRMAX(-1 * driverCont.getX(Hand.kRight) * 0.8);
-        if(Math.abs(driverCont.getY(Hand.kLeft)) >= xboxDeadzone){
-          myDriveTrain.driveLMAX(-1 * driverCont.getY(Hand.kLeft) * 0.8);
+    double upDown = driverCont.getY(Hand.kLeft);
+    double rightLeft = driverCont.getX(Hand.kRight);
+    double driveRight = 0;
+    double driveLeft = 0;
+ 
+    if(Math.abs(upDown) >= xboxDeadzone || Math.abs(rightLeft) >= xboxDeadzone){
+      if(rightLeft <= -xboxDeadzone){
+        driveRight = -1 * rightLeft;
+        if(Math.abs(upDown) >= xboxDeadzone){
+          driveLeft = -1 * upDown;
         } else {
-          myDriveTrain.driveLMAX(1 * driverCont.getX(Hand.kRight) * 0.8);
+          driveLeft = 1 * rightLeft;
         }
-      } else if(driverCont.getX(Hand.kRight) >= xboxDeadzone) {
-        System.out.println("greater than " + xboxDeadzone);
-        myDriveTrain.driveLMAX(1 * driverCont.getX(Hand.kRight) * 0.8);
-        if(Math.abs(driverCont.getY(Hand.kLeft)) >= xboxDeadzone){
-          myDriveTrain.driveRMAX(-1 * driverCont.getY(Hand.kLeft));
+      } else if(rightLeft >= xboxDeadzone) {
+        driveLeft = 1 * rightLeft;
+        if(Math.abs(upDown) >= xboxDeadzone){
+          driveRight = -1 * upDown;
         } else {
-          myDriveTrain.driveRMAX(-1 * driverCont.getX(Hand.kRight));
+          driveRight = -1 * rightLeft;
         }
       } else {
         System.out.println("forward");
-        myDriveTrain.driveRMAX(-1 * driverCont.getY(Hand.kLeft) * 0.8);
-        myDriveTrain.driveLMAX(-1 * driverCont.getY(Hand.kLeft) * 0.8);
-      }
-    } else {
-      myDriveTrain.driveRMAX(0);
-      myDriveTrain.driveLMAX(0);
+        driveRight = -1 * upDown;
+        driveLeft = -1 * upDown;      }
     }
+    myDriveTrain.driveLMAX(driveLeft);
+    myDriveTrain.driveRMAX(driveRight);
   }
 
   // Called once the command ends or is interrupted.
