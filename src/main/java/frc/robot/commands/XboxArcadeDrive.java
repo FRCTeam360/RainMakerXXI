@@ -33,33 +33,48 @@ public class XboxArcadeDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double upDown = driverCont.getY(Hand.kLeft);
-    double rightLeft = driverCont.getX(Hand.kRight);
+    double rightLeft = 0;
+    double upDownSquared = 0;
     double driveRight = 0;
     double driveLeft = 0;
- 
-    if(Math.abs(upDown) >= xboxDeadzone || Math.abs(rightLeft) >= xboxDeadzone){
-      if(rightLeft <= -xboxDeadzone){
-        driveRight = -1 * rightLeft;
-        if(Math.abs(upDown) >= xboxDeadzone){
-          driveLeft = -1 * upDown;
-        } else {
-          driveLeft = 1 * rightLeft;
-        }
-      } else if(rightLeft >= xboxDeadzone) {
-        driveLeft = 1 * rightLeft;
-        if(Math.abs(upDown) >= xboxDeadzone){
-          driveRight = -1 * upDown;
-        } else {
-          driveRight = -1 * rightLeft;
-        }
-      } else {
-        System.out.println("forward");
-        driveRight = -1 * upDown;
-        driveLeft = -1 * upDown;      }
+
+    if(Math.abs(driverCont.getX(Hand.kRight)) >= xboxDeadzone) {
+      rightLeft = driverCont.getX(Hand.kRight);
     }
-    myDriveTrain.driveLMAX(driveLeft);
-    myDriveTrain.driveRMAX(driveRight);
+    if(Math.abs(driverCont.getY(Hand.kLeft)) >= xboxDeadzone) {
+      upDownSquared = driverCont.getY(Hand.kLeft) * driverCont.getY(Hand.kLeft);
+    }
+    
+    driveLeft = upDownSquared + rightLeft;
+    driveRight = upDownSquared - rightLeft;
+
+    driveLeft = Math.min(driveLeft, 1);
+    driveRight = Math.min(driveRight, 1);
+    driveLeft = Math.max(driveLeft, -1);
+    driveRight = Math.max(driveRight, -1);
+ 
+    // if(Math.abs(upDown) >= xboxDeadzone || Math.abs(rightLeft) >= xboxDeadzone){
+    //   if(rightLeft <= -xboxDeadzone){
+    //     driveRight = -1 * rightLeft;
+    //     if(Math.abs(upDown) >= xboxDeadzone){
+    //       driveLeft = upDown;
+    //     } else {
+    //       driveLeft = 1 * rightLeft;
+    //     }
+    //   } else if(rightLeft >= xboxDeadzone) {
+    //     driveLeft = 1 * rightLeft;
+    //     if(Math.abs(upDown) >= xboxDeadzone){
+    //       driveRight = -1 * upDown;
+    //     } else {
+    //       driveRight = -1 * rightLeft;
+    //     }
+    //   } else {
+    //     System.out.println("forward");
+    //     driveRight = -1 * upDown;
+    //     driveLeft = -1 * upDown;      }
+    // }
+    myDriveTrain.driveLMAX(driveLeft * 0.8);
+    myDriveTrain.driveRMAX(driveRight * 0.8);
   }
 
   // Called once the command ends or is interrupted.
