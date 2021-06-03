@@ -33,20 +33,26 @@ public class XboxArcadeDrive extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double rightLeft = 0;
+    double rightLeftSquared = 0;
     double upDownSquared = 0;
     double driveRight = 0;
     double driveLeft = 0;
 
-    if(Math.abs(driverCont.getX(Hand.kRight)) >= xboxDeadzone) {
-      rightLeft = driverCont.getX(Hand.kRight);
+    if(Math.abs(driverCont.getX(Hand.kLeft)) >= xboxDeadzone) {
+      rightLeftSquared = driverCont.getX(Hand.kLeft) * driverCont.getX(Hand.kLeft);
+      if(driverCont.getX(Hand.kLeft) < 0){
+        rightLeftSquared = rightLeftSquared * -1;
+      }
     }
     if(Math.abs(driverCont.getY(Hand.kLeft)) >= xboxDeadzone) {
-      upDownSquared = driverCont.getY(Hand.kLeft) * driverCont.getY(Hand.kLeft);
+      upDownSquared = -1 * driverCont.getY(Hand.kLeft) * driverCont.getY(Hand.kLeft);
+      if(driverCont.getY(Hand.kLeft) < 0){
+        upDownSquared = upDownSquared * -1;
+      }
     }
     
-    driveLeft = upDownSquared + rightLeft;
-    driveRight = upDownSquared - rightLeft;
+    driveLeft = upDownSquared + rightLeftSquared;
+    driveRight = upDownSquared - rightLeftSquared;
 
     driveLeft = Math.min(driveLeft, 1);
     driveRight = Math.min(driveRight, 1);
