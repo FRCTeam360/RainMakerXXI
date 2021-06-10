@@ -7,7 +7,6 @@
 
 package frc.robot;
 
-import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandScheduler;
@@ -21,16 +20,18 @@ public class Robot extends TimedRobot {
 
   private Command m_autonomousCommand;
   private RobotContainer m_robotContainer;
+  private AutoChooser m_autoChooser;
 
   @Override
   public void robotInit() { //This function is run when the robot is first started up and should be used for any initialization code.
     m_robotContainer = new RobotContainer(); //Instantiate our RobotContainer. This will perform all our button bindings, and put our autonomous chooser on the dashboard.
-    CameraServer.getInstance().startAutomaticCapture();
+    m_autoChooser = new AutoChooser(m_robotContainer); //
   }
   
   @Override
   public void robotPeriodic() { //This function is called every robot packet, no matter the mode. Use for things wanted in all modes
     CommandScheduler.getInstance().run();//Runs Command Scheduler, must be called for any command to work
+    //m_autoChooser.periodic(); //In disabled init right now
   }
 
 
@@ -42,11 +43,14 @@ public class Robot extends TimedRobot {
 
   @Override
   public void disabledPeriodic() {
-    if ( m_robotContainer.gDriveTrain().getHighestVelocity() >= 1.7 ) { //if either side is going more then 10 m/s, about 1/5 of top speed high gear
-      m_robotContainer.gDriveTrain().brakeMode();
+    if ( m_robotContainer.drivetrain.getHighestVelocity() >= 1.7 ) { //if either side is going more then 10 m/s, about 1/5 of top speed high gear
+      m_robotContainer.drivetrain.brakeMode();
     } else {
-      m_robotContainer.gDriveTrain().coastMode();
+      m_robotContainer.drivetrain.coastMode();
     }
+
+    m_autoChooser.periodic(); //For the autonomous chooser
+
   }
 
 
@@ -55,12 +59,12 @@ public class Robot extends TimedRobot {
   public void autonomousInit() { //This autonomous runs the autonomous command selected by your {@link RobotContainer} class.
     inAuto = true;
 
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand(); //get auto command from robot container
+    m_autonomousCommand = m_autoChooser.getCommand(); //get auto command from robot container
 
-    m_robotContainer.gDriveTrain().brakeMode(); //Set brake mode
+    m_robotContainer.drivetrain.brakeMode(); //Set brake mode
     //m_robotContainer.gDriveTrain().coastMode();
-    m_robotContainer.gShifter().shiftUp(); //Ensure in high gear for the Auto, 7.56 gear ratio 
-    m_robotContainer.gDriveTrain().resetEncPos(); //Set encoders to zero
+    m_robotContainer.shifter.shiftUp(); //Ensure in high gear for the Auto, 7.56 gear ratio 
+    m_robotContainer.drivetrain.resetEncPos(); //Set encoders to zero
 
     if (m_autonomousCommand != null) { //If auto command exists
       m_autonomousCommand.schedule(); //run the auto command
@@ -76,8 +80,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopInit() {
     inAuto = false; //Modify constant
-    m_robotContainer.gDriveTrain().brakeMode(); //Set brake
-    m_robotContainer.gDriveTrain().resetEncPos(); //Set encoders to zero
+    m_robotContainer.drivetrain.brakeMode(); //Set brake
+    m_robotContainer.drivetrain.resetEncPos(); //Set encoders to zero
 
     if (m_autonomousCommand != null) { //This makes sure that the autonomous stops running when teleop starts running.
       m_autonomousCommand.cancel(); //If you want the autonomous to  continue until interrupted by another command comment it out.
@@ -92,7 +96,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testInit() {     // Cancels all running commands at the start of test mode.
-    m_robotContainer.gDriveTrain().brakeMode(); //Set brake
+    m_robotContainer.drivetrain.brakeMode(); //Set brake
     CommandScheduler.getInstance().cancelAll(); //Clear all commands
   }
 

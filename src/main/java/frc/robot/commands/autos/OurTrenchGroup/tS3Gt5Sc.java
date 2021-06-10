@@ -5,20 +5,21 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.autos.OurTrenchGroup;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+//import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 
-import frc.robot.subsystems.Limelight;
+//import frc.robot.Constants.???;
 
-public class RunCamera extends CommandBase {
+//import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 
-  private final Limelight myLimelight;
+public class tS3Gt5Sc extends SequentialCommandGroup {
+  public tS3Gt5Sc( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
+    super(
 
-  public RunCamera(Limelight limelight) {
-    myLimelight = limelight;
-    addRequirements(myLimelight);
+    );
+
   }
-
-  public boolean isFinished() { return false; }
 }

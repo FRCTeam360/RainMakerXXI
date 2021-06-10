@@ -14,12 +14,9 @@ import frc.robot.subsystems.Shooter;
 import edu.wpi.first.wpilibj.Joystick;
 import static frc.robot.Constants.OIConstants.*;
 
-import static frc.robot.Constants.inAuto;
-
 public class ShooterRamp extends CommandBase {
   
   private final Shooter myShooter;
-
   Joystick cont;
 
   public ShooterRamp(Shooter shooter) {
@@ -44,10 +41,6 @@ public class ShooterRamp extends CommandBase {
 
   @Override
   public boolean isFinished() {   // Returns true when the command should end.
-    if(!inAuto && cont.getRawButton(3)) { //Programmed in Operator abort feature, if this command ends, alignshoot ends
-      return true;
-    } else {
-      return false;
-    }
+    return false;
   }
 }

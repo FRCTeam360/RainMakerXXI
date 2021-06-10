@@ -36,13 +36,15 @@ public class LoadBalls extends CommandBase { //Used by AlignShoot command
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    // myTimer.stop();
+    // myTimer.reset();
     //myTimer.start();
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if ((myShooter.getVelocity() >= ShooterConstants.targetVelocity - 250) && (Math.abs(myLimelight.getX()) <= 0.8)) {
+    if ((myShooter.getVelocity() >= ShooterConstants.targetVelocity - 100) && (Math.abs(myLimelight.getX()) <= 0.8) && myLimelight.validTarget()) {
       myTimer.start();
       //if(myTimer.get() >= .25) {
         myFeeder.runHopper(.5);
@@ -59,7 +61,7 @@ public class LoadBalls extends CommandBase { //Used by AlignShoot command
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    myFeeder.runLoader(0);
+    myFeeder.runBoth(0);
     myTimer.stop();
     myTimer.reset();
   }

@@ -7,30 +7,22 @@
 
 package frc.robot.commands;
 
-import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 //import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 
-import frc.robot.commands.autoCommands.AutoRunIntake;
+//import frc.robot.commands.AutoRunIntake;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.subsystems.Limelight;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.Feeder;
-import frc.robot.subsystems.Intake;
+//import frc.robot.subsystems.Intake;
 
-// NOTE:  Consider using this command inline, rather than writing a subclass.  For more
-// information, see:
-// https://docs.wpilib.org/en/latest/docs/software/commandbased/convenience-features.html
-public class AlignShoot extends ParallelRaceGroup {
-  /**
-   * Creates a new AlignShoot.
-   */
-  public AlignShoot(DriveTrain driveTrain, Limelight limelight, Shooter shooter, Feeder feeder, Intake intake) {
-    // Add your commands in the super() call, e.g.
-    // super(new FooCommand(), new BarCommand());
+//AlignShoot (Comments on lines 24, 25, & 26 should not be taken seriously)
+public class AlignShoot extends ParallelCommandGroup {
+  public AlignShoot(DriveTrain driveTrain, Limelight limelight, Shooter shooter, Feeder feeder) {
     super(
       new Align(driveTrain, limelight), //ends when aligned
       new LoadBalls(feeder, limelight, shooter), //ends on timer
-      new AutoRunIntake(intake),
       new ShooterRamp(shooter) //Ends on abort button
     );
   }

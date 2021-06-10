@@ -21,7 +21,7 @@ import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.geometry.Pose2d;
 import edu.wpi.first.wpilibj.geometry.Rotation2d;
 
-import com.kauailabs.navx.frc.AHRS; //If error here check updates: install vendor online use: https://www.kauailabs.com/dist/frc/2020/navx_frc.json
+import com.kauailabs.navx.frc.AHRS; //If error here check updates: install vendor online use: https://www.kauailabs.com/dist/frc/2021/navx_frc.json
 import edu.wpi.first.wpilibj.SPI; //Port NavX is on
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -35,11 +35,6 @@ public class DriveTrain extends SubsystemBase {
   private static CANSparkMax motorRSlave;
 
   private final DifferentialDrive m_differentialDrive;
-
-  private double leftVel;   // initializes velocities for left and right sides
-  private double rightVel;
-  private double leftNewPos;   // initializes new positions for left and right sides
-  private double rightNewPos;
 
   private AHRS navX;
   private final DifferentialDriveOdometry m_odometry;
@@ -78,11 +73,6 @@ public class DriveTrain extends SubsystemBase {
     leftGroup = new SpeedControllerGroup( motorLMaster , motorLSlave );
     rightGroup = new SpeedControllerGroup( motorRMaster , motorRSlave );
 
-    /* //Was here for testing
-    SmartDashboard.putNumber("steer", steer);
-    SmartDashboard.putNumber("maxDrive", maxDrive);
-    */  // display PID coefficients on SmartDashboard
-
     m_differentialDrive = new DifferentialDrive(leftGroup, rightGroup);
     m_differentialDrive.setSafetyEnabled(false); //So it won't stop the motors from moving
   }
@@ -118,23 +108,9 @@ public class DriveTrain extends SubsystemBase {
 
   public DifferentialDriveWheelSpeeds getWheelSpeeds() { //Must be in meters/second
     return new DifferentialDriveWheelSpeeds(
-      motorLMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond,
-      motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond
+      motorLMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters,
+      motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters
     ); //In example: m_leftEncoder.getRate() , m_rightEncoder.getRate() however, they set their rate to inclue their conversions
-  }
-
-  public void leftEnc(){
-    leftNewPos = motorLMaster.getEncoder().getPosition();     // gets the new position of the encoder
-    SmartDashboard.putNumber("Left Raw Pos", leftNewPos);     // puts raw number in smartdashboard
-    leftVel = motorLMaster.getEncoder().getVelocity();     // gets the velocity of the left motor
-    SmartDashboard.putNumber("Left Raw Vel", leftVel);     // puts raw number in smartdashboard
-  }
-
-  public void rightEnc(){
-    rightNewPos = motorRMaster.getEncoder().getPosition();     // gets the new position of the encoder
-    SmartDashboard.putNumber("Right Raw Pos", rightNewPos);     // puts raw number in smartdashboard
-    rightVel = motorRMaster.getEncoder().getVelocity();     // gets the velocity of the left motor
-    SmartDashboard.putNumber("Right Raw Vel", rightVel);     // puts raw number in smartdashboard
   }
 
   public void brakeMode() {
@@ -149,18 +125,6 @@ public class DriveTrain extends SubsystemBase {
     motorLSlave.setIdleMode(IdleMode.kCoast);
     motorRSlave.setIdleMode(IdleMode.kCoast);
   }
-
-  /* //Was here for testing
-  private void PIDDashboard() {
-    // read PID coefficients from SmartDashboard
-    double s = SmartDashboard.getNumber("steer", 0);
-    double max = SmartDashboard.getNumber("maxDrive", 0);
-
-    // if PID coefficients on SmartDashboard have changed, write new values to controller
-    if((s != steer)) { steer = s; }
-    if((max != maxDrive)) { maxDrive = max; }
-  }
-  */
 
   public void navxTestingDashboardReadouts () {
     //SmartDashboard.putNumber("N ang", Math.IEEEremainder(navX.getAngle(), 360) );
@@ -178,8 +142,8 @@ public class DriveTrain extends SubsystemBase {
   }
 
   public double getHighestVelocity () { 
-    double leftSpeed = motorLMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond;
-    double rightSpeed = motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond;
+    double leftSpeed = motorLMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters;
+    double rightSpeed = motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters;
     double highSpeed = Math.max( Math.abs(leftSpeed), Math.abs(rightSpeed) ); //Make em both positive
     return highSpeed; //In meters per second
   }
@@ -212,8 +176,22 @@ public class DriveTrain extends SubsystemBase {
     SmartDashboard.putNumber("Left Meters", motorLMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters);
     SmartDashboard.putNumber("Right Meters", motorRMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters);
     //SmartDashboard.putNumber("Num", AutoConstants.ticksToMeters);
-    SmartDashboard.putNumber("Left m/s", motorLMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond);
-    SmartDashboard.putNumber("Right m/s", motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters * AutoConstants.hundredMstoSecond);
+    SmartDashboard.putNumber("Left m/s", motorLMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters );
+    SmartDashboard.putNumber("Right m/s", motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters );
+  }
+
+  public void velocityPrintouts() { //In m/s
+    double leftSpeed = motorLMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters;
+    double rightSpeed = motorRMaster.getEncoder().getVelocity() * AutoConstants.ticksToMeters;
+    SmartDashboard.putNumber("Left Velocity", leftSpeed);
+    SmartDashboard.putNumber("Right Velocity", rightSpeed);
+  }
+
+  public void positionPrintouts() {
+    double leftRawPos = motorLMaster.getEncoder().getPosition();
+    SmartDashboard.putNumber("Left Raw Pos", leftRawPos);
+    double rightRawPos = motorRMaster.getEncoder().getPosition();
+    SmartDashboard.putNumber("Right Raw Pos", rightRawPos);
   }
 
   @Override
@@ -224,14 +202,13 @@ public class DriveTrain extends SubsystemBase {
       motorRMaster.getEncoder().getPosition() * AutoConstants.ticksToMeters
     );
 
-    //rightEnc();
-    //leftEnc();
-    //PIDDashboard(); //For mathew's PIDs
-    //navxTestingDashboardReadouts(); //Here for testing
+    navxTestingDashboardReadouts(); //Here for testing
     //dashboardMetersTravelled(); //Here for testing, comment out before the competition
-    //tempPrintouts();
+    tempPrintouts();
     //SmartDashboard.putNumber("Cons", AutoConstants.ticksToMeters);
     //avgTempPrintouts();
     //ampPrintouts();
+    //positionPrintouts();
+    velocityPrintouts();
   }
 }

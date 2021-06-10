@@ -1,0 +1,7 @@
+Files placed in this directory will be deployed to the RoboRIO into the
+'deploy' directory in the home folder. Use the 'Filesystem.getDeployDirectory' 
+wpilib function to get a proper path relative to the deploy directory.
+
+In this project this folder is used to store paths generated in the 
+Pathweaver tool from wpilib and these files will be refrenced in the
+auto command itself. These trajectories must be transformed before use. 

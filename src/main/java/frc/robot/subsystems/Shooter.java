@@ -11,11 +11,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import static frc.robot.Constants.ShooterConstants.*;
-import static frc.robot.Constants.inAuto;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
-//import com.ctre.phoenix.motorcontrol.InvertType; //Used if you want to set one's setInverted to follow master
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 public class Shooter extends SubsystemBase {
@@ -57,11 +55,11 @@ public class Shooter extends SubsystemBase {
   }
 
   public void run () {
-    if(inAuto) {
-      shooterMaster.set(ControlMode.Velocity, targetVelocity + 200); //15900 native units is 60%
-    } else {
+    // if(inAuto) {
+    //   shooterMaster.set(ControlMode.Velocity, targetVelocity + 200); //15900 native units is 60%
+    // } else {
       shooterMaster.set(ControlMode.Velocity, targetVelocity);
-    }
+    //}
   }
 
   public void runWithJoy (double output) {
@@ -77,8 +75,8 @@ public class Shooter extends SubsystemBase {
 
     SmartDashboard.putNumber("Shooter Velocity", shooterMaster.getSelectedSensorVelocity(0)); //Comp Stuff
     SmartDashboard.putBoolean("Shooter Ready",
-      shooterMaster.getSelectedSensorVelocity(0) > targetVelocity - 200 && //200 is from LoadBalls command
-      shooterMaster.getSelectedSensorVelocity(0) < targetVelocity
+      shooterMaster.getSelectedSensorVelocity(0) >= targetVelocity - 200 && //200 is from LoadBalls command
+      shooterMaster.getSelectedSensorVelocity(0) <= targetVelocity + 100
     ); //Comp Stuff
   }
 }

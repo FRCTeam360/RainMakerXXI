@@ -5,20 +5,20 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.autos.AnywhereGroup;
 
-import edu.wpi.first.wpilibj2.command.CommandBase;
+import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
+//import edu.wpi.first.wpilibj2.command.ParallelRaceGroup;
 
-import frc.robot.subsystems.Limelight;
+//import frc.robot.commands.*;
+import frc.robot.subsystems.*;
 
-public class RunCamera extends CommandBase {
+public class S3F extends SequentialCommandGroup { //Could be inline but done like this for simplicity
+  public S3F( DriveTrain drivetrain, Limelight limelight, Feeder feeder, Shooter shooter, Intake intake ) {
 
-  private final Limelight myLimelight;
+    super(
 
-  public RunCamera(Limelight limelight) {
-    myLimelight = limelight;
-    addRequirements(myLimelight);
+    );
+
   }
-
-  public boolean isFinished() { return false; }
 }
