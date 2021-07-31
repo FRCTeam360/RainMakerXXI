@@ -43,6 +43,7 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
   private final Climb climb = new Climb(climber);
   private final AlignShoot alignShoot = new AlignShoot(drivetrain, limelight, shooter, feeder);
   private final ShooterRamp shooterRamp = new ShooterRamp(shooter);
+  private final ShootButtons shootButtons = new ShootButtons(shooter);
 
   private Joystick joyR = new Joystick(OIConstants.joyRPort);
   private Joystick joyL = new Joystick(OIConstants.joyLPort);
@@ -74,6 +75,9 @@ public class RobotContainer {   // The robot's subsystems and commands are defin
     new JoystickButton(joyL, 1).whenHeld( shooterRamp );
     new JoystickButton(joyOI, 8).whenHeld(shooterRamp);
     new JoystickButton(joyR , 1).whenHeld(alignShoot);  //This whenHeld schedules a command when a trigger changes from inactive to active (or, accordingly, when a button is initially pressed) and cancels it when the trigger becomes inactive again (or the button is released). The command will not be re-scheduled if it finishes while the trigger is still active.
+    new JoystickButton(joyOI, 2).whenHeld(shootButtons);
+    new JoystickButton(joyOI, 3).whenHeld(shootButtons);
+    new JoystickButton(joyOI, 4).whenHeld(shootButtons);
   }
 
 }
