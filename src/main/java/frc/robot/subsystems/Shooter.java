@@ -54,6 +54,10 @@ public class Shooter extends SubsystemBase {
     return shooterMaster.getSelectedSensorVelocity(0);
   }
 
+  public void setRun (double Velocity) {
+    shooterMaster.set(ControlMode.Velocity, Velocity);
+  }
+
   public void run () {
     // if(inAuto) {
     //   shooterMaster.set(ControlMode.Velocity, targetVelocity + 200); //15900 native units is 60%
