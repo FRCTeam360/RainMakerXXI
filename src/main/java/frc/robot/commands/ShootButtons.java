@@ -10,8 +10,9 @@ package frc.robot.commands;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import static frc.robot.Constants.OIConstants.*;
+import static frc.robot.Constants.ShooterConstants.*;
 import edu.wpi.first.wpilibj.Joystick;
-
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.Shooter;
 
 public class ShootButtons extends CommandBase {
@@ -27,23 +28,32 @@ public class ShootButtons extends CommandBase {
 
   @Override   // Called when the command is initially scheduled.
   public void initialize() {
+    updateShooter();
+  }
+  public void updateShooter(){
+    if (cont.getRawButton( 2 )) { //If A button held
+      targetVelocity = 12000.0;
+      SmartDashboard.putString("Button", "A");
+    } else if (cont.getRawButton(3)){
+      targetVelocity = 13000.0;
+      SmartDashboard.putString("Button", "B");
+    } else if (cont.getRawButton(4)){
+      targetVelocity = 14000.0;
+      SmartDashboard.putString("Button", "Y");
+    } else {
+      targetVelocity = backupTargetVelocity;
+      SmartDashboard.putBoolean("A Button", false);
+    }
   }
 
   @Override   // Called every time the scheduler runs while the command is scheduled.
   public void execute() {
-    if (cont.getRawButton( 2 )) { //If A button held
-      shooter.setRun( 1500.0 ); //if button held, run
-    } else if (cont.getRawButton(3)){
-      shooter.setRun(1600.0);
-    } else if (cont.getRawButton(4)){
-      shooter.setRun(1700.0);
-    } else {
-      shooter.runWithJoy(0.0); //Don't run
-    }
+    shooter.run();
   }
 
   @Override   // Called once the command ends or is interrupted.
   public void end(boolean interrupted) {
+    targetVelocity = backupTargetVelocity;
   }
 
   // Returns true when the command should end.

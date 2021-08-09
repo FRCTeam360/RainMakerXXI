@@ -82,5 +82,6 @@ public class Shooter extends SubsystemBase {
       shooterMaster.getSelectedSensorVelocity(0) >= targetVelocity - 200 && //200 is from LoadBalls command
       shooterMaster.getSelectedSensorVelocity(0) <= targetVelocity + 100
     ); //Comp Stuff
+    SmartDashboard.putNumber("Target Velocity", targetVelocity);
   }
 }

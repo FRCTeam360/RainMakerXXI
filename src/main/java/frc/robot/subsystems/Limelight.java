@@ -62,8 +62,8 @@ public class Limelight extends SubsystemBase {
     if ( validTarget() == true ) {
       double yLime = getY();
       targetVelocity = (aVal * yLime * yLime) + (bVal * yLime) + ( cVal ) ;
-    } else {
-      targetVelocity = backupTargetVelocity;
+    // } else {
+    //   targetVelocity = backupTargetVelocity;
     }
   }
 
